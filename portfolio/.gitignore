@@ -1,7 +1,5 @@
 # Environments
 .venv
+venv
 .flaskenv
 __pycache__
-
-# requirements
-requirements.txt

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../statics/styles/linked-list-style.css">
+    <title>Linked List</title>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <!-- Logo Team -->
+            <div id="team-icon-logo" class="logo-container">
+                <img src="../statics/images/team-logo.png" alt="Team 4 Icon" />
+            </div>
+            <!-- Navigation Links -->
+            <div class="nav-links">
+                <ul>
+                    <li><a href="/">HOME</a></li>
+                    <li><a href="/profile">PROFILE</a></li>
+                    <li><a href="/works">WORKS</a></li>
+                    <li><a href="/contact">CONTACT</a></li>
+                </ul>
+            </div>
+            <!-- GitHub Icon -->
+            <div id="github-logo" class="logo-container">
+                <img src="../statics/images/github-icon.png" alt="GitHub Icon" />
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Main Content -->
+    <main>
+        <section class="linked-list-simulator">
+            <div class="container">
+                <br>
+                <div class="linked-list-text">
+                <h1>Linked List Simulator</h1>
+                </div>
+                <div class="output-box"></div>
+                    <ul id="linkedList"></ul>
+                </div>
+                <div class="input-container">
+                    <input type="text" id="inputData" placeholder="Type here...">
+                    <div class="buttons">
+                        <button class="btn insert-btn" onclick="addData()">Insert</button>
+                        <button class="btn delete-btn" onclick="deleteData()">Delete</button>
+                        <button class="btn search-btn" onclick="searchData()">Search</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

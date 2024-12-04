@@ -39,18 +39,43 @@
                 <div class="linked-list-text">
                 <h1>Linked List Simulator</h1>
                 </div>
+
+                <!-- Output Box -->
                 <div class="output-box"></div>
                     <ul id="linkedList"></ul>
                 </div>
+                
+                <!-- Input Container -->
                 <div class="input-container">
                     <input type="text" id="inputData" placeholder="Type here...">
                     <div class="buttons">
-                        <button class="btn insert-btn" onclick="addData()">Insert</button>
-                        <button class="btn delete-btn" onclick="deleteData()">Delete</button>
+                        <!-- Add Dropdown -->
+                        <div class="dropdown">
+                            <button class="btn dropdown-btn" onclick="toggleDropdown()">
+                                <p id="button-text">Add</p>
+                            </button>
+                            <div id="addDropdown" class="dropdown-content">
+                                <button class="btn" onclick="addAtBeginning()">at Beginning</button>
+                                <button class="btn" onclick="addAtEnd()">at End</button>
+                            </div>
+                        </div>
+                        <!-- Delete Dropdown -->
+                        <div class="dropdown">
+                            <button class="btn dropdown-btn" onclick="toggleDeleteDropdown()">
+                                <p id="button-text">Delete</p>
+                            </button>
+                            <div id="deleteDropdown" class="dropdown-content delete">
+                                <button class="btn" onclick="deleteFromBeginning()">at Beginning</button>
+                                <button class="btn" onclick="deleteFromEnd()">at End</button>
+                            </div>
+                        </div>
+                        <!-- Search -->
                         <button class="btn search-btn" onclick="searchData()">Search</button>
                     </div>
                 </div>
             </div>
+            <script src="../statics/scripts/linked-list-script.js"></script>
+
         </section>
     </main>
 </body>

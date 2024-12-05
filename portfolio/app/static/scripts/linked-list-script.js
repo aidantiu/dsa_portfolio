@@ -1,81 +1,41 @@
-// Toggle function for Add dropdown
-function toggleDropdown() {
-    const addDropdownbtn = document.getElementById('dropdown-add');
-    const addDropdown = document.getElementById('addDropdown');
-    const deleteDropdown = document.getElementById('deleteDropdown');
-    
-    // If Add dropdown is clicked, toggle visibility
-    addDropdown.classList.toggle('show');
-    addDropdownbtn.classList.toggle('active');
+// Function to toggle dropdown visibility
+function toggleDropdown(dropdownId) {
+    const dropdown = document.getElementById(dropdownId); // Target the clicked dropdown
+    dropdown.classList.toggle('show'); // Show/Hide the dropdown
 
-    // Close Delete dropdown if it's open
-    if (deleteDropdown.classList.contains('show')) {
-        deleteDropdown.classList.remove('show');
-        const deleteDropdownbtn = document.getElementById('dropdown-del');
-        deleteDropdownbtn.classList.remove('active');
+    // Close other dropdowns if they are open
+    const otherDropdown = dropdownId === 'addDropdown' ? 'deleteDropdown' : 'addDropdown';
+    const other = document.getElementById(otherDropdown);
+    if (other && other.classList.contains('show')) {
+        other.classList.remove('show');
     }
 }
 
-// Toggle function for Delete dropdown
-function toggleDeleteDropdown() {
-    const deleteDropdownbtn = document.getElementById('dropdown-del');
-    const deleteDropdown = document.getElementById('deleteDropdown');
-    const addDropdown = document.getElementById('addDropdown');
-    
-    // If Delete dropdown is clicked, toggle visibility
-    deleteDropdown.classList.toggle('show');
-    deleteDropdownbtn.classList.toggle('active');
-    
-    // Close Add dropdown if it's open
-    if (addDropdown.classList.contains('show')) {
-        addDropdown.classList.remove('show');
-        const addDropdownbtn = document.getElementById('dropdown-add');
-        addDropdownbtn.classList.remove('active');
+// Close the dropdowns when clicking outside
+window.onclick = function (event) {
+    if (!event.target.matches('.dropdown-btn')) {
+        const dropdowns = document.getElementsByClassName('dropdown-content');
+        for (let i = 0; i < dropdowns.length; i++) {
+            const openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            }
+        }
+    }
+};
+
+// Show Search Result when the search button is clicked
+function showSearchResult() {
+    const searchResultBox = document.getElementById('search-result-box');
+
+    // If there is a result from the server, display the search result box
+    if (searchResultBox) {
+        searchResultBox.classList.remove('hidden');
+        searchResultBox.classList.add('visible');
     }
 }
 
-// Update the Add button text and toggle the active class when an option is selected
-function updateAddButtonText(option) {
-    const addButtonText = document.getElementById('add-button-text');  // Target Add button text
-    addButtonText.textContent = option;
-    const addDropdown = document.getElementById('addDropdown');
-    const addDropdownbtn = document.getElementById('dropdown-add');
-    
-    // Toggle active class on the Add button
-    addDropdownbtn.classList.toggle('active');
-    
-    // Hide dropdown after selection
-    addDropdown.classList.remove('show');
-}
-
-// Update the Delete button text and toggle the active class when an option is selected
-function updateDeleteButtonText(option) {
-    const deleteButtonText = document.getElementById('delete-button-text');  // Target Delete button text
-    deleteButtonText.textContent = option;
-    const deleteDropdown = document.getElementById('deleteDropdown');
-    const deleteDropdownbtn = document.getElementById('dropdown-del');
-    
-    // Toggle active class on the Delete button
-    deleteDropdownbtn.classList.toggle('active');
-    
-    // Hide dropdown after selection
-    deleteDropdown.classList.remove('show');
-}
-
-// Option click handlers for Add dropdown
-document.getElementById('addAtBeginning').addEventListener('click', function() {
-    updateAddButtonText('Insert at Beginning');
-});
-
-document.getElementById('addAtEnd').addEventListener('click', function() {
-    updateAddButtonText('Insert at End');
-});
-
-// Option click handlers for Delete dropdown
-document.getElementById('deleteAtBeginning').addEventListener('click', function() {
-    updateDeleteButtonText('Delete at Beginning');
-});
-
-document.getElementById('deleteAtEnd').addEventListener('click', function() {
-    updateDeleteButtonText('Delete at End');
+// Attach event listener to the "Search" button
+document.querySelector('button[name="action"][value="search"]').addEventListener('click', function () {
+    showSearchResult();
 });

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/styles/linked-list-style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/linked-list-style.css') }}">
     <title>Linked List</title>
 </head>
 <body>
@@ -12,7 +12,7 @@
         <div class="nav-container">
             <!-- Logo Team -->
             <div id="team-icon-logo" class="logo-container">
-                <img src="../statics/images/team-logo.png" alt="Team 4 Icon" />
+                <img src="{{ url_for('static', filename='images/team-logo.png') }}" alt="Team 4 Icon" />
             </div>
             <!-- Navigation Links -->
             <div class="nav-links">
@@ -25,7 +25,7 @@
             </div>
             <!-- GitHub Icon -->
             <div id="github-logo" class="logo-container">
-                <img src="../statics/images/github-icon.png" alt="GitHub Icon" />
+                <img src="{{ url_for('static', filename='images/github-icon.png') }}" alt="GitHub Icon" />
             </div>
         </div>
     </nav>
@@ -34,52 +34,64 @@
     <main>
         <section class="linked-list-simulator">
             <div class="container">
-                <br>
                 <div class="linked-list-text">
-                <h1>Linked List Simulator</h1>
+                    <h1>Linked List Simulator</h1>
                 </div>
+
 
                 <!-- Output Box -->
-                <div class="output-box"></div>
-                   
+                <div class="output-box">
+                    <h2>Output:</h2>
+                    <p>{{ linked_list_str }}</p>
                 </div>
-                
+
+                <!-- Search Result Section -->
+                <div id="search-result-box" class="search-result {% if show_search_result %}visible{% else %}hidden{% endif %}">
+                    {% if search_result is not none %}
+                        <p>Search Result for "<strong>{{ search_query }}</strong>": {{ "Found" if search_result else "Not Found" }}</p>
+                    {% endif %}
+                </div>
+
+
                 <!-- Input Container -->
-                <div class="input-container">
-                    <input type="text" id="inputData" placeholder="Type here...">
-                    <div class="buttons">
-                        <!-- Add Dropdown -->
-                        <div class="dropdown">
-                            <button class="btn dropdown-btn" onclick="toggleDropdown()" id="dropdown-add">
-                                <p id="add-button-text">Add</p>
-                            </button>
-                            <div id="addDropdown" class="dropdown-content">
-                                <button class="btn" id="addAtBeginning" onclick="addAtBeginning()">at Beginning</button>
-                                <button class="btn" id="addAtEnd" onclick="addAtEnd()">at End</button>
+                <form method="POST">
+                    <div class="input-container">
+                        <!-- Input field -->
+                        <input type="text" id="inputData" name="data" placeholder="Type here..." />
+                
+                        <div class="buttons">
+                            <!-- Add Dropdown -->
+                            <div class="dropdown">
+                                <button type="button" class="btn dropdown-btn" onclick="toggleDropdown('addDropdown')">
+                                    Add
+                                </button>
+                                <div id="addDropdown" class="dropdown-content">
+                                    <button type="submit" class="btn" name="action" value="add_at_beginning">Add at Beginning</button>
+                                    <button type="submit" class="btn" name="action" value="add_at_end">Add at End</button>
+                                </div>
                             </div>
-                        </div>
-
-                        <!-- Delete Dropdown -->
-                        <div class="dropdown">
-                            <button class="btn dropdown-btn" onclick="toggleDeleteDropdown()" id="dropdown-del">
-                                <p id="delete-button-text">Delete</p>
-                            </button>
-                            <div id="deleteDropdown" class="dropdown-content delete">
-                                <button class="btn" id="deleteAtBeginning" onclick="deleteFromBeginning()">at Beginning</button>
-                                <button class="btn" id="deleteAtEnd" onclick="deleteFromEnd()">at End</button>
+                
+                            <!-- Delete Dropdown -->
+                            <div class="dropdown">
+                                <button type="button" class="btn dropdown-btn" onclick="toggleDropdown('deleteDropdown')">
+                                    Delete
+                                </button>
+                                <div id="deleteDropdown" class="dropdown-content">
+                                    <button type="submit" class="btn" name="action" value="remove_beginning">Delete at Beginning</button>
+                                    <button type="submit" class="btn" name="action" value="remove_end">Delete at End</button>
+                                </div>
                             </div>
+                
+                            <!-- Search Button -->
+                            <button type="submit" class="btn" name="action" value="search">Search</button>
                         </div>
-
-
-                        <!-- Search Button -->
-                        <button class="btn" onclick="search()">Search</button>
                     </div>
-                </div>
+                </form>
             </div>
         </section>
     </main>
 
     <!-- Link to external JS file -->
-    <script src="../static/scripts/linked-list-script.js"></script>
+    <script src="{{ url_for('static', filename='scripts/linked-list-script.js') }}"></script>
 </body>
 </html>

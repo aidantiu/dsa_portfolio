@@ -30,7 +30,6 @@
         </div>
     </nav>
 
-
     <!-- Main Content -->
     <main>
         <section class="linked-list-simulator">
@@ -42,7 +41,7 @@
 
                 <!-- Output Box -->
                 <div class="output-box"></div>
-                    <ul id="linkedList"></ul>
+                   
                 </div>
                 
                 <!-- Input Container -->
@@ -51,32 +50,36 @@
                     <div class="buttons">
                         <!-- Add Dropdown -->
                         <div class="dropdown">
-                            <button class="btn dropdown-btn" onclick="toggleDropdown()">
-                                <p id="button-text">Add</p>
+                            <button class="btn dropdown-btn" onclick="toggleDropdown()" id="dropdown-add">
+                                <p id="add-button-text">Add</p>
                             </button>
                             <div id="addDropdown" class="dropdown-content">
-                                <button class="btn" onclick="addAtBeginning()">at Beginning</button>
-                                <button class="btn" onclick="addAtEnd()">at End</button>
+                                <button class="btn" id="addAtBeginning" onclick="addAtBeginning()">at Beginning</button>
+                                <button class="btn" id="addAtEnd" onclick="addAtEnd()">at End</button>
                             </div>
                         </div>
+
                         <!-- Delete Dropdown -->
                         <div class="dropdown">
-                            <button class="btn dropdown-btn" onclick="toggleDeleteDropdown()">
-                                <p id="button-text">Delete</p>
+                            <button class="btn dropdown-btn" onclick="toggleDeleteDropdown()" id="dropdown-del">
+                                <p id="delete-button-text">Delete</p>
                             </button>
                             <div id="deleteDropdown" class="dropdown-content delete">
-                                <button class="btn" onclick="deleteFromBeginning()">at Beginning</button>
-                                <button class="btn" onclick="deleteFromEnd()">at End</button>
+                                <button class="btn" id="deleteAtBeginning" onclick="deleteFromBeginning()">at Beginning</button>
+                                <button class="btn" id="deleteAtEnd" onclick="deleteFromEnd()">at End</button>
                             </div>
                         </div>
-                        <!-- Search -->
-                        <button class="btn search-btn" onclick="searchData()">Search</button>
+
+
+                        <!-- Search Button -->
+                        <button class="btn" onclick="search()">Search</button>
                     </div>
                 </div>
             </div>
-            <script src="../statics/scripts/linked-list-script.js"></script>
-
         </section>
     </main>
+
+    <!-- Link to external JS file -->
+    <script src="../static/scripts/linked-list-script.js"></script>
 </body>
 </html>

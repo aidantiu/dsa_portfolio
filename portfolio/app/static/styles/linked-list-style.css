@@ -9,7 +9,10 @@ body{
     background: radial-gradient(circle at center, #f0caff, #e0a4ff, #9a7be0);
     color: black;
 }
-
+/** Main **/
+main{
+    margin: 35px 0;
+}
 
 /* ***Navigation Bar*** */
 .navbar{
@@ -98,7 +101,7 @@ nav {
 
 
 .container {
-    margin-top: 50px;
+    margin-top: 35px;
 }
 
 .linked-list-text h1{
@@ -108,7 +111,7 @@ nav {
 
 .output-box {
     width: 70%;
-    height: 300px;
+    height: 450px;
     border: 2px solid #ffffff;
     border-radius: 20px;
     background: rgba(171, 163, 163, 0.25);
@@ -123,28 +126,30 @@ nav {
 
 .input-container {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    margin-top: 20px;
+    justify-content: space-between;
+    width: 70%;
+    margin: 20px auto;
 }
 
 input[type="text"] {
-    width: 70%;
-    padding: 10px;
-    border: 2px solid #ccc;
-    background: rgba(92, 89, 89, 0.25);
-    border-radius: 15px;
-    outline: none;
-    margin-bottom: 10px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border: 1px white solid;
-    backdrop-filter: blur(40px);
+    width: 100%;
+    padding: 10px 20px;
     color: white; 
+    border-radius: 19px;
+    border: 1px solid #FFF;
+    background: rgba(116, 106, 106, 0.25);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(20px);
+    outline: none;
 }
 
 input[type="text"]::placeholder {
     color: white;
+}
+
+.buttons {
+    display: flex;
 }
 
 .buttons .btn {
@@ -175,7 +180,6 @@ input[type="text"]::placeholder {
 .dropdown-btn {
     display: flex;
     align-items: center;
-    justify-content: center; 
     gap: 5px;
     padding: 10px 20px;
     border-radius: 15px;
@@ -186,7 +190,7 @@ input[type="text"]::placeholder {
     border: 1px solid white;
     backdrop-filter: blur(40px);
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
-    width: 80px;
+    width: fit-content;
     overflow: hidden;
     white-space: nowrap;
     position: relative;
@@ -195,43 +199,46 @@ input[type="text"]::placeholder {
 /* Caret Hidden Initially */
 .dropdown-btn::after {
     content: '▼';  /* Caret symbol */
-    visibility: hidden;  /* Initially hidden */
+    display: none;  /* Initially hidden */
     transition: visibility 0s, opacity 1s;
     margin-left: 10%;  /* Space between "Add" and caret */
 }
 
 
 /* "Add" Text Style */
-#button-text {
-    margin: 0;
+#add-button-text {
+    margin: 0 auto;
     text-align: center; /* Center the text initially */
     transition: padding-right 0.3s ease; /* Smooth transition for padding */
-    padding-left: 50%;
 }
+
+#delete-button-text {
+    margin: 0 auto;
+    text-align: center; /* Center the text initially */
+    transition: padding-right 0.3s ease; /* Smooth transition for padding */
+}
+
 /* Hover to Extend Button and Show Caret */
 .dropdown-btn:hover {
-    width: 200px;
+    padding-right: 25px; /* Add padding to the right */
     background: rgba(255, 255, 255, 0.7);
-    transition: 0.3s ease;
+    transition: 0.3s ease-in-out;
 }
 
 /* Show the caret when hovered */
 .dropdown-btn:hover::after {
-    visibility: visible; 
+    display: block; 
     opacity: 1; 
 }
 
 .dropdown-btn:hover #button-text {
     text-align: left; /* Move text to the left */
-    padding-right: 45px; /* Create space for the caret */
 }
 
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
     display: none;
     position: absolute;
-    left: 20%;
-    top: 75%;
     background: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(10px);
     border: 1px solid white;
@@ -245,7 +252,7 @@ input[type="text"]::placeholder {
 
 /* Dropdown Buttons */
 .dropdown-content .btn {
-    width: 50%;
+    display: block;
     padding: 5px;
     text-align: left;
     background: transparent;
@@ -264,12 +271,18 @@ input[type="text"]::placeholder {
     display: block;
 }
 
+.show {
+    display: block;
+}
 
-/* Footer
-footer {
-    text-align: center;
-    padding: 20px;
-    background: transparent;
-    color: #555;
-    font-size: 14px;
-} */
+/* Additional style for active state, ensuring it keeps the hover effect when clicked */
+.dropdown-btn.active {
+    padding-right: 25px; /* Add padding to the right */
+    background: #ffff;
+    transition: 0.3s ease-in-out;
+}
+
+.dropdown-btn.active::after {
+    display: block; 
+    opacity: 1; 
+}

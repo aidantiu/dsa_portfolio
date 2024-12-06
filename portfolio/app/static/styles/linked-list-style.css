@@ -99,10 +99,24 @@ input[type="text"]::placeholder {
     border: 1px white solid;
     backdrop-filter: blur(40px);
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+    font-size: 16px;
+    white-space: nowrap;
+    min-width: 50px; 
+    padding: 10px 20px;
+}
+
+.buttons .btn i {
+    margin-right: 2px;
+    margin-left: 3px;
+    font-size: 1.2rem; /* Icon size */
 }
 
 .buttons .btn:hover {
     background: #ffffff;
+    color: #6b00a1; /* Ensure hover doesn't change text color */
 }
 
 /* Dropdown Container */
@@ -181,7 +195,7 @@ input[type="text"]::placeholder {
     border-radius: 15px;
     z-index: 1;
     margin: 5px 0 10px 0;
-    min-width: 200px;
+    min-width: 225px;
     padding: 10px 0;
     box-sizing: border-box;
 }
@@ -229,6 +243,20 @@ input[type="text"]::placeholder {
 .dropdown-btn.active::after {
     display: block; 
     opacity: 1; 
+}
+
+/* Additional styles for dropdown buttons and input fields */
+.dropdown .dropdown-content .btn {
+    margin-left: 6%;
+    padding: 10px; 
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+    background: transparent; 
+    border: none;
+    font-size: 15px;
+    width: auto; 
 }
 
 /* Default style for the input field */

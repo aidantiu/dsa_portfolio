@@ -125,7 +125,7 @@ input[type="text"]::placeholder {
     border: 1px solid white;
     backdrop-filter: blur(40px);
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
-    width: fit-content;
+    width: auto;
     overflow: hidden;
     white-space: nowrap;
     position: relative;
@@ -183,6 +183,7 @@ input[type="text"]::placeholder {
     margin: 5px 0 10px 0;
     min-width: 200px;
     padding: 10px 0;
+    box-sizing: border-box;
 }
 
 .dropdown-content div{
@@ -228,6 +229,23 @@ input[type="text"]::placeholder {
 .dropdown-btn.active::after {
     display: block; 
     opacity: 1; 
+}
+
+/* Default style for the input field */
+.input-data {
+    border: 1px solid #ccc; /* Add a border for visibility */
+    padding: 5px 10px;
+    font-size: 14px;
+    outline: none;
+    text-decoration: underline; /* Always underline the input text */
+    color: black; /* Color of the user input text */
+    width: 100%
+}
+
+/* Placeholder styling */
+.input-data::placeholder {
+    text-decoration: none; /* No underline for placeholder */
+    color: gray;
 }
 
 /* Style for the search result box */

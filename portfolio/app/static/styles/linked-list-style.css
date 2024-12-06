@@ -286,3 +286,19 @@ input[type="text"]::placeholder {
     display: block; 
     opacity: 1; 
 }
+
+/* Style for the search result box */
+.search-result {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Hide search result by default */
+.hidden {
+    display: none;
+}
+
+/* Show search result when active */
+.visible {
+    display: block;
+}

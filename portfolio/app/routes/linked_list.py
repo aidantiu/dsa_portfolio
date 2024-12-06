@@ -122,9 +122,17 @@ def linkedlist_home():
         elif action == "remove_end":
             linkedlist.remove_at_end()
         elif action == "search" and data:
-            search_result = linkedlist.search(data)
-            search_query = data  # Store the search query
-            show_search_result = True  # Show the search result box
+                       # Redirect to include search query in the URL
+            return redirect(url_for('linkedlist_home', search_query=data))
+
+        # Redirect to avoid duplicate form submissions
+        return redirect(url_for('linkedlist_home'))
+
+    # Handle GET request
+    search_query = request.args.get('search_query', "")  # Get search query from the query string
+    if search_query:  # If there is a search query, perform the search
+        search_result = linkedlist.search(search_query)
+        show_search_result = True
 
     # Prepare output as a string
     linked_list_str = " -> ".join(linkedlist.to_list()) if linkedlist.to_list() else "The list is empty."

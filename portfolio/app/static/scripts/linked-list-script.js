@@ -13,7 +13,8 @@ function toggleDropdown(dropdownId) {
 
 // Close the dropdowns when clicking outside
 window.onclick = function (event) {
-    if (!event.target.matches('.dropdown-btn')) {
+    // Prevent closing dropdown if the input or dropdown is clicked
+    if (!event.target.matches('.dropdown-btn') && !event.target.matches('#inputData') && !event.target.closest('.dropdown-content')) {
         const dropdowns = document.getElementsByClassName('dropdown-content');
         for (let i = 0; i < dropdowns.length; i++) {
             const openDropdown = dropdowns[i];
@@ -23,6 +24,22 @@ window.onclick = function (event) {
         }
     }
 };
+
+// Add delay functionality to the input field for reading the number after typing
+let typingTimer;
+const typingDelay = 1000; // 1 second delay after typing stops
+
+const inputField = document.getElementById('inputData');
+inputField.addEventListener('input', function () {
+    clearTimeout(typingTimer); // Clear the previous timer
+    typingTimer = setTimeout(function() {
+        const inputVal = inputField.value;
+        if (inputVal !== "") {
+            // Process the number input here (e.g., call a function to read it)
+            console.log("User input: " + inputVal);  // Replace with your function to handle the number
+        }
+    }, typingDelay);
+});
 
 // Show Search Result when the search button is clicked
 function showSearchResult() {

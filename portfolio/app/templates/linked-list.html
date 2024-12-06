@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/linked-list-style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/global.css') }}">
     <title>Linked List</title>
 </head>
 <body>
@@ -12,7 +13,7 @@
         <div class="nav-container">
             <!-- Logo Team -->
             <div id="team-icon-logo" class="logo-container">
-                <img src="{{ url_for('static', filename='images/team-logo.png') }}" alt="Team 4 Icon" />
+                <img src="{{ url_for('static', filename='images/team-logo.png') }}" alt="Team 4" />
             </div>
             <!-- Navigation Links -->
             <div class="nav-links">
@@ -24,70 +25,74 @@
                 </ul>
             </div>
             <!-- GitHub Icon -->
-            <div id="github-logo" class="logo-container">
-                <img src="{{ url_for('static', filename='images/github-icon.png') }}" alt="GitHub Icon" />
+            <div class="logo-container">
+                <img class="github-icon" src="{{ url_for('static', filename='icons/github-icon.svg') }}" alt="GitHub Icon" />
             </div>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <main>
-        <section class="linked-list-simulator">
-            <div class="container">
+    <main class="linked-list-simulator">
+        <div class="container">
+
+            <div class="header">
                 <div class="linked-list-text">
                     <h1>Linked List Simulator</h1>
                 </div>
-
-
-                <!-- Output Box -->
-                <div class="output-box">
-                    <h2>Output:</h2>
-                    <p>{{ linked_list_str }}</p>
+                 <!-- Search Result Section -->
+                <div class="search-box">
+                    <div id="search-result-box" class="search-result {% if show_search_result %}visible{% else %}hidden{% endif %}">
+                        {% if search_result is not none %}
+                        {% if search_result %}
+                        <img src="{{ url_for('static', filename='icons/circle-check.svg') }}" alt="Success Icon" />
+                        {% else %}
+                        <img src="{{ url_for('static', filename='icons/exclamation-circle.svg') }}" alt="Exclamation Icon" />
+                        {% endif %}
+                        <p>'<span>{{ search_query }}</span>' {{"is found" if search_result else "is not found" }}</p>
+                        {% endif %}
+                    </div>
                 </div>
+               
+            </div>
 
-                <!-- Search Result Section -->
-                <div id="search-result-box" class="search-result {% if show_search_result %}visible{% else %}hidden{% endif %}">
-                    {% if search_result is not none %}
-                        <p>Search Result for "<strong>{{ search_query }}</strong>": {{ "Found" if search_result else "Not Found" }}</p>
-                    {% endif %}
-                </div>
+            <!-- Output Box -->
+            <div class="output-box">
+                <h2>Output:</h2>
+                <p>{{ linked_list_str }}</p>
+            </div>
 
+            <!-- Input Container -->
+            <form method="POST">
+            <div class="input-container">
+                <!-- Input field -->
+                <input type="text" id="inputData" name="data" placeholder="Type here..." />
 
-                <!-- Input Container -->
-                <form method="POST">
-                    <div class="input-container">
-                        <!-- Input field -->
-                        <input type="text" id="inputData" name="data" placeholder="Type here..." />
-                
-                        <div class="buttons">
-                            <!-- Add Dropdown -->
-                            <div class="dropdown">
-                                <button type="button" class="btn dropdown-btn" onclick="toggleDropdown('addDropdown')">
-                                    Add
-                                </button>
-                                <div id="addDropdown" class="dropdown-content">
-                                    <button type="submit" class="btn" name="action" value="add_at_beginning">Add at Beginning</button>
-                                    <button type="submit" class="btn" name="action" value="add_at_end">Add at End</button>
-                                </div>
-                            </div>
-                
-                            <!-- Delete Dropdown -->
-                            <div class="dropdown">
-                                <button type="button" class="btn dropdown-btn" onclick="toggleDropdown('deleteDropdown')">
-                                    Delete
-                                </button>
-                                <div id="deleteDropdown" class="dropdown-content">
-                                    <button type="submit" class="btn" name="action" value="remove_beginning">Delete at Beginning</button>
-                                    <button type="submit" class="btn" name="action" value="remove_end">Delete at End</button>
-                                </div>
-                            </div>
-                
-                            <!-- Search Button -->
-                            <button type="submit" class="btn" name="action" value="search">Search</button>
+                <div class="buttons">
+                    <!-- Add Dropdown -->
+                    <div class="dropdown">
+                        <button type="button" class="btn dropdown-btn" onclick="toggleDropdown('addDropdown')"> Add</button>
+                        <div id="addDropdown" class="dropdown-content">
+                            <button type="submit" class="btn" name="action" value="add_at_beginning">Add at Beginning</button>
+                            <button type="submit" class="btn" name="action" value="add_at_end">Add at End</button>
                         </div>
                     </div>
-                </form>
+                    
+                    <!-- Delete Dropdown -->
+                    <div class="dropdown">
+                        <button type="button" class="btn dropdown-btn" onclick="toggleDropdown('deleteDropdown')">Delete
+                        </button>
+                        <div id="deleteDropdown" class="dropdown-content">
+                            <button type="submit" class="btn" name="action" value="remove_beginning">Delete at Beginning</button>
+                            <button type="submit" class="btn" name="action" value="remove_end">Delete at End</button>
+                            <div>Delete <input class="input-data" type="text" name="index" placeholder="data" /></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Search Button -->
+                    <button type="submit" class="btn" name="action" value="search">Search</button>
+                </div>
             </div>
+            </form>
         </section>
     </main>
 

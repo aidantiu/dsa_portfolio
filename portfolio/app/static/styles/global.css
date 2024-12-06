@@ -1,0 +1,93 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Mouse+Memoirs&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* General Styles*/
+body{
+    margin: 0 100px;
+    font-family: 'Mouse Memoirs', sans-serif;
+}
+
+/* ***Navigation Bar*** */
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 0 20px;
+    background: transparent;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.nav-links ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    gap: 15px;
+    justify-content: center;
+}
+
+
+.nav-links ul li {
+    background: #D9D9D9;
+    padding: 8px;
+    border-radius: 27px;
+    transition: background-color 0.3s;
+    text-align: center;
+    width: 50px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.nav-links ul li a {
+    font-size:18px;
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.nav-links ul li a:hover {
+    background: #ddd;
+}
+
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    font-display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.github-icon{
+    width: 35px;
+    height: 35px;
+}
+
+.nav-button{
+    width: 75px; 
+    height: 37px; 
+    position: absolute; 
+    background: #D9D9D9; 
+    border-radius: 27px;
+}
+

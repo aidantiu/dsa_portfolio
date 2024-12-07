@@ -183,10 +183,14 @@ def linkedlist_home():
             validation_type = "success" if removed_data else "error"
             session['validation_message'] = validation_message
             session['validation_type'] = validation_type
-        elif action == 'remove_at' and delete_data:
-            removed_data = linkedlist.remove_at(delete_data)
-            validation_message = f"'{removed_data}' has been removed." if removed_data else f"'{delete_data}' not found for removal."
-            validation_type = "success" if removed_data else "error"
+        elif action == 'remove_at':
+            if not delete_data:
+                validation_message = "Please enter a value to delete."
+                validation_type = "error"
+            else:
+                removed_data = linkedlist.remove_at(delete_data)
+                validation_message = f"'{removed_data}' has been removed." if removed_data else f"'{delete_data}' not found for removal."
+                validation_type = "success" if removed_data else "error"
             session['validation_message'] = validation_message
             session['validation_type'] = validation_type
 

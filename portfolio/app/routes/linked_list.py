@@ -100,6 +100,7 @@ def linkedlist_home():
     delete_data = request.form.get('index', '').strip()
     search_query = ""
     validation_message = session.get('validation_message', None)
+    validation_type = session.get('validation_type', None)
     data = request.form.get('data', '').strip()
 
     linked_list_data = request.cookies.get('linked_list_data')
@@ -120,50 +121,74 @@ def linkedlist_home():
 
         if action == 'add_at_beginning' and not data:
             validation_message = "Please input data in the input field."
+            validation_type = "error"
             session['validation_message'] = validation_message
+            session['validation_type'] = validation_type
         elif action == 'add_at_end' and not data:
             validation_message = "Please input data in the input field."
+            validation_type = "error"
             session['validation_message'] = validation_message
+            session['validation_type'] = validation_type
         elif action == 'add_at_beginning' and data:
             if not linkedlist.search(data):
                 linkedlist.insert_at_beginning(data)
                 validation_message = f"'{data}' added at the beginning."
+                validation_type = "success"
             else:
                 validation_message = f"'{data}' already exists."
+                validation_type = "error"
             session['validation_message'] = validation_message
+            session['validation_type'] = validation_type
         elif action == 'add_at_end' and data:
             if not linkedlist.search(data):
                 linkedlist.insert_at_end(data)
                 validation_message = f"'{data}' added at the end."
+                validation_type = "success"
             else:
                 validation_message = f"'{data}' already exists."
+                validation_type = "error"
             session['validation_message'] = validation_message
+            session['validation_type'] = validation_type
         elif linkedlist.head is None:
             if action == 'search':
                 validation_message = "The list is empty. You cannot search items."
+                validation_type = "error"
                 session['validation_message'] = validation_message
+                session['validation_type'] = validation_type
             elif action in ['remove_beginning', 'remove_end', 'remove_at']:
                 validation_message = "The list is empty. You cannot delete items."
+                validation_type = "error"
                 session['validation_message'] = validation_message
+                session['validation_type'] = validation_type
             else:
                 validation_message = "The list is empty."
+                validation_type = "error"
                 session['validation_message'] = validation_message
+                session['validation_type'] = validation_type
         elif action == 'search':
             search_result = linkedlist.search(data)
             validation_message = f"Please enter a value to search." if not data else f"'{data}' {'is found' if search_result else 'is not found'}."
+            validation_type = "success" if search_result else "error"
             session['validation_message'] = validation_message
+            session['validation_type'] = validation_type
         elif action == 'remove_beginning':
             removed_data = linkedlist.remove_beginning()
             validation_message = f"'{removed_data}' removed from the beginning." if removed_data else "The list is empty."
+            validation_type = "success" if removed_data else "error"
             session['validation_message'] = validation_message
+            session['validation_type'] = validation_type
         elif action == 'remove_end':
             removed_data = linkedlist.remove_at_end()
             validation_message = f"'{removed_data}' removed from the end." if removed_data else "The list is empty."
+            validation_type = "success" if removed_data else "error"
             session['validation_message'] = validation_message
+            session['validation_type'] = validation_type
         elif action == 'remove_at' and delete_data:
             removed_data = linkedlist.remove_at(delete_data)
             validation_message = f"'{removed_data}' has been removed." if removed_data else f"'{delete_data}' not found for removal."
+            validation_type = "success" if removed_data else "error"
             session['validation_message'] = validation_message
+            session['validation_type'] = validation_type
 
         linked_list_data = linkedlist.to_list()
         resp = make_response(redirect(url_for('linkedlist_home')))
@@ -177,6 +202,7 @@ def linkedlist_home():
     
     if validation_message:
         session.pop('validation_message', None)
+        session.pop('validation_type', None)
 
     linked_list_str = " -> ".join(linkedlist.to_list()) if linkedlist.to_list() else "The list is empty."
 
@@ -184,6 +210,7 @@ def linkedlist_home():
         'linked-list.html',
         linked_list_str=linked_list_str,
         validation_message=validation_message,
+        validation_type=validation_type,
         search_query=request.form.get('data', '').strip(),
         empty_list=linkedlist.head is None
     )

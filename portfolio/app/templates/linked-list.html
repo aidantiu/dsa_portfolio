@@ -14,9 +14,8 @@
         <div class="nav-container">
             <!-- Logo Team -->
             <div class="logo-container1">
-                <a href = "https://github.com/aidantiu/dsa_portfolio"
-                 target="_blank">
-                <img class="team-icon-logo" src="{{ url_for('static', filename='images/team-logo.png') }}" alt="Team Icon" />
+                <a href="https://github.com/aidantiu/dsa_portfolio" target="_blank">
+                    <img class="team-icon-logo" src="{{ url_for('static', filename='images/team-logo.png') }}" alt="Team Icon" />
                 </a>
             </div>
             <!-- Navigation Links -->
@@ -30,9 +29,8 @@
             </div>
             <!-- GitHub Icon -->
             <div class="logo-container">
-                <a href = "https://github.com/aidantiu/dsa_portfolio"
-                    target = "_blank">
-                <img class="github-icon" src="{{ url_for('static', filename='icons/github-icon.svg') }}" alt="GitHub Icon" />
+                <a href="https://github.com/aidantiu/dsa_portfolio" target="_blank">
+                    <img class="github-icon" src="{{ url_for('static', filename='icons/github-icon.svg') }}" alt="GitHub Icon" />
                 </a>
             </div>
         </div>
@@ -41,7 +39,6 @@
     <!-- Main Content -->
     <main class="linked-list-simulator">
         <div class="container">
-
             <div class="header">
                 <div class="linked-list-text">
                     <h1>Linked List Simulator</h1>
@@ -54,7 +51,8 @@
                             <img src="{{ url_for('static', filename='icons/circle-check.svg') }}" alt="Check Icon" />
                         {% elif validation_type == "error" %}
                             <img src="{{ url_for('static', filename='icons/exclamation-circle.svg') }}" alt="Exclamation Icon" />
-                            <p>{{ validation_message }}</p>
+                        {% endif %}
+                        <p>{{ validation_message }}</p>
                     {% endif %}
                 </div>
             </div>
@@ -67,60 +65,51 @@
 
             <!-- Input Container -->
             <form method="POST">
-            <div class="input-container">
-                <!-- Input field -->
-                <input type="text" id="inputData" name="data" placeholder="Type something here...">
+                <div class="input-container">
+                    <!-- Input field -->
+                    <input type="text" id="inputData" name="data" placeholder="Type something here...">
 
-                <div class="buttons">
-                    <!-- Add Dropdown -->
-                    <div class="dropdown">
-                        <button type="button" class="btn dropdown-btn" onclick="toggleDropdown('addDropdown')">
-                            <i class="fas fa-plus-circle"></i> Add
-                        </button>
-                        <div id="addDropdown" class="dropdown-content">
-                            <button type="submit" class="btn" name="action" value="add_at_beginning">
-                                <i class="fas fa-angle-double-up"></i> Add at Beginning
+                    <div class="buttons">
+                        <!-- Add Dropdown -->
+                        <div class="dropdown">
+                            <button type="button" class="btn dropdown-btn" onclick="toggleDropdown('addDropdown')">
+                                <i class="fas fa-plus-circle"></i> Add
                             </button>
-                            <button type="submit" class="btn" name="action" value="add_at_end">
-                                <i class="fas fa-angle-double-down"></i> Add at End
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <!-- Delete Dropdown -->
-                    <div class="dropdown">
-
-                        <button type="button" class="btn dropdown-btn" onclick="toggleDropdown('deleteDropdown')">
-                            <i class="fas fa-trash"></i> Delete
-                        </button>
-
-                        <div id="deleteDropdown" class="dropdown-content">
-                            <button type="submit" class="btn" name="action" value="remove_beginning">
-                                <i class="fas fa-eraser"></i> Delete at Beginning
-                            </button>
-                            <button type="submit" class="btn" name="action" value="remove_end">
-                                <i class="fas fa-cut"></i> Delete at End
-                            </button>
-                            <div>
-                                <button type="submit" class="btn" name="action" value="remove_at">Delete</button>
-                                <input class="input-data" type="text" id="index" name="index" placeholder="_________" />
+                            <div id="addDropdown" class="dropdown-content">
+                                <button type="submit" class="btn" name="action" value="add_at_beginning">
+                                    <i class="fas fa-angle-double-up"></i> Add at Beginning
+                                </button>
+                                <button type="submit" class="btn" name="action" value="add_at_end">
+                                    <i class="fas fa-angle-double-down"></i> Add at End
+                                </button>
                             </div>
                         </div>
-                    </div>
+                        
+                        <!-- Delete Dropdown -->
+                        <div class="dropdown">
+                            <button type="button" class="btn dropdown-btn" onclick="toggleDropdown('deleteDropdown')">
+                                <i class="fas fa-trash"></i> Delete
+                            </button>
+                            <div id="deleteDropdown" class="dropdown-content">
+                                <button type="submit" class="btn" name="action" value="remove_beginning">
+                                    <i class="fas fa-eraser"></i> Delete at Beginning
+                                </button>
+                                <button type="submit" class="btn" name="action" value="remove_end">
+                                    <i class="fas fa-cut"></i> Delete at End
+                                </button>
+                                <div>
+                                    <button type="submit" class="btn" name="action" value="remove_at">Delete</button>
+                                    <input class="input-data" type="text" id="index" name="index" placeholder="Enter index" />
+                                </div>
+                            </div>
+                        </div>
 
-                    <!-- Search Button -->
-                    <button 
-                    type="submit" 
-                    class="btn" 
-                    name="action" 
-                    value="search" 
-                    id="searchButton"
-                    >                    
-                        <i class="fas fa-search"></i> Search
-                    </button>
+                        <!-- Search Button -->
+                        <button type="submit" class="btn" name="action" value="search" id="searchButton">
+                            <i class="fas fa-search"></i> Search
+                        </button>
+                    </div>
                 </div>
-                
-            </div>
             </form>
         </div>
     </main>

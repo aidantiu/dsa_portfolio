@@ -45,12 +45,12 @@
                 </div>
 
                 <!-- Validation/Notification Box -->
-                <div id="validation-box" class="validation ">
+                <div id="validation-box" class="validation">
                     {% if validation_message %}
-                    <img src="{{ url_for('static', filename='icons/exclamation-circle.svg') }}" alt="Exclamation Icon" />
-                    <p>{{ validation_message }}</p>
+                        <img src="{{ url_for('static', filename='icons/exclamation-circle.svg') }}" alt="Exclamation Icon" />
+                        <p>{{ validation_message }}</p>
                     {% endif %}
-                </div>
+                </div>                
 
             </div>
             
@@ -64,7 +64,7 @@
             <form method="POST">
             <div class="input-container">
                 <!-- Input field -->
-                <input type="text" id="inputData" name="data" placeholder="Type something here..." />
+                <input type="text" id="inputData" name="data" placeholder="Type something here...">
 
                 <div class="buttons">
                     <!-- Add Dropdown -->
@@ -86,7 +86,6 @@
                     <div class="dropdown">
 
                         <button type="button" class="btn dropdown-btn" onclick="toggleDropdown('deleteDropdown')"
-                        {% if empty_list %} disabled {% endif %}
                         >
                             <i class="fas fa-trash"></i> Delete
                         </button>
@@ -112,7 +111,6 @@
                     name="action" 
                     value="search" 
                     id="searchButton"
-                    {% if empty_list %} disabled {% endif %}
                     >                    
                         <i class="fas fa-search"></i> Search
 

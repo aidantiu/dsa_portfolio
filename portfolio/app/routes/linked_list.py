@@ -4,7 +4,7 @@ This module contains the routes for the linkedlist blueprint.
 
 
 from app import app
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, session
 
 class Node:
     def __init__(self, data):
@@ -102,70 +102,77 @@ class LinkedList:
         return result
 
 linkedlist = LinkedList()
+app.secret_key = 'temporary-secret-key' # Required for persistent data during sessions
 
 @app.route('/linked-list', methods=['GET', 'POST'])
 def linkedlist_home():
-    validation_message = None
     search_result = None
-    delete_data = request.form.get('index', '').strip()  # Capture the delete input value
-
-    search_result = None  # Initialize search result
-    search_query = ""  # Initialize search query
-    show_search_result = False  # Track if the search result should be displayed
-    index_data = request.form.get('index', '').strip()  # "index" field for deletion by specified data
-
+    delete_data = request.form.get('index', '').strip()
+    search_query = ""
+    show_search_result = False
+    index_data = request.form.get('index', '').strip()
+    validation_message = session.get('validation_message', None)  # Get validation message from session
+    data = request.form.get('data', '').strip()
 
     if request.method == 'POST':
-        action = request.form.get('action')  # Get the action from the button
-        data = request.form.get('data', '').strip()  # Get and strip user input
+        action = request.form.get('action')    
 
-        # Handle various actions
-        if action == 'search' and linkedlist.head is None:
-            validation_message = "The list is empty. You cannot search items."
-        elif action in ['remove_beginning', 'remove_end'] and linkedlist.head is None:
-            validation_message = "The list is empty. You cannot delete items."
-        elif action == 'search' and data:  # Search functionality
-            search_result = linkedlist.search(data)
-            validation_message = f"'{data}' {'is found' if search_result else 'is not found'}."
-        elif action == 'add_at_beginning' and data:  # Add at beginning
+        # Handle adding actions first
+        # When the input field is missing:
+        if action == 'add_at_beginning' and not data:
+            validation_message = "Please input a data in the input field."
+            session['validation_message'] = validation_message
+        elif action == 'add_at_end' and not data:
+            validation_message = "Please input a data in the input field."
+            session['validation_message'] = validation_message
+        # When the input field is not missing:
+        elif action == 'add_at_beginning' and data:
             linkedlist.insert_at_beginning(data)
             validation_message = f"'{data}' added at the beginning."
-        elif action == 'add_at_end' and data:  # Add at end
+            session['validation_message'] = validation_message
+        elif action == 'add_at_end' and data:
             linkedlist.insert_at_end(data)
-
             validation_message = f"'{data}' added at the end."
-        elif action == 'remove_beginning':  # Remove from beginning
+            session['validation_message'] = validation_message
+
+        # Handle empty list validation for search and delete actions
+        elif linkedlist.head is None:
+            if action == 'search':
+                validation_message = "The list is empty. You cannot search items."
+                session['validation_message'] = validation_message
+            elif action in ['remove_beginning', 'remove_end', 'remove_at']:
+                validation_message = "The list is empty. You cannot delete items."
+                session['validation_message'] = validation_message
+            else:
+                validation_message = "The list is empty."
+                session['validation_message'] = validation_message
+
+        # Handle search actions
+        elif action == 'search':
+            search_result = linkedlist.search(data)
+            validation_message = f"Please enter a value to search." if not data else f"'{data}' {'is found' if search_result else 'is not found'}."
+            session['validation_message'] = validation_message
+
+        # Handle delete actions
+        elif action == 'remove_beginning':
             removed_data = linkedlist.remove_beginning()
             validation_message = f"'{removed_data}' removed from the beginning." if removed_data else "The list is empty."
-        elif action == 'remove_end':  # Remove from end
+            session['validation_message'] = validation_message
+        elif action == 'remove_end':
             removed_data = linkedlist.remove_at_end()
             validation_message = f"'{removed_data}' removed from the end." if removed_data else "The list is empty."
-        elif action == 'remove_at' and delete_data:  # Remove specific item
+            session['validation_message'] = validation_message
+        elif action == 'remove_at' and delete_data:
             removed_data = linkedlist.remove_at(delete_data)
-            validation_message = (
-                f"'{removed_data}' has been removed."
-                if removed_data else f"'{delete_data}' not found for removal."
-            )
-            # Render the template with updated data
-
-        elif action == "remove_beginning":
-            linkedlist.remove_beginning()
-        elif action == "remove_end":
-            linkedlist.remove_at_end()
-        elif action == "remove_at" and index_data:  # Deletes a node by specific value
-            linkedlist.remove_at(index_data)
-        elif action == "search" and data:
-                       # Redirect to include search query in the URL
-            return redirect(url_for('linkedlist_home', search_query=data))
+            validation_message = f"'{removed_data}' has been removed." if removed_data else f"'{delete_data}' not found for removal."
+            session['validation_message'] = validation_message
 
         # Redirect to avoid duplicate form submissions
         return redirect(url_for('linkedlist_home'))
-
-    # Handle GET request
-    search_query = request.args.get('search_query', "")  # Get search query from the query string
-    if search_query:  # If there is a search query, perform the search
-        search_result = linkedlist.search(search_query)
-        show_search_result = True
+  
+    # After the GET request is handled, clear the validation message from the session
+    if validation_message:
+        session.pop('validation_message', None)
 
     # Prepare output as a string
     linked_list_str = " -> ".join(linkedlist.to_list()) if linkedlist.to_list() else "The list is empty."
@@ -176,5 +183,5 @@ def linkedlist_home():
         linked_list_str=linked_list_str,
         validation_message=validation_message,
         search_query=request.form.get('data', '').strip(),
-        empty_list=linkedlist.head is None  # Re-evaluate the empty list condition
-    )
+        empty_list=linkedlist.head is None
+    ) 

@@ -13,7 +13,6 @@ function toggleDropdown(dropdownId) {
 
 // Close the dropdowns when clicking outside
 window.onclick = function (event) {
-    // Prevent closing dropdown if the input or dropdown is clicked
     if (!event.target.matches('.dropdown-btn') && !event.target.matches('#inputData') && !event.target.closest('.dropdown-content')) {
         const dropdowns = document.getElementsByClassName('dropdown-content');
         for (let i = 0; i < dropdowns.length; i++) {
@@ -32,46 +31,21 @@ const typingDelay = 1000; // 1 second delay after typing stops
 const inputField = document.getElementById('inputData');
 inputField.addEventListener('input', function () {
     clearTimeout(typingTimer); // Clear the previous timer
-    typingTimer = setTimeout(function() {
-        const inputVal = inputField.value;
+    typingTimer = setTimeout(function () {
+        const inputVal = inputField.value.trim();
         if (inputVal !== "") {
-            // Process the number input here (e.g., call a function to read it)
-            console.log("User input: " + inputVal);  // Replace with your function to handle the number
+            console.log("User input: " + inputVal);
         }
     }, typingDelay);
 });
 
-// Show Search Result when the search button is clicked
-function showSearchResult() {
-    const searchResultBox = document.getElementById('search-result-box');
-
-    // If there is a result from the server, display the search result box
-    if (searchResultBox) {
-        searchResultBox.classList.remove('hidden');
-        searchResultBox.classList.add('visible');
-    }
-}
-
-// Attach event listener to the "Search" button
-document.querySelector('button[name="action"][value="search"]').addEventListener('click', function () {
-    showSearchResult();
-});
-
-    // Prevent form submission if the input field is empty when searching
-    document.getElementById('searchButton').addEventListener('click', function (event) {
-        const inputField = document.getElementById('inputData');
-        if (inputField.value.trim() === "") {
-            event.preventDefault();  // Prevent form submission
-            alert('Please enter a value to search.');
-        }
-    });
-
+// Automatically hide the validation message after 5 seconds
 document.addEventListener('DOMContentLoaded', () => {
     const validationBox = document.getElementById('validation-box');
-
-    if (validationBox.classList.contains('visible')) {
+    if (validationBox && validationBox.innerText.trim() !== "") {
         setTimeout(() => {
-            validationBox.classList.remove('visible');
+            validationBox.innerHTML = ''; // Clear the content
+            validationBox.classList.add('hidden'); // Optionally hide the box
         }, 5000); // Message persists for 5 seconds
     }
 });

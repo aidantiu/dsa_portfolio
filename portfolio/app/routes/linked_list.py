@@ -20,6 +20,7 @@ class LinkedList:
         else:
             self.head = new_node
             self.tail = new_node
+        return True
 
     def insert_at_end(self, data):
         new_node = Node(data)
@@ -29,6 +30,7 @@ class LinkedList:
         else:
             self.tail = new_node
             self.head = new_node
+        return True
 
     def search(self, data):
         current_node = self.head
@@ -92,7 +94,7 @@ class LinkedList:
         return result
 
 linkedlist = LinkedList()
-app.secret_key = 'temporary-secret-key'
+app.secret_key = 'temporary-key'
 
 @app.route('/linked-list', methods=['GET', 'POST'])
 def linkedlist_home():
@@ -130,23 +132,15 @@ def linkedlist_home():
             session['validation_message'] = validation_message
             session['validation_type'] = validation_type
         elif action == 'add_at_beginning' and data:
-            if not linkedlist.search(data):
-                linkedlist.insert_at_beginning(data)
-                validation_message = f"'{data}' added at the beginning."
-                validation_type = "success"
-            else:
-                validation_message = f"'{data}' already exists."
-                validation_type = "error"
+            linkedlist.insert_at_beginning(data)
+            validation_message = f"'{data}' added at the beginning."
+            validation_type = "success"
             session['validation_message'] = validation_message
             session['validation_type'] = validation_type
         elif action == 'add_at_end' and data:
-            if not linkedlist.search(data):
-                linkedlist.insert_at_end(data)
-                validation_message = f"'{data}' added at the end."
-                validation_type = "success"
-            else:
-                validation_message = f"'{data}' already exists."
-                validation_type = "error"
+            linkedlist.insert_at_end(data)
+            validation_message = f"'{data}' added at the end."
+            validation_type = "success"
             session['validation_message'] = validation_message
             session['validation_type'] = validation_type
         elif linkedlist.head is None:

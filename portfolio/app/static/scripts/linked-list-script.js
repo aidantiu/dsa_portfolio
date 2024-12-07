@@ -49,3 +49,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 5000); // Message persists for 5 seconds
     }
 });
+
+// Detect page refresh and reset the cookie
+window.addEventListener("beforeunload", function() {
+    // Clear the cookie when page refreshes
+    document.cookie = "linked_list_data=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+});

@@ -1,10 +1,6 @@
-""" 
-This module contains the routes for the linkedlist blueprint.
-"""
-
-
 from app import app
-from flask import render_template, request, redirect, url_for, session
+import json
+from flask import render_template, request, redirect, url_for, session, make_response
 
 class Node:
     def __init__(self, data):
@@ -16,7 +12,7 @@ class LinkedList:
         self.head = None
         self.tail = None
 
-    def insert_at_beginning(self, data): # Insert a new node with the given data at the beginning of the list
+    def insert_at_beginning(self, data):
         new_node = Node(data)
         if self.head:
             new_node.next = self.head
@@ -25,7 +21,7 @@ class LinkedList:
             self.head = new_node
             self.tail = new_node
 
-    def insert_at_end(self, data): # Insert a new node with the given data at the end of the list
+    def insert_at_end(self, data):
         new_node = Node(data)
         if self.head:
             self.tail.next = new_node
@@ -34,7 +30,7 @@ class LinkedList:
             self.tail = new_node
             self.head = new_node
 
-    def search(self, data): # Search for a node with the given data in the list
+    def search(self, data):
         current_node = self.head
         while current_node:
             if current_node.data == data:
@@ -42,13 +38,7 @@ class LinkedList:
             current_node = current_node.next
         return False
 
-    def printLinkedList(self): # Print all the nodes' data in the list
-        current_node = self.head
-        while current_node:
-            print(current_node.data)
-            current_node = current_node.next
-
-    def remove_beginning(self): # Remove the node at the beginning of the list and return its data
+    def remove_beginning(self):
         if self.head is None:
             return None
         removed_data = self.head.data
@@ -57,7 +47,7 @@ class LinkedList:
             self.tail = None
         return removed_data
 
-    def remove_at_end(self): # Remove the node at the end of the list and return its data
+    def remove_at_end(self):
         if self.head is None:
             return None
         if self.head.next is None:
@@ -73,7 +63,7 @@ class LinkedList:
         self.tail = current
         return removed_data
 
-    def remove_at(self, data): # Remove the node with the given data from the list and return its data
+    def remove_at(self, data):
         if self.head is None:
             return None
         if self.head.data == data:
@@ -93,7 +83,7 @@ class LinkedList:
             self.tail = current
         return removed_data
 
-    def to_list(self): # Convert the linked list to a Python list and return it
+    def to_list(self):
         result = []
         current = self.head
         while current:
@@ -102,40 +92,52 @@ class LinkedList:
         return result
 
 linkedlist = LinkedList()
-app.secret_key = 'temporary-secret-key' # Required for persistent data during sessions
+app.secret_key = 'temporary-secret-key'
 
 @app.route('/linked-list', methods=['GET', 'POST'])
 def linkedlist_home():
     search_result = None
     delete_data = request.form.get('index', '').strip()
     search_query = ""
-    show_search_result = False
-    index_data = request.form.get('index', '').strip()
-    validation_message = session.get('validation_message', None)  # Get validation message from session
+    validation_message = session.get('validation_message', None)
     data = request.form.get('data', '').strip()
 
-    if request.method == 'POST':
-        action = request.form.get('action')    
+    linked_list_data = request.cookies.get('linked_list_data')
+    
+    if request.method == 'GET' and not linked_list_data:
+        linkedlist.head = None
+        linkedlist.tail = None
 
-        # Handle adding actions first
-        # When the input field is missing:
+    if linked_list_data:
+        linked_list_data = json.loads(linked_list_data)
+        linkedlist.head = None
+        linkedlist.tail = None
+        for item in linked_list_data:
+            linkedlist.insert_at_end(item)
+
+    if request.method == 'POST':
+        action = request.form.get('action')
+
         if action == 'add_at_beginning' and not data:
-            validation_message = "Please input a data in the input field."
+            validation_message = "Please input data in the input field."
             session['validation_message'] = validation_message
         elif action == 'add_at_end' and not data:
-            validation_message = "Please input a data in the input field."
+            validation_message = "Please input data in the input field."
             session['validation_message'] = validation_message
-        # When the input field is not missing:
         elif action == 'add_at_beginning' and data:
-            linkedlist.insert_at_beginning(data)
-            validation_message = f"'{data}' added at the beginning."
+            if not linkedlist.search(data):
+                linkedlist.insert_at_beginning(data)
+                validation_message = f"'{data}' added at the beginning."
+            else:
+                validation_message = f"'{data}' already exists."
             session['validation_message'] = validation_message
         elif action == 'add_at_end' and data:
-            linkedlist.insert_at_end(data)
-            validation_message = f"'{data}' added at the end."
+            if not linkedlist.search(data):
+                linkedlist.insert_at_end(data)
+                validation_message = f"'{data}' added at the end."
+            else:
+                validation_message = f"'{data}' already exists."
             session['validation_message'] = validation_message
-
-        # Handle empty list validation for search and delete actions
         elif linkedlist.head is None:
             if action == 'search':
                 validation_message = "The list is empty. You cannot search items."
@@ -146,14 +148,10 @@ def linkedlist_home():
             else:
                 validation_message = "The list is empty."
                 session['validation_message'] = validation_message
-
-        # Handle search actions
         elif action == 'search':
             search_result = linkedlist.search(data)
             validation_message = f"Please enter a value to search." if not data else f"'{data}' {'is found' if search_result else 'is not found'}."
             session['validation_message'] = validation_message
-
-        # Handle delete actions
         elif action == 'remove_beginning':
             removed_data = linkedlist.remove_beginning()
             validation_message = f"'{removed_data}' removed from the beginning." if removed_data else "The list is empty."
@@ -167,21 +165,25 @@ def linkedlist_home():
             validation_message = f"'{removed_data}' has been removed." if removed_data else f"'{delete_data}' not found for removal."
             session['validation_message'] = validation_message
 
-        # Redirect to avoid duplicate form submissions
-        return redirect(url_for('linkedlist_home'))
-  
-    # After the GET request is handled, clear the validation message from the session
+        linked_list_data = linkedlist.to_list()
+        resp = make_response(redirect(url_for('linkedlist_home')))
+        resp.set_cookie('linked_list_data', json.dumps(linked_list_data))
+        return resp
+
+    if request.args.get('clear') == 'true':
+        resp = make_response(redirect(url_for('linkedlist_home')))
+        resp.set_cookie('linked_list_data', '', expires=0)
+        return resp
+    
     if validation_message:
         session.pop('validation_message', None)
 
-    # Prepare output as a string
     linked_list_str = " -> ".join(linkedlist.to_list()) if linkedlist.to_list() else "The list is empty."
 
-    # Render the linked list template with current data
     return render_template(
         'linked-list.html',
         linked_list_str=linked_list_str,
         validation_message=validation_message,
         search_query=request.form.get('data', '').strip(),
         empty_list=linkedlist.head is None
-    ) 
+    )

@@ -105,44 +105,49 @@ linkedlist = LinkedList()
 
 @app.route('/linked-list', methods=['GET', 'POST'])
 def linkedlist_home():
-    search_result = None  # Initialize search result
-    search_query = ""  # Initialize search query
-    show_search_result = False  # Track if the search result should be displayed
+    validation_message = None
+    search_result = None
+    delete_data = request.form.get('index', '').strip()  # Capture the delete input value
 
     if request.method == 'POST':
         action = request.form.get('action')  # Get the action from the button
-        data = request.form.get('data', '')  # Get the user input (default to empty if not provided)
+        data = request.form.get('data', '').strip()  # Get and strip user input
 
-        if action == "add_at_beginning" and data:
+        # Handle various actions
+        if action == 'search' and linkedlist.head is None:
+            validation_message = "The list is empty. You cannot search items."
+        elif action in ['remove_beginning', 'remove_end'] and linkedlist.head is None:
+            validation_message = "The list is empty. You cannot delete items."
+        elif action == 'search' and data:  # Search functionality
+            search_result = linkedlist.search(data)
+            validation_message = f"'{data}' {'is found' if search_result else 'is not found'}."
+        elif action == 'add_at_beginning' and data:  # Add at beginning
             linkedlist.insert_at_beginning(data)
-        elif action == "add_at_end" and data:
+            validation_message = f"'{data}' added at the beginning."
+        elif action == 'add_at_end' and data:  # Add at end
             linkedlist.insert_at_end(data)
-        elif action == "remove_beginning":
-            linkedlist.remove_beginning()
-        elif action == "remove_end":
-            linkedlist.remove_at_end()
-        elif action == "search" and data:
-                       # Redirect to include search query in the URL
-            return redirect(url_for('linkedlist_home', search_query=data))
+            validation_message = f"'{data}' added at the end."
+        elif action == 'remove_beginning':  # Remove from beginning
+            removed_data = linkedlist.remove_beginning()
+            validation_message = f"'{removed_data}' removed from the beginning." if removed_data else "The list is empty."
+        elif action == 'remove_end':  # Remove from end
+            removed_data = linkedlist.remove_at_end()
+            validation_message = f"'{removed_data}' removed from the end." if removed_data else "The list is empty."
+        elif action == 'remove_at' and delete_data:  # Remove specific item
+            removed_data = linkedlist.remove_at(delete_data)
+            validation_message = (
+                f"'{removed_data}' has been removed."
+                if removed_data else f"'{delete_data}' not found for removal."
+            )
 
-        # Redirect to avoid duplicate form submissions
-        return redirect(url_for('linkedlist_home'))
+    # Update linked list output as a string
+    linked_list_str = " -> ".join(linkedlist.to_list()) if linkedlist.head else "The list is empty."
 
-    # Handle GET request
-    search_query = request.args.get('search_query', "")  # Get search query from the query string
-    if search_query:  # If there is a search query, perform the search
-        search_result = linkedlist.search(search_query)
-        show_search_result = True
-
-    # Prepare output as a string
-    linked_list_str = " -> ".join(linkedlist.to_list()) if linkedlist.to_list() else "The list is empty."
-
-    # Render the linked list template with current data
+    # Render the template with updated data
     return render_template(
         'linked-list.html',
-        linked_list=linkedlist.to_list(),
         linked_list_str=linked_list_str,
-        search_result=search_result,
-        search_query=search_query,
-        show_search_result=show_search_result
+        validation_message=validation_message,
+        search_query=request.form.get('data', '').strip(),
+        empty_list=linkedlist.head is None  # Re-evaluate the empty list condition
     )

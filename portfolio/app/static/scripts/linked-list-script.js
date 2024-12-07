@@ -56,3 +56,22 @@ function showSearchResult() {
 document.querySelector('button[name="action"][value="search"]').addEventListener('click', function () {
     showSearchResult();
 });
+
+    // Prevent form submission if the input field is empty when searching
+    document.getElementById('searchButton').addEventListener('click', function (event) {
+        const inputField = document.getElementById('inputData');
+        if (inputField.value.trim() === "") {
+            event.preventDefault();  // Prevent form submission
+            alert('Please enter a value to search.');
+        }
+    });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const validationBox = document.getElementById('validation-box');
+
+    if (validationBox.classList.contains('visible')) {
+        setTimeout(() => {
+            validationBox.classList.remove('visible');
+        }, 5000); // Message persists for 5 seconds
+    }
+});

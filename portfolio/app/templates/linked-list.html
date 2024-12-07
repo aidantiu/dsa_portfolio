@@ -43,21 +43,27 @@
                     <h1>Linked List Simulator</h1>
                 </div>
                  <!-- Search Result Section -->
-                <div class="search-box">
-                    <div id="search-result-box" class="search-result {% if show_search_result %}visible{% else %}hidden{% endif %}">
-                        {% if search_result is not none %}
-                        {% if search_result %}
-                        <img src="{{ url_for('static', filename='icons/circle-check.svg') }}" alt="Success Icon" />
-                        {% else %}
+                 <div class="search-box">
+                    <div id="search-result-box" class="search-result {% if search_result %}visible{% else %}hidden{% endif %}">
+                        {% if empty_list %}
                         <img src="{{ url_for('static', filename='icons/exclamation-circle.svg') }}" alt="Exclamation Icon" />
-                        {% endif %}
-                        <p>'<span>{{ search_query }}</span>' {{"is found" if search_result else "is not found" }}</p>
+                        <p>The list is empty. You cannot delete or search items.</p>
+                        {% elif search_result %}
+                        <img src="{{ url_for('static', filename='icons/exclamation-circle.svg') }}" alt="Exclamation Icon" />
+                        <p>{{ search_result }}</p> <!-- Display the search result message here -->
                         {% endif %}
                     </div>
                 </div>
-               
             </div>
 
+            <!-- Validation/Notification Box -->
+            <div id="validation-box" class="validation {% if validation_message %}visible{% else %}hidden{% endif %}">
+                {% if validation_message %}
+                <img src="{{ url_for('static', filename='icons/exclamation-circle.svg') }}" alt="Exclamation Icon" />
+                <p>{{ validation_message }}</p>
+                {% endif %}
+            </div>
+            
             <!-- Output Box -->
             <div class="output-box">
                 <h2>Output:</h2>
@@ -82,27 +88,72 @@
                     
                     <!-- Delete Dropdown -->
                     <div class="dropdown">
-                        <button type="button" class="btn dropdown-btn" onclick="toggleDropdown('deleteDropdown')">Delete
+                        <button 
+                            type="button" 
+                            class="btn dropdown-btn" 
+                            onclick="toggleDropdown('deleteDropdown')" 
+                            {% if empty_list %} disabled {% endif %}
+                        >
+                            Delete
                         </button>
                         <div id="deleteDropdown" class="dropdown-content">
-                            <button type="submit" class="btn" name="action" value="remove_beginning">Delete at Beginning</button>
-                            <button type="submit" class="btn" name="action" value="remove_end">Delete at End</button>
-                            <div>
-                                Delete 
+                            <!-- Delete at Beginning Button -->
+                            <button 
+                                type="submit" 
+                                class="btn delete-btn" 
+                                name="action" 
+                                value="remove_beginning" 
+                                {% if empty_list %} disabled {% endif %}
+                            >
+                                Delete at Beginning
+                            </button>
+                    
+                            <!-- Delete at End Button -->
+                            <button 
+                                type="submit" 
+                                class="btn delete-btn" 
+                                name="action" 
+                                value="remove_end" 
+                                {% if empty_list %} disabled {% endif %}
+                            >
+                                Delete at End
+                            </button>
+                    
+                            <!-- Delete Specific Word Section -->
+                            <div class="delete-specific-container">
+                                <label for="deleteInput">Delete Specific Word</label>
                                 <input 
                                     class="input-data" 
                                     type="text" 
                                     name="index" 
-                                    placeholder="data" 
-                                    id="deleteInput"
-                                    oninput="addUnderline()"
+                                    placeholder="Enter word to delete" 
+                                    id="deleteInput" 
+                                    {% if empty_list %} disabled {% endif %}
                                 />
+                                <button 
+                                    type="submit" 
+                                    class="btn delete-btn" 
+                                    name="action" 
+                                    value="remove_at" 
+                                    {% if empty_list %} disabled {% endif %}
+                                >
+                                    Delete
+                                </button>
                             </div>
                         </div>                        
                     </div>
-                    
+                
                     <!-- Search Button -->
-                    <button type="submit" class="btn" name="action" value="search">Search</button>
+                    <button 
+                        type="submit" 
+                        class="btn" 
+                        name="action" 
+                        value="search" 
+                        id="searchButton"
+                        {% if empty_list %} disabled {% endif %}
+                    >
+                        Search
+                    </button>
                 </div>
             </div>
             </form>

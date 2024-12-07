@@ -85,23 +85,22 @@
                     <!-- Delete Dropdown -->
                     <div class="dropdown">
 
-                        <button type="button" class="btn dropdown-btn" onclick="toggleDropdown('deleteDropdown')"
-                        >
+                        <button type="button" class="btn dropdown-btn" onclick="toggleDropdown('deleteDropdown')">
                             <i class="fas fa-trash"></i> Delete
                         </button>
 
-                            <div id="deleteDropdown" class="dropdown-content">
-                                <button type="submit" class="btn" name="action" value="remove_beginning">
-                                    <i class="fas fa-eraser"></i> Delete at Beginning
-                                </button>
-                                <button type="submit" class="btn" name="action" value="remove_end" >
-                                    <i class="fas fa-cut"></i>    Delete at End
-                                </button>
-                                <div>
-                                    <button type="submit" class="btn" name="action" value="remove_at">Delete</button>
-                                    <input class="input-data" type="text" id="index" name="index" placeholder="data" />
-                                </div>
+                        <div id="deleteDropdown" class="dropdown-content">
+                            <button type="submit" class="btn" name="action" value="remove_beginning">
+                                <i class="fas fa-eraser"></i> Delete at Beginning
+                            </button>
+                            <button type="submit" class="btn" name="action" value="remove_end">
+                                <i class="fas fa-cut"></i> Delete at End
+                            </button>
+                            <div>
+                                <button type="submit" class="btn" name="action" value="remove_at">Delete by Index</button>
+                                <input class="input-data" type="text" id="index" name="index" placeholder="Enter index" />
                             </div>
+                        </div>
                     </div>
 
                     <!-- Search Button -->
@@ -113,7 +112,6 @@
                     id="searchButton"
                     >                    
                         <i class="fas fa-search"></i> Search
-
                     </button>
                 </div>
                 

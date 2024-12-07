@@ -288,11 +288,10 @@ input[type="text"]::placeholder {
 }
 
 /* Style for the search result box */
-.search-box {
+.search-box, .validation {
     display: flex;
     align-items: center;
 }
-
 
 .search-result {
     text-align: center;
@@ -322,22 +321,6 @@ input[type="text"]::placeholder {
 }
 
 /* Show search result when active */
-.visible {
+.visible{
     display: flex;
-}
-
-.validation {
-    display: none;
-    margin: 10px 0;
-    padding: 10px;
-    border: 1px solid #f5c6cb;
-    border-radius: 5px;
-    background-color: #f8d7da;
-    color: #721c24;
-    font-size: 14px;
-    transition: all 0.3s ease-in-out;
-}
-
-.validation.visible {
-    display: block;
 }

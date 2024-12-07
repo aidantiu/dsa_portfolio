@@ -146,11 +146,7 @@ def linkedlist_home():
                 f"'{removed_data}' has been removed."
                 if removed_data else f"'{delete_data}' not found for removal."
             )
-
-    # Update linked list output as a string
-    linked_list_str = " -> ".join(linkedlist.to_list()) if linkedlist.head else "The list is empty."
-
-    # Render the template with updated data
+            # Render the template with updated data
 
         elif action == "remove_beginning":
             linkedlist.remove_beginning()
@@ -175,7 +171,6 @@ def linkedlist_home():
     linked_list_str = " -> ".join(linkedlist.to_list()) if linkedlist.to_list() else "The list is empty."
 
     # Render the linked list template with current data
-
     return render_template(
         'linked-list.html',
         linked_list_str=linked_list_str,

@@ -108,6 +108,7 @@ def linkedlist_home():
     search_result = None  # Initialize search result
     search_query = ""  # Initialize search query
     show_search_result = False  # Track if the search result should be displayed
+    index_data = request.form.get('index', '').strip()  # "index" field for deletion by specified data
 
     if request.method == 'POST':
         action = request.form.get('action')  # Get the action from the button
@@ -121,6 +122,8 @@ def linkedlist_home():
             linkedlist.remove_beginning()
         elif action == "remove_end":
             linkedlist.remove_at_end()
+        elif action == "remove_at" and index_data:  # Deletes a node by specific value
+            linkedlist.remove_at(index_data)
         elif action == "search" and data:
                        # Redirect to include search query in the URL
             return redirect(url_for('linkedlist_home', search_query=data))

@@ -13,8 +13,11 @@
     <nav class="navbar">
         <div class="nav-container">
             <!-- Logo Team -->
-            <div id="team-icon-logo" class="logo-container">
-                <img src="{{ url_for('static', filename='images/team-logo.png') }}" alt="Team 4" />
+            <div class="logo-container1">
+                <a href = "https://github.com/aidantiu/dsa_portfolio"
+                 target="_blank">
+                <img class="team-icon-logo" src="{{ url_for('static', filename='images/team-logo.png') }}" alt="Team Icon" />
+                </a>
             </div>
             <!-- Navigation Links -->
             <div class="nav-links">
@@ -47,11 +50,13 @@
                 <!-- Validation/Notification Box -->
                 <div id="validation-box" class="validation">
                     {% if validation_message %}
-                        <img src="{{ url_for('static', filename='icons/exclamation-circle.svg') }}" alt="Exclamation Icon" />
-                        <p>{{ validation_message }}</p>
+                        {% if validation_type == "success" %}
+                            <img src="{{ url_for('static', filename='icons/circle-check.svg') }}" alt="Check Icon" />
+                        {% elif validation_type == "error" %}
+                            <img src="{{ url_for('static', filename='icons/exclamation-circle.svg') }}" alt="Exclamation Icon" />
+                            <p>{{ validation_message }}</p>
                     {% endif %}
-                </div>                
-
+                </div>
             </div>
             
             <!-- Output Box -->

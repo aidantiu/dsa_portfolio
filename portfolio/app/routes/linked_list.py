@@ -109,6 +109,12 @@ def linkedlist_home():
     search_result = None
     delete_data = request.form.get('index', '').strip()  # Capture the delete input value
 
+    search_result = None  # Initialize search result
+    search_query = ""  # Initialize search query
+    show_search_result = False  # Track if the search result should be displayed
+    index_data = request.form.get('index', '').strip()  # "index" field for deletion by specified data
+
+
     if request.method == 'POST':
         action = request.form.get('action')  # Get the action from the button
         data = request.form.get('data', '').strip()  # Get and strip user input
@@ -126,6 +132,7 @@ def linkedlist_home():
             validation_message = f"'{data}' added at the beginning."
         elif action == 'add_at_end' and data:  # Add at end
             linkedlist.insert_at_end(data)
+
             validation_message = f"'{data}' added at the end."
         elif action == 'remove_beginning':  # Remove from beginning
             removed_data = linkedlist.remove_beginning()
@@ -144,6 +151,31 @@ def linkedlist_home():
     linked_list_str = " -> ".join(linkedlist.to_list()) if linkedlist.head else "The list is empty."
 
     # Render the template with updated data
+
+        elif action == "remove_beginning":
+            linkedlist.remove_beginning()
+        elif action == "remove_end":
+            linkedlist.remove_at_end()
+        elif action == "remove_at" and index_data:  # Deletes a node by specific value
+            linkedlist.remove_at(index_data)
+        elif action == "search" and data:
+                       # Redirect to include search query in the URL
+            return redirect(url_for('linkedlist_home', search_query=data))
+
+        # Redirect to avoid duplicate form submissions
+        return redirect(url_for('linkedlist_home'))
+
+    # Handle GET request
+    search_query = request.args.get('search_query', "")  # Get search query from the query string
+    if search_query:  # If there is a search query, perform the search
+        search_result = linkedlist.search(search_query)
+        show_search_result = True
+
+    # Prepare output as a string
+    linked_list_str = " -> ".join(linkedlist.to_list()) if linkedlist.to_list() else "The list is empty."
+
+    # Render the linked list template with current data
+
     return render_template(
         'linked-list.html',
         linked_list_str=linked_list_str,

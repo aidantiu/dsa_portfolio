@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/linked-list-style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/global.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <title>Linked List</title>
 </head>
 <body>
@@ -74,20 +75,27 @@
             <form method="POST">
             <div class="input-container">
                 <!-- Input field -->
-                <input type="text" id="inputData" name="data" placeholder="Type here..." />
+                <input type="text" id="inputData" name="data" placeholder="Type something here..." />
 
                 <div class="buttons">
                     <!-- Add Dropdown -->
                     <div class="dropdown">
-                        <button type="button" class="btn dropdown-btn" onclick="toggleDropdown('addDropdown')"> Add</button>
+                        <button type="button" class="btn dropdown-btn" onclick="toggleDropdown('addDropdown')">
+                            <i class="fas fa-plus-circle"></i> Add
+                        </button>
                         <div id="addDropdown" class="dropdown-content">
-                            <button type="submit" class="btn" name="action" value="add_at_beginning">Add at Beginning</button>
-                            <button type="submit" class="btn" name="action" value="add_at_end">Add at End</button>
+                            <button type="submit" class="btn" name="action" value="add_at_beginning">
+                                <i class="fas fa-angle-double-up"></i> Add at Beginning
+                            </button>
+                            <button type="submit" class="btn" name="action" value="add_at_end">
+                                <i class="fas fa-angle-double-down"></i> Add at End
+                            </button>
                         </div>
                     </div>
                     
                     <!-- Delete Dropdown -->
                     <div class="dropdown">
+
                         <button 
                             type="button" 
                             class="btn dropdown-btn" 
@@ -122,6 +130,27 @@
                             <!-- Delete Specific Word Section -->
                             <div class="delete-specific-container">
                                 <label for="deleteInput">Delete Specific Word</label>
+
+                        <button type="button" class="btn dropdown-btn" onclick="toggleDropdown('deleteDropdown')">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                        <div id="deleteDropdown" class="dropdown-content">
+                            <button type="submit" class="btn" name="action" value="remove_beginning">
+                                <i class="fas fa-eraser"></i> Delete at Beginning
+                            </button>
+                            <button type="submit" class="btn" name="action" value="remove_end">
+                                <i class="fas fa-cut"></i>    Delete at End
+                            </button>
+                            <div>
+                                Delete
+
+                                <button type="submit" class="btn" name="action" value="remove_at">Delete</button>
+                                <input class="input-data" type="text" id="index" name="index" placeholder="data" />
+                            </div>
+                        </div>
+                                Delete 
+
+
                                 <input 
                                     class="input-data" 
                                     type="text" 
@@ -140,7 +169,7 @@
                                     Delete
                                 </button>
                             </div>
-                        </div>                        
+                        </div>
                     </div>
                 
                     <!-- Search Button -->
@@ -153,11 +182,16 @@
                         {% if empty_list %} disabled {% endif %}
                     >
                         Search
+
+                    <button type="submit" class="btn" name="action" value="search">
+                        <i class="fas fa-search"></i> Search
+
                     </button>
                 </div>
+                
             </div>
             </form>
-        </section>
+        </div>
     </main>
 
     <!-- Link to external JS files -->

@@ -99,3 +99,28 @@ nav {
     border-radius: 27px;
 }
 
+
+.team-icon-logo {
+    width: 30px;
+    height: 30px;
+    margin-bottom: -2.8px;
+
+}
+
+.logo-container1 {
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    /* background-repeat: no-repeat; */
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    border: 0.3px solid #D9D9D9;
+    background-color: #d9d9d9;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+}
+
+.logo-container1 a{
+    padding-top: -5rem;
+}

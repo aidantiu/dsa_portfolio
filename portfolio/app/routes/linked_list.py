@@ -231,15 +231,16 @@ def linkedlist_home():
         session.pop('validation_message', None)
         session.pop('validation_type', None)
 
-    # Prepare the linked list for display
-    linked_list_str = " -> ".join(linkedlist.to_list()) if linkedlist.to_list() else "The list is empty."
-
+    # Prepare the linked list for display as separate items
+    linked_list_items = linkedlist.to_list() if linkedlist.to_list() else None
+    
     # Render the linked list template with context data
     return render_template(
         'linked-list.html',
-        linked_list_str=linked_list_str,
+        linked_list_items=linked_list_items,
         validation_message=validation_message,
         validation_type=validation_type,
         search_query=request.form.get('data', '').strip(),
         empty_list=linkedlist.head is None
     )
+    

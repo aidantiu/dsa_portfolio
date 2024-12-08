@@ -356,10 +356,49 @@ input[type="text"]::placeholder {
     margin: 2px;
 }
 
+/* Styling for the linked list */
 .highlight {
-    background-color: #ffeb3b; /* Highlight color */
-    border: 2px solid #fbc02d; /* Optional border for emphasis */
-    transition: background-color 0.3s ease;
+    background-color: #6b00a1;
+    border: 2px solid #6b00a1;
+    box-shadow: 0 0 10px rgba(107, 0, 161, 0.5);
+    transform: scale(1.1); /* Slightly increase the scale and rotation */
+    transition: background-color 1s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    animation: glow 1.5s infinite, rotate 1s infinite; /* Add a glow effect */
+}
+
+/* Hover effect for additional interactivity */
+.item {
+    transition: background-color 1s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease; /* Ensure smooth transition */
+}
+
+/* Hover effect for additional interactivity */
+.item:hover {
+    transform: scale(1.1); /* Slightly increase the scale and rotation on hover */
+    box-shadow: 0 0 20px rgba(107, 0, 161, 0.9); /* Enhance the shadow on hover */
+    border: 2px solid #6b00a1;
+}
+
+/* Glow effect for the highlight */
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 10px rgba(107, 0, 161, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(107, 0, 161, 1);
+    }
+    100% {
+        box-shadow: 0 0 10px rgba(107, 0, 161, 0.5);
+    }
+}
+
+/* Rotate effect for the highlight */
+@keyframes rotate {
+    0%, 100% {
+        transform: scale(1.1) rotate(2deg);
+    }
+    50% {
+        transform: scale(1.1) rotate(-2deg);
+    }
 }
 
 .filled {

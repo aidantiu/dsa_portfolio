@@ -60,25 +60,28 @@
             </div>
             
            <!-- Output Box -->
-            <div class="output-box">
-                {% if linked_list_items %}
-                    <div class="filled">
-                        {% for item in linked_list_items %}
-                            <div class="item-container">
-                                <div class="item">{{ item }}</div>
-                                <div class="arrow">
-                                    <i class="fas fa-long-arrow-alt-right"></i>
-                                </div>
+           <div class="output-box">
+            {% if linked_list_items %}
+                <div class="filled">
+                    {% for item in linked_list_items %}
+                        <div class="item-container">
+                            <div class="item {% if item == highlighted_item %}highlight{% endif %}">
+                                {{ item }}
                             </div>
-                        {% endfor %}
-                    </div>
-                {% else %}
-                    <div class="empty">
-                        <p>The Linked List is empty.</p>
-                        <p>Add to start!</p>
-                    </div>
-                {% endif %}
-            </div>
+                            <div class="arrow">
+                                <i class="fas fa-long-arrow-alt-right"></i>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="empty">
+                    <p>The Linked List is empty.</p>
+                    <p>Add to start!</p>
+                </div>
+            {% endif %}
+        </div>
+        
 
             
 

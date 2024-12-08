@@ -55,6 +55,20 @@ document.addEventListener('DOMContentLoaded', () => {
             validationBox.classList.remove('hidden'); // Optionally hide the box
         }, 5000); // Message persists for 5 seconds
     }
+
+    // Highlight functionality
+    const highlightedItem = document.querySelectorAll('.highlight'); // Find the element with the highlight class
+
+    // Clear all the highlighted elements
+    if (highlightedItem) {
+        setTimeout(() => {
+            
+            highlightedItem.forEach(item => {
+                item.classList.remove('highlight'); // Remove the highlight class
+            });
+        
+        }, 5000); // Highlight persists for 5 seconds
+    }
 });
 
 // Detect page refresh and reset the cookie

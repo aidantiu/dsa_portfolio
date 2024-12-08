@@ -35,15 +35,18 @@ class LinkedList:
             self.tail = new_node
             self.head = new_node
         return True
-
+    
     # Searches for a node with the specified data
     def search(self, data):
         current_node = self.head
-        while current_node:  # Traverse the list
-            if current_node.data == data:  # Data found
-                return True
+        index = 0  # Track the position of the node
+        while current_node:
+            if current_node.data == data:
+                return index  # Return the position of the found node
             current_node = current_node.next
-        return False  # Data not found
+            index += 1
+        return -1  # Return -1 if data is not found
+
 
     # Removes the first node from the linked list
     def remove_beginning(self):
@@ -106,7 +109,7 @@ class LinkedList:
 linkedlist = LinkedList()
 app.secret_key = 'temporary-key'
 
-# Route for handling linked list operations via the web interface
+## Route for handling linked list operations via the web interface
 @app.route('/linked-list', methods=['GET', 'POST'])
 def linkedlist_home():
     search_result = None
@@ -115,6 +118,7 @@ def linkedlist_home():
     validation_message = session.get('validation_message', None)
     validation_type = session.get('validation_type', None)
     data = request.form.get('data', '').strip()
+    highlighted_item = None  # New variable to track the item to highlight
 
     # Retrieve linked list data from cookies
     linked_list_data = request.cookies.get('linked_list_data')
@@ -137,70 +141,45 @@ def linkedlist_home():
         action = request.form.get('action')
 
         # Add data at the beginning of the list
-        if action == 'add_at_beginning' and not data:
-            validation_message = "Please input data in the input field."
-            validation_type = "error"
-            session['validation_message'] = validation_message
-            session['validation_type'] = validation_type
-        elif action == 'add_at_end' and not data:
-            validation_message = "Please input data in the input field."
-            validation_type = "error"
-            session['validation_message'] = validation_message
-            session['validation_type'] = validation_type
-        elif action == 'add_at_beginning' and data:
-            linkedlist.insert_at_beginning(data)
-            validation_message = f"'{data}' added at the beginning."
-            validation_type = "success"
-            session['validation_message'] = validation_message
-            session['validation_type'] = validation_type
-        elif action == 'add_at_end' and data:
-            linkedlist.insert_at_end(data)
-            validation_message = f"'{data}' added at the end."
-            validation_type = "success"
-            session['validation_message'] = validation_message
-            session['validation_type'] = validation_type
-
-        # Handle search, deletion, or empty list conditions
-        elif linkedlist.head is None:
-            if action == 'search':
-                validation_message = "The list is empty. You cannot search items."
+        if action in ['add_at_beginning', 'add_at_end']:
+            if not data:
+                validation_message = "Please input data in the input field."
                 validation_type = "error"
-                session['validation_message'] = validation_message
-                session['validation_type'] = validation_type
-            elif action in ['remove_beginning', 'remove_end', 'remove_at']:
-                validation_message = "The list is empty. You cannot delete items."
-                validation_type = "error"
-                session['validation_message'] = validation_message
-                session['validation_type'] = validation_type
             else:
-                validation_message = "The list is empty."
-                validation_type = "error"
-                session['validation_message'] = validation_message
-                session['validation_type'] = validation_type
+                if action == 'add_at_beginning':
+                    linkedlist.insert_at_beginning(data)
+                    validation_message = f"'{data}' added at the beginning."
+                else:
+                    linkedlist.insert_at_end(data)
+                    validation_message = f"'{data}' added at the end."
+                validation_type = "success"
 
-        # Search for a specific value in the linked list
+        # Handle search
         elif action == 'search':
-            search_result = linkedlist.search(data)
-            validation_message = f"Please enter a value to search." if not data else f"'{data}' {'is found' if search_result else 'is not found'}."
-            validation_type = "success" if search_result else "error"
-            session['validation_message'] = validation_message
-            session['validation_type'] = validation_type
+            if not data:  # Check if no input is provided
+                validation_message = "Please input data in the input field."
+                validation_type = "error"
+            else:
+                search_index = linkedlist.search(data)
+                search_result = search_index != -1  # Check if the item is found
+                validation_message = (
+                    f"'{data}' is found." if search_result else f"'{data}' is not found."
+                )
+                validation_type = "success" if search_result else "error"
+                if search_result:
+                    highlighted_item = data  # Highlight the found item
 
         # Remove the first element from the list
         elif action == 'remove_beginning':
             removed_data = linkedlist.remove_beginning()
             validation_message = f"'{removed_data}' removed from the beginning." if removed_data else "The list is empty."
             validation_type = "success" if removed_data else "error"
-            session['validation_message'] = validation_message
-            session['validation_type'] = validation_type
 
         # Remove the last element from the list
         elif action == 'remove_end':
             removed_data = linkedlist.remove_at_end()
             validation_message = f"'{removed_data}' removed from the end." if removed_data else "The list is empty."
             validation_type = "success" if removed_data else "error"
-            session['validation_message'] = validation_message
-            session['validation_type'] = validation_type
 
         # Remove a specific element by value
         elif action == 'remove_at':
@@ -211,19 +190,21 @@ def linkedlist_home():
                 removed_data = linkedlist.remove_at(delete_data)
                 validation_message = f"'{removed_data}' has been removed." if removed_data else f"'{delete_data}' not found for removal."
                 validation_type = "success" if removed_data else "error"
-            session['validation_message'] = validation_message
-            session['validation_type'] = validation_type
 
         # Update the linked list data in cookies and redirect
         linked_list_data = linkedlist.to_list()
         resp = make_response(redirect(url_for('linkedlist_home')))
         resp.set_cookie('linked_list_data', json.dumps(linked_list_data))
+        resp.set_cookie('highlighted_item', highlighted_item or "", max_age=3600)  # Store highlighted item for 1 hour
+        session['validation_message'] = validation_message
+        session['validation_type'] = validation_type
         return resp
 
     # Clear linked list data when 'clear' query parameter is set
     if request.args.get('clear') == 'true':
         resp = make_response(redirect(url_for('linkedlist_home')))
         resp.set_cookie('linked_list_data', '', expires=0)
+        resp.set_cookie('highlighted_item', '', expires=0)
         return resp
     
     # Remove validation messages from session after rendering
@@ -234,13 +215,15 @@ def linkedlist_home():
     # Prepare the linked list for display as separate items
     linked_list_items = linkedlist.to_list() if linkedlist.to_list() else None
     
+    # Get the highlighted item from cookies
+    highlighted_item = request.cookies.get('highlighted_item', None)
+
     # Render the linked list template with context data
     return render_template(
         'linked-list.html',
         linked_list_items=linked_list_items,
         validation_message=validation_message,
         validation_type=validation_type,
-        search_query=request.form.get('data', '').strip(),
-        empty_list=linkedlist.head is None
+        empty_list=linkedlist.head is None,
+        highlighted_item=highlighted_item  # Pass highlighted item to the template
     )
-    

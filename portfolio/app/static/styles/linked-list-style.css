@@ -212,9 +212,12 @@ input[type="text"]::placeholder {
 .dropdown-content div{
     display: flex;
     align-items: center;
-    padding:5px;
-    margin: 5px;
     gap: 2px;
+    margin: 5px 25px;
+}
+
+.dropdown-content div .btn{
+    margin: 0 !important;
 }
 
 /* Dropdown Buttons */
@@ -291,6 +294,20 @@ input[type="text"]::placeholder {
 .search-box, .validation {
     display: flex;
     align-items: center;
+
+}
+
+.validation img, .validation p{
+    margin: 0;
+    font-size: 20px;
+}
+
+.validation div{
+    gap: 8px;
+    display: flex;
+    padding: 5px;
+    border-radius: 8px;
+    background-color: #D9D9D9;
 }
 
 .search-result {

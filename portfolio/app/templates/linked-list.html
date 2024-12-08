@@ -46,7 +46,8 @@
 
                 <!-- Validation/Notification Box -->
                 <div id="validation-box" class="validation">
-                    {% if validation_message %}
+                    <div id="validation-wrapper">
+                        {% if validation_message %}
                         {% if validation_type == "success" %}
                             <img src="{{ url_for('static', filename='icons/circle-check.svg') }}" alt="Check Icon" />
                         {% elif validation_type == "error" %}
@@ -54,6 +55,7 @@
                         {% endif %}
                         <p>{{ validation_message }}</p>
                     {% endif %}
+                    </div>
                 </div>
             </div>
             
@@ -98,8 +100,8 @@
                                     <i class="fas fa-cut"></i> Delete at End
                                 </button>
                                 <div>
+                                    <i class="fa-solid fa-ban" style="color: #6b00a1;"></i>
                                     <button type="submit" class="btn" name="action" value="remove_at">Delete</button>
-                                    <input class="input-data" type="text" id="index" name="index" placeholder="Enter index" />
                                 </div>
                             </div>
                         </div>

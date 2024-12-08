@@ -39,13 +39,20 @@ inputField.addEventListener('input', function () {
     }, typingDelay);
 });
 
-// Automatically hide the validation message after 5 seconds
+// Automatically show and hide the validation message after 5 seconds
 document.addEventListener('DOMContentLoaded', () => {
     const validationBox = document.getElementById('validation-box');
+    const wrapper = document.getElementById('validation-wrapper');
+
+    // Hide the background color of the wrapper initially
+    if (wrapper && wrapper.innerText.trim() === "") {
+        wrapper.style.backgroundColor = 'transparent';
+    }
+
     if (validationBox && validationBox.innerText.trim() !== "") {
         setTimeout(() => {
             validationBox.innerHTML = ''; // Clear the content
-            validationBox.classList.add('hidden'); // Optionally hide the box
+            validationBox.classList.remove('hidden'); // Optionally hide the box
         }, 5000); // Message persists for 5 seconds
     }
 });

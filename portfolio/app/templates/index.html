@@ -55,7 +55,7 @@
             </div>
 
             <!-- Hero Section -->
-             <section>
+             <section class="hero-section">
                 <div class="hero-container">
                     <div class="hero-main-text">
                         <h1>Hello</h1>
@@ -66,6 +66,31 @@
                     </div> 
                 </div>
              </section>
+
+
+             <div class="ellipses-container">
+                <div class="ellipse-1 large"></div>
+                <div class="ellipse-1 small"></div>
+            </div>
+             <!-- Profile Section  -->
+              <section class="profile-section">
+                <h1>MEET THE TEAM</h1>
+                <div class="profile-card-wrapper">
+                    <!-- Loop through the profiles list -->
+                    {% for profile in profiles %}
+                    <div class="profile-card">
+                        <img src="{{ url_for('static', filename=profile.image_path) }}" alt="Profile Image" class="profile-image">
+                        <div class="profile-desc">
+                            <h6>{{ profile.name }}</h6>
+                            <p>{{ profile.role }}</p>
+                        </div>
+                        
+                    </div>
+                    {% endfor %}
+                </div>
+              </section>
         </main>
     </body>
+
+    <script src="{{ url_for('static', filename='scripts/global.js') }}"></script>
 </html>

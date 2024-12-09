@@ -3,8 +3,7 @@
 */
 
 body{
-    height:250vh;
-    font-family: Arial, sans-serif;
+    height:360vh;
     background: #E2B2E5 url(../images/Home\ Page\(1\).png) repeat center/cover;
     color: black;
     overflow-x: hidden;
@@ -126,7 +125,7 @@ body{
 /* Profile Section */
 .profile-section{
     position: relative;
-    height: 700px;
+    height: 1000px;
     z-index: 1;
 }
 
@@ -156,9 +155,13 @@ body{
     border-radius: 20px;
     border: 1px solid #FFF;
     background: rgba(255, 254, 254, 0.527);
-    filter: blur(px);
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     backdrop-filter: blur(20px);
+}
+
+.profile-card:hover{
+    transform: scale(1.05);
+    transition: ease-in 0.2s;
 }
 
 .profile-card img{
@@ -184,4 +187,103 @@ body{
     color: #883DB9;
     margin: 0 ;
     font-size: 16px;
+}
+
+/* Works Section */
+.works-section{
+    position: relative;
+    height: 700px;
+    z-index: 1;
+}
+
+.works-section h1{
+    text-align: center;
+    color: #FFF;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-size: 70px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.works-card{
+    display: flex;
+    align-items: center;
+    height: 450px;
+    border-radius: 20px;
+    border: 1px solid #FFF;
+    background: rgba(213, 212, 212, 0.667);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(20px);
+    padding: 0 30px;
+    gap: 50px;
+}
+
+.works-card:hover{
+    transform: scale(1.05);
+    transition: ease-in 0.2s;
+}
+
+.works-image{
+    border-radius: 10px;
+}
+
+.works-card img{
+    width: 50%;
+    height: 90%;
+    object-fit:fill;
+    border-radius: 10px;
+}
+
+.work-desc{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+    width: 50%;
+    margin-top: 30px;
+}
+
+.work-desc h6{
+    font-size: 40px;
+    margin-bottom: 20px;
+    margin-top: 5px;
+}
+
+.work-desc p{
+    color: #7B4686;
+    font-size: 23px;
+    letter-spacing: 1px;
+}
+
+.works-card .btn-wrapper{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin-top: 70px;
+}
+
+.works-card a{
+    width: fit-content;
+}
+
+.works-card button{
+    font-family: 'Mouse Memoirs', sans-serif;
+    width: 100%;
+    border-radius: 20px;
+    background: #9643AC;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    padding: 15px;
+    border: none;
+    color: #FFF;
+    font-size: 17px;
+}
+
+.works-card button i{
+    margin-left: 5px;
+}
+
+.works-card button:hover{
+    background: #971DD4;
+    cursor: pointer;
 }

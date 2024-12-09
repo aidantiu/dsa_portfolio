@@ -67,13 +67,12 @@
                 </div>
              </section>
 
-
+            <!-- Profile Section  -->
              <div class="ellipses-container">
                 <div class="ellipse-1 large"></div>
                 <div class="ellipse-1 small"></div>
             </div>
-             <!-- Profile Section  -->
-              <section class="profile-section" id="profile">
+            <section class="profile-section" id="profile">
                 <h1>MEET THE TEAM</h1>
                 <div class="profile-card-wrapper">
                     <!-- Loop through the profiles list -->
@@ -88,7 +87,27 @@
                     </div>
                     {% endfor %}
                 </div>
-              </section>
+            </section>
+
+            <!-- Works Section -->
+            <section class="works-section" id="works">
+                <h1>SEE OUR PROJECTS</h1>
+                <div class="works-card-wrapper">
+                    <!-- Loop through the works list -->
+                    {% for work in works %}
+                    <div class="works-card">
+                        <img src="{{ url_for('static', filename=work.image_path) }}" alt="Work Image" class="work-image">
+                        <div class="work-desc">
+                            <h6>{{ work.title }}</h6>
+                            <p>{{ work.description }}</p>
+                            <div class="btn-wrapper">
+                                <a href="/linked-list"><button id="">Test Here <i class="fa fa-arrow-right" aria-hidden="true"></i></button></a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>
         </main>
     </body>
 

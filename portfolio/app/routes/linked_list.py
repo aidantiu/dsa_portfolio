@@ -225,5 +225,6 @@ def linkedlist_home():
         validation_message=validation_message,
         validation_type=validation_type,
         empty_list=linkedlist.head is None,
-        highlighted_item=highlighted_item  # Pass highlighted item to the template
+        highlighted_item=highlighted_item, # Pass highlighted item to the template
+        title = 'Linked List'
     )

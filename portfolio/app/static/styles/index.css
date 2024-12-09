@@ -1,3 +1,49 @@
 /*
 * This file is used to style the index page
 */
+
+body{
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    background: #E2B2E5 url(../images/Home\ Page\(1\).png) no-repeat center center/cover;
+    color: black;
+    overflow-x: hidden;
+}
+
+/* Ellipses designs */
+.ellipses-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.ellipse {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.8;
+}
+
+.ellipse.large {
+    width: 825px;
+  height: 825px;
+  background: linear-gradient( 135deg, #883DB9 5%, #9643AC 22%, #AE4D94 48%, #D75E6D 100% );
+  border: 1px solid #FFFFFF;
+  filter: blur(5px);
+  position: absolute;
+  top: 20%;
+  right: 0%;
+  transform: translate(30%, -30%);
+}
+
+.ellipse.small {
+    width: 150px;
+    height: 150px;
+    background: linear-gradient( 135deg, #9747FF 100%, #391C5F 100% );
+    border: 1px solid #FFFFFF;
+    filter: blur(5px);
+    position: absolute;
+    bottom: 20%;
+    right: 35%;
+    transform: translate(50%, 360%);
+}

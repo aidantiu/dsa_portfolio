@@ -448,3 +448,12 @@ input[type="text"]::placeholder {
     width: fit-content;
     height: fit-content;
 }
+
+
+#capsule-node-icon{
+    display: inline-block;
+    padding: 0px 1px; /* Adjust height and width */
+    background-color: #6b00a1; /* Capsule color */
+    border-radius: 25%; /* Makes it a capsule shape */
+    text-align: center;
+}

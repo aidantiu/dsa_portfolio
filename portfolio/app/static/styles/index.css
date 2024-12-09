@@ -73,6 +73,56 @@ body{
     height: 700px;
 }
 
+.hero-container{
+    padding-top:110px ;
+}
+
+.hero-main-text h1:nth-child(1){
+    color: #FFF;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-size: 100px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 0;
+}
+
+.hero-main-text h1{
+    color: #FFF;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-size: 130px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: -40px 0;
+}
+
+.hero-sub-text p{
+    color: #FFF;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 30px 6px;
+}
+
+.hero-main-text span{
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-size: 150px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -4.5px;
+    background: linear-gradient(89deg, #971DD4 63.77%, #23A4F5 76.11%, #85ACF1 89.57%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    z-index: 1;
+    position: relative;
+}
+
+
 /* Profile Section */
 .profile-section{
     position: relative;
@@ -91,7 +141,7 @@ body{
     text-align: center;
     color: #FFF;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    font-size: 60px;
+    font-size: 70px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -131,6 +181,7 @@ body{
 }
 
 .profile-desc p {
+    color: #883DB9;
     margin: 0 ;
     font-size: 16px;
 }

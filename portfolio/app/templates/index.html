@@ -14,7 +14,7 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
         <!-- Favicon -->
-        <link rel="icon" type="image/png" href="{{ url_for('static', filename='icons/favicon-light.png') }}">
+        <link rel="icon" type="image/png" href="{{ url_for('static', filename='icons/favicon-black-with-border.png') }}">
 
         <!-- Title -->
         <title> {{ title }} - TNT</title>
@@ -25,7 +25,7 @@
             <div class="nav-container">
                 <!-- Logo Team -->
                 <div class="logo-container1">
-                    <a href="https://github.com/aidantiu/dsa_portfolio" target="_blank">
+                    <a href="/" target="_blank">
                         <img class="team-icon-logo" src="{{ url_for('static', filename='images/team-logo.png') }}" alt="Team Icon" />
                     </a>
                 </div>
@@ -33,9 +33,9 @@
                 <div class="nav-links">
                     <ul>
                         <li><a href="/">HOME</a></li>
-                        <li><a href="/profile">PROFILE</a></li>
-                        <li><a href="/works">WORKS</a></li>
-                        <li><a href="/contact">CONTACT</a></li>
+                        <li><a href="#profile">PROFILE</a></li>
+                        <li><a href="#works">WORKS</a></li>
+                        <li><a href="#contact">CONTACT</a></li>
                     </ul>
                 </div>
                 <!-- GitHub Icon -->
@@ -58,8 +58,8 @@
              <section class="hero-section">
                 <div class="hero-container">
                     <div class="hero-main-text">
-                        <h1>Hello</h1>
-                        <h1>We are TNT</h1>
+                        <h1>Hello,</h1>
+                        <h1>We are <span>TropangGigas.</span></h1>
                     </div>
                     <div class="hero-sub-text">
                         <p>Welcome to our Porfolio</p>
@@ -73,7 +73,7 @@
                 <div class="ellipse-1 small"></div>
             </div>
              <!-- Profile Section  -->
-              <section class="profile-section">
+              <section class="profile-section" id="profile">
                 <h1>MEET THE TEAM</h1>
                 <div class="profile-card-wrapper">
                     <!-- Loop through the profiles list -->

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <!-- Form for input and output -->
+    <form action="/infix-to-postfix" method="POST">
+        <label for="inputBox">Enter Input:</label>
+        <input type="text" id="inputBox" name="input" required>
+        <br><br>
+    
+        <label for="outputBox">Output:</label>
+        <textarea id="outputBox" name="output" readonly>{{ output }}</textarea>
+        <br><br>
+    
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

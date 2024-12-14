@@ -32,12 +32,11 @@
                 <!-- Navigation Links -->
                 <div class="nav-links">
                     <ul>
-                        <li><a href="/">HOME</a></li>
-                        <li><a href="#profile">PROFILE</a></li>
-                        <li><a href="#works">WORKS</a></li>
-                        <li><a href="#contact">CONTACT</a></li>
+                        <li><a href="{{ url_for('index') }}">HOME</a></li>
+                        <li><a href="{{ url_for('index') }}#profile">PROFILE</a></li>
+                        <li><a href="{{ url_for('index') }}#works">WORKS</a></li>
                     </ul>
-                </div>
+                </div>                
                 <!-- GitHub Icon -->
                 <div class="logo-container">
                     <a href="https://github.com/aidantiu/dsa_portfolio" target="_blank">
@@ -101,13 +100,15 @@
                             <h6>{{ work.title }}</h6>
                             <p>{{ work.description }}</p>
                             <div class="btn-wrapper">
-                                <a href="/linked-list"><button id="">Test Here <i class="fa fa-arrow-right" aria-hidden="true"></i></button></a>
+                                <a href="{{ url_for('project', project_route=work.route) }}">
+                                    <button>Test Here <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+                                </a>
                             </div>
                         </div>
                     </div>
                     {% endfor %}
                 </div>
-            </section>
+            </section>            
         </main>
     </body>
 

@@ -4,3 +4,40 @@ body{
     background: #E2B2E5 url(../images/BACKGROUND\(1\).png) no-repeat center center/cover;
     color: black;
 }
+
+/* Main Section */
+.main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin-top: 20px;
+}
+
+.container{
+    padding: 0 0 100px;
+}
+
+
+.linked-list-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    position: relative;
+}
+
+.infix-to-postfix-text h1{
+    margin: auto;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin: 0 auto;
+}

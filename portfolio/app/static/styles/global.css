@@ -50,7 +50,7 @@ body{
     border-radius: 27px;
     transition: background-color 0.3s;
     text-align: center;
-    width: 50px;
+    width: 70px;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     border: 2px solid #c7c4dd;
 }
@@ -161,7 +161,7 @@ nav {
     scrollbar-width: thin;
     scrollbar-color: rgba(255, 255, 255, 0.7) rgba(0, 0, 0, 0.1);
 }
-=======
+
 /* Reset Basic Margin and Padding */
 * {
     margin: 0;

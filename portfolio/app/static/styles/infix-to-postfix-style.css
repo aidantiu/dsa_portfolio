@@ -81,7 +81,7 @@ body{
 }
 
 #inputBox {
-    height: 28px; /* Fixed height of the input box */
+    height: 52px; /* Fixed height of the input box */
 }
 
 #goBox {
@@ -154,7 +154,7 @@ input[type="text"]::placeholder {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 80%;
+    width: 70%;
     margin: 0 auto;
     padding-top: 10px;
     padding-bottom: 50px;

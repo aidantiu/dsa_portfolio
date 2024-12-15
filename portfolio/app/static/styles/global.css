@@ -126,6 +126,42 @@ nav {
 
 }
 
+
+/* Scrollbar Styles */
+/* Global Scrollbar Style */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+        rgba(255, 255, 255, 0.7),
+        rgba(255, 255, 255, 0.7)
+    );
+    border-radius: 100px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(
+        rgba(255, 255, 255, 0.9),
+        rgba(255, 255, 255, 0.9)
+    );
+    background-clip: content-box;
+}
+
+/* Firefox compatibility */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.7) rgba(0, 0, 0, 0.1);
+}
+=======
 /* Reset Basic Margin and Padding */
 * {
     margin: 0;
@@ -247,3 +283,4 @@ nav {
 .footer-bottom-right {
     text-align: right;
 }
+

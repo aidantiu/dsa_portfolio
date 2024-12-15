@@ -1,5 +1,5 @@
 from app import app
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, make_response, redirect, url_for
 from .linked_list import LinkedList
 
 
@@ -60,18 +60,20 @@ def infix_to_postfix(expression):
 
 @app.route('/infix-to-postfix', methods=['GET', 'POST'])
 def Infix_to_Postfix():
-    input_expr = ""
-    output = ""
-    
     if request.method == 'POST':
         input_expr = request.form['input']
         output = infix_to_postfix(input_expr)
-        return render_template('infix_to_postfix.html', 
-                             title="Infix To Postfix",
-                             input=input_expr,
-                             output=" ".join(output))
+        response = make_response(redirect(url_for('Infix_to_Postfix')))
+        response.set_cookie('input_expr', input_expr)
+        response.set_cookie('output', " ".join(output))
+        return response
     
-    return render_template('infix_to_postfix.html', 
-                         title="Infix To Postfix",
-                         input=input_expr,
-                         output=output)
+    input_expr = request.cookies.get('input_expr', '')
+    output = request.cookies.get('output', '')
+    response = make_response(render_template('infix_to_postfix.html', 
+                                             title="Infix To Postfix",
+                                             input=input_expr,
+                                             output=output))
+    response.set_cookie('input_expr', '', expires=0)
+    response.set_cookie('output', '', expires=0)
+    return response

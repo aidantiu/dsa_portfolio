@@ -60,18 +60,18 @@ def infix_to_postfix(expression):
 
 @app.route('/infix-to-postfix', methods=['GET', 'POST'])
 def Infix_to_Postfix():
-    output = ""  # Initialize output
+    input_expr = ""
+    output = ""
     
     if request.method == 'POST':
-        # Handle form submission (POST)
-        input_expression = request.form['input']  # Match the form field name
-        output = infix_to_postfix(input_expression)  # Process the input
-        
-        # Redirect to the same page with the output (GET request)
-        return redirect(url_for('Infix_to_Postfix', output=" ".join(output)))
+        input_expr = request.form['input']
+        output = infix_to_postfix(input_expr)
+        return render_template('infix_to_postfix.html', 
+                             title="Infix To Postfix",
+                             input=input_expr,
+                             output=" ".join(output))
     
-    # Handle GET request: check for 'output' parameter
-    if 'output' in request.args:    
-        output = request.args['output']
-    
-    return render_template('infix_to_postfix.html', title="Infix To Postfix", output=output)
+    return render_template('infix_to_postfix.html', 
+                         title="Infix To Postfix",
+                         input=input_expr,
+                         output=output)

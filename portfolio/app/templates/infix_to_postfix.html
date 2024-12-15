@@ -57,8 +57,16 @@
 
                 <!-- Input box for infix expression -->
                 <div class="input-container">
-                    <input type="text" id="inputBox" name="input" placeholder="Enter Infix expression..." autocomplete="off" required>
+                    <input type="text" 
+                           id="inputBox" 
+                           name="input" 
+                           placeholder="Enter Infix expression..." 
+                           autocomplete="off" 
+                           required
+                           value="{{ input if input else '' }}">
                     <button id="goBox" type="submit" class="go-button">GO</button>
+                    <button type="clearBox" id="clearBox" class="clear-button" onclick="clearAll()">CLEAR</button>
+                </div>
                 </div>
 
                 <!-- Output box for postfix expression -->
@@ -69,12 +77,16 @@
                         </div>
                         <div class="horizontal-line"></div>
                         <div class="postfix-result">
-                            {{ output if output else 'Your postfix expression will appear here...' }}
+                            {{ output if output else '<span class="placeholder-text">Your postfix expression will appear here...</span>' | safe }}
                         </div>
                     </div>
                 </div>
             </form>
         </div>
     </main>
+
+    <!-- Link to external JavaScript file -->
+    <script src="{{ url_for('static', filename='scripts/global.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/infix-to-postfix-script.js') }}"></script>
 </body>
 </html>

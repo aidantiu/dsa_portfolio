@@ -144,6 +144,7 @@ body{
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    margin-bottom: 30px;
 }
 
 .profile-card {
@@ -192,12 +193,12 @@ body{
 /* Works Section */
 .works-section{
     position: relative;
-    height: 700px;
+    height: auto;
     z-index: 1;
 }
 
 .works-card-wrapper{
-    gap: 20px;
+    gap: 30px;
     display: flex;
     flex-direction: column;
 }
@@ -210,6 +211,7 @@ body{
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    margin-bottom: 30px;
 }
 
 .works-card{

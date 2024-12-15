@@ -24,7 +24,7 @@ body{
 }
 
 .infix-to-postfix-simulator{
-    margin-top: 20px;
+    margin-top: 50px;
 }
 
 .infix-to-postfix-text {
@@ -71,7 +71,7 @@ body{
     width: 80%;
     margin: 0 auto;
     padding-top: 10px;
-    padding-bottom: 25px;
+    padding-bottom: 10px;
 }
 
 .input-data {
@@ -188,7 +188,7 @@ input[type="text"]::placeholder {
 
 .output-box {
     width: 70%;
-    min-height: 250px;
+    min-height: 300px;
     padding-top: 10px;
     padding-bottom: 20px;
     color: white;
@@ -245,6 +245,10 @@ input[type="text"]::placeholder {
     padding: 15px 15px;
     font-family: 'Lato', sans-serif;
     font-size: 30px;
+    height: 215px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
 }
 
 .placeholder-text {

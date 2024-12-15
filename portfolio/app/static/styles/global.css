@@ -196,22 +196,22 @@ nav {
     position: relative;
     left: 50%;
     transform: translateX(-50%);
-    margin: 0;
+    margin-top: 100px;
 }
 
 
 .footer-container {
-    max-width: 1200px;
+    display: flex;
+    max-width: 1350px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 20px;
+    justify-content: space-between;
 }
 
 /* Logo Section */
 .footer-logo {
     display: flex;
-    align-items: left;
-    justify-content: left;
-    margin-bottom: 30px;
+    align-items: center;
     position: relative;
     z-index: 2;
 }
@@ -220,26 +220,33 @@ nav {
     width: 50px;
     height: 50px;
     margin-right: 10px;
-    margin-top: 5.5px;
     filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
 }
 
 .footer-logo h2 {
     font-family: 'Mouse Memoirs', sans-serif; /* Apply the font here */
-    font-size: 2.5rem;
+    font-size: 20pxs;
     letter-spacing: 0.1px;
     font-weight: lighter;
     color: #ffffff; /* Yellow Color */
-    margin-bottom: 11px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
+
+/* Credit Section */
+.footer-credits {
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 1000;
+    font-size: 20px;
+    
+}
+
 
 /* Navigation Links */
 .footer-links {
     display: flex;
-    justify-content: flex-end;
-    gap: 30px;
-    margin-top: -75px;
+    align-items: center;
     position: relative;
     z-index: 1000;
 }
@@ -250,7 +257,7 @@ nav {
     color: white;
     text-decoration: none;
     margin: 0 15px;
-    font-size: 17px;
+    font-size: 18px;
     position: relative;
     z-index: 1001;
     pointer-events: all;

@@ -28,12 +28,11 @@
             <!-- Navigation Links -->
             <div class="nav-links">
                 <ul>
-                    <li><a href="/">HOME</a></li>
-                    <li><a href="/profile">PROFILE</a></li>
-                    <li><a href="/works">WORKS</a></li>
-                    <li><a href="/contact">CONTACT</a></li>
+                    <li><a href="{{ url_for('index') }}">HOME</a></li>
+                    <li><a href="{{ url_for('index') }}#profile">PROFILE</a></li>
+                    <li><a href="{{ url_for('index') }}#works">WORKS</a></li>
                 </ul>
-            </div>
+            </div>   
             <!-- GitHub Icon -->
             <div class="logo-container">
                 <a href="https://github.com/aidantiu/dsa_portfolio" target="_blank">
@@ -73,7 +72,7 @@
                 <div class="output-container">
                     <div class="output-box">
                         <div class="output-header">
-                            <h3>Infix to Postfix</h3>
+                            <h3>Postfix Notation</h3>
                         </div>
                         <div class="horizontal-line"></div>
                         <div class="postfix-result">
@@ -84,6 +83,38 @@
             </form>
         </div>
     </main>
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-container">
+            <!-- Logo Section -->
+            <div class="footer-logo">
+                <img src="{{ url_for('static', filename='images/tropang-giga.png') }}" alt="Tropang Giga Logo" />
+                <h2>Tropang Giga</h2>
+            </div>
+            <!-- Navigation Links -->
+            <div class="footer-links">
+                <a href="{{ url_for('index') }}">HOME ↗</a>
+                <a href="{{ url_for('index') }}#profile">PROFILE ↗</a>
+                <a href="{{ url_for('index') }}#works">WORKS ↗</a>
+            </div>
+            <!-- Horizontal Line -->
+            <hr class="footer-line" />
+            <!-- Footer Bottom Info -->
+            <div class="footer-bottom">
+                <div class="footer-bottom-left">
+                    <p>
+                        &copy; 2024 Transparent &nbsp; | &nbsp;
+                        <a href="#">Terms of Service</a> &nbsp; | &nbsp; 
+                        <a href="#">Privacy & Cookies policy</a>
+                    </p>
+                </div>
+                <div class="footer-bottom-right">
+                    <p>Polytechnic University of the Philippines | Bachelor of Science in Computer Engineering</p>
+                </div>
+            </div>
+                
+        </div>
+    </footer>
 
     <!-- Link to external JavaScript file -->
     <script src="{{ url_for('static', filename='scripts/global.js') }}"></script>

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400&family=Mouse+Memoirs&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700&display=swap" rel="stylesheet">
-    
+
     <!-- Link to external CSS files -->
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/infix-to-postfix-style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/global.css') }}">
@@ -62,12 +62,16 @@
                 </div>
 
                 <!-- Output box for postfix expression -->
-                <div>
-                    <textarea id="outputBox" name="output" readonly>{{ output }}</textarea>
-                </div>
-
-                <div>
-                    <button type="submit">Submit</button>
+                <div class="output-container">
+                    <div class="output-box">
+                        <div class="output-header">
+                            <h3>Infix to Postfix</h3>
+                        </div>
+                        <div class="horizontal-line"></div>
+                        <div class="postfix-result">
+                            {{ output if output else 'Your postfix expression will appear here...' }}
+                        </div>
+                    </div>
                 </div>
             </form>
         </div>

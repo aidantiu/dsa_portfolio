@@ -196,6 +196,12 @@ body{
     z-index: 1;
 }
 
+.works-card-wrapper{
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
 .works-section h1{
     text-align: center;
     color: #FFF;

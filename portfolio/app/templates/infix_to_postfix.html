@@ -3,20 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400&family=Mouse+Memoirs&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Link to external CSS files -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/infix-to-postfix-style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/global.css') }}">
+
+    <!-- Link to external Font Awesome CSS file -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='icons/favicon-black-with-border.png') }}">
     <title>{{ title }}</title>
 </head>
 <body>
-    <!-- Form for input and output -->
-    <form action="/infix-to-postfix" method="POST">
-        <label for="inputBox">Enter Input:</label>
-        <input type="text" id="inputBox" name="input" required>
-        <br><br>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <!-- Logo Team -->
+            <div class="logo-container1">
+                <a href="/" target="_blank">
+                    <img class="team-icon-logo" src="{{ url_for('static', filename='images/team-logo.png') }}" alt="Team Icon" />
+                </a>
+            </div>
+            <!-- Navigation Links -->
+            <div class="nav-links">
+                <ul>
+                    <li><a href="/">HOME</a></li>
+                    <li><a href="/profile">PROFILE</a></li>
+                    <li><a href="/works">WORKS</a></li>
+                    <li><a href="/contact">CONTACT</a></li>
+                </ul>
+            </div>
+            <!-- GitHub Icon -->
+            <div class="logo-container">
+                <a href="https://github.com/aidantiu/dsa_portfolio" target="_blank">
+                    <img class="github-icon" src="{{ url_for('static', filename='icons/github-icon.svg') }}" alt="GitHub Icon" />
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- *Main Content* -->
+    <main class="infix-to-postfix-simulator">
+        <div class="container">
+            <div class="header">
+                <div class="infix-to-postfix-text">
+                    <h1>Infix to Postfix Converter</h1>
+                </div>
+            </div>
     
-        <label for="outputBox">Output:</label>
-        <textarea id="outputBox" name="output" readonly>{{ output }}</textarea>
-        <br><br>
-    
-        <button type="submit">Submit</button>
-    </form>
+            <!-- Form for input and output -->
+            <form action="/infix-to-postfix" method="POST">
+
+                <!-- Input box for infix expression -->
+                <div class="input-container">
+                    <input type="text" id="inputBox" name="input" placeholder="Enter Infix expression..." autocomplete="off" required>
+                    <button id="goBox" type="submit" class="go-button">GO</button>
+                </div>
+
+                <!-- Output box for postfix expression -->
+                <div class="output-container">
+                    <div class="output-box">
+                        <div class="output-header">
+                            <h3>Infix to Postfix</h3>
+                        </div>
+                        <div class="horizontal-line"></div>
+                        <div class="postfix-result">
+                            {{ output if output else 'Your postfix expression will appear here...' }}
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
 </body>
 </html>

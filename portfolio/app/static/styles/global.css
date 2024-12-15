@@ -126,6 +126,7 @@ nav {
 
 }
 
+
 /* Scrollbar Styles */
 /* Global Scrollbar Style */
 ::-webkit-scrollbar {
@@ -160,3 +161,126 @@ nav {
     scrollbar-width: thin;
     scrollbar-color: rgba(255, 255, 255, 0.7) rgba(0, 0, 0, 0.1);
 }
+=======
+/* Reset Basic Margin and Padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.footer {
+    width: 100vw; /* Ensures the footer spans the full viewport width */
+    background: rgba(255, 255, 255, 0.1); /* Transparent background */
+    backdrop-filter: blur(10px); /* Glass effect: Frosted glass */
+    -webkit-backdrop-filter: blur(10px); /* Safari support */
+    border: 1px solid rgba(255, 255, 255, 0.18); /* Subtle border */
+    color: white;
+    font-family: 'Mouse Memoirs', sans-serif; /* Apply the font here */
+    text-align: center;
+    padding: 8px; /* Add some padding for top and sides */
+    line-height: 1.5;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    position: relative; /* Keeps it in the document flow */
+    left: 0;
+    right: 0;
+    margin-left: calc(-50vw + 50%); /* Negative margin to break out of container */
+}
+
+/* Footer Container */
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto
+}
+
+/* Logo Section */
+.footer-logo {
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 2;
+}
+
+.footer-logo img {
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+    margin-top: 5.5px;
+}
+
+.footer-logo h2 {
+    font-family: 'Mouse Memoirs', sans-serif; /* Apply the font here */
+    font-size: 2.5rem;
+    letter-spacing: 3.5px;
+    font-weight: bold;
+    color: #ffd96a; /* Yellow Color */
+    margin-bottom: 11px;
+}
+
+/* Navigation Links */
+.footer-links {
+    display: flex;
+    justify-content: right;
+    gap: 30px;
+    margin-top: -75px;
+}
+
+.footer-links a {
+    font-family: 'Mouse Memoirs', sans-serif; /* Apply font */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add shadow to links */
+    color: white; /* Ensure the links are white */
+    text-decoration: none; /* Remove default underline */
+    margin: 0 15px; /* Add horizontal spacing between links */
+    transition: color 0.3s ease; /* Smooth color transition on hover */
+    font-size: 17px;
+}
+
+.footer-links a:hover {
+    color: #ffd700; /* Gold hover effect */
+}
+
+/* Horizontal Line */
+.footer-line {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+    margin: 10px auto;
+    width: 100%;
+}
+
+/* Footer Bottom Container */
+.footer-bottom {
+    display: flex; /* Use flexbox */
+    justify-content: space-between; /* Separate items to left and right */
+    align-items: center; /* Vertically center content */
+    margin-top: 20px;
+    padding: 10px 0; /* Add some padding for spacing */
+    font-family: 'Mouse Memoirs', sans-serif; /* Apply the font here */
+    font-size: 17px;
+    color: #e6e6e6;
+}
+
+.footer-bottom p {
+    font-family: 'Mouse Memoirs', sans-serif; /* Ensure the font is applied */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Text shadow: X, Y, blur, color */
+    color: white; /* Ensure the text is visible */
+    margin: 5px 0; /* Add some spacing between the paragraphs */
+}
+
+/* Left Section Styling */
+.footer-bottom-left a {
+    color: #e6e6e6;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-bottom-left a:hover {
+    color: #ffd700; /* Hover effect */
+}
+
+/* Right Section Styling */
+.footer-bottom-right {
+    text-align: right;
+}
+

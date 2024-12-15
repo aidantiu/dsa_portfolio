@@ -7,6 +7,7 @@ body{
     font-family: Arial, sans-serif;
     background: #E2B2E5 url(../images/BACKGROUND\(1\).png) no-repeat center center/cover;
     color: black;
+    background-attachment: fixed;
 }
 
 /* Main Section */
@@ -19,7 +20,7 @@ body{
 }
 
 .container{
-    padding: 0 0 100px;
+    padding: 0 0 0;
 }
 
 .infix-to-postfix-simulator{
@@ -85,11 +86,11 @@ body{
 }
 
 #goBox {
-    height: 53px; /* Fixed height of the input box */
+    height: 52px; /* Fixed height of the input box */
 }
 
 input[type="text"] {
-    width: 50%; /* Adjust width to leave room for the button */;
+    width: 40%; /* Adjust width to leave room for the button */;
     padding: 10px 20px;
     color: white; 
     border-radius: 5px;
@@ -146,6 +147,31 @@ input[type="text"]::placeholder {
 
 #goBox:hover {
     color: #FFFFFF; /* Change text color on hover */
+}
+
+.clear-button {
+    margin-left: 4px;
+    padding: 5px 10px;
+    border: 3px solid #FFF;
+    border-radius: 5px;
+    background: rgb(230, 109, 127);
+    color: #FFBABB;
+    font-family: 'Passion One', sans-serif;
+    font-size: 32px;
+    font-weight: lighter;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    line-height: normal;
+}
+
+.clear-button:hover {
+    background: #B25A9F;
+    color: #FFFFFF;
+}
+
+#clearBox{
+    height: 52px;
 }
 
 
@@ -216,7 +242,14 @@ input[type="text"]::placeholder {
     width: 100%;
     text-align: center;
     word-wrap: break-word;
-    padding: 15px 0;
+    padding: 15px 15px;
     font-family: 'Lato', sans-serif;
-    font-size: 20px;
+    font-size: 30px;
+}
+
+.placeholder-text {
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-size: 24px;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 0.5px;
 }

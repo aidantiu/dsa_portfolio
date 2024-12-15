@@ -13,6 +13,7 @@ body{
     margin: 0 100px;
     font-family: 'Mouse Memoirs', sans-serif;
     overflow-x: hidden;
+    background-attachment: fixed;
 }
 
 /* ***Navigation Bar*** */
@@ -71,6 +72,7 @@ body{
 
 .nav-links ul li a:hover {
     background: #ddd;
+    
 }
 
 nav {
@@ -177,10 +179,14 @@ nav {
 .footer {
     box-sizing: border-box;
     width: 100vw;
-    background: rgba(255, 255, 255, 0.1);
+    background: linear-gradient(
+        90deg,
+        rgba(167, 28, 186, 0.4) 100%,
+        rgba(255, 255, 255, 0.6) 100%
+    );
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    border: 2px solid rgba(255, 255, 255, 0.18);
     color: white;
     font-family: 'Mouse Memoirs', sans-serif;
     text-align: center;
@@ -213,8 +219,9 @@ nav {
 .footer-logo img {
     width: 50px;
     height: 50px;
-    margin-right: 20px;
+    margin-right: 10px;
     margin-top: 5.5px;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
 }
 
 .footer-logo h2 {
@@ -224,35 +231,43 @@ nav {
     font-weight: lighter;
     color: #ffffff; /* Yellow Color */
     margin-bottom: 11px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 /* Navigation Links */
 .footer-links {
     display: flex;
-    justify-content: right;
+    justify-content: flex-end;
     gap: 30px;
     margin-top: -75px;
+    position: relative;
+    z-index: 1000;
 }
 
 .footer-links a {
-    font-family: 'Mouse Memoirs', sans-serif; /* Apply font */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add shadow to links */
-    color: white; /* Ensure the links are white */
-    text-decoration: none; /* Remove default underline */
-    margin: 0 15px; /* Add horizontal spacing between links */
-    transition: color 0.3s ease; /* Smooth color transition on hover */
+    font-family: 'Mouse Memoirs', sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
     font-size: 17px;
+    position: relative;
+    z-index: 1001;
+    pointer-events: all;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .footer-links a:hover {
-    color: #ffd700; /* Gold hover effect */
+    color: #c7c5b7;
+    transform: translateY(-2px); /* Move the link up */
 }
 
 /* Horizontal Line */
 .footer-line {
     border: none;
     border-top: 1px solid rgba(255, 255, 255, 0.4);
-    margin: 10px auto;
+    margin: 20px auto;
     width: 100%;
 }
 
@@ -262,7 +277,7 @@ nav {
     justify-content: space-between; /* Separate items to left and right */
     align-items: center; /* Vertically center content */
     margin-top: 20px;
-    padding: 10px 0; /* Add some padding for spacing */
+    padding: 5px 0; /* Add some padding for spacing */
     font-family: 'Mouse Memoirs', sans-serif; /* Apply the font here */
     font-size: 17px;
     color: #e6e6e6;
@@ -277,7 +292,7 @@ nav {
 
 /* Left Section Styling */
 .footer-bottom-left a {
-    color: #e6e6e6;
+    color: #ffffff;
     text-decoration: none;
     transition: color 0.3s;
 }

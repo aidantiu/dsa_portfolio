@@ -1,0 +1,222 @@
+/* Add at the top of your CSS file */
+@import url('https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700&display=swap');
+
+
+body{
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    background: #E2B2E5 url(../images/BACKGROUND\(1\).png) no-repeat center center/cover;
+    color: black;
+}
+
+/* Main Section */
+.main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin-top: 20px;
+}
+
+.container{
+    padding: 0 0 100px;
+}
+
+.infix-to-postfix-simulator{
+    margin-top: 20px;
+}
+
+.infix-to-postfix-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    padding: 0 20px; /* Add padding for smaller screens */
+    padding-bottom: 10px;
+}
+
+.infix-to-postfix-text h1 {
+    margin: auto;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    text-align: center;
+    width: 100%;
+}
+
+/* Media query for smaller screens */
+@media screen and (max-width: 768px) {
+    .infix-to-postfix-text h1 {
+        font-size: 32px; /* Smaller font size for mobile */
+        line-height: 1.3; /* Better line spacing for readability */
+    }
+}
+
+.header{
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    margin: 0 auto;
+}
+
+/*** Infix to Postfix Converter** */
+
+/* Input Section */
+.input-container {
+    display: flex; /* Align input and button horizontally */
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 10px;
+    padding-bottom: 25px;
+}
+
+.input-data {
+    width: 100%;
+    padding: 0;
+    color: none;
+    border: none;
+}
+
+#inputBox {
+    height: 28px; /* Fixed height of the input box */
+}
+
+#goBox {
+    height: 53px; /* Fixed height of the input box */
+}
+
+input[type="text"] {
+    width: 50%; /* Adjust width to leave room for the button */;
+    padding: 10px 20px;
+    color: white; 
+    border-radius: 5px;
+    border: 3px solid #FFF;
+    background: rgba(116, 106, 106, 0.25);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(20px);
+    outline: none;
+    font-family: 'Lato', sans-serif; /* Font for typed text */
+    font-size: 18px;
+    font-weight: lighter;
+    letter-spacing: 1px;
+}
+
+/* Placeholder Style */
+input[type="text"]::placeholder {
+    color: white;
+    opacity: 0.5;
+    font-family: 'Mouse Memoirs', sans-serif; /* Font for placeholder text */
+    font-size: 20px;
+    font-weight: lighter;
+    letter-spacing: 0.5px;
+    transition: opacity 0.3s;
+}
+
+/* Go Button */
+.go-button {
+    margin-left: 4px; /* Space between input and button */
+    padding: 5px 10px;
+    border: 3px solid #FFF;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-family: 'Passion One', sans-serif;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    line-height: normal;
+    background: rgb(230, 109, 127);
+}
+
+#goBox {
+    padding-top: 0;
+    padding-bottom: 0;
+    font-size: 32px; 
+    font-weight: lighter;
+    color: #FFBABB;
+}
+
+.go-button:hover {
+    background: #B25A9F; /* Change background color on hover */
+}
+
+#goBox:hover {
+    color: #FFFFFF; /* Change text color on hover */
+}
+
+
+/* Output Section */
+.output-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 10px;
+    padding-bottom: 50px;
+}
+
+.output-box {
+    width: 70%;
+    min-height: 250px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    color: white;
+    background: rgba(255, 61, 61, 0.25);
+    border: 3px solid #FFF;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(20px);
+    overflow: auto;
+}
+.output-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.output-header h3 {
+    font-family: 'Passion One', sans-serif;
+    font-size: 24px;
+    font-weight: lighter;
+    margin: 0;
+    text-align: center;
+}
+
+.output-header, .postfix-result {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.horizontal-line {
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    margin: 10px 0;
+    position: relative;
+    left: 0;
+    right: 0;
+}
+
+.output-header h3 {
+    font-family: 'Passion One', cursive, sans-serif;
+    font-size: 24px;
+    font-weight: normal;
+    margin: 0;
+    text-align: center;
+    color: white;
+    text-shadow: 0px 2px 3px rgba(0, 0, 0, 0.25);
+}
+
+.postfix-result {
+    width: 100%;
+    text-align: center;
+    word-wrap: break-word;
+    padding: 15px 0;
+    font-family: 'Lato', sans-serif;
+    font-size: 20px;
+}

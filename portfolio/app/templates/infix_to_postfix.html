@@ -63,8 +63,15 @@
                            autocomplete="off" 
                            required
                            value="{{ input if input else '' }}">
-                    <button id="goBox" type="submit" class="go-button">GO</button>
-                    <button type="clearBox" id="clearBox" class="clear-button" onclick="clearAll()">CLEAR</button>
+                    <button id="goBox" type="submit" class="go-button">
+                        <i class="fas fa-check"></i>Submit
+                    </button>
+                    <button type="clearBox" id="clearBox" class="clear-button" onclick="clearAll()">
+                        <i class="fas fa-undo fa-lg"></i>Reset
+                    </button>
+                    <button type="button" id="toggleBox" class="toggle-button" onclick="toggleView()">
+                        <i class="fas fa-eye"></i>
+                    </button>
                 </div>
                 </div>
 

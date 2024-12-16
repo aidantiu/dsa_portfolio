@@ -482,3 +482,129 @@ input[type="text"]::placeholder {
     border-radius: 25%; /* Makes it a capsule shape */
     text-align: center;
 }
+
+/* *Responsive Design* */
+/* Large devices (992px and below) */
+@media screen and (max-width: 992px) {
+    .header, .input-container {
+        width: 90%;
+    }
+
+    .output-box {
+        width: 90%;
+        height: 400px;
+    }
+
+    .linked-list-text h1 {
+        font-size: 36px;
+    }
+
+    .buttons .btn {
+        font-size: 18px;
+        padding: 8px 16px;
+    }
+}
+
+/* Medium devices (768px and below) */
+@media screen and (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .input-container {
+        flex-direction: column;
+        gap: 10px;
+        padding-top: 20px;
+    }
+
+    .buttons {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .dropdown-content {
+        min-width: 150px;
+    }
+
+    .filled {
+        margin: 15px;
+        justify-content: center;
+    }
+
+    .item {
+        padding: 10px 30px 10px 15px;
+        font-size: 18px;
+    }
+
+    .validation div {
+        padding: 3px;
+    }
+}
+
+/* Small devices (576px and below) */
+@media screen and (max-width: 576px) {
+    .linked-list-text h1 {
+        font-size: 28px;
+    }
+
+    .output-box {
+        width: 95%;
+        height: 350px;
+    }
+
+    .buttons .btn {
+        font-size: 16px;
+        padding: 6px 12px;
+        min-width: 40px;
+    }
+
+    .buttons .btn i {
+        font-size: 1rem;
+    }
+
+    .dropdown-btn {
+        padding: 8px 15px;
+    }
+
+    .item {
+        padding: 8px 25px 8px 12px;
+        font-size: 16px;
+    }
+
+    .item::before {
+        width: 20px;
+    }
+
+    .search-result p {
+        font-size: 16px;
+    }
+
+    .empty {
+        font-size: 20px;
+    }
+
+    .validation img, .validation p {
+        font-size: 16px;
+    }
+}
+
+/* Extra small devices (400px and below) */
+@media screen and (max-width: 400px) {
+    .buttons .btn {
+        font-size: 14px;
+        padding: 5px 10px;
+    }
+
+    .item {
+        margin: 5px;
+    }
+
+    .filled {
+        margin: 10px;
+    }
+
+    .empty p {
+        font-size: 16px;
+    }
+}

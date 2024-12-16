@@ -68,7 +68,7 @@ body{
     display: flex; /* Align input and button horizontally */
     align-items: center;
     justify-content: center;
-    width: 80%;
+    width: 70%;
     margin: 0 auto;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -81,28 +81,20 @@ body{
     border: none;
 }
 
-#inputBox {
-    height: 52px; /* Fixed height of the input box */
-}
-
-#goBox {
-    height: 52px; /* Fixed height of the input box */
-}
-
 input[type="text"] {
     width: 40%; /* Adjust width to leave room for the button */;
     padding: 10px 20px;
     color: white; 
-    border-radius: 5px;
-    border: 3px solid #FFF;
+    border-radius: 19px;
+    border: 1px solid #FFF;
     background: rgba(116, 106, 106, 0.25);
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     backdrop-filter: blur(20px);
     outline: none;
-    font-family: 'Lato', sans-serif; /* Font for typed text */
-    font-size: 18px;
+    font-family: 'Mouse Memoirs', sans-serif; /* Font for typed text */
+    font-size: 20px;
     font-weight: lighter;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
 }
 
 /* Placeholder Style */
@@ -116,48 +108,17 @@ input[type="text"]::placeholder {
     transition: opacity 0.3s;
 }
 
-/* Go Button */
-.go-button {
-    margin-left: 4px; /* Space between input and button */
-    padding: 5px 10px;
-    border: 3px solid #FFF;
-    border-radius: 5px;
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
-    font-family: 'Passion One', sans-serif;
-    letter-spacing: 0.5px;
+/* Shared Button Styles for submit and reset button */
+.go-button, .clear-button {
+    margin: 5px;
+    padding: 10px 20px;
+    border: 1px solid #FFF;
+    border-radius: 19px;
+    background: transparent;
+    color: #6b00a1;
     cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    line-height: normal;
-    background: rgb(230, 109, 127);
-}
-
-#goBox {
-    padding-top: 0;
-    padding-bottom: 0;
-    font-size: 32px; 
-    font-weight: lighter;
-    color: #FFBABB;
-}
-
-.go-button:hover {
-    background: #B25A9F; /* Change background color on hover */
-}
-
-#goBox:hover {
-    color: #FFFFFF; /* Change text color on hover */
-}
-
-.clear-button {
-    margin-left: 4px;
-    padding: 5px 10px;
-    border: 3px solid #FFF;
-    border-radius: 5px;
-    background: rgb(230, 109, 127);
-    color: #FFBABB;
-    font-family: 'Passion One', sans-serif;
-    font-size: 32px;
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-size: 20px;
     font-weight: lighter;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -165,13 +126,52 @@ input[type="text"]::placeholder {
     line-height: normal;
 }
 
-.clear-button:hover {
-    background: #B25A9F;
-    color: #FFFFFF;
+/* Button Hover States */
+.go-button:hover, .clear-button:hover {
+    background: #ffffff;
+    color: #6b00a1;
 }
 
-#clearBox{
-    height: 52px;
+/* Button Icons */
+.go-button i, .clear-button i {
+    margin-right: 8px;
+    font-size: 1.2rem;
+}
+
+/* Toggle Button */
+.toggle-button {
+    margin-left: 5px;
+    margin-right: 0;
+    padding: 10px 15px;
+    border: 1px solid #FFF;
+    border-radius: 19px;
+    background: transparent;
+    color: #6b00a1;
+    cursor: pointer;
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-size: 20px;
+    font-weight: lighter;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    line-height: normal;
+}
+
+
+.toggle-button i { /* Icon transition effects */
+    transition: transform 0.3s ease;
+}
+
+
+.toggle-button:hover { /* Hover state */
+    background: #ffffff;
+    color: #6b00a1;
+}
+
+
+.fa-eye-slash { /* Slashed eye icon state */
+    transform: scale(1.1);
+    opacity: 0.8;
 }
 
 
@@ -180,21 +180,21 @@ input[type="text"]::placeholder {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 70%;
+    width: 100%;
     margin: 0 auto;
     padding-top: 10px;
     padding-bottom: 50px;
 }
 
 .output-box {
-    width: 70%;
+    width: 50%;
     min-height: 300px;
     padding-top: 10px;
     padding-bottom: 20px;
     color: white;
-    background: rgba(255, 61, 61, 0.25);
-    border: 3px solid #FFF;
-    border-radius: 10px;
+    background: rgba(171, 163, 163, 0.25);
+    border: 2px solid #FFF;
+    border-radius: 20px;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     backdrop-filter: blur(20px);
     overflow: auto;
@@ -205,14 +205,6 @@ input[type="text"]::placeholder {
     align-items: center;
 }
 
-.output-header h3 {
-    font-family: 'Passion One', sans-serif;
-    font-size: 24px;
-    font-weight: lighter;
-    margin: 0;
-    text-align: center;
-}
-
 .output-header, .postfix-result {
     padding-left: 20px;
     padding-right: 20px;
@@ -220,7 +212,7 @@ input[type="text"]::placeholder {
 
 .horizontal-line {
     width: 100%;
-    height: 3px;
+    height: 1.5px;
     background-color: white;
     margin: 10px 0;
     position: relative;
@@ -229,13 +221,12 @@ input[type="text"]::placeholder {
 }
 
 .output-header h3 {
-    font-family: 'Passion One', cursive, sans-serif;
+    font-family: "Mouse Memoirs", sans-serif;
     font-size: 24px;
     font-weight: normal;
     margin: 0;
     text-align: center;
-    color: white;
-    text-shadow: 0px 2px 3px rgba(0, 0, 0, 0.25);
+    color: rgb(0, 0, 0);
 }
 
 .postfix-result {
@@ -243,17 +234,119 @@ input[type="text"]::placeholder {
     text-align: center;
     word-wrap: break-word;
     padding: 15px 15px;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Mouse Memoirs', sans-serif;
     font-size: 30px;
     height: 215px;
     align-items: center;
     display: flex;
     justify-content: center;
+    color: rgb(0, 0, 0);
 }
 
 .placeholder-text {
     font-family: 'Mouse Memoirs', sans-serif;
     font-size: 24px;
-    color: rgba(255, 255, 255, 0.7);
-    letter-spacing: 0.5px;
+    color: rgb(0, 0, 0);
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media screen and (max-width: 992px) {
+    .infix-to-postfix-text h1 {
+        font-size: 36px;
+    }
+
+    .input-container {
+        width: 80%;
+    }
+
+    input[type="text"] {
+        width: 50%;
+    }
+
+    .output-container {
+        width: 80%;
+    }
+
+    .output-box {
+        width: 80%;
+    }
+}
+
+/* Medium devices (tablets, 768px and down) */
+@media screen and (max-width: 768px) {
+    .infix-to-postfix-text h1 {
+        font-size: 32px;
+        padding: 0 15px;
+    }
+
+    .input-container {
+        width: 90%;
+        flex-wrap: wrap;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .go-button, .clear-button {
+        padding: 8px 15px;
+    }
+
+    .output-container {
+        width: 90%;
+    }
+
+    .output-box {
+        width: 90%;
+        min-height: 250px;
+    }
+
+    .postfix-result {
+        font-size: 24px;
+        height: 180px;
+    }
+
+    .placeholder-text {
+        font-size: 20px;
+    }
+}
+
+/* Small devices (phones, 576px and down) */
+@media screen and (max-width: 576px) {
+    .infix-to-postfix-text h1 {
+        font-size: 28px;
+    }
+
+    .input-container {
+        width: 95%;
+    }
+
+    input[type="text"] {
+        font-size: 18px;
+    }
+
+    .output-container {
+        width: 95%;
+        padding-bottom: 30px;
+    }
+
+    .output-box {
+        width: 95%;
+        min-height: 200px;
+    }
+
+    .output-header h3 {
+        font-size: 20px;
+    }
+
+    .postfix-result {
+        font-size: 20px;
+        height: 150px;
+        padding: 10px;
+    }
+
+    .placeholder-text {
+        font-size: 18px;
+    }
 }

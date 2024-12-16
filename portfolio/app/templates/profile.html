@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles/global.css') }}">
+        <title>{{ profile.name }} - Profile</title>
+    </head>
+    <body>
+        <!-- Navigation -->
+        <nav class="navbar">
+            <a href="{{ url_for('index') }}">Back to Home</a>
+        </nav>
+
+        <!-- Profile Section -->
+        <main>
+            <section class="profile-detail">
+                <img src="{{ url_for('static', filename=profile.image_path) }}" alt="Profile Image" class="profile-image">
+                <h1>{{ profile.name }}</h1>
+                <h2>{{ profile.role }}</h2>
+                <p><strong>About:</strong> {{ profile.about }}</p>
+                <p><strong>School:</strong> {{ profile.school }}</p>
+                <p><strong>Degree:</strong> {{ profile.degree }}</p>
+
+                <!-- Social Links -->
+                <h3>Connect with {{ profile.name }}:</h3>
+                <ul class="social-links">
+                    {% if profile.socials.facebook %}
+                        <li><a href="{{ profile.socials.facebook }}" target="_blank">Facebook</a></li>
+                    {% endif %}
+                    {% if profile.socials.instagram %}
+                        <li><a href="{{ profile.socials.instagram }}" target="_blank">Instagram</a></li>
+                    {% endif %}
+                    {% if profile.socials.github %}
+                        <li><a href="{{ profile.socials.github }}" target="_blank">GitHub</a></li>
+                    {% endif %}
+                    {% if profile.socials.linkedin %}
+                        <li><a href="{{ profile.socials.linkedin }}" target="_blank">LinkedIn</a></li>
+                    {% endif %}
+                </ul>
+
+                <!-- Projects -->
+                <h3>Projects:</h3>
+                <ul class="projects-list">
+                    {% for project in profile.projects %}
+                        <li>
+                            <strong>{{ project.title }}</strong>: {{ project.description }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </section>
+        </main>
+    </body>
+</html>

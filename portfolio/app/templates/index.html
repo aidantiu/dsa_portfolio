@@ -76,17 +76,19 @@
                 <div class="profile-card-wrapper">
                     <!-- Loop through the profiles list -->
                     {% for profile in profiles %}
-                    <div class="profile-card">
-                        <img src="{{ url_for('static', filename=profile.image_path) }}" alt="Profile Image" class="profile-image">
-                        <div class="profile-desc">
-                            <h6>{{ profile.name }}</h6>
-                            <p>{{ profile.role }}</p>
+                    <a href="{{ url_for('profile', profile_name=profile.name | lower | replace(' ', '-')) }}">
+                        <div class="profile-card">
+                            <img src="{{ url_for('static', filename=profile.image_path) }}" alt="Profile Image" class="profile-image">
+                            <div class="profile-desc">
+                                <h6>{{ profile.name }}</h6>
+                                <p>{{ profile.role }}</p>
+                            </div>
                         </div>
-                        
-                    </div>
+                    </a>
                     {% endfor %}
                 </div>
             </section>
+            
 
             <!-- Works Section -->
             <section class="works-section" id="works">

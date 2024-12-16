@@ -136,6 +136,10 @@ body{
     gap: 20px;
 }
 
+.profile-card-wrapper a{
+    text-decoration: none;
+}
+
 .profile-section h1{
     text-align: center;
     color: #FFF;
@@ -182,6 +186,7 @@ body{
 .profile-desc h6{
     margin: 0;
     font-size: 25px;
+    color: black;
 }
 
 .profile-desc p {

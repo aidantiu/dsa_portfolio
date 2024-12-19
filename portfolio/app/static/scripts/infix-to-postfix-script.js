@@ -6,8 +6,18 @@ function clearAll() {
 
 // Function to toggle between eye and eye-slash icons
 // Uses Font Awesome classes for smooth transition
+/* filepath: /c:/Users/flore/Jace's Coding Projects/dsa_portfolio/portfolio/app/static/scripts/infix-to-postfix.js */
 function toggleView() {
+    const splitContainer = document.querySelector('.split-container');
     const icon = document.querySelector('.toggle-button i');
-    icon.classList.toggle('fa-eye');
-    icon.classList.toggle('fa-eye-slash');
+    
+    splitContainer.classList.toggle('active');
+    
+    if (splitContainer.classList.contains('active')) {
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+    } else {
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
+    }
 }

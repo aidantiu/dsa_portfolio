@@ -75,23 +75,21 @@
                         </div>
                         
                         <div class="split-container">
-                            <div class="output-container">
-                                <div class="output-box">
-                                    <div class="output-header">
-                                        <h3>Postfix Notation</h3>
-                                    </div>
-                                    <div class="horizontal-line"></div>
-                                    <div class="postfix-result">
-                                        {{ output if output else '<span class="placeholder-text">Your postfix expression will appear here...</span>' | safe }}
-                                    </div>
+                            <!-- Left Box (Output) -->
+                            <div class="output-box">
+                                <div class="output-header">
+                                    <h3>Postfix Notation</h3>
+                                </div>
+                                <div class="horizontal-line"></div>
+                                <div class="postfix-result">
+                                    {{ output if output else '<span class="placeholder-text">Your postfix expression will appear here...</span>' | safe }}
                                 </div>
                             </div>
                             
-                            <div class="info-container">
-                                <div class="info-box">
-                                    <h2>Steps:</h2>
-                                    <!-- Add steps content here -->
-                                </div>
+                            <!-- Right Box (Info) -->
+                            <div class="info-box">
+                                <h2>Steps:</h2>
+                                <!-- Add steps content here -->
                             </div>
                         </div>
                     </div>

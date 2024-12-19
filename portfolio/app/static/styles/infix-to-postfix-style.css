@@ -223,30 +223,16 @@ input[type="text"]::placeholder {
 /* Split Container Layout */
 .split-container {
     display: flex;
-    gap: 20px;
     transition: all 0.3s ease;
-    width: 70%;
-    margin: 20px auto 0;
-}
-
-.output-container, .info-container {
-    width: 100%;
-    transition: all 0.3s ease;
-}
-
-.info-container {
-    width: 0;
-    opacity: 0;
-    overflow: hidden;
-}
-
-.split-container.active .output-container,
-.split-container.active .info-container {
     width: 50%;
-    opacity: 1;
+    margin: 5px auto 0;
 }
 
-.output-box, .info-box {
+.split-container.active {
+    gap: 10px;
+}
+
+.output-box {
     width: 100%;
     min-height: 300px;
     padding: 20px;
@@ -257,6 +243,38 @@ input[type="text"]::placeholder {
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     backdrop-filter: blur(20px);
     overflow: auto;
+    transition: all 0.3s ease;
+}
+
+.info-box {
+    width: 0;
+    min-height: 300px;
+    padding: 0;
+    margin: 0;
+    color: white;
+    background: rgba(171, 163, 163, 0.25);
+    border: 2px solid #FFF;
+    border-radius: 20px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(20px);
+    overflow: hidden;
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: all 0.3s ease, padding 0.3s ease, width 0.3s ease;
+    visibility: hidden;
+}
+
+
+.split-container.active .output-box {
+    width: 50%;
+}
+
+.split-container.active .info-box {
+    width: 50%;
+    padding: 20px;
+    opacity: 1;
+    transform: translateX(0);
+    visibility: visible;
 }
 
 @media screen and (max-width: 992px) {

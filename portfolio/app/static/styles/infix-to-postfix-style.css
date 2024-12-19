@@ -68,7 +68,10 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px;
+    padding-top: 0;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
     transition: all 0.3s ease;
 }
 
@@ -174,14 +177,30 @@ input[type="text"]::placeholder {
 
 
 /* Output and Info Section */
-.output-header, .info-header {
+/* Output for  Infix to Postfix Conversion */
+/* Info for Step by step conversion */
+.output-header{
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 0 20px;
 }
 
-.output-header h3, .info-header h3 {
+
+.output-header h3 {
+    font-family: "Mouse Memoirs", sans-serif;
+    font-size: 24px;
+    font-weight: normal;
+    margin: 0;
+    text-align: center;
+    color: rgb(0, 0, 0);
+}
+
+.info-header {
+    display: flex;
+    align-items: center;
+}
+.info-header h3 {
     font-family: "Mouse Memoirs", sans-serif;
     font-size: 24px;
     font-weight: normal;
@@ -191,10 +210,11 @@ input[type="text"]::placeholder {
 }
 
 .horizontal-line {
-    width: 100%;
+    width: calc(100% + 40px);
     height: 1.5px;
     background-color: white;
-    margin: 10px 0;
+    margin: 10px -20px;  
+    position: relative; 
 }
 
 .postfix-result {
@@ -217,7 +237,7 @@ input[type="text"]::placeholder {
     color: rgb(0, 0, 0);
 }
 
-/* Split Container Layout */
+/*** Split Container Layout ***/
 .split-container {
     display: flex;
     transition: all 0.3s ease;
@@ -233,6 +253,15 @@ input[type="text"]::placeholder {
 .left-side {
     width: 100%;
     transition: all 0.3s ease;
+}
+
+.right-side {
+    width: 0;
+    transition: all 0.3s ease;
+}
+
+.split-container.active .right-side {
+    width: 50%;
 }
 
 /* Output Box Section */
@@ -253,10 +282,10 @@ input[type="text"]::placeholder {
 
 .info-box {
     width: 0;
-    min-height: 300px;
+    min-height: 400px;
     padding: 0;
     margin: 0;
-    color: white;
+    color: rgb(0, 0, 0);
     background: rgba(171, 163, 163, 0.25);
     border: 2px solid #FFF;
     border-radius: 20px;
@@ -267,8 +296,28 @@ input[type="text"]::placeholder {
     transform: translateX(-100%);
     transition: all 0.3s ease, padding 0.3s ease, width 0.3s ease;
     visibility: hidden;
+    max-height: 300px;
+    overflow: hidden;
+    transition: all 0.3s ease, padding 0.3s ease, width 0.3s ease, overflow 0s ease 0.3s;
 }
 
+
+/* Webkit Scrollbar Styles (Chrome, Safari, Edge) */
+.info-box::-webkit-scrollbar {
+    width: 6px;
+    background: transparent;
+}
+
+.info-box::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+}
+
+.info-box::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 10px;
+    min-height: 60px;
+}
 
 /* Active States */
 .split-container.active .left-side {
@@ -279,19 +328,21 @@ input[type="text"]::placeholder {
 .split-container.active .input-container {
     padding-left: 0;
     padding-right: 0;
+    padding-top: 0;
 }
 
 .split-container.active .output-box {
-    padding-left: 0;
     width: 95%;
 }
 
 .split-container.active .info-box {
-    width: 50%;
+    width: 100%;
     padding: 20px;
     opacity: 1;
     transform: translateX(0);
     visibility: visible;
+    overflow-y: auto;
+    transition: all 0.3s ease, padding 0.3s ease, width 0.3s ease, overflow 0s ease;
 }
 
 /* Media Queries for Responsive Layout */
@@ -324,104 +375,117 @@ input[type="text"]::placeholder {
 
 
 
+
+
+
+/* For responsive layout */
 /* Large devices (laptops/desktops, 992px and up) */
 @media screen and (max-width: 992px) {
     .infix-to-postfix-text h1 {
-        font-size: 36px;
+        font-size: min(36px, 5vh);
     }
 
     .input-container {
         width: 80%;
+        justify-self: center;
+        min-height: 60px;
     }
 
     input[type="text"] {
         width: 50%;
-    }
-
-    .output-container {
-        width: 80%;
+        height: max(40px, 5vh);
     }
 
     .output-box {
         width: 80%;
+        min-height: max(300px, 40vh);
     }
 }
 
 /* Medium devices (tablets, 768px and down) */
 @media screen and (max-width: 768px) {
     .infix-to-postfix-text h1 {
-        font-size: 32px;
+        font-size: min(32px, 4vh);
         padding: 0 15px;
     }
 
     .input-container {
         width: 90%;
         flex-wrap: wrap;
-    }
-
-    input[type="text"] {
-        width: 100%;
-        margin-bottom: 10px;
-    }
-
-    .go-button, .clear-button {
-        padding: 8px 15px;
-    }
-
-    .output-container {
-        width: 90%;
+        padding: min(10px, 1vh) 0;
+        min-height: 50px;
     }
 
     .output-box {
         width: 90%;
-        min-height: 250px;
+        min-height: max(250px, 35vh);
     }
 
     .postfix-result {
-        font-size: 24px;
-        height: 180px;
-    }
-
-    .placeholder-text {
-        font-size: 20px;
+        font-size: min(24px, 3vh);
+        height: max(180px, 25vh);
     }
 }
 
 /* Small devices (phones, 576px and down) */
 @media screen and (max-width: 576px) {
     .infix-to-postfix-text h1 {
-        font-size: 28px;
+        font-size: min(28px, 3.5vh);
     }
 
     .input-container {
         width: 95%;
-    }
-
-    input[type="text"] {
-        font-size: 18px;
-    }
-
-    .output-container {
-        width: 95%;
-        padding-bottom: 30px;
+        min-height: 40px;
     }
 
     .output-box {
         width: 95%;
-        min-height: 200px;
-    }
-
-    .output-header h3 {
-        font-size: 20px;
+        min-height: max(200px, 30vh);
     }
 
     .postfix-result {
-        font-size: 20px;
-        height: 150px;
-        padding: 10px;
+        font-size: min(20px, 2.5vh);
+        height: max(150px, 20vh);
     }
+}
 
-    .placeholder-text {
-        font-size: 18px;
+/* Height-based queries */
+@media screen and (max-height: 800px) {
+    .output-box {
+        min-height: 45vh;
+    }
+    
+    .postfix-result {
+        height: 35vh;
+    }
+}
+
+@media screen and (max-height: 600px) {
+    .input-container {
+        padding: 5px 0;
+    }
+    
+    .output-box {
+        min-height: 40vh;
+    }
+    
+    .postfix-result {
+        height: 30vh;
+    }
+}
+
+/* Landscape orientation */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+    .input-container {
+        flex-direction: row;
+        flex-wrap: nowrap;
+    }
+    
+    .output-box {
+        min-height: 35vh;
+    }
+    
+    .postfix-result {
+        height: 25vh;
     }
 }

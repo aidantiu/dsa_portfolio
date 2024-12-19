@@ -65,10 +65,12 @@
                                    required
                                    value="{{ input if input else '' }}">
                             <button id="goBox" type="submit" class="go-button">
-                                <i class="fas fa-check"></i>Submit
+                                <i class="fas fa-check"></i>
+                                Convert
                             </button>
                             <button type="button" id="clearBox" class="clear-button" onclick="clearAll()">
-                                <i class="fas fa-undo fa-lg"></i>Reset
+                                <i class="fas fa-undo fa-lg"></i>
+                                Reset
                             </button>
                             <button type="button" id="toggleBox" class="toggle-button" onclick="toggleView()">
                                 <i class="fas fa-eye"></i>
@@ -87,9 +89,14 @@
                     </div>
             
                     <!-- Right Side (Info Box) -->
-                    <div class="info-box">
-                        <h2>Steps:</h2>
-                        <!-- Add steps content here -->
+                    <div class="right-side">
+                        <div class="info-box">
+                            <div class="info-header">
+                                <h3>Steps:</h3>
+                            </div>
+                            <div class="horizontal-line"></div>
+                            <!-- Add steps content here -->
+                        </div>
                     </div>
                 </div>
             </form>

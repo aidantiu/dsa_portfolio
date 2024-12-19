@@ -104,6 +104,20 @@ class LinkedList:
             result.append(current.data)
             current = current.next
         return result
+    
+    # Converts the linked list to a string (for display purposes)
+    def to_string(self):
+        elements = []
+        current = self.head
+        while current:
+            elements.append(str(current.data))
+            current = current.next
+        return ' -> '.join(elements) if elements else 'Empty'
+    
+    # Empties the list
+    def clear(self):
+        self.head = None
+        self.tail = None
 
 # Create a LinkedList instance
 linkedlist = LinkedList()

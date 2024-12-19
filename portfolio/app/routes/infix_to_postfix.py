@@ -19,6 +19,33 @@ def precedence(operator):
     return 0
 
 
+# Helper function to validate the input expression
+def is_valid_expression(expression):
+    stack = []
+    valid_chars = set("0123456789+-*/^()abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ") # Set of valid characters in the input expression
+    last_char = ""
+    
+    for char in expression.replace(" ", ""): # Ensures that the input expression has no spaces
+        if char not in valid_chars:
+            return False  # Invalid character found
+        if char == "(":
+            stack.append(char)
+        elif char == ")":
+            if not stack or stack[-1] != "(":
+                return False  # Unmatched closing parenthesis
+            stack.pop()
+        elif is_operator(char):
+            if not last_char or is_operator(last_char) or last_char == "(":
+                return False  # Invalid operator placement
+        elif char.isalnum():  # Check if alphanumeric (digits or letters)
+            if last_char and last_char.isalnum():
+                return False  # Consecutive operands found
+        last_char = char
+
+    # Ensure no unmatched opening parentheses and last character is valid
+    return not stack and (last_char.isalnum() or last_char == ")")
+
+
 # Infix to Postfix conversion
 def infix_to_postfix(expression):
     operator_stack = LinkedList()  # Stack to hold operators
@@ -58,10 +85,17 @@ def infix_to_postfix(expression):
     return output.to_list()  # Returns a list for readability
 
 
+
 @app.route('/infix-to-postfix', methods=['GET', 'POST'])
 def Infix_to_Postfix():
     if request.method == 'POST':
         input_expr = request.form['input']
+        if not is_valid_expression(input_expr):  # Validate input expression
+            response = make_response(redirect(url_for('Infix_to_Postfix')))
+            response.set_cookie('input_expr', input_expr)
+            response.set_cookie('output', 'Invalid Expression! Try again...')
+            return response
+
         output = infix_to_postfix(input_expr)
         response = make_response(redirect(url_for('Infix_to_Postfix')))
         response.set_cookie('input_expr', input_expr)

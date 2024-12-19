@@ -271,9 +271,20 @@ input[type="text"]::placeholder {
 
 
 /* Active States */
-/* .split-container.active .left-side {
-    width: 40%;
-} */
+.split-container.active .left-side {
+    width: 50%;
+    padding-right: 0;
+}
+
+.split-container.active .input-container {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.split-container.active .output-box {
+    padding-left: 0;
+    width: 95%;
+}
 
 .split-container.active .info-box {
     width: 50%;
@@ -283,7 +294,7 @@ input[type="text"]::placeholder {
     visibility: visible;
 }
 
-/* Media Queries */
+/* Media Queries for Responsive Layout */
 @media screen and (max-width: 992px) {
     .split-container {
         width: 90%;
@@ -313,12 +324,8 @@ input[type="text"]::placeholder {
 
 
 
-
-
-
-
 /* Large devices (laptops/desktops, 992px and up) */
-/* @media screen and (max-width: 992px) {
+@media screen and (max-width: 992px) {
     .infix-to-postfix-text h1 {
         font-size: 36px;
     }
@@ -338,10 +345,10 @@ input[type="text"]::placeholder {
     .output-box {
         width: 80%;
     }
-} */
+}
 
 /* Medium devices (tablets, 768px and down) */
-/* @media screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
     .infix-to-postfix-text h1 {
         font-size: 32px;
         padding: 0 15px;
@@ -378,10 +385,10 @@ input[type="text"]::placeholder {
     .placeholder-text {
         font-size: 20px;
     }
-} */
+}
 
 /* Small devices (phones, 576px and down) */
-/* @media screen and (max-width: 576px) {
+@media screen and (max-width: 576px) {
     .infix-to-postfix-text h1 {
         font-size: 28px;
     }
@@ -417,4 +424,4 @@ input[type="text"]::placeholder {
     .placeholder-text {
         font-size: 18px;
     }
-} */
+}

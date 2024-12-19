@@ -53,37 +53,49 @@
     
             <!-- Form for input and output -->
             <form action="/infix-to-postfix" method="POST">
-
-                <!-- Input box for infix expression -->
-                <div class="input-container">
-                    <input type="text" 
-                           id="inputBox" 
-                           name="input" 
-                           placeholder="Enter Infix expression..." 
-                           autocomplete="off" 
-                           required
-                           value="{{ input if input else '' }}">
-                    <button id="goBox" type="submit" class="go-button">
-                        <i class="fas fa-check"></i>Submit
-                    </button>
-                    <button type="clearBox" id="clearBox" class="clear-button" onclick="clearAll()">
-                        <i class="fas fa-undo fa-lg"></i>Reset
-                    </button>
-                    <button type="button" id="toggleBox" class="toggle-button" onclick="toggleView()">
-                        <i class="fas fa-eye"></i>
-                    </button>
-                </div>
-                </div>
-
-                <!-- Output box for postfix expression -->
-                <div class="output-container">
-                    <div class="output-box">
-                        <div class="output-header">
-                            <h3>Postfix Notation</h3>
+                <div class="split-container">
+                    <!-- Left Side -->
+                    <div class="left-side">
+                        <div class="input-container">
+                            <input type="text" 
+                                   id="inputBox" 
+                                   name="input" 
+                                   placeholder="Enter Infix expression..." 
+                                   autocomplete="off" 
+                                   required
+                                   value="{{ input if input else '' }}">
+                            <button id="goBox" type="submit" class="go-button">
+                                <i class="fas fa-check"></i>
+                                Convert
+                            </button>
+                            <button type="button" id="clearBox" class="clear-button" onclick="clearAll()">
+                                <i class="fas fa-undo fa-lg"></i>
+                                Reset
+                            </button>
+                            <button type="button" id="toggleBox" class="toggle-button" onclick="toggleView()">
+                                <i class="fas fa-eye"></i>
+                            </button>
                         </div>
-                        <div class="horizontal-line"></div>
-                        <div class="postfix-result">
-                            {{ output if output else '<span class="placeholder-text">Your postfix expression will appear here...</span>' | safe }}
+                        
+                        <div class="output-box">
+                            <div class="output-header">
+                                <h3>Postfix Notation</h3>
+                            </div>
+                            <div class="horizontal-line"></div>
+                            <div class="postfix-result">
+                                {{ output if output else '<span class="placeholder-text">Your postfix expression will appear here...</span>' | safe }}
+                            </div>
+                        </div>
+                    </div>
+            
+                    <!-- Right Side (Info Box) -->
+                    <div class="right-side">
+                        <div class="info-box">
+                            <div class="info-header">
+                                <h3>Steps:</h3>
+                            </div>
+                            <div class="horizontal-line"></div>
+                            <!-- Add steps content here -->
                         </div>
                     </div>
                 </div>

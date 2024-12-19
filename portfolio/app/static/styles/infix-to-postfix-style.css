@@ -68,10 +68,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 70%;
-    margin: 0 auto;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 10px;
     transition: all 0.3s ease;
 }
 
@@ -230,10 +227,17 @@ input[type="text"]::placeholder {
 
 .split-container.active {
     gap: 10px;
+    width: 80%;
 }
 
-.output-box {
+.left-side {
     width: 100%;
+    transition: all 0.3s ease;
+}
+
+/* Output Box Section */
+.output-box {
+    width: 85%;
     min-height: 300px;
     padding: 20px;
     color: white;
@@ -244,6 +248,7 @@ input[type="text"]::placeholder {
     backdrop-filter: blur(20px);
     overflow: auto;
     transition: all 0.3s ease;
+    margin: 0 auto;
 }
 
 .info-box {
@@ -265,9 +270,10 @@ input[type="text"]::placeholder {
 }
 
 
-.split-container.active .output-box {
-    width: 50%;
-}
+/* Active States */
+/* .split-container.active .left-side {
+    width: 40%;
+} */
 
 .split-container.active .info-box {
     width: 50%;
@@ -277,9 +283,31 @@ input[type="text"]::placeholder {
     visibility: visible;
 }
 
+/* Media Queries */
 @media screen and (max-width: 992px) {
     .split-container {
         width: 90%;
+    }
+    
+    .input-container {
+        width: 90%;
+        flex-wrap: wrap;
+    }
+    
+    input[type="text"] {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .split-container.active {
+        flex-direction: column;
+    }
+    
+    .split-container.active .left-side,
+    .split-container.active .info-box {
+        width: 100%;
     }
 }
 
@@ -290,7 +318,7 @@ input[type="text"]::placeholder {
 
 
 /* Large devices (laptops/desktops, 992px and up) */
-@media screen and (max-width: 992px) {
+/* @media screen and (max-width: 992px) {
     .infix-to-postfix-text h1 {
         font-size: 36px;
     }
@@ -310,10 +338,10 @@ input[type="text"]::placeholder {
     .output-box {
         width: 80%;
     }
-}
+} */
 
 /* Medium devices (tablets, 768px and down) */
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) {
     .infix-to-postfix-text h1 {
         font-size: 32px;
         padding: 0 15px;
@@ -350,10 +378,10 @@ input[type="text"]::placeholder {
     .placeholder-text {
         font-size: 20px;
     }
-}
+} */
 
 /* Small devices (phones, 576px and down) */
-@media screen and (max-width: 576px) {
+/* @media screen and (max-width: 576px) {
     .infix-to-postfix-text h1 {
         font-size: 28px;
     }
@@ -389,4 +417,4 @@ input[type="text"]::placeholder {
     .placeholder-text {
         font-size: 18px;
     }
-}
+} */

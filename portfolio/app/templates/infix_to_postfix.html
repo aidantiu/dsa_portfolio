@@ -53,8 +53,9 @@
     
             <!-- Form for input and output -->
             <form action="/infix-to-postfix" method="POST">
-                <div class="dynamic-container">
-                    <div class="left-content">
+                <div class="split-container">
+                    <!-- Left Side -->
+                    <div class="left-side">
                         <div class="input-container">
                             <input type="text" 
                                    id="inputBox" 
@@ -74,24 +75,21 @@
                             </button>
                         </div>
                         
-                        <div class="split-container">
-                            <!-- Left Box (Output) -->
-                            <div class="output-box">
-                                <div class="output-header">
-                                    <h3>Postfix Notation</h3>
-                                </div>
-                                <div class="horizontal-line"></div>
-                                <div class="postfix-result">
-                                    {{ output if output else '<span class="placeholder-text">Your postfix expression will appear here...</span>' | safe }}
-                                </div>
+                        <div class="output-box">
+                            <div class="output-header">
+                                <h3>Postfix Notation</h3>
                             </div>
-                            
-                            <!-- Right Box (Info) -->
-                            <div class="info-box">
-                                <h2>Steps:</h2>
-                                <!-- Add steps content here -->
+                            <div class="horizontal-line"></div>
+                            <div class="postfix-result">
+                                {{ output if output else '<span class="placeholder-text">Your postfix expression will appear here...</span>' | safe }}
                             </div>
                         </div>
+                    </div>
+            
+                    <!-- Right Side (Info Box) -->
+                    <div class="info-box">
+                        <h2>Steps:</h2>
+                        <!-- Add steps content here -->
                     </div>
                 </div>
             </form>

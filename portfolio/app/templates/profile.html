@@ -3,50 +3,115 @@
     <head>
         <link rel="stylesheet" href="{{ url_for('static', filename='styles/global.css') }}">
         <title>{{ profile.name }} - Profile</title>
+
+        <!-- Favicon -->
+        <link rel="icon" type="image/png" href="{{ url_for('static', filename='icons/favicon-black-with-border.png') }}">
+
+        <!-- Link to external CSS Files -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles/profile.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles/global.css') }}">
     </head>
     <body>
-        <!-- Navigation -->
+        <!-- Navigation Bar -->
         <nav class="navbar">
-            <a href="{{ url_for('index') }}">Back to Home</a>
+            <div class="nav-container">
+                <!-- Logo Team -->
+                <div class="logo-container1">
+                    <a href="/" target="_blank">
+                        <img class="team-icon-logo" src="{{ url_for('static', filename='images/team-logo.png') }}" alt="Team Icon" />
+                    </a>
+                </div>
+                <!-- Navigation Links -->
+                <div class="nav-links">
+                    <ul>
+                        <li><a href="{{ url_for('index') }}">HOME</a></li>
+                        <li><a href="{{ url_for('index') }}#profile">PROFILE</a></li>
+                        <li><a href="{{ url_for('index') }}#works">WORKS</a></li>
+                    </ul>
+                </div>                
+                <!-- GitHub Icon -->
+                <div class="logo-container">
+                    <a href="https://github.com/aidantiu/dsa_portfolio" target="_blank">
+                        <img class="repo-icon" src="{{ url_for('static', filename='icons/repo-icon.svg') }}" alt="GitHub Icon" />
+                    </a>
+                </div>
+            </div>
         </nav>
 
         <!-- Profile Section -->
         <main>
-            <section class="profile-detail">
-                <img src="{{ url_for('static', filename=profile.image_path) }}" alt="Profile Image" class="profile-image">
-                <h1>{{ profile.name }}</h1>
-                <h2>{{ profile.role }}</h2>
-                <p><strong>About:</strong> {{ profile.about }}</p>
-                <p><strong>School:</strong> {{ profile.school }}</p>
-                <p><strong>Degree:</strong> {{ profile.degree }}</p>
+            
+            <section class="specific-profile-container">
 
-                <!-- Social Links -->
-                <h3>Connect with {{ profile.name }}:</h3>
-                <ul class="social-links">
-                    {% if profile.socials.facebook %}
-                        <li><a href="{{ profile.socials.facebook }}" target="_blank">Facebook</a></li>
-                    {% endif %}
-                    {% if profile.socials.instagram %}
-                        <li><a href="{{ profile.socials.instagram }}" target="_blank">Instagram</a></li>
-                    {% endif %}
-                    {% if profile.socials.github %}
-                        <li><a href="{{ profile.socials.github }}" target="_blank">GitHub</a></li>
-                    {% endif %}
-                    {% if profile.socials.linkedin %}
-                        <li><a href="{{ profile.socials.linkedin }}" target="_blank">LinkedIn</a></li>
-                    {% endif %}
-                </ul>
+                <!-- Profile Image and Details -->
+                <div class="specific-profile-wrapper">
+                    <div class="specific-profile-image">
+                        <img src="{{ url_for('static', filename=profile.image_path) }}" alt="Profile Image">
+                        <div class="specific-card-details">
+                            <h3>{{ profile.student_number }}</h3>
+                            <p>Polytechnic University of the Philippines - Manila</p>
+                            <p>Bachelor of Science in Computer Engineering</p>
+                        </div>
+                    </div>
+    
+                    <div class="specific-profile-header-details">
+
+                        <div class="specific-profile-name">
+                            <h2>Hello!</h2>
+                            <h1>I am {{ profile.name }}</h1>
+                            <p>{{ profile.about }}</p>
+
+                             <!-- Socials -->
+                            <div class="specific-profile-socials">
+                                <div class="specific-profile-socials-icons">
+                                    {% for platform, link in profile.socials.items() %}
+                                        <a href="{{ link }}" target="_blank">
+                                            <img src="{{ url_for('static', filename='icons/' + platform + '-icon.svg') }}" alt="{{ platform | capitalize }} Icon">
+                                        </a>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            <!-- Skills -->
+            <div class="specific-profile-skills-wrapper">
+                <h3>Skills</h3>
+                <div class="specific-profile-skills">
+                    <ul>
+                        {% for skill in profile.skills %}
+                            <li>{{ skill }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            
 
                 <!-- Projects -->
-                <h3>Projects:</h3>
-                <ul class="projects-list">
-                    {% for project in profile.projects %}
-                        <li>
-                            <strong>{{ project.title }}</strong>: {{ project.description }}
-                        </li>
-                    {% endfor %}
-                </ul>
+                <div class="specific-projects-wrapper">
+                    <h3>Projects</h3>
+                    <div class="specific-projects-card">
+
+                        {% for project in profile.projects %}
+                        <a href="{{ project.link }}" target="_blank">
+                            <div class="specific-projects-card-item">
+                                <img src="{{ project.image_path }}" alt="{{ project.title }} image">
+                                <h4>{{ project.title }}</h4>
+                                <p>{{ project.description }}</p>
+                            </div>
+                        </a>
+                        {% endfor %}
+                        
+                    </div>
+                </div>
+                
             </section>
         </main>
     </body>
+
+    <!-- global script -->
+    <script src="{{ url_for('static', filename='scripts/global.js') }}"></script>
 </html>

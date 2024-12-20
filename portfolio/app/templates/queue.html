@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <h1>{{ title }}</h1>
+    <form method="POST">
+        <input type="text" name="data" placeholder="{% if validation_message and validation_message != 'Please input node data to delete.' %}Enter data{% else %}Enter node data to delete{% endif %}">
+        <div>
+            <button type="submit" name="action" value="add_at_end">Add at End</button>
+            <button type="submit" name="action" value="pop_at_start">Pop at Start</button>
+            <button type="submit" name="action" value="delete_at_node">Delete at Node</button>
+            {% if queue_type == 'double-ended-queue' %}
+                <button type="submit" name="action" value="add_at_start">Add at Start</button>
+                <button type="submit" name="action" value="pop_at_end">Pop at End</button>
+            {% endif %}
+        </div>
+        <button type="submit" name="action" value="toggle_queue">
+            {% if queue_type == 'queue' %}
+                Switch to Double Ended Queue
+            {% else %}
+                Switch to Queue
+            {% endif %}
+        </button>
+    </form>
+    
+    <div>
+        <h2>Current {{ queue_type | capitalize }}</h2>
+        <p>{{ linked_list_items if linked_list_items else 'No items in the list.' }}</p>
+    </div>
+    
+    <div>
+        {% if validation_message %}
+            <p>{{ validation_message }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>

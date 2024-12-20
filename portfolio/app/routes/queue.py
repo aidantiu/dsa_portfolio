@@ -10,6 +10,8 @@ app.secret_key = 'temporary-key'
 
 @app.route('/queue', methods=['GET', 'POST'])
 def queue_home():
+    # Check if this is a redirected GET request
+    is_redirected_get = session.get('is_redirected_get', False)
     queue_type = session.get('queue_type', 'queue')  # Default to normal queue
     data = request.form.get('data', '').strip()  # Get data input from the form
     validation_string = session.get('validation_string', None)
@@ -94,17 +96,29 @@ def queue_home():
                     else:
                         validation_string = "Node not found."
 
-
+        # Set the validation string and save to session
         session['validation_string'] = validation_string
         linked_list_data = linkedlist_stack.to_list()  # Get linked list as a string
         resp = make_response(redirect(url_for('queue_home')))
         resp.set_cookie('linked_list_data', json.dumps(linked_list_data))
+
+        # Set the redirected GET flag to True for the next request
+        session['is_redirected_get'] = True
+
         return resp
 
+    # Handle GET request logic
+    if not is_redirected_get:
+        linkedlist_stack.clear()  # Clear the linked list on normal GET request
+        validation_string = None  # Don't show any validation string on initial GET
+
+    # Set the redirected GET flag to False after handling the request
+    session['is_redirected_get'] = False
+
     return render_template(
-    'queue.html',
-    queue_type=queue_type,
-    validation_string=validation_string,
-    linked_list_items=linkedlist_stack.to_list(),
-    title='Queue Operations'
-)
+        'queue.html',
+        queue_type=queue_type,
+        validation_string=validation_string,  # Only show validation if set
+        linked_list_items=linkedlist_stack.to_list(),
+        title='Queue Operations'
+    )

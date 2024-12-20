@@ -366,6 +366,7 @@ input[type="text"]::placeholder {
     display: flex;
 }
 
+/*** Output elements for Linked List ***/
 /* Style for the nodes */
 .empty {
     display: flex;

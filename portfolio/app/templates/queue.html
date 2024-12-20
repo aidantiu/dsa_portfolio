@@ -64,10 +64,25 @@
                 
             <!-- Output Box -->
             <div class="output-box">
-                <div id="output-wrapper">
-                    <h2>Current {{ queue_type | capitalize }}</h2>
-                    <p>{{ linked_list_items if linked_list_items else 'No items in the list.' }}</p>
+                {% if linked_list_items %}
+                <div class="filled">
+                    {% for item in linked_list_items %}
+                        <div class="item-container">
+                            <div class="item {% if item == highlighted_item %}highlight{% endif %}">
+                                {{ item }}
+                            </div>
+                            <div class="arrow">
+                                <i class="fas fa-long-arrow-alt-right"></i>
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
+            {% else %}
+                <div class="empty">
+                    <p>The {{ queue_type | capitalize }} is empty.</p>
+                    <p>Add to start!</p>
+                </div>
+            {% endif %}
             </div>
 
             <!-- Input type element and Buttons -->
@@ -75,7 +90,14 @@
                 <div class="operation-wrapper">
                     <!-- Input Box -->
                     <div class="input-container">
-                        <input type="text" name="data" placeholder="{% if validation_string and validation_string != 'Please input node data to delete.' %}Type something here...{% else %}Enter node data to delete{% endif %}" autocomplete="off">
+                        <input  type="text" 
+                                name="data" 
+                                placeholder="{% if validation_string and validation_string != 'Please input node data to delete.' -%}
+                                Type something here...
+                                {%- else -%}
+                                Enter data of node to delete...
+                                {%- endif %}"
+                                autocomplete="off">
                     </div>
 
                         <!-- Buttons -->

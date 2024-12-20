@@ -1,0 +1,414 @@
+/* This file contains the styling rules for the items in the queue visualization.*/
+
+body{
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    background: #E2B2E5 url(../images/BACKGROUND\(1\).png) no-repeat center center/cover;
+    color: black;
+}
+
+/*** Main Section ***/
+.main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin-top: 20px;
+}
+.container{
+    padding: 0 0 100px;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.queue-conversion-text h1{
+    margin: auto;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.queue-conversion{
+    margin-top: 20px;
+}
+
+/*** Queue Conversion ***/
+/* Validation Box */
+.validation {
+    display: flex;
+    align-items: center;
+
+}
+
+.validation img, .validation p{
+    margin: 0;
+    font-size: 20px;
+}
+
+.validation div{
+    gap: 8px;
+    display: flex;
+    padding: 5px;
+    border-radius: 8px;
+    background-color: #D9D9D9;
+    border: 2px solid #c7c4dd;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+/* Output Box */
+.output-box {
+    width: 80%;
+    height: 450px;
+    border: 2px solid #ffffff;
+    border-radius: 20px;
+    background: rgba(171, 163, 163, 0.25);
+    backdrop-filter: blur(40px);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin: 0 auto 5px; 
+    position: relative; 
+    overflow-y: scroll;
+    scrollbar-width: thin;
+}
+
+/* Output Box Scrollbar */
+.output-box::-webkit-scrollbar {
+    width: 6px;
+    background: transparent;
+}
+
+.output-box::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+}
+
+.output-box::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 20px;
+    min-height: 60px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+}
+
+/* for Firefox */
+.output-box {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.6) rgba(255, 255, 255, 0.2);
+}
+
+/* Style for the nodes */
+.empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-size: 25px;
+    flex-direction: column;
+}
+
+.empty p {
+    margin: 2px;
+}
+
+
+/* Styling for the items in queue */
+.highlight {
+    background-color: #6b00a1;
+    border: 2px solid #6b00a1;
+    box-shadow: 0 0 10px rgba(107, 0, 161, 0.5);
+    transform: scale(1.1); /* Slightly increase the scale and rotation */
+    transition: background-color 1s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    animation: glow 1.5s infinite, rotate 1s infinite; /* Add a glow effect */
+}
+
+/* Hover effect for additional interactivity */
+.item {
+    transition: background-color 1s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease; /* Ensure smooth transition */
+}
+
+/* Hover effect for additional interactivity */
+.item:hover {
+    transform: scale(1.1); /* Slightly increase the scale and rotation on hover */
+    box-shadow: 0 0 20px rgba(107, 0, 161, 0.9); /* Enhance the shadow on hover */
+    border: 2px solid #6b00a1;
+}
+
+/* Glow effect for the highlight */
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 10px rgba(107, 0, 161, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(107, 0, 161, 1);
+    }
+    100% {
+        box-shadow: 0 0 10px rgba(107, 0, 161, 0.5);
+    }
+}
+
+/* Rotate effect for the highlight */
+@keyframes rotate {
+    0%, 100% {
+        transform: scale(1.1) rotate(2deg);
+    }
+    50% {
+        transform: scale(1.1) rotate(-2deg);
+    }
+}
+
+.filled {
+    display: flex;
+    flex-wrap: wrap; /* Ensures items wrap into rows */
+    justify-content: flex-start;
+    margin: 30px;
+}
+
+.item-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    height: fit-content;
+}
+
+/* Styling for items */
+.item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px; /* Rounded edges */
+    background-color: #D9D9D9; /* Light gray for the main block */
+    padding: 15px 40px 15px 20px; /* Space inside the block */
+    position: relative; /* For pseudo-elements positioning */
+    margin: 10px; /* Spacing between items */
+    overflow: hidden; /* Ensures shapes stay within boundaries */
+    height: fit-content;
+    width: fit-content;
+    font-size: 20px;
+}
+
+/* Left side decoration */
+.item::before {
+    content: "";
+    width: 25px;
+    height: 100%;
+    background-color: #D18EE0;
+    position: absolute;
+    right: 0;
+}
+
+.arrow {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    height: fit-content;
+}
+
+
+#capsule-node-icon{
+    display: inline-block;
+    padding: 0px 1px; /* Adjust height and width */
+    background-color: #6b00a1; /* Capsule color */
+    border-radius: 25%; /* Makes it a capsule shape */
+    text-align: center;
+}
+
+
+/******************************************************************************
+* CSS styles for Queue data structure visualization inputs
+* This file contains the styling rules for the input fields, buttons, and
+* dropdowns used in the queue demonstration.
+******************************************************************************/
+/*
+
+/*Input Container Text */
+.operation-wrapper {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.input-data{
+    width: 100%;
+    padding: 0;
+    color: none;
+    border: none;
+}
+
+input[type="text"] {
+    width: 89%;
+    padding: 10px 20px;
+    color: white; 
+    border-radius: 19px;
+    border: 1px solid #FFF;
+    background: rgba(116, 106, 106, 0.25);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(20px);
+    outline: none;
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-size: 20px;
+    font-weight: lighter;
+    letter-spacing: 0.5px;
+}
+
+input[type="text"]::placeholder {
+    color: white;
+    opacity: 0.5;
+    transition: opacity 0.3s;
+    font-style: italic;
+}
+
+/* Input Buttons */
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    justify-content: center;
+}
+
+.button-container button {
+    margin: 5px;
+    padding: 10px 20px;
+    border-radius: 15px;
+    background: transparent;
+    color: #6b00a1;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border: 1px white solid;
+    backdrop-filter: blur(40px);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+    background: rgba(255, 255, 255, 0.1);
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+    font-size: 20px;
+    white-space: nowrap;
+    min-width: 50px; 
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-weight: lighter;
+}
+
+.button-container button i {
+    margin-right: 2px;
+    margin-left: 3px;
+    font-size: 1.2rem;
+}
+
+.button-container button:hover {
+    background: #ffffff;
+    color: #6b00a1;
+}
+
+/* Dropdown Container */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 10px 20px;
+    border-radius: 15px;
+    background: transparent;
+    font-weight: bold;
+    cursor: pointer;
+    transition: width 0.3s ease, padding 0.3s ease, background-color 0.3s;
+    border: 1px solid white;
+    backdrop-filter: blur(40px);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+    width: auto;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    color: #6b00a1;
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-size: 20px;
+}
+
+.dropdown-btn::after {
+    content: '▼';
+    display: none;
+    transition: visibility 0s, opacity 1s;
+    margin-left: 10%;
+}
+
+.dropdown-btn:hover {
+    padding-right: 25px;
+    background: rgba(255, 255, 255, 0.7);
+    transition: 0.3s ease-in-out;
+}
+
+.dropdown-btn:hover::after {
+    display: block;
+    opacity: 1;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    border: 1px solid white;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    z-index: 1;
+    margin: 5px 0 10px 0;
+    min-width: 200px;
+    padding: 10px 0;
+    box-sizing: border-box;
+}
+
+.dropdown-content button {
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-weight: lighter;
+    margin-left: 6%;
+    padding: 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    width: auto;
+    color: #6b00a1;
+    cursor: pointer;
+}
+
+.dropdown-content button:hover {
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.dropdown.active .dropdown-content {
+    display: block;
+}
+
+.dropdown-btn.active {
+    padding-right: 25px;
+    background: #ffffff;
+    transition: 0.3s ease-in-out;
+}
+
+.dropdown-btn.active::after {
+    display: block;
+    opacity: 1;
+}

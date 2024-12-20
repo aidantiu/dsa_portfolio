@@ -88,16 +88,46 @@
                         </div>
                     </div>
             
-                    <!-- Right Side (Info Box) -->
-                    <div class="right-side">
-                        <div class="info-box">
-                            <div class="info-header">
-                                <h3>Steps:</h3>
+                    <div class="info-box">
+                        <div class="info-header">
+                            <h3>Steps:</h3>
+                        </div>
+                        <div class="horizontal-line"></div>
+                        <div class="steps-content">
+                            <div class="step">
+                                <div class="step-column">
+                                    <p><strong>Expression:</strong></p>
+                                    {% for step in steps %}
+                                        <p>{{ step.expression }}</p>
+                                    {% endfor %}
+                                </div>
+                                <div class="step-column">
+                                    <p><strong>Stack:</strong></p>
+                                    {% for step in steps %}
+                                        <p>{{ step.stack }}</p>
+                                    {% endfor %}
+                                </div>
+                                <div class="step-column">
+                                    <p><strong>Postfix:</strong></p>
+                                    {% for step in steps %}
+                                        <p>{{ step.postfix }}</p>
+                                    {% endfor %}
+                                </div>
                             </div>
-                            <div class="horizontal-line"></div>
-                            <!-- Add steps content here -->
                         </div>
                     </div>
+                    <!-- ...existing code... -->
+                    
+                    <style>
+                        .step {
+                            display: flex;
+                            justify-content: space-between;
+                        }
+                        .step-column {
+                            flex: 1;
+                            margin-right: 10px;
+                        }
+                    </style>
                 </div>
             </form>
         </div>

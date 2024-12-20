@@ -7,7 +7,6 @@ import json
 def is_operator(char):
     return char in "+-*/^"  # Returns True or False
 
-
 # Helper function to define operator precedence
 def precedence(operator):
     if operator in "+-":
@@ -17,7 +16,6 @@ def precedence(operator):
     if operator == "^":
         return 3
     return 0
-
 
 # Helper function to validate the input expression
 def is_valid_expression(expression):
@@ -39,12 +37,11 @@ def is_valid_expression(expression):
                 return False  # Invalid operator placement
         elif char.isalnum():  # Check if alphanumeric (digits or letters)
             if last_char and last_char.isalnum():
-                return False  # Consecutive operands found
+                continue  # Allow consecutive alphanumeric characters
         last_char = char
 
     # Ensure no unmatched opening parentheses and last character is valid
     return not stack and (last_char.isalnum() or last_char == ")")
-
 
 # Infix to Postfix conversion
 def infix_to_postfix(expression):
@@ -61,6 +58,14 @@ def infix_to_postfix(expression):
             "postfix": postfix.to_list()
         }
         
+
+        if expression[i].isalnum():  # Checks if element is an operand (digit or letter)
+            operand = expression[i]
+            while i + 1 < len(expression) and expression[i + 1].isalnum():
+                i += 1
+                operand += expression[i]
+            postfix.insert_at_end(operand)  # Push the full operand to the postfix stack
+
         if expression[i].isdigit():  # Checks if element is a digit
             num = expression[i]
             while i + 1 < len(expression) and expression[i + 1].isdigit():
@@ -69,6 +74,7 @@ def infix_to_postfix(expression):
             postfix.insert_at_end(num)  # Push the full number to the postfix stack
         elif expression[i].isalpha():  # Checks if element is an operand
             postfix.insert_at_end(expression[i])  # Push to postfix stack
+
         elif expression[i] == '(':
             operator_stack.insert_at_beginning(expression[i])  # Push to operator stack
         elif expression[i] == ')':
@@ -99,8 +105,6 @@ def infix_to_postfix(expression):
         })
     
     return postfix.to_list(), steps  # Returns a list for readability and steps
-
-
 
 @app.route('/infix-to-postfix', methods=['GET', 'POST'])
 def Infix_to_Postfix():

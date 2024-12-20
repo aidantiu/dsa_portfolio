@@ -13,7 +13,7 @@
         <!-- Link to external Font Awesome CSS file -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
         <link rel="icon" type="image/png" href="{{ url_for('static', filename='icons/favicon-black-with-border.png') }}">
-        <title>{{ title }}</title>
+        <title> Queue </title>
     </head>
 <body>
 
@@ -71,32 +71,78 @@
             </div>
 
             <!-- Input type element and Buttons -->
-            <form method="POST">
-
-                <!-- Input Box -->
-                <div class="input-container">
-                    <input type="text" name="data" placeholder="{% if validation_string and validation_string != 'Please input node data to delete.' %}Type something here...{% else %}Enter node data to delete{% endif %}" autocomplete="off">
-
-                    <!-- Buttons -->
-                    <div class="button-container">
-                        <button type="submit" name="action" value="add_at_end">Add at Rear</button>
-                        <button type="submit" name="action" value="pop_at_start">Pop at Front</button>
-                        <button type="submit" name="action" value="delete_at_node">Delete a Node</button>
-                        {% if queue_type == 'double-ended-queue' %}
-                            <button type="submit" name="action" value="add_at_start">Add at Front</button>
-                            <button type="submit" name="action" value="pop_at_end">Pop at Rear</button>
-                        {% endif %}
-                        <button type="submit" name="action" value="toggle_queue">
-                            {% if queue_type == 'queue' %}
-                                Switch to Double Ended Queue
-                            {% else %}
-                                Switch to Queue
-                            {% endif %}
-                        </button>
+            <form action="/queue" method="POST">
+                <div class="operation-wrapper">
+                    <!-- Input Box -->
+                    <div class="input-container">
+                        <input type="text" name="data" placeholder="{% if validation_string and validation_string != 'Please input node data to delete.' %}Type something here...{% else %}Enter node data to delete{% endif %}" autocomplete="off">
                     </div>
+
+                        <!-- Buttons -->
+                        <div class="button-container">
+                            {% if queue_type == 'queue' %}
+                                <!-- Simple Queue Buttons -->
+                                <button type="submit" name="action" value="add_at_end">
+                                    <i class="fas fa-plus-circle"></i> Add at Rear
+                                </button>
+                                <button type="submit" name="action" value="pop_at_start">
+                                    <i class="fas fa-minus-circle"></i> Pop at Front
+                                </button>
+                            {% else %}
+                                <!-- Double-Ended Queue Dropdowns -->
+
+                                <!-- Add Operations -->
+                                <div class="dropdown">
+                                    <button type="button" class="dropdown-btn">
+                                        <i class="fas fa-plus-circle"></i> Add Operations
+                                    </button>
+                                    <div class="dropdown-content">
+                                        <button type="submit" name="action" value="add_at_end">
+                                            <i class="fas fa-angle-double-right"></i> Add at Rear
+                                        </button>
+                                        <button type="submit" name="action" value="add_at_start">
+                                            <i class="fas fa-angle-double-left"></i> Add at Front
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Delete Operation -->
+                                <div class="dropdown">
+                                    <button type="button" class="dropdown-btn">
+                                        <i class="fas fa-minus-circle"></i> Delete Operations
+                                    </button>
+                                    <div class="dropdown-content">
+                                        <button type="submit" name="action" value="pop_at_start">
+                                            <i class="fas fa-angle-double-left"></i> Pop at Front
+                                        </button>
+                                        <button type="submit" name="action" value="pop_at_end">
+                                            <i class="fas fa-angle-double-right"></i> Pop at Rear
+                                        </button>
+                                    </div>
+                                </div>
+                            {% endif %}
+
+                            <!-- Delete a node / data -->
+                            <button type="submit" name="action" value="delete_at_node">
+                                <i class="fas fa-trash"></i> Delete Data
+                            </button>
+
+                            <!-- Clear the Queue -->
+                            <button type="submit" name="action" value="toggle_queue">
+                                {% if queue_type == 'queue' %}
+                                    <i class="fas fa-exchange-alt"></i> Switch to Double-ended Queue
+                                {% else %}
+                                    <i class="fas fa-exchange-alt"></i> Switch to Queue
+                                {% endif %}
+                            </button>
+                        </div>
                 </div>
             </form>
         </div>
     </main>
+    
+    <!-- Link to external JS files -->
+    <script src="{{ url_for('static', filename='scripts/queue-script.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/global.js') }}"></script>
 </body>
 </html>

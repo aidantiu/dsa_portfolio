@@ -8,7 +8,7 @@
 <body>
     <h1>{{ title }}</h1>
     <form method="POST">
-        <input type="text" name="data" placeholder="{% if validation_message and validation_message != 'Please input node data to delete.' %}Enter data{% else %}Enter node data to delete{% endif %}">
+        <input type="text" name="data" placeholder="{% if validation_string and validation_string != 'Please input node data to delete.' %}Enter data{% else %}Enter node data to delete{% endif %}">
         <div>
             <button type="submit" name="action" value="add_at_end">Add at End</button>
             <button type="submit" name="action" value="pop_at_start">Pop at Start</button>
@@ -33,8 +33,8 @@
     </div>
     
     <div>
-        {% if validation_message %}
-            <p>{{ validation_message }}</p>
+        {% if validation_string %}
+            <p>{{ validation_string }}</p>
         {% endif %}
     </div>
 </body>

@@ -58,12 +58,23 @@ def infix_to_postfix(expression):
             "postfix": postfix.to_list()
         }
         
+
         if expression[i].isalnum():  # Checks if element is an operand (digit or letter)
             operand = expression[i]
             while i + 1 < len(expression) and expression[i + 1].isalnum():
                 i += 1
                 operand += expression[i]
             postfix.insert_at_end(operand)  # Push the full operand to the postfix stack
+
+        if expression[i].isdigit():  # Checks if element is a digit
+            num = expression[i]
+            while i + 1 < len(expression) and expression[i + 1].isdigit():
+                i += 1
+                num += expression[i]
+            postfix.insert_at_end(num)  # Push the full number to the postfix stack
+        elif expression[i].isalpha():  # Checks if element is an operand
+            postfix.insert_at_end(expression[i])  # Push to postfix stack
+
         elif expression[i] == '(':
             operator_stack.insert_at_beginning(expression[i])  # Push to operator stack
         elif expression[i] == ')':

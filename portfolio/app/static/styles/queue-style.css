@@ -1,0 +1,177 @@
+body{
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    background: #E2B2E5 url(../images/BACKGROUND\(1\).png) no-repeat center center/cover;
+    color: black;
+}
+
+/*** Main Section ***/
+.main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin-top: 20px;
+}
+.container{
+    padding: 0 0 100px;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.queue-conversion-text h1{
+    margin: auto;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.queue-conversion{
+    margin-top: 20px;
+}
+
+/*** Queue Conversion ***/
+/* Validation Box */
+.validation {
+    display: flex;
+    align-items: center;
+
+}
+
+.validation img, .validation p{
+    margin: 0;
+    font-size: 20px;
+}
+
+.validation div{
+    gap: 8px;
+    display: flex;
+    padding: 5px;
+    border-radius: 8px;
+    background-color: #D9D9D9;
+}
+
+/* Output Box */
+.output-box {
+    width: 80%;
+    height: 450px;
+    border: 2px solid #ffffff;
+    border-radius: 20px;
+    background: rgba(171, 163, 163, 0.25);
+    backdrop-filter: blur(40px);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin: 0 auto 5px; 
+    position: relative; 
+    overflow-y: scroll;
+    scrollbar-width: thin;
+}
+
+/* Output Box Scrollbar */
+.output-box::-webkit-scrollbar {
+    width: 6px;
+    background: transparent;
+}
+
+.output-box::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+}
+
+.output-box::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 20px;
+    min-height: 60px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+}
+
+/* for Firefox */
+.output-box {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.6) rgba(255, 255, 255, 0.2);
+}
+
+
+/* Input Container Text */
+.input-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.input-data{
+    width: 100%;
+    padding: 0;
+    color: none;
+    border: none;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px 20px;
+    color: white; 
+    border-radius: 19px;
+    border: 1px solid #FFF;
+    background: rgba(116, 106, 106, 0.25);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(20px);
+    outline: none;
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-size: 20px;
+    font-weight: lighter;
+    letter-spacing: 0.5px;
+}
+
+input[type="text"]::placeholder {
+    color: white;
+    opacity: 0.5;
+    transition: opacity 0.3s;
+    font-style: italic;
+}
+
+/* Input Buttons */
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.button-container button {
+    margin: 5px;
+    padding: 10px 20px;
+    border-radius: 15px;
+    background: transparent;
+    color: #6b00a1;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border: 1px white solid;
+    backdrop-filter: blur(40px);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+    font-size: 20px;
+    white-space: nowrap;
+    min-width: 50px; 
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-weight: lighter;
+}
+
+.button-container button i {
+    margin-right: 2px;
+    margin-left: 3px;
+    font-size: 1.2rem;
+}
+
+.button-container button:hover {
+    background: #ffffff;
+    color: #6b00a1;
+}

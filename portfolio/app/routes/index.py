@@ -155,26 +155,26 @@ profiles = [
     }
 ]
 
-
-
-
-
-
-
 # List of works
 works = [
     {
         "image_path": "images/linked-list.png", 
         "title": "Linked List Simulator", 
-        "description": "The Linked List Simulator makes learning data structures a breeze! It’s an interactive, hands-on tool where you can see linked lists in action. Add, remove, and move through nodes in real-time, with everything laid out visually so it’s easy to follow.",
-        "route" : "linked-list"
+        "description": "The Linked List Simulator makes learning data structures a breeze! It's an interactive, hands-on tool where you can see linked lists in action. Add, remove, and move through nodes in real-time, with everything laid out visually so it's easy to follow.",
+        "route": "linked-list"
     },
     {
         "image_path": "images/infix-to-postfix.png", 
         "title": "Infix To Postfix Converter", 
-        "description": "Transform the way you understand expression conversion with the Infix to Postfix Converter! This interactive tool lets you input complex infix expressions and instantly see them converted to postfix notation. It’s designed to make learning operator precedence, stack operations, and expression parsing straightforward and intuitive.",
-        "route" : "infix-to-postfix"
+        "description": "Transform the way you understand expression conversion with the Infix to Postfix Converter! This interactive tool lets you input complex infix expressions and instantly see them converted to postfix notation. It's designed to make learning operator precedence, stack operations, and expression parsing straightforward and intuitive.",
+        "route": "infix-to-postfix"
     },
+    {
+        "image_path": "images/queue.png",  # Make sure to add this image to your static/images folder
+        "title": "Queue Operations Simulator",
+        "description": "Experience queue data structures in action with our Queue Operations Simulator! This interactive tool demonstrates both simple queues and double-ended queues (deques). Add and remove elements from either end, visualize the queue structure, and understand FIFO operations through a user-friendly interface.",
+        "route": "queue"
+    }
 ]
 
 # Routes

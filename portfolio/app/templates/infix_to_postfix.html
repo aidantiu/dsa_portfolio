@@ -94,26 +94,34 @@
                         </div>
                         <div class="horizontal-line"></div>
                         <div class="steps-content">
-                            <div class="step">
-                                <div class="step-column">
-                                    <p><strong>Expression:</strong></p>
-                                    {% for step in steps %}
-                                        <p>{{ step.expression }}</p>
-                                    {% endfor %}
-                                </div>
-                                <div class="step-column">
-                                    <p><strong>Stack:</strong></p>
-                                    {% for step in steps %}
-                                        <p>{{ step.stack }}</p>
-                                    {% endfor %}
-                                </div>
-                                <div class="step-column">
-                                    <p><strong>Postfix:</strong></p>
-                                    {% for step in steps %}
-                                        <p>{{ step.postfix }}</p>
-                                    {% endfor %}
-                                </div>
+                            {% if steps %}
+                            <div class="steps-table">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Step</th>
+                                            <th>Action</th>
+                                            <th>Expression</th>
+                                            <th>Stack</th>
+                                            <th>Postfix</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for step in steps %}
+                                        <tr>
+                                            <td>{{ loop.index }}</td>
+                                            <td>{{ step.action }}</td>
+                                            <td>{{ step.scanning }}</td>
+                                            <td>{{ step.stack|join(' ') }}</td>
+                                            <td>{{ step.postfix|join(' ') }}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
                             </div>
+                            {% else %}
+                            <p class="no-steps">Steps will appear here when you convert an expression...</p>
+                            {% endif %}
                         </div>
                     </div>
                     <!-- ...existing code... -->

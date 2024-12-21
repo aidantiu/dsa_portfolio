@@ -21,16 +21,20 @@ profiles = [
         "about": "I am an aspiring DevOps engineer passionate about streamlining workflows and improving system efficiency. Outside of programming, I enjoy playing basketball and cooking. A fun fact about me is that I have a lot of birthmarks!",
         "school": "XYZ University",
         "degree": "Bachelor of Science in Computer Science",
-        "skills": ["Leadership", "Project Management", "Agile Development", "DevOps", "Python", "Docker", "Kubernetes", "CI/CD", "Git", "Jira", "Confluence"],  # Aidan's detailed skills
+        "skills": ["Leadership", "Project Management", "Agile Development", "Full Stack Development", "Web Scraping", "DevOps", "Cloud Computing", "AWS", "Python", "Docker", "Kubernetes", "CI/CD", "Git", "Jira", "Confluence", "Linux"],  # Aidan's detailed skills
         "socials": {
-            "facebook": "https://facebook.com/aidantiu",
-            "instagram": "https://instagram.com/aidantiu",
+            "facebook": "https://www.facebook.com/haha.hauwieks",
+            "instagram": "https://www.instagram.com/y.mnwri/",
             "github": "https://github.com/aidantiu",
-            "linkedin": "https://linkedin.com/in/aidantiu"
+            "linkedin": "https://www.linkedin.com/in/aidan-tiu-58650520b/"
         },
         "projects": [
-            {"title": "Project Alpha", "description": "A comprehensive tool for task management.", "image_path": "../static/images/aidan.jpg"},
-            {"title": "Project Beta", "description": "A mobile app for fitness tracking.", "image_path": "../static/images/aidan.jpg"}
+            {"title": "PUPGS Alumni Engagement Portal System", "description": "The PUPGS Alumni Engagement Portal System is an online platform designed to connect and engage alumni of the Polytechnic University of the Philippines Graduate School. It offers features such as alumni profiles, event updates, and networking opportunities to foster continuous interaction and collaboration within the PUPGS community.", "image_path": "../static/images/aidan_PUPGS Alumni Portal.jpg"},
+            {"title": "PUPSIS Grades and Contact Grabber", "description": "The PUPSIS Grades and Contact Grabber is a tool designed to automate the extraction of grades and contact information from the PUP Student Information System (PUPSIS). It simplifies the process of retrieving academic data and contact details for administrative and academic purposes.", "image_path": "../static/images/aidan_PUPSIS Grades and Contact Grabber.jpg"},
+            {"title": "TechnoQuatro", "description": "The BSCPE 2-4 (TechnoQuatro) website serves as an online platform for the students of the Bachelor of Science in Computer Engineering (BSCPE)2-4 . It provides important information, updates, and resources related to their academic programs and activities, fostering communication and collaboration within the TechnoQuatro community.", "image_path": "../static/images/aidan_TechnoQuatro.jpg"},
+            {"title": "Cattlery", "description": "Catllery is a delightful online gallery dedicated to celebrating the charm and personalities of my cats. It features a collection of curated images, each showcasing their playful and endearing moments, offering visitors a heartwarming and interactive experience with the cats through a visually appealing layout.", "image_path": "../static/images/aidan_Cattlery.jpg"}
+
+
         ]
     },
     {
@@ -38,15 +42,15 @@ profiles = [
         "name": "Renz Tyrone Arcilla",
         "student_number": "2023-0002",
         "role": "Back-end Developer",
-        "about": "Renz specializes in designing scalable APIs and optimizing server-side operations.",
+        "about": "Renz is a proficient Back-end Developer with a focus on building scalable APIs and optimizing server-side performance. He has extensive experience in database management, API design, and using technologies like Node.js and Express. Renz is passionate about creating efficient and reliable back-end systems that support seamless user experiences, and he is also deeply interested in exploring data science to enhance his technical expertise.",
         "school": "ABC Institute of Technology",
         "degree": "Bachelor of Science in Software Engineering",
-        "skills": ["API Design", "Server-Side Optimization", "Database Management", "Node.js", "Express", "RESTful APIs"],  # Renz's skills
+        "skills": ["Python", "Flask", "Scikit-Learn", "Tableau", "AWS", "PostgreSQL", "Node.js", "Express", "RESTful APIs", "Server-Side Optimization", "Database Management", "Data Preprocessing", "Statistical Analysis"],  
         "socials": {
-            "facebook": "https://facebook.com/renzarcilla",
-            "instagram": "https://instagram.com/renzarcilla",
-            "github": "https://github.com/renzarcilla",
-            "linkedin": "https://linkedin.com/in/renzarcilla"
+            "facebook": "https://www.facebook.com/renztyrone.arcilla.3",
+            "instagram": "https://www.instagram.com/wash.n.rinse/",
+            "github": "https://github.com/RenzArcilla",
+            "linkedin": "https://www.linkedin.com/in/renz-tyrone-arcilla-35098a323"
         },
         "projects": [
             {"title": "E-Commerce Platform", "description": "A robust platform for online shopping.", "image_path": "images/ecommerce_platform.jpg"},
@@ -58,15 +62,15 @@ profiles = [
         "name": "Earl Clyde Banez",
         "student_number": "2023-0003",
         "role": "UI/UX Designer",
-        "about": "Earl creates intuitive and visually compelling user interfaces to elevate the user experience.",
+        "about": "Earl is a passionate UI/UX Designer with a keen eye for detail. He specializes in creating intuitive and visually compelling user interfaces that enhance the overall user experience. With expertise in wireframing, prototyping, and user research, Earl ensures that every design is both functional and aesthetically pleasing.",
         "school": "National Design Institute",
         "degree": "Bachelor of Arts in Interaction Design",
-        "skills": ["UI/UX Design", "Wireframing", "Prototyping", "Adobe XD", "Figma", "Sketch", "User Research"],  # Earl's skills
+        "skills": ["HTML", "CSS", "Python", "UI/UX Design", "Content Creation", "Adobe Photoshop", "Adobe InDesign", "Adobe Audition", "Adobe Premeire", "Image Editing", "Wireframing", "Prototyping", "Adobe XD", "Figma", "Sketch", "User Research"],  # Earl's skills
         "socials": {
-            "facebook": "https://facebook.com/earlclydebanez",
-            "instagram": "https://instagram.com/earlclyde",
-            "github": "https://github.com/earlclyde",
-            "linkedin": "https://linkedin.com/in/earlclyde"
+            "facebook": "https://www.facebook.com/EarlClydeqt/",
+            "instagram": "https://www.instagram.com/earl_cly/",
+            "github": "https://github.com/EarlClydeeee",
+            "linkedin": "https://www.linkedin.com/in/"
         },
         "projects": [
             {"title": "User Dashboard Redesign", "description": "Improved UI for an enterprise dashboard application.", "image_path": "images/user_dashboard_redesign.jpg"},
@@ -78,7 +82,7 @@ profiles = [
         "name": "Denn Adrian Capus",
         "student_number": "2023-0004",
         "role": "Front-end Developer",
-        "about": "Denn is passionate about creating responsive and accessible web interfaces.",
+        "about": "Denn is a dedicated Front-end Developer with a passion for building responsive and accessible web interfaces. He specializes in creating seamless user experiences using HTML, CSS, JavaScript, and React. Denn is committed to ensuring that web applications are not only functional but also inclusive and user-friendly.",
         "school": "Global Tech University",
         "degree": "Bachelor of Science in Web Development",
         "skills": ["HTML", "CSS", "JavaScript", "React", "Responsive Design", "Web Accessibility"],  # Denn's skills
@@ -98,15 +102,15 @@ profiles = [
         "name": "Roman Joseph Gallardo",
         "student_number": "2023-0005",
         "role": "Front-end Developer",
-        "about": "Roman focuses on building visually appealing and high-performing web applications.",
+        "about": "I’m an aspiring front-end developer with experience in building responsive web applications using HTML, CSS, JavaScript, and Flask. I also have an interest in graphic editing and audio production, including cover art design and mashups. I’m constantly learning and looking for ways to combine creativity with technology.",
         "school": "TechWorld Academy",
         "degree": "Bachelor of Science in Computer Engineering",
-        "skills": ["HTML", "CSS", "JavaScript", "Vue.js", "Webpack", "Performance Optimization"],  # Roman's skills
+        "skills": ["HTML", "CSS", "JavaScript", "Python", "Vue.js", "UI/UX", "Content Creation", "Image Editing",  "Webpack", "Audio Mixing", "Mashups", "FL Studio" "Performance Optimization"],  # Roman's skills
         "socials": {
-            "facebook": "https://facebook.com/romanjoseph",
-            "instagram": "https://instagram.com/romanjoseph",
-            "github": "https://github.com/romanjoseph",
-            "linkedin": "https://linkedin.com/in/romanjoseph"
+            "facebook": "https://www.facebook.com/romanjosephgallardo/",
+            "instagram": "https://www.instagram.com/romanramonroman/",
+            "github": "https://github.com/romanjosephgallardo",
+            "linkedin": "https://www.linkedin.com/in/roman-joseph-gallardo/"
         },
         "projects": [
             {"title": "Weather App", "description": "A weather forecasting web app with live data.", "image_path": "images/weather_app.jpg"},
@@ -118,7 +122,7 @@ profiles = [
         "name": "Railey Guinto",
         "student_number": "2023-0006",
         "role": "UI/UX Designer",
-        "about": "Railey delivers seamless user experiences by combining aesthetics and functionality.",
+        "about": "Railey is a skilled UI/UX Designer known for creating seamless user experiences that balance both aesthetics and functionality. With expertise in UX research, wireframing, and UI design, she crafts intuitive interfaces using tools like Figma, Adobe Illustrator, and Photoshop. Railey is dedicated to designing digital experiences that are both visually appealing and user-centric.",
         "school": "Creative Arts Academy",
         "degree": "Bachelor of Arts in Graphic Design",
         "skills": ["UX Research", "Wireframing", "UI Design", "Figma", "Prototyping", "Adobe Illustrator", "Photoshop"],  # Railey's skills
@@ -138,7 +142,7 @@ profiles = [
         "name": "Arvie Lastra",
         "student_number": "2023-0007",
         "role": "Back-end Developer",
-        "about": "Arvie ensures the smooth operation of server-side systems and database management.",
+        "about": "Arvie is a skilled Back-end Developer focused on ensuring the smooth operation of server-side systems and managing databases. He specializes in API development and integrating technologies like Node.js, Express, and MongoDB. Arvie is committed to building secure, scalable back-end solutions that enhance system efficiency and user experience.",
         "school": "TechSphere University",
         "degree": "Bachelor of Science in Information Technology",
         "skills": ["Database Management", "API Development", "Node.js", "Express", "MongoDB", "Authentication"],  # Arvie's skills

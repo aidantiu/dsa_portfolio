@@ -134,66 +134,120 @@ body{
     font-size: 20px;
 }
 
-.specific-projects-wrapper{
+/* Projects Section Container */
+.specific-projects-wrapper {
     margin-top: 100px;
     border-radius: 32px;
     background: rgba(255, 255, 255, 0.19);
     margin-left: -100px;
     margin-right: -100px;
+    padding: 20px;
+    position: relative;
 }
 
-.specific-projects-wrapper h3{
-    padding-top: 20px;
-    padding-bottom: 20px;
+/* Enhanced Projects Heading */
+.specific-projects-wrapper h3 {
     text-align: center;
-    font-size: 50px;
+    font-size: 3.5rem;
+    font-weight: 600;
+    color: #344054;
+    margin: 20px 0 10px;
+    padding: 20px 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    letter-spacing: 1px;
 }
 
-.specific-projects-card{
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    padding: 40px 0;
+/* Decorative line under the heading */
+.specific-projects-wrapper h3::after {
+    content: '';
+    display: block;
+    width: 150px;
+    height: 4px;
+    background: linear-gradient(90deg, #883DB9, #9643AC);
+    margin: 15px auto 0;
+    border-radius: 2px;
 }
 
-.specific-projects-card a{
-    text-decoration: none;
-    color: black;
+/* Project Cards Container - Modified for synchronized division */
+.specific-projects-card {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 40px 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+    overflow: hidden;
 }
 
+/* Individual Project Card */
 .specific-projects-card-item {
     display: flex;
     flex-direction: column;
-    align-items: center; 
-    justify-content: center; 
-    text-align: center;
-    padding: 20px;
+    align-items: center;
+    padding: 25px;
     border-radius: 15px;
     border: 3px solid rgba(255, 255, 255, 0.50);
     background: rgba(212, 212, 212, 0.10);
     backdrop-filter: blur(17.5px);
     filter: drop-shadow(0px 4px 96.3px rgba(0, 0, 0, 0.25));
+    transition: all 0.3s ease;
+    height: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    width: 100%;
 }
 
+.specific-projects-card-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Project Image */
 .specific-projects-card-item img {
-    margin: 0 auto; 
-    height: 300px; 
-    width: auto; 
-    object-fit: cover; 
-    border-radius: 20px; 
-    display: block; 
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.specific-projects-card-item h4{
-    padding-top: 25px;
-    font-size: 30px;
-    margin-top: 20px;
-    color: var(--Gray-700, #344054);
+/* Project Title */
+.specific-projects-card-item h4 {
+    width: 100%;
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: #344054;
+    margin: 0 0 15px 0;
+    text-align: center;
+    line-height: 1.3;
+    letter-spacing: 0.5px;
 }
 
-.specific-projects-card-item p{
-    padding-top: 10px;
-    margin-top:5px;
-    font-size: 20px;
-    font-weight: lighter;
+/* Project Description */
+.specific-projects-card-item p {
+    width: 100%;
+    font-size: 1.1rem;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #4B5563;
+    margin: 0;
+    text-align: center;
+    letter-spacing: 0.3px;
+}
+
+/* Link Styling */
+.specific-projects-card a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+/* Hover effect for project cards */
+.specific-projects-card-item:hover h4 {
+    color: #883DB9;
+    transition: color 0.3s ease;
 }

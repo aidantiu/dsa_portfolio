@@ -13,15 +13,16 @@ from flask import render_template
 
 # List of profiles
 profiles = [
+    # Project Manager
     {
         "image_path": "images/aidan.jpg",
         "name": "Aidan Tiu",
-        "student_number": "2023-0001",
+        "student_number": "20**-06***-MN-*",
         "role": "Project Manager",
         "about": "I am an aspiring DevOps engineer passionate about streamlining workflows and improving system efficiency. Outside of programming, I enjoy playing basketball and cooking. A fun fact about me is that I have a lot of birthmarks!",
-        "school": "XYZ University",
-        "degree": "Bachelor of Science in Computer Science",
-        "skills": ["Leadership", "Project Management", "Agile Development", "Full Stack Development", "Web Scraping", "DevOps", "Cloud Computing", "AWS", "Python", "Docker", "Kubernetes", "CI/CD", "Git", "Jira", "Confluence", "Linux"],  # Aidan's detailed skills
+        "school": "Polytechnic University of the Philippines - Manila",
+        "degree": "Bachelor of Science in Computer Engineering",
+        "skills": ["Python", "Cloud Computing", "AWS", "Full Stack Development", "Linux", "Web Scraping", "DevOps"],
         "socials": {
             "facebook": "https://www.facebook.com/haha.hauwieks",
             "instagram": "https://www.instagram.com/y.mnwri/",
@@ -29,12 +30,159 @@ profiles = [
             "linkedin": "https://www.linkedin.com/in/aidan-tiu-58650520b/"
         },
         "projects": [
-            {"title": "PUPGS Alumni Engagement Portal System", "description": "The PUPGS Alumni Engagement Portal System is an online platform designed to connect and engage alumni of the Polytechnic University of the Philippines Graduate School. It offers features such as alumni profiles, event updates, and networking opportunities to foster continuous interaction and collaboration within the PUPGS community.", "image_path": "../static/images/aidan_PUPGS Alumni Portal.jpg"},
-            {"title": "PUPSIS Grades and Contact Grabber", "description": "The PUPSIS Grades and Contact Grabber is a tool designed to automate the extraction of grades and contact information from the PUP Student Information System (PUPSIS). It simplifies the process of retrieving academic data and contact details for administrative and academic purposes.", "image_path": "../static/images/aidan_PUPSIS Grades and Contact Grabber.jpg"},
-            {"title": "TechnoQuatro", "description": "The BSCPE 2-4 (TechnoQuatro) website serves as an online platform for the students of the Bachelor of Science in Computer Engineering (BSCPE)2-4 . It provides important information, updates, and resources related to their academic programs and activities, fostering communication and collaboration within the TechnoQuatro community.", "image_path": "../static/images/aidan_TechnoQuatro.jpg"},
-            {"title": "Cattlery", "description": "Catllery is a delightful online gallery dedicated to celebrating the charm and personalities of my cats. It features a collection of curated images, each showcasing their playful and endearing moments, offering visitors a heartwarming and interactive experience with the cats through a visually appealing layout.", "image_path": "../static/images/aidan_Cattlery.jpg"}
-
-
+            {
+                "title": "PUPGS Alumni Engagement Portal System",
+                "description": "The PUPGS Alumni Engagement Portal System is an online platform designed to connect and engage alumni of the Polytechnic University of the Philippines Graduate School. It offers features such as alumni profiles, event updates, and networking opportunities to foster continuous interaction and collaboration within the PUPGS community.",
+                "image_path": "../static/images/aidan_PUPGS Alumni Portal.jpg",
+                "link": "https://github.com/aidantiu/pup_alumni_portal"
+            },
+            {
+                "title": "PUPSIS Grades and Contact Grabber",
+                "description": "The PUPSIS Grades and Contact Grabber is a tool designed to automate the extraction of grades and contact information from the PUP Student Information System (PUPSIS). It simplifies the process of retrieving academic data and contact details for administrative and academic purposes.",
+                "image_path": "../static/images/aidan_PUPSIS Grades and Contact Grabber.jpg",
+                "link": "https://github.com/aidantiu/PUPSIS-Grades-and-Contact-Grabber"
+            },
+            {
+                "title": "TechnoQuatro",
+                "description": "The BSCPE 2-4 (TechnoQuatro) website serves as an online platform for the students of the Bachelor of Science in Computer Engineering (BSCPE)2-4. It provides important information, updates, and resources related to their academic programs and activities, fostering communication and collaboration within the TechnoQuatro community.",
+                "image_path": "../static/images/aidan_TechnoQuatro.jpg",
+                "link": "https://github.com/aidantiu/tecnoquatro"
+            },
+            {
+                "title": "Cattlery",
+                "description": "Catllery is a delightful online gallery dedicated to celebrating the charm and personalities of my cats. It features a collection of curated images, each showcasing their playful and endearing moments, offering visitors a heartwarming and interactive experience with the cats through a visually appealing layout.",
+                "image_path": "../static/images/aidan_Cattlery.jpg",
+                "link": "https://github.com/aidantiu/catllery"
+            }
+        ]
+    },
+    # UI/UX Designers
+    {
+        "image_path": "images/earl.jpg",
+        "name": "Earl Clyde M. Bañez",
+        "student_number": "20**-01***-MN-*",
+        "role": "UI/UX Designer",
+        "about": "UI/UX Designer with expertise in creating intuitive digital experiences",
+        "school": "Polytechnic University of the Philippines - Manila",
+        "degree": "Bachelor of Science in Computer Engineering",
+        "skills": ["HTML", "CSS", "Python", "UI/UX Design", "Content Creation", "Adobe Photoshop", "Adobe InDesign", "Adobe Audition", "Adobe Premiere", "Image Editing"],
+        "socials": {
+            "facebook": "https://www.facebook.com/EarlClydeqt/",
+            "instagram": "https://www.instagram.com/earl_cly/",
+            "github": "https://github.com/EarlClydeeee",
+            "linkedin": "https://www.linkedin.com/in/earl-clyde-ba%C3%B1ez-40a494254/"
+        },
+        "projects": [
+            {
+                "title": "Under Construction",
+                "description": "Project coming soon",
+                "image_path": "../static/images/temporary_underconstruction.jpg",
+                "link": "#"
+            }
+        ]
+    },
+    {
+        "image_path": "images/railey.jpg",
+        "name": "Railey C. Guinto",
+        "student_number": "20**-01***-MN-*",
+        "role": "UI/UX Designer",
+        "about": "An aspiring UI/UX designer passionate about creating intuitive and visually engaging digital experiences. With a keen eye for detail and a creative mindset, I enjoy exploring design trends and enhancing user interactions. Outside the design realm, I love expressing creativity through cooking and immerse myself in gaming as a way to unwind and draw inspiration.",
+        "school": "Polytechnic University of the Philippines - Manila",
+        "degree": "Bachelor of Science in Computer Engineering",
+        "skills": ["Python", "UI/UX", "Image Editing", "Video Editing", "Content Creation", "Microsoft Excel", "Microsoft Powerpoint", "Canva", "Adobe Photoshop"],
+        "socials": {
+            "facebook": "https://www.facebook.com/Raiii.Guinto/",
+            "instagram": "https://www.instagram.com/raiiiraiiiraiii/",
+            "github": "https://github.com/raiiiraiiiraiii",
+            "linkedin": "https://www.linkedin.com/in/railey-guinto/"
+        },
+        "projects": [
+            {
+                "title": "TV Functions Simulator",
+                "description": '"TV Functions Simulator" is an interactive project that replicates basic TV controls, enabling users to turn on or off two TVs, switch channels, and adjust their volume seamlessly.',
+                "image_path": "../static/images/Railey_TV_function_Simulator.png",
+                "link": "https://github.com/raiiiraiiiraiii/tv_class_and_testdrivers_in_oop_way"
+            },
+            {
+                "title": "TropangGiga's UI/UX Design",
+                "description": "The group UI/UX design project portfolio is a comprehensive showcase of creativity and collaboration. It features a dynamic homepage, detailed member profiles, and a curated collection of the group's standout projects.",
+                "image_path": "../static/images/Railey_TropangGiga_UI-UX_design.png",
+                "link": "https://www.figma.com/proto/duP29FiSaxYUteIsRw2BDk/PORTFOLIO-DSA?node-id=23-3&t=4fI2uMplWSCZJhra-1"
+            }
+        ]
+    },
+    # Front-end Developers
+    {
+        "image_path": "images/roman.jpg",
+        "name": "Roman Joseph Gallardo",
+        "student_number": "20**-01***-MN-*",
+        "role": "Front-end Developer",
+        "about": "I'm an aspiring front-end developer with experience in building responsive web applications using HTML, CSS, JavaScript, and Flask. I also have an interest in graphic editing and audio production, including cover art design and mashups. I'm constantly learning and looking for ways to combine creativity with technology.",
+        "school": "Polytechnic University of the Philippines - Manila",
+        "degree": "Bachelor of Science in Computer Engineering",
+        "skills": ["HTML", "CSS", "JavaScript", "Python", "UI/UX", "Content Creation", "Image Editing", "Audio Mixing", "Mashups", "FL Studio"],
+        "socials": {
+            "facebook": "https://www.facebook.com/romanjosephgallardo/",
+            "instagram": "https://www.instagram.com/romanramonroman/",
+            "github": "https://github.com/romanjosephgallardo",
+            "linkedin": "https://www.linkedin.com/in/roman-joseph-gallardo/"
+        },
+        "projects": [
+            {
+                "title": "Under Construction",
+                "description": "Project coming soon",
+                "image_path": "../static/images/temporary_underconstruction.jpg",
+                "link": "#"
+            }
+        ]
+    },
+    {
+        "image_path": "images/denn.jpg",
+        "name": "Denn Adrian J. Capus",
+        "student_number": "2023-04328-MN-0",
+        "role": "Front-End Developer",
+        "about": "I'm Denn Adrian I'm a passionate programmer with a strong interest in logic and web design. I love creating websites with cool, innovative features and I'm always looking for ways to improve. My strong personality and motivation drive me to push my limits and explore new possibilities. In the future, I hope to combine my tech skills and creativity to inspire others as a tech YouTuber or vlogger. I'm excited to see where this journey takes me.",
+        "school": "Polytechnic University of the Philippines - Manila",
+        "degree": "Bachelor of Science in Computer Engineering",
+        "skills": ["Python", "CSS", "HTML"],
+        "socials": {
+            "facebook": "https://www.facebook.com/denn.adrian.capus/",
+            "instagram": "https://www.instagram.com/kiyetchap/",
+            "github": "https://github.com/qwakkhead",
+            "linkedin": "#"
+        },
+        "projects": [
+            {
+                "title": "Under Construction",
+                "description": "Project coming soon",
+                "image_path": "../static/images/temporary_underconstruction.jpg",
+                "link": "#"
+            }
+        ]
+    },
+    # Back-end Developers
+    {
+        "image_path": "images/arvie.jpg",
+        "name": "Arvie Lastra",
+        "student_number": "20**-04***-MN-*",
+        "role": "Back End Developer",
+        "about": "I'm an aspiring data engineer with a passion for data pipelines, cleaning, and uncovering impactful insights from big data. Beyond my love for data, I enjoy cooking, playing volleyball, and immersing myself in anime, manga, manhwa, and manhua. My curious nature fuels my constant pursuit of learning, growth, and new perspectives in both work and life.",
+        "school": "Polytechnic University of the Philippines - Manila",
+        "degree": "Bachelor of Science in Computer Engineering",
+        "skills": ["Python", "Flask", "AWS", "Back End Development", "SQL", "Pandas", "C# (basics)"],
+        "socials": {
+            "facebook": "https://www.facebook.com/arvie.gavica",
+            "instagram": "https://www.instagram.com/arvielastra/",
+            "github": "https://github.com/Arvienism",
+            "linkedin": "https://www.linkedin.com/in/arvie-lastra-748a072b9/"
+        },
+        "projects": [
+            {
+                "title": "Under Construction",
+                "description": "Project coming soon",
+                "image_path": "../static/images/temporary_underconstruction.jpg",
+                "link": "#"
+            }
         ]
     },
     {
@@ -43,9 +191,9 @@ profiles = [
         "student_number": "2023-0002",
         "role": "Back-end Developer",
         "about": "Renz is a proficient Back-end Developer with a focus on building scalable APIs and optimizing server-side performance. He has extensive experience in database management, API design, and using technologies like Node.js and Express. Renz is passionate about creating efficient and reliable back-end systems that support seamless user experiences, and he is also deeply interested in exploring data science to enhance his technical expertise.",
-        "school": "ABC Institute of Technology",
-        "degree": "Bachelor of Science in Software Engineering",
-        "skills": ["Python", "Flask", "Scikit-Learn", "Tableau", "AWS", "PostgreSQL", "Node.js", "Express", "RESTful APIs", "Server-Side Optimization", "Database Management", "Data Preprocessing", "Statistical Analysis"],  
+        "school": "Polytechnic University of the Philippines - Manila",
+        "degree": "Bachelor of Science in Computer Engineering",
+        "skills": ["Python", "Flask", "Scikit-Learn", "Tableau", "AWS", "PostgreSQL", "Node.js", "Express", "RESTful APIs", "Server-Side Optimization", "Database Management", "Data Preprocessing", "Statistical Analysis"],
         "socials": {
             "facebook": "https://www.facebook.com/renztyrone.arcilla.3",
             "instagram": "https://www.instagram.com/wash.n.rinse/",
@@ -53,108 +201,12 @@ profiles = [
             "linkedin": "https://www.linkedin.com/in/renz-tyrone-arcilla-35098a323"
         },
         "projects": [
-            {"title": "E-Commerce Platform", "description": "A robust platform for online shopping.", "image_path": "images/ecommerce_platform.jpg"},
-            {"title": "Inventory Management System", "description": "A tool for managing warehouse inventories.", "image_path": "images/inventory_management.jpg"}
-        ]
-    },
-    {
-        "image_path": "images/earl.jpg",
-        "name": "Earl Clyde Banez",
-        "student_number": "2023-0003",
-        "role": "UI/UX Designer",
-        "about": "Earl is a passionate UI/UX Designer with a keen eye for detail. He specializes in creating intuitive and visually compelling user interfaces that enhance the overall user experience. With expertise in wireframing, prototyping, and user research, Earl ensures that every design is both functional and aesthetically pleasing.",
-        "school": "National Design Institute",
-        "degree": "Bachelor of Arts in Interaction Design",
-        "skills": ["HTML", "CSS", "Python", "UI/UX Design", "Content Creation", "Adobe Photoshop", "Adobe InDesign", "Adobe Audition", "Adobe Premeire", "Image Editing", "Wireframing", "Prototyping", "Adobe XD", "Figma", "Sketch", "User Research"],  # Earl's skills
-        "socials": {
-            "facebook": "https://www.facebook.com/EarlClydeqt/",
-            "instagram": "https://www.instagram.com/earl_cly/",
-            "github": "https://github.com/EarlClydeeee",
-            "linkedin": "https://www.linkedin.com/in/"
-        },
-        "projects": [
-            {"title": "User Dashboard Redesign", "description": "Improved UI for an enterprise dashboard application.", "image_path": "images/user_dashboard_redesign.jpg"},
-            {"title": "Mobile Design System", "description": "Created a design system for mobile applications.", "image_path": "images/mobile_design_system.jpg"}
-        ]
-    },
-    {
-        "image_path": "images/denn.jpg",
-        "name": "Denn Adrian Capus",
-        "student_number": "2023-0004",
-        "role": "Front-end Developer",
-        "about": "Denn is a dedicated Front-end Developer with a passion for building responsive and accessible web interfaces. He specializes in creating seamless user experiences using HTML, CSS, JavaScript, and React. Denn is committed to ensuring that web applications are not only functional but also inclusive and user-friendly.",
-        "school": "Global Tech University",
-        "degree": "Bachelor of Science in Web Development",
-        "skills": ["HTML", "CSS", "JavaScript", "React", "Responsive Design", "Web Accessibility"],  # Denn's skills
-        "socials": {
-            "facebook": "https://facebook.com/denncapus",
-            "instagram": "https://instagram.com/denncapus",
-            "github": "https://github.com/denncapus",
-            "linkedin": "https://linkedin.com/in/denncapus"
-        },
-        "projects": [
-            {"title": "Responsive Portfolio", "description": "Built a portfolio showcasing personal projects.", "image_path": "images/responsive_portfolio.jpg"},
-            {"title": "Interactive Quiz App", "description": "Developed a quiz app with real-time scoring.", "image_path": "images/interactive_quiz_app.jpg"}
-        ]
-    },
-    {
-        "image_path": "images/roman.jpg",
-        "name": "Roman Joseph Gallardo",
-        "student_number": "2023-0005",
-        "role": "Front-end Developer",
-        "about": "I’m an aspiring front-end developer with experience in building responsive web applications using HTML, CSS, JavaScript, and Flask. I also have an interest in graphic editing and audio production, including cover art design and mashups. I’m constantly learning and looking for ways to combine creativity with technology.",
-        "school": "TechWorld Academy",
-        "degree": "Bachelor of Science in Computer Engineering",
-        "skills": ["HTML", "CSS", "JavaScript", "Python", "Vue.js", "UI/UX", "Content Creation", "Image Editing",  "Webpack", "Audio Mixing", "Mashups", "FL Studio" "Performance Optimization"],  # Roman's skills
-        "socials": {
-            "facebook": "https://www.facebook.com/romanjosephgallardo/",
-            "instagram": "https://www.instagram.com/romanramonroman/",
-            "github": "https://github.com/romanjosephgallardo",
-            "linkedin": "https://www.linkedin.com/in/roman-joseph-gallardo/"
-        },
-        "projects": [
-            {"title": "Weather App", "description": "A weather forecasting web app with live data.", "image_path": "images/weather_app.jpg"},
-            {"title": "Portfolio Website", "description": "A modern and responsive personal portfolio website.", "image_path": "images/portfolio_website.jpg"}
-        ]
-    },
-    {
-        "image_path": "images/railey.jpg",
-        "name": "Railey Guinto",
-        "student_number": "2023-0006",
-        "role": "UI/UX Designer",
-        "about": "Railey is a skilled UI/UX Designer known for creating seamless user experiences that balance both aesthetics and functionality. With expertise in UX research, wireframing, and UI design, she crafts intuitive interfaces using tools like Figma, Adobe Illustrator, and Photoshop. Railey is dedicated to designing digital experiences that are both visually appealing and user-centric.",
-        "school": "Creative Arts Academy",
-        "degree": "Bachelor of Arts in Graphic Design",
-        "skills": ["UX Research", "Wireframing", "UI Design", "Figma", "Prototyping", "Adobe Illustrator", "Photoshop"],  # Railey's skills
-        "socials": {
-            "facebook": "https://facebook.com/raileyginto",
-            "instagram": "https://instagram.com/raileyginto",
-            "github": "https://github.com/raileyginto",
-            "linkedin": "https://linkedin.com/in/raileyginto"
-        },
-        "projects": [
-            {"title": "E-Learning Platform", "description": "Designed an intuitive platform for online learning.", "image_path": "images/e_learning_platform.jpg"},
-            {"title": "Food Delivery App", "description": "Created UI mockups for a food delivery application.", "image_path": "images/food_delivery_app.jpg"}
-        ]
-    },
-    {
-        "image_path": "images/arvie.jpg",
-        "name": "Arvie Lastra",
-        "student_number": "2023-0007",
-        "role": "Back-end Developer",
-        "about": "Arvie is a skilled Back-end Developer focused on ensuring the smooth operation of server-side systems and managing databases. He specializes in API development and integrating technologies like Node.js, Express, and MongoDB. Arvie is committed to building secure, scalable back-end solutions that enhance system efficiency and user experience.",
-        "school": "TechSphere University",
-        "degree": "Bachelor of Science in Information Technology",
-        "skills": ["Database Management", "API Development", "Node.js", "Express", "MongoDB", "Authentication"],  # Arvie's skills
-        "socials": {
-            "facebook": "https://facebook.com/arvielastra",
-            "instagram": "https://instagram.com/arvielastra",
-            "github": "https://github.com/arvielastra",
-            "linkedin": "https://linkedin.com/in/arvielastra"
-        },
-        "projects": [
-            {"title": "Payment Gateway Integration", "description": "Developed a secure payment gateway system.", "image_path": "images/payment_gateway_integration.jpg"},
-            {"title": "API for Mobile App", "description": "Built APIs for a mobile app to handle user data.", "image_path": "images/api_for_mobile_app.jpg"}
+            {
+                "title": "Under Construction",
+                "description": "Project coming soon",
+                "image_path": "../static/images/temporary_underconstruction.jpg",
+                "link": "#"
+            }
         ]
     }
 ]

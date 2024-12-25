@@ -148,10 +148,10 @@ body{
 /* Enhanced Projects Heading */
 .specific-projects-wrapper h3 {
     text-align: center;
-    font-size: 3.5rem;
+    font-size: 4rem;
     font-weight: 600;
     color: #344054;
-    margin: 20px 0 10px;
+    margin: 30px 0 10px;
     padding: 20px 0;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
     position: relative;
@@ -162,9 +162,6 @@ body{
 .specific-projects-wrapper h3::after {
     content: '';
     display: block;
-    width: 150px;
-    height: 4px;
-    background: linear-gradient(90deg, #883DB9, #9643AC);
     margin: 15px auto 0;
     border-radius: 2px;
 }
@@ -178,7 +175,12 @@ body{
     max-width: 1400px;
     margin: 0 auto;
     overflow: hidden;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
 
 /* Individual Project Card */
 .specific-projects-card-item {
@@ -234,7 +236,7 @@ body{
     color: #4B5563;
     margin: 0;
     text-align: center;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.1px;
 }
 
 /* Link Styling */

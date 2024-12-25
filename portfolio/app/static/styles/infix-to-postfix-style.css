@@ -139,6 +139,27 @@ input[type="text"]::placeholder {
     font-size: 1.2rem;
 }
 
+.btn-text {
+    margin-left: 5px;
+    transition: opacity 0.3s ease;
+}
+
+.split-container.active .btn-text {
+    display: none;
+}
+
+.split-container.active .go-button,
+.split-container.active .clear-button {
+    padding: 10px;
+    min-width: 50px;
+}
+
+.split-container.active .go-button i,
+.split-container.active .clear-button i {
+    margin: 0;
+}
+
+
 /* Toggle Button */
 .toggle-button {
     margin-left: 5px;

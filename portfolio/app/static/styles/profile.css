@@ -210,7 +210,7 @@ body{
     content: '';
     position: fixed;
     bottom: 20px;
-    left: var(--preview-position-x, 1%);
+    left: var(--preview-position-x, 1.25%);
     width: 300px;
     height: 200px;
     background-image: var(--preview-url);

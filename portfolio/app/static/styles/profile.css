@@ -198,11 +198,46 @@ body{
     max-width: 400px;
     margin: 0 auto;
     width: 100%;
+    position: relative;
 }
 
 .specific-projects-card-item:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.specific-projects-card-item:hover::before {
+    content: '';
+    position: fixed;
+    bottom: 20px;
+    left: var(--preview-position-x, 1%);
+    width: 300px;
+    height: 200px;
+    background-image: var(--preview-url);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 15px;
+    border: 3px solid rgba(255, 255, 255, 0.50);
+    background-color: rgba(255, 255, 255, 0.781);
+    backdrop-filter: blur(17.5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(-50%);
+    animation: previewFadeIn 0.3s ease forwards;
+}
+
+@keyframes previewFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Project Image */
@@ -253,3 +288,5 @@ body{
     color: #883DB9;
     transition: color 0.3s ease;
 }
+
+/* Previewing Project Images in the webpage */

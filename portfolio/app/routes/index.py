@@ -149,7 +149,7 @@ profiles = [
             "facebook": "https://www.facebook.com/denn.adrian.capus/",
             "instagram": "https://www.instagram.com/kiyetchap/",
             "github": "https://github.com/qwakkhead",
-            "linkedin": "#"
+            "linkedin": "https://www.linkedin.com/in/denn-adrian-capus-4b8787342/?fbclid=IwY2xjawHY9O9leHRuA2FlbQIxMAABHcpcPNj8clyzbJU1vyNxx1RpzpMCCs2FOAuKLFgWix3cRZRzAZI1IyYe4A_aem_jd-usJfUncUVgoYEp9QWEg"
         },
         "projects": [
             {

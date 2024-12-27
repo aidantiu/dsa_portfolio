@@ -66,11 +66,11 @@
                                    value="{{ input if input else '' }}">
                             <button id="goBox" type="submit" class="go-button">
                                 <i class="fas fa-check"></i>
-                                Convert
+                                <span class="btn-text">Convert</span>
                             </button>
                             <button type="button" id="clearBox" class="clear-button" onclick="clearAll()">
                                 <i class="fas fa-undo fa-lg"></i>
-                                Reset
+                                <span class="btn-text">Reset</span>
                             </button>
                             <button type="button" id="toggleBox" class="toggle-button" onclick="toggleView()">
                                 <i class="fas fa-eye"></i>
@@ -124,18 +124,6 @@
                             {% endif %}
                         </div>
                     </div>
-                    <!-- ...existing code... -->
-                    
-                    <style>
-                        .step {
-                            display: flex;
-                            justify-content: space-between;
-                        }
-                        .step-column {
-                            flex: 1;
-                            margin-right: 10px;
-                        }
-                    </style>
                 </div>
             </form>
         </div>

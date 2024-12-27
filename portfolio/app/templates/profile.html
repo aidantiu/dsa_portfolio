@@ -97,7 +97,7 @@
 
                         {% for project in profile.projects %}
                         <a href="{{ project.link }}" target="_blank">
-                            <div class="specific-projects-card-item">
+                            <div class="specific-projects-card-item" data-preview="{{ project.image_path }}">
                                 <img src="{{ project.image_path }}" alt="{{ project.title }} image">
                                 <h4>{{ project.title }}</h4>
                                 <p>{{ project.description }}</p>
@@ -114,4 +114,7 @@
 
     <!-- global script -->
     <script src="{{ url_for('static', filename='scripts/global.js') }}"></script>
+
+    <!-- Profile Script -->
+    <script src="{{ url_for('static', filename='scripts/profile.js') }}"></script>
 </html>

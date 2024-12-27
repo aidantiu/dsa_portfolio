@@ -148,10 +148,10 @@ body{
 /* Enhanced Projects Heading */
 .specific-projects-wrapper h3 {
     text-align: center;
-    font-size: 3.5rem;
+    font-size: 4rem;
     font-weight: 600;
     color: #344054;
-    margin: 20px 0 10px;
+    margin: 30px 0 10px;
     padding: 20px 0;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
     position: relative;
@@ -162,9 +162,6 @@ body{
 .specific-projects-wrapper h3::after {
     content: '';
     display: block;
-    width: 150px;
-    height: 4px;
-    background: linear-gradient(90deg, #883DB9, #9643AC);
     margin: 15px auto 0;
     border-radius: 2px;
 }
@@ -178,7 +175,12 @@ body{
     max-width: 1400px;
     margin: 0 auto;
     overflow: hidden;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
 
 /* Individual Project Card */
 .specific-projects-card-item {
@@ -196,11 +198,46 @@ body{
     max-width: 400px;
     margin: 0 auto;
     width: 100%;
+    position: relative;
 }
 
 .specific-projects-card-item:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.specific-projects-card-item:hover::before {
+    content: '';
+    position: fixed;
+    bottom: 20px;
+    left: var(--preview-position-x, 1.25%);
+    width: 300px;
+    height: 200px;
+    background-image: var(--preview-url);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 15px;
+    border: 3px solid rgba(255, 255, 255, 0.50);
+    background-color: rgba(255, 255, 255, 0.781);
+    backdrop-filter: blur(17.5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(-50%);
+    animation: previewFadeIn 0.3s ease forwards;
+}
+
+@keyframes previewFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Project Image */
@@ -234,7 +271,7 @@ body{
     color: #4B5563;
     margin: 0;
     text-align: center;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.1px;
 }
 
 /* Link Styling */
@@ -251,3 +288,5 @@ body{
     color: #883DB9;
     transition: color 0.3s ease;
 }
+
+/* Previewing Project Images in the webpage */

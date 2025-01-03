@@ -488,6 +488,24 @@ input[type="text"]::placeholder {
     text-align: center;
 }
 
+.end-node {
+    background: none;
+    border: none;
+    box-shadow: none;
+    color: #6b00a1;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 13px;
+    margin: 10px 10px 10px 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+
+
+
 /* *Responsive Design* */
 /* Large devices (992px and below) */
 @media screen and (max-width: 992px) {

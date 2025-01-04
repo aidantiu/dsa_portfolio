@@ -9,18 +9,16 @@
     <h1>Binary Tree Operations</h1>
     <!-- Form to interact with the binary tree -->
     <form method="POST" id="tree-form">
-        <!-- Input for parent value -->
-        <label for="parent_value">Parent Value:</label>
-        <input type="text" id="parent_value" name="parent_value">
-        <br>
-        <!-- Input for child value -->
-        <label for="child_value">Child Value:</label>
-        <input type="text" id="child_value" name="child_value">
+        <!-- Input field -->
+        <label for="input_field">Input Field:</label>
+        <input type="text" id="input_field" name="input_field">
         <br>
         <!-- Buttons for different actions -->
         <button type="submit" name="action" value="add_left">Add Left Child</button>
         <button type="submit" name="action" value="add_right">Add Right Child</button>
-        <button type="submit" name="action" value="search">Search Node</button>
+        <button type="submit" name="action" value="preorder_search">Search Node (Preorder)</button>
+        <button type="submit" name="action" value="inorder_search">Search Node (Inorder)</button>
+        <button type="submit" name="action" value="postorder_search">Search Node (Postorder)</button>
         <button type="submit" name="action" value="delete">Delete Node</button>
     </form>
 
@@ -31,7 +29,7 @@
         {% endif %}
     </div>
 
-    <!-- Display the current preorder traversal of the tree -->
+    <!-- Display the current preorder traversal of the tree (to be deleted, used by back-end for verification of functionalities) -->
     <h2>Preorder Traversal:</h2>
     <p id="output">{{ traversal }}</p>
 </body>

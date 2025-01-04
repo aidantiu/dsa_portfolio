@@ -31,7 +31,7 @@ class BinaryTree(object):
         Perform a preorder traversal (Root -> Left -> Right).
         """
         if start:
-            traversal += str(start.value) + "-"  # Visit the root node
+            traversal += str(start.value)  # Visit the root node
             traversal = self.preorder_print(start.left, traversal)  # Traverse left subtree
             traversal = self.preorder_print(start.right, traversal)  # Traverse right subtree
         return traversal
@@ -169,7 +169,7 @@ class BinaryTree(object):
 # Create a BinaryTree instance with root node "root"
 tree = BinaryTree("root")
 
-@app.route('/binary_tree', methods=['GET', 'POST'])
+@app.route('/binary-tree', methods=['GET', 'POST'])
 def binary_tree():
     """
     Handle GET and POST requests for the binary tree page.

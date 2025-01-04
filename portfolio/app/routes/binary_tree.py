@@ -20,6 +20,10 @@ class BinaryTree(object):
         """
         if traversal_type == "preorder":
             return self.preorder_print(self.root, "")
+        elif traversal_type == "inorder":
+            return self.inorder_print(self.root, "")
+        elif traversal_type == "postorder":
+            return self.postorder_print(self.root, "")
         return False
 
     def preorder_print(self, start, traversal):
@@ -30,6 +34,26 @@ class BinaryTree(object):
             traversal += str(start.value) + "-"  # Visit the root node
             traversal = self.preorder_print(start.left, traversal)  # Traverse left subtree
             traversal = self.preorder_print(start.right, traversal)  # Traverse right subtree
+        return traversal
+    
+    def inorder_print(self, start, traversal):
+        """
+        Perform a inorder traversal (Root -> Left -> Right).
+        """
+        if start:
+            traversal = self.inorder_print(start.left, traversal)  # Traverse left subtree
+            traversal += str(start.value) + "-"  # Visit the root node
+            traversal = self.inorder_print(start.right, traversal)  # Traverse right subtree
+        return traversal
+    
+    def postorder_print(self, start, traversal):
+        """
+        Perform a postorder traversal (Root -> Left -> Right).
+        """
+        if start:
+            traversal = self.postorder_print(start.left, traversal)  # Traverse left subtree
+            traversal = self.postorder_print(start.right, traversal)  # Traverse right subtree
+            traversal += str(start.value) + "-"  # Visit the root node
         return traversal
     
 
@@ -153,62 +177,65 @@ def binary_tree():
     """
     message = ""
     traversal = tree.print_tree("preorder")  # Get the current preorder traversal
+    parent_value = None #Initializes a variable which will hold the value of the parent node (front end will refer to this variable to store the node clicked by the user)
 
     if request.method == 'POST':
         # Retrieve action and form inputs
         action = request.form.get('action')
-        parent_value = request.form.get('parent_value')
-        child_value = request.form.get('child_value')
+        input_field = request.form.get('input_field')
 
         # Perform the requested action
         if action == 'add_left':
-            if not parent_value.strip():  # Check if parent_value is empty or contains only whitespace
-                message = "Please enter a value in the Parent Node field."
+            if parent_value.left:
+                message = f"Left child of '{parent_value}' already exists!"
             else:
-                parent_node = tree.find_node(tree.root, parent_value)
-                if not parent_node:
-                    message = f"Parent node '{parent_value}' does not exist!"
-                elif parent_node.left:
-                    message = f"Left child of '{parent_value}' already exists!"
+                if not input_field.strip():
+                    message = "Please enter a value in the Input Field."
                 else:
-                    if not child_value.strip():
-                        message = "Please enter a value in the Child Node field."
-                    else:
-                        tree.add_left_child(parent_value, child_value)
-                        message = f"'{child_value}' added as left child of '{parent_value}'."
+                    tree.add_left_child(parent_value, input_field)
+                    message = f"'{input_field}' added as left child of '{parent_value}'."
 
-        elif action == 'add_right':
-            if not parent_value.strip():  # Check if parent_value is empty or contains only whitespace
-                message = "Please enter a value in the Parent Node field."
+        elif action == 'add_right': 
+            if parent_value.right:
+                message = f"Right child of '{parent_value}' already exists!"
             else:
-                parent_node = tree.find_node(tree.root, parent_value)
-                if not parent_node:
-                    message = f"Parent node '{parent_value}' does not exist!"
-                elif parent_node.right:
-                    message = f"Right child of '{parent_value}' already exists!"
+                if not input_field.strip():
+                    message = "Please enter a value in the Input Field."
                 else:
-                    if not child_value.strip():
-                        message = "Please enter a value in the Child Node field."
-                    else:
-                        tree.add_right_child(parent_value, child_value)
-                        message = f"'{child_value}' added as right child of '{parent_value}'."
+                    tree.add_right_child(parent_value, input_field)
+                    message = f"'{input_field}' added as right child of '{parent_value}'."
 
-        elif action == 'search':
-            if not parent_value:
-                message = "Enter a value in the 'Parent Value' to search."
+        elif action == 'preorder_search':
+            if not input_field:
+                message = "Enter a value in the Input Field to search."
             else:
-                node = tree.find_node(tree.root, parent_value)
-                message = f"Node {parent_value} found!" if node else f"Node {parent_value} not found!"
+                traversal = tree.print_tree("preorder")
+                message = f"Node {input_field} {'found' if input_field in traversal else 'not found'} in preorder."
+
+        elif action == 'inorder_search':
+            if not input_field:
+                message = "Enter a value in the Input Field to search."
+            else:
+                traversal = tree.print_tree("inorder")
+                message = f"Node {input_field} {'found' if input_field in traversal else 'not found'} in inorder."
+
+        elif action == 'postorder_search':
+            if not input_field:
+                message = "Enter a value in the Input Field to search."
+            else:
+                traversal = tree.print_tree("postorder")
+                message = f"Node {input_field} {'found' if input_field in traversal else 'not found'} in postorder."
 
         elif action == 'delete':
-            if not parent_value.strip():
-                message = "Enter a value in the 'Parent Value' to search."
-            elif parent_value == "root":
+            if not input_field.strip():
+                message = "Enter a value in the Input Field to search."
+            elif input_field == "root":
                 message = "Invalid operation! We can't remove the root node!"
             else:
-                deleted = tree.delete_node(parent_value)
-                message = f"Node {parent_value} deleted." if deleted else f"Node {parent_value} not found!"
+                deleted = tree.delete_node(input_field)
+                message = f"Node {input_field} deleted." if deleted else f"Node {input_field} not found!"
 
+        # (To be deleted, used by back-end for verification of functionalities)
         # Update the traversal after the action
         traversal = tree.print_tree("preorder")
 

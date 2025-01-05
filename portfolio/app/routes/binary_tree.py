@@ -12,23 +12,32 @@ class Node(object):
 class BinaryTree(object):
     def __init__(self, root):
         self.root = Node(root)  # Initialize the tree with a root node
+        self.next_value = 1     # Initialize counter for incremental nodes
 
-    def print_tree(self, traversal_type):
+    def get_tree_structure(self):
         """
-        Print the tree in the specified traversal order.
-        Currently supports "preorder" traversal.
+        Returns a string representation of the tree structure
+        showing parent-child relationships
         """
-        if traversal_type == "preorder":
-            return self.preorder_print(self.root, "")
-        elif traversal_type == "inorder":
-            return self.inorder_print(self.root, "")
-        elif traversal_type == "postorder":
-            return self.postorder_print(self.root, "")
-        return False
+        return self._get_structure(self.root, "", 0)
+
+    def _get_structure(self, node, structure, level):
+        """
+        Helper method to recursively build tree structure string
+        with proper indentation for visualization
+        """
+        if node:
+            # Add current node with proper indentation
+            structure += "  " * level + str(node.value) + "\n"
+            # Recursively add left and right subtrees
+            structure = self._get_structure(node.left, structure, level + 1)
+            structure = self._get_structure(node.right, structure, level + 1)
+        return structure
 
     def preorder_print(self, start, traversal):
         """
         Perform a preorder traversal (Root -> Left -> Right).
+        Used for search operations only.
         """
         if start:
             traversal += str(start.value)  # Visit the root node
@@ -38,7 +47,8 @@ class BinaryTree(object):
     
     def inorder_print(self, start, traversal):
         """
-        Perform a inorder traversal (Root -> Left -> Right).
+        Perform an inorder traversal (Left -> Root -> Right).
+        Used for search operations only.
         """
         if start:
             traversal = self.inorder_print(start.left, traversal)  # Traverse left subtree
@@ -48,21 +58,21 @@ class BinaryTree(object):
     
     def postorder_print(self, start, traversal):
         """
-        Perform a postorder traversal (Root -> Left -> Right).
+        Perform a postorder traversal (Left -> Right -> Root).
+        Used for search operations only.
         """
         if start:
             traversal = self.postorder_print(start.left, traversal)  # Traverse left subtree
             traversal = self.postorder_print(start.right, traversal)  # Traverse right subtree
             traversal += str(start.value) + "-"  # Visit the root node
         return traversal
-    
 
     def find_node(self, start, value):
         """
         Find a node with the specified value in the tree.
         """
         if start:
-            if start.value == value:  # Node found
+            if str(start.value) == str(value):  # Node found (compare as strings)
                 return start
             # Search in the left and right subtrees
             left = self.find_node(start.left, value)
@@ -90,22 +100,32 @@ class BinaryTree(object):
                 return right
         return None  # Parent not found
 
-    def add_left_child(self, parent_value, child_value):
+    def add_left_child(self, parent_value, child_value=None):
         """
         Add a left child to the node with the specified parent value.
+        If no child_value is provided, use the next incremental value.
         """
         parent_node = self.find_node(self.root, parent_value)
         if parent_node:
             if not parent_node.left:  # Only add if left child does not exist
+                # Use incremental value if no specific value provided
+                if child_value is None or child_value.strip() == "":
+                    child_value = self.next_value
+                    self.next_value += 1  # Increment counter
                 parent_node.left = Node(child_value)
 
-    def add_right_child(self, parent_value, child_value):
+    def add_right_child(self, parent_value, child_value=None):
         """
         Add a right child to the node with the specified parent value.
+        If no child_value is provided, use the next incremental value.
         """
         parent_node = self.find_node(self.root, parent_value)
         if parent_node:
             if not parent_node.right:  # Only add if right child does not exist
+                # Use incremental value if no specific value provided
+                if child_value is None or child_value.strip() == "":
+                    child_value = self.next_value
+                    self.next_value += 1  # Increment counter
                 parent_node.right = Node(child_value)
 
     def delete_node(self, value):
@@ -176,70 +196,79 @@ def binary_tree():
     Allows adding children, searching for nodes, and deleting nodes.
     """
     message = ""
-    traversal = tree.print_tree("preorder")  # Get the current preorder traversal
-    parent_value = None #Initializes a variable which will hold the value of the parent node (front end will refer to this variable to store the node clicked by the user)
+    # Get the current tree structure for display instead of traversal
+    tree_structure = tree.get_tree_structure()
+    parent_value = None  # Initializes a variable which will hold the value of the parent node
 
     if request.method == 'POST':
         # Retrieve action and form inputs
         action = request.form.get('action')
-        input_field = request.form.get('input_field')
+        input_field = request.form.get('input_field', '')  # Provide empty string as default
 
         # Perform the requested action
         if action == 'add_left':
-            if parent_value.left:
-                message = f"Left child of '{parent_value}' already exists!"
+            if not input_field or not input_field.strip():
+                message = "Please select a parent node."
             else:
-                if not input_field.strip():
-                    message = "Please enter a value in the Input Field."
+                # Check if the parent node exists before trying to add a child
+                parent_node = tree.find_node(tree.root, input_field)
+                if parent_node:
+                    if parent_node.left:
+                        message = f"Left child of '{input_field}' already exists!"
+                    else:
+                        tree.add_left_child(input_field, None)  # Pass None to use incremental value
+                        message = f"Added left child to '{input_field}'."
                 else:
-                    tree.add_left_child(parent_value, input_field)
-                    message = f"'{input_field}' added as left child of '{parent_value}'."
+                    message = f"Parent node '{input_field}' not found!"
 
-        elif action == 'add_right': 
-            if parent_value.right:
-                message = f"Right child of '{parent_value}' already exists!"
+        elif action == 'add_right':
+            if not input_field or not input_field.strip():
+                message = "Please select a parent node."
             else:
-                if not input_field.strip():
-                    message = "Please enter a value in the Input Field."
+                # Check if the parent node exists before trying to add a child
+                parent_node = tree.find_node(tree.root, input_field)
+                if parent_node:
+                    if parent_node.right:
+                        message = f"Right child of '{input_field}' already exists!"
+                    else:
+                        tree.add_right_child(input_field, None)  # Pass None to use incremental value
+                        message = f"Added right child to '{input_field}'."
                 else:
-                    tree.add_right_child(parent_value, input_field)
-                    message = f"'{input_field}' added as right child of '{parent_value}'."
+                    message = f"Parent node '{input_field}' not found!"
 
+        # Search operations
         elif action == 'preorder_search':
-            if not input_field:
+            if not input_field or not input_field.strip():
                 message = "Enter a value in the Input Field to search."
             else:
-                traversal = tree.print_tree("preorder")
+                traversal = tree.preorder_print(tree.root, "")
                 message = f"Node {input_field} {'found' if input_field in traversal else 'not found'} in preorder."
 
         elif action == 'inorder_search':
-            if not input_field:
+            if not input_field or not input_field.strip():
                 message = "Enter a value in the Input Field to search."
             else:
-                traversal = tree.print_tree("inorder")
+                traversal = tree.inorder_print(tree.root, "")
                 message = f"Node {input_field} {'found' if input_field in traversal else 'not found'} in inorder."
 
         elif action == 'postorder_search':
-            if not input_field:
+            if not input_field or not input_field.strip():
                 message = "Enter a value in the Input Field to search."
             else:
-                traversal = tree.print_tree("postorder")
+                traversal = tree.postorder_print(tree.root, "")
                 message = f"Node {input_field} {'found' if input_field in traversal else 'not found'} in postorder."
 
         elif action == 'delete':
-            if not input_field.strip():
-                message = "Enter a value in the Input Field to search."
+            if not input_field or not input_field.strip():
+                message = "Enter a value in the Input Field to delete."
             elif input_field == "root":
                 message = "Invalid operation! We can't remove the root node!"
             else:
                 deleted = tree.delete_node(input_field)
                 message = f"Node {input_field} deleted." if deleted else f"Node {input_field} not found!"
 
-        # (To be deleted, used by back-end for verification of functionalities)
-        # Update the traversal after the action
-        traversal = tree.print_tree("preorder")
-
-       
+        # Update the tree structure after any modification
+        tree_structure = tree.get_tree_structure()
 
     # Render the HTML template with updated data
-    return render_template('binary_tree.html', traversal=traversal, message=message)
+    return render_template('binary_tree.html', tree_structure=tree_structure, message=message)

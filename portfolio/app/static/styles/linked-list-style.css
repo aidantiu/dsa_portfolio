@@ -56,7 +56,7 @@ main{
     right: -20px;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 0.8em;
+    font-size: 40px;
     opacity: 0;
     color: #6b00a1;
     transition: opacity 0.3s ease-in-out;
@@ -104,12 +104,12 @@ main{
     opacity: 1;
 }
 
-.close-modal {
+#closeModal {
     position: absolute;
-    top: -1px;
-    right: 18px;
+    top: 15px;
+    right: 15px;
     cursor: pointer;
-    font-size: 50px;
+    font-size: 20px;
     color: #000000;
 }
 

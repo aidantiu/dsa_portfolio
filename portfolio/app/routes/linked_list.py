@@ -133,6 +133,7 @@ def linkedlist_home():
     validation_type = session.get('validation_type', None)
     data = request.form.get('data', '').strip()
     highlighted_item = None  # New variable to track the item to highlight
+    instruction_steps = get_instruction_steps()  # Get the instruction steps for the How To Use section
 
     # Retrieve linked list data from cookies
     linked_list_data = request.cookies.get('linked_list_data')
@@ -239,6 +240,18 @@ def linkedlist_home():
         validation_message=validation_message,
         validation_type=validation_type,
         empty_list=linkedlist.head is None,
-        highlighted_item=highlighted_item, # Pass highlighted item to the template
-        title = 'Linked List'
+        highlighted_item=highlighted_item,
+        instruction_steps=instruction_steps,  # Add instruction steps for the How To Use section
+        title='Linked List'
     )
+# Dictionary to store the How To Use data
+def get_instruction_steps():
+    return [
+        "Enter your desired data in the input field.",
+        "Click the \"Add\" button and select either \"Add at Beginning\" to insert the value at the start or \"Add at End\" to append it to the list.",
+        "To remove elements, click the \"Delete\" button and choose \"Delete at Beginning\" to remove the first node or \"Delete at End\" to remove the last node.",
+        " For deleting a specific value, type the value you want to remove in the input field, then click \"Delete\" and select \"Delete a Node\".",
+        "Use the \"Search\" button to find a specific value in the list, which will highlight the matching node if found",
+        "Watch for success/error messages at the top of the box that will confirm your actions.",
+        "Follow the linked list connections through the arrow (→) indicators, with an \"X\" marking the end of the list.",
+    ]

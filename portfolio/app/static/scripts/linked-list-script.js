@@ -73,7 +73,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Detect page refresh and reset the cookie
 window.addEventListener("beforeunload", function() {
-    // Clear the cookie when page refreshes
     document.cookie = "linked_list_data=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
 });
 
@@ -83,7 +82,7 @@ document.querySelector('.linked-list-text h1').addEventListener('click', () => {
     document.querySelector('.modal-content').classList.add('active');
 });
 
-document.querySelector('.close-modal').addEventListener('click', () => {
+document.getElementById('closeModal').addEventListener('click', () => {
     document.getElementById('howToUseModal').classList.remove('active');
     document.querySelector('.modal-content').classList.remove('active');
 });

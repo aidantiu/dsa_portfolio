@@ -242,7 +242,7 @@ def Infix_to_Postfix():
     response.set_cookie('steps_data', '', expires=0)
     return response
 
-# Dictionary to store the How To Use data
+# List to store the How To Use data
 def get_instruction_steps():
     return [
         "Enter your mathematical expression in the input field using standard infix notation (e.g., \"3 + 4 * 2\").",

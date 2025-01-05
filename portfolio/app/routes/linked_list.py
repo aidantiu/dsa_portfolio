@@ -244,7 +244,8 @@ def linkedlist_home():
         instruction_steps=instruction_steps,  # Add instruction steps for the How To Use section
         title='Linked List'
     )
-# Dictionary to store the How To Use data
+
+# List to store the How To Use data
 def get_instruction_steps():
     return [
         "Enter your desired data in the input field.",

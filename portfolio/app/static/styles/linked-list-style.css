@@ -46,7 +46,6 @@ main{
 
 .linked-list-text h1:hover {
     color: #6b00a1;
-    animation: textWave 1s ease infinite;
     cursor: pointer;
 }
 

@@ -15,6 +15,7 @@ def queue_home():
     queue_type = session.get('queue_type', 'queue')  # Default to normal queue
     data = request.form.get('data', '').strip()  # Get data input from the form
     validation_string = session.get('validation_string', None)
+    instruction_steps = get_instruction_steps() 
     
     if request.method == 'POST':
         action = request.form.get('action')
@@ -120,5 +121,30 @@ def queue_home():
         queue_type=queue_type,
         validation_string=validation_string,  # Only show validation if set
         linked_list_items=linkedlist_stack.to_list(),
+        instruction_steps=instruction_steps,
         title='Queue Operations'
     )
+
+# List to store the How To Use data
+def get_instruction_steps():
+    return [
+        "Begin by entering your desired value in the input field.",
+
+        "Select the operation you would like to perform on the queue using the dropdown menu. You can switch between \n"
+        "a Simple Queue and a Double-Ended Queue by clicking the specific toggle queue button.",
+
+        "For Simple Queue, use the \"Add at Rear\" button to insert values at the back, maintaining the First-In-First-Out (FIFO) principle; \n"
+        "for Double-Ended Queue, click the \"Add Operations\" dropdown to choose between adding at front or rear.",
+
+        "Remove elements using \"Pop at Front\" in Simple Queue to delete the first element; in Double-Ended Queue, \n"
+        "use the \"Delete Operations\" dropdown to remove from either end.",
+
+        "Watch the visual feedback as purple highlights indicate active operations, and arrows show the flow direction.",
+
+        "Monitor the success/error messages at the top of the screen that confirm your actions and provide helpful feedback about queue status.",
+
+        "Observe how elements are displayed as rounded rectangles with connecting arrows, showing the relationship between items in both queue types.",
+
+        "Note that when the queue is empty, a message \"Queue is empty\" appears, and operations are performed based on the selected queue type \n"
+        "Simple Queue maintains strict FIFO, while Double-Ended Queue allows flexible operations at both ends."
+    ]

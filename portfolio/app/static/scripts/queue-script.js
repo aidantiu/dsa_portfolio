@@ -40,3 +40,21 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 });
+
+// For modal contents
+document.querySelector('.queue-conversion-text h1', '.empty p').addEventListener('click', () => {
+    document.getElementById('howToUseModal').classList.add('active');
+    document.querySelector('.modal-content').classList.add('active');
+});
+
+document.getElementById('closeModal').addEventListener('click', () => {
+    document.getElementById('howToUseModal').classList.remove('active');
+    document.querySelector('.modal-content').classList.remove('active');
+});
+
+document.querySelector('.modal-overlay').addEventListener('click', (e) => {
+    if (e.target.classList.contains('modal-overlay')) {
+        document.getElementById('howToUseModal').classList.remove('active');
+        document.querySelector('.modal-content').classList.remove('active');
+    }
+});

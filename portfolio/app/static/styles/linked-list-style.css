@@ -126,8 +126,9 @@ main{
     margin: 0 0 15px;
     font-size: 35px;
     color: #000000;
-    font-weight: lighter;
+    font-weight: bolder;
     text-align: center;
+    letter-spacing: 1px;
 }
 
 .modal-content-text {

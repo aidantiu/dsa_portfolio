@@ -227,15 +227,30 @@ def Infix_to_Postfix():
     output = request.cookies.get('output', '')
     compressed_steps = request.cookies.get('steps_data', '')
     steps = decompress_data(compressed_steps)
+    instruction_steps = get_instruction_steps()
     
     response = make_response(render_template('infix_to_postfix.html', 
                                            title="Infix To Postfix",
                                            input=input_expr,
                                            output=output,
-                                           steps=steps))
+                                           steps=steps,
+                                           instruction_steps=instruction_steps))
     
     # Clear cookies after rendering
     response.set_cookie('input_expr', '', expires=0)
     response.set_cookie('output', '', expires=0)
     response.set_cookie('steps_data', '', expires=0)
     return response
+
+# List to store the How To Use data
+def get_instruction_steps():
+    return [
+        "Enter your mathematical expression in the input field using standard infix notation (e.g., \"3 + 4 * 2\").",
+        "Click the \"Convert\" button to convert your infix expression to postfix notation.",
+        "View your converted postfix expression in the output box.",
+        "Use the toggle button with the eye symbol to show/hide the step-by-step conversion process on the right side.",
+        "View the detailed conversion steps in the table, showing each operation and stack changes.",
+        "Clear the input and output at any time using the \"Reset\" button.",
+        "For valid expressions, use: Numbers (0-9), Operators (+, -, *, /, ^) and Parentheses ( ). Spaces between numbers and operators are optional.",
+        "Watch for error messages if your input expression is invalid."
+    ]

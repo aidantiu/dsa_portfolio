@@ -6,7 +6,6 @@ function clearAll() {
 
 // Function to toggle between eye and eye-slash icons
 // Uses Font Awesome classes for smooth transition
-/* filepath: /c:/Users/flore/Jace's Coding Projects/dsa_portfolio/portfolio/app/static/scripts/infix-to-postfix.js */
 function toggleView() {
     const splitContainer = document.querySelector('.split-container');
     const icon = document.querySelector('.toggle-button i');
@@ -21,3 +20,26 @@ function toggleView() {
         icon.classList.add('fa-eye');
     }
 }
+
+// Detect page refresh and reset the cookie
+window.addEventListener("beforeunload", function() {
+    document.cookie = "linked_list_data=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+});
+
+// For modal contents
+document.querySelector('.infix-to-postfix-text h1').addEventListener('click', () => {
+    document.getElementById('howToUseModal').classList.add('active');
+    document.querySelector('.modal-content').classList.add('active');
+});
+
+document.getElementById('closeModal').addEventListener('click', () => {
+    document.getElementById('howToUseModal').classList.remove('active');
+    document.querySelector('.modal-content').classList.remove('active');
+});
+
+document.querySelector('.modal-overlay').addEventListener('click', (e) => {
+    if (e.target.classList.contains('modal-overlay')) {
+        document.getElementById('howToUseModal').classList.remove('active');
+        document.querySelector('.modal-content').classList.remove('active');
+    }
+});

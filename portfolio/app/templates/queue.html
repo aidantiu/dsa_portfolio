@@ -61,7 +61,22 @@
                     </div>
                 </div>
             </div>
-                
+        
+            <!-- "How to Use" Modal -->
+            <div class="modal-overlay" id="howToUseModal">
+                <div class="modal-content">
+                    <i class="fa-solid fa-x" id="closeModal"></i>
+                    <h2>How to Use Queue Operations Simulator?</h2>
+                    <div class="modal-content-text">
+                        <ol>
+                            {% for step in instruction_steps %}
+                                <li>{{ step }}</li>
+                            {% endfor %}
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
             <!-- Output Box -->
             <div class="output-box">
                 {% if linked_list_items %}
@@ -111,8 +126,8 @@
                                     <i class="fas fa-minus-circle"></i> Pop at Front
                                 </button>
                             {% else %}
+                            
                                 <!-- Double-Ended Queue Dropdowns -->
-
                                 <!-- Add Operations -->
                                 <div class="dropdown">
                                     <button type="button" class="dropdown-btn">

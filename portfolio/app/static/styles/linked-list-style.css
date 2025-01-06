@@ -37,6 +37,140 @@ main{
     font-weight: 400;
 }
 
+/* Linked List Text */
+.linked-list-text h1 {
+    color: #000000;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.linked-list-text h1:hover {
+    color: #6b00a1;
+    cursor: pointer;
+}
+
+.linked-list-text h1::after {
+    content: "?";
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 40px;
+    opacity: 0;
+    color: #6b00a1;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.linked-list-text h1:hover::after {
+    opacity: 1;
+}
+
+/* Modal Styling */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    z-index: 1001;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border: 2px solid #000000;
+    border-radius: 20px;
+    background: #E2B2E5;
+    backdrop-filter: blur(40px);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.modal-overlay.active {
+    display: block;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.modal-content.active {
+    display: block;
+    animation: fadeIn 0.3s ease forwards;
+}
+
+.modal-content.inactive {
+    animation: fadeOut 0.3s ease forwards;
+}
+
+#closeModal {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+    font-size: 20px;
+    color: #000000;
+}
+
+.modal-content h2 {
+    margin: 0 0 15px;
+    font-size: 35px;
+    color: #000000;
+    font-weight: bolder;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.modal-content-text {
+    font-size: 20px;
+    color: #000000;
+    font-weight: lighter;
+}
+
+.modal-content-text ol {
+    text-align: left;
+    width: fit-content;
+    margin: 0 auto;
+    padding-left: 20px;
+}
+
+.modal-content-text li {
+    padding: 5px 0;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+    to {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+}
+
+/* For Output box */
 .output-box {
     width: 80%;
     height: 450px;

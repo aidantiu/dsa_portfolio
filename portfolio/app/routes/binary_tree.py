@@ -1,5 +1,6 @@
 from app import app
 from flask import render_template, request
+from collections import deque
 
 # Define a Node class to represent each node in the binary tree
 class Node(object):
@@ -33,6 +34,29 @@ class BinaryTree(object):
             structure = self._get_structure(node.left, structure, level + 1)
             structure = self._get_structure(node.right, structure, level + 1)
         return structure
+    
+    def level_order_print(self):
+        """
+        Perform a level-order traversal (Breadth-First Search).
+        Returns the tree structure as a string in level-by-level, left-to-right order.
+        """
+        if not self.root:
+            return ""
+        
+        result = ""
+        queue = deque([self.root])  # Start with the root node in the queue
+
+        while queue:
+            node = queue.popleft()  # Dequeue the front node
+            result += str(node.value) + " "  # Add the node's value to the result string
+
+            # Enqueue the left and right children if they exist
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
+        
+        return result.strip()  # Return the string without trailing space
 
     def preorder_print(self, start, traversal):
         """
@@ -185,9 +209,17 @@ class BinaryTree(object):
             node_to_delete.value = successor.value
 
         return True  # Node successfully deleted
+    
+    def clear_tree(self):
+        """
+        Clears the entire tree by resetting the root to None.
+        """
+        self.root.left = None
+        self.root.right = None
+        self.next_value = 1  # Reset the incremental value for future nodes
 
 # Create a BinaryTree instance with root node "root"
-tree = BinaryTree("root")
+tree = BinaryTree(0)
 
 @app.route('/binary-tree', methods=['GET', 'POST'])
 def binary_tree():
@@ -203,7 +235,8 @@ def binary_tree():
     if request.method == 'POST':
         # Retrieve action and form inputs
         action = request.form.get('action')
-        input_field = request.form.get('input_field', '')  # Provide empty string as default
+       # input_field = request.form.get('input_field', 0)  # Provide empty string as default
+        input_field = str(0)
 
         # Perform the requested action
         if action == 'add_left':
@@ -261,14 +294,20 @@ def binary_tree():
         elif action == 'delete':
             if not input_field or not input_field.strip():
                 message = "Enter a value in the Input Field to delete."
-            elif input_field == "root":
+            elif input_field == "0":
                 message = "Invalid operation! We can't remove the root node!"
             else:
                 deleted = tree.delete_node(input_field)
                 message = f"Node {input_field} deleted." if deleted else f"Node {input_field} not found!"
+        
+        # Clear the tree
+        elif action == 'clear':
+            tree.clear_tree()  # Clear the entire tree
+            message = "The tree has been cleared!"
+                
 
         # Update the tree structure after any modification
-        tree_structure = tree.get_tree_structure()
+        tree_structure = tree.level_order_print()
 
     # Render the HTML template with updated data
     return render_template('binary_tree.html', tree_structure=tree_structure, message=message)

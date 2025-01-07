@@ -1,6 +1,7 @@
 import networkx as nx
 from app import app
-from flask import render_template, request
+# Added imports for handling form resubmission and session management
+from flask import render_template, request, redirect, url_for, session
 
 def create_manila_rail_graph():
     # Initialize an undirected graph
@@ -24,7 +25,8 @@ def create_manila_rail_graph():
         "R. Papa", "Abad Santos", "Blumentritt", "Tayuman", "Bambang", 
         "Doroteo Jose", "Carriedo", "Central Terminal", "United Nations", 
         "Pedro Gil", "Quirino", "Vito Cruz", "Gil Puyat", "Libertad", 
-        "EDSA", "Baclaran"
+        "EDSA", "Baclaran", "Redemptorist", "MIA", "Asia World", 
+        "Ninoy Aquino", "Dr, Santos"
     ]
     
     # Add stations as nodes with line attributes
@@ -98,44 +100,52 @@ def get_line_changes(path_with_lines):
 # Create the graph representing the Manila rail system
 G = create_manila_rail_graph()
 
+# Add secret key for session management
+app.secret_key = 'your_secret_key_here'
+
 @app.route('/graph', methods=['GET', 'POST'])
 def graph():
-    # Specify start and end stations for the route
-    start = request.form.get('start', '').strip()  # Get start input from the form
-    end = request.form.get('end', '').strip()  # Get end input from the form
-    line_changes_output = []  # Initializes the output for line changes (as a list)
-
+    # For POST request: process form submission
     if request.method == "POST":
-        # Find the shortest path and its details
-        path_with_lines, distance = find_shortest_path(G, start, end)
-    
-        if path_with_lines and distance:
-            from_to = f"Shortest path from {start} to {end}:"
-            shortest_path = f"Path: {' → '.join((station for station, _ in path_with_lines))}"
-            no_stations = f"Number of stations: {distance}"
+        # Get start and end inputs from the form
+        start = request.form.get('start', '').strip()
+        end = request.form.get('end', '').strip()
+        
+        # Store results in session to prevent form resubmission issues
+        if start and end:
+            path_with_lines, distance = find_shortest_path(G, start, end)
             
-            # Print line changes along the route
-            line_changes = get_line_changes(path_with_lines)
-            line_changes_output = line_changes  # Ensure this is a list
-        else:
-            shortest_path = f"No path found between {start} and {end}"
-
-    elif request.method == "GET":
-        # Reset all variables for GET request
-        start = ""
-        end = ""
-        from_to = ""
-        shortest_path = ""
-        no_stations = ""
-        line_changes_output = []
+            if path_with_lines and distance:
+                session['from_to'] = f"Shortest path from {start} to {end}:"
+                session['shortest_path'] = f"Path: {' → '.join((station for station, _ in path_with_lines))}"
+                session['no_stations'] = f"Number of stations: {distance}"
+                session['line_changes'] = get_line_changes(path_with_lines)
+            else:
+                session['shortest_path'] = f"No path found between {start} and {end}"
+                session['from_to'] = ""
+                session['no_stations'] = ""
+                session['line_changes'] = []
+            
+            # Redirect to prevent form resubmission on refresh
+            return redirect(url_for('graph'))
     
-    # Render a template with the output variables 
+    # For GET request or after redirect: display results and clear inputs
+    from_to = session.pop('from_to', "")
+    shortest_path = session.pop('shortest_path', "")
+    no_stations = session.pop('no_stations', "")
+    line_changes_output = session.pop('line_changes', [])
+    
+    # Clear input fields on page load/refresh
+    start = ""
+    end = ""
+    
+    # Render template with empty inputs and any stored results
     return render_template(
         'graph.html',
         from_to=from_to,
         shortest_path=shortest_path,
         no_stations=no_stations,
-        line_changes_output=line_changes_output,  # Pass as list
+        line_changes_output=line_changes_output,
         start=start,
         end=end
     )

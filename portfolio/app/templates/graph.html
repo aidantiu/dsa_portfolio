@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manila Rail System Shortest Path</title>
+</head>
+<body>
+    <h1>Manila Rail System Shortest Path Finder</h1>
+    
+    <!-- Form for inputting start and end stations 
+    NOTE: Front end can replace the input type for 'start' and 'end' stations as desired.
+    -->
+    <form method="post" action="/graph">
+        <label for="start">Start Station:</label>
+        <input type="text" id="start" name="start" value="{{ start }}" placeholder="Enter start station" required>
+        
+        <label for="end">End Station:</label>
+        <input type="text" id="end" name="end" value="{{ end }}" placeholder="Enter end station" required>
+        
+        <button type="submit">Find Path</button>
+    </form>
+
+    <!-- Output section -->
+    <div>
+        {% if from_to %}
+            <p>{{ from_to }}</p>
+        {% endif %}
+        {% if shortest_path %}
+            <p>{{ shortest_path }}</p>
+        {% endif %}
+        {% if no_stations %}
+            <p>{{ no_stations }}</p>
+        {% endif %}
+        {% if line_changes_output %}
+            <ul>
+                {% for change in line_changes_output %}
+                    <li>{{ change }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+</body>
+</html>

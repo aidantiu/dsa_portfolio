@@ -7,3 +7,4 @@ from .linked_list import *
 from .infix_to_postfix import *
 from .queue import *
 from .binary_tree import *
+from .graph import *

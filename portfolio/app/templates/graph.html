@@ -32,12 +32,9 @@
         {% if no_stations %}
             <p>{{ no_stations }}</p>
         {% endif %}
+        <!-- Simplified line changes output - displays list directly -->
         {% if line_changes_output %}
-            <ul>
-                {% for change in line_changes_output %}
-                    <li>{{ change }}</li>
-                {% endfor %}
-            </ul>
+            <p>{{ line_changes_output }}</p>
         {% endif %}
     </div>
 </body>

@@ -86,16 +86,18 @@ def find_shortest_path(G, start, end):
 
 def get_line_changes(path_with_lines):
     # Identify line changes along the path
+    # Returns a list of strings describing each line change
+    # The list format allows for flexible display options in the frontend
     changes = []
     current_line = path_with_lines[0][1]
     
     for i, (station, line) in enumerate(path_with_lines):
         if line != current_line:
+            # Format: "Change from [previous_line] to [new_line] at [station]"
             changes.append(f"Change from {current_line} to {line} at {station}")
             current_line = line
     
     return changes
-
 
 # Create the graph representing the Manila rail system
 G = create_manila_rail_graph()
@@ -116,10 +118,12 @@ def graph():
             path_with_lines, distance = find_shortest_path(G, start, end)
             
             if path_with_lines and distance:
+                # Store all path information in session
+                # line_changes is now stored as a direct list for simpler template rendering
                 session['from_to'] = f"Shortest path from {start} to {end}:"
                 session['shortest_path'] = f"Path: {' → '.join((station for station, _ in path_with_lines))}"
                 session['no_stations'] = f"Number of stations: {distance}"
-                session['line_changes'] = get_line_changes(path_with_lines)
+                session['line_changes'] = get_line_changes(path_with_lines)  # Stores list directly
             else:
                 session['shortest_path'] = f"No path found between {start} and {end}"
                 session['from_to'] = ""
@@ -130,10 +134,11 @@ def graph():
             return redirect(url_for('graph'))
     
     # For GET request or after redirect: display results and clear inputs
+    # Retrieve and clear session data
     from_to = session.pop('from_to', "")
     shortest_path = session.pop('shortest_path', "")
     no_stations = session.pop('no_stations', "")
-    line_changes_output = session.pop('line_changes', [])
+    line_changes_output = session.pop('line_changes', [])  # Returns list directly for template
     
     # Clear input fields on page load/refresh
     start = ""
@@ -145,7 +150,7 @@ def graph():
         from_to=from_to,
         shortest_path=shortest_path,
         no_stations=no_stations,
-        line_changes_output=line_changes_output,
+        line_changes_output=line_changes_output,  # Pass list directly to template
         start=start,
         end=end
     )

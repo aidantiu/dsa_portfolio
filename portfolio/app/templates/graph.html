@@ -3,39 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400&family=Mouse+Memoirs&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Link to external CSS files -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/graph-style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/global.css') }}">
+
+    <!-- Link to external Font Awesome CSS file -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='icons/favicon-black-with-border.png') }}">
     <title>Manila Rail System Shortest Path</title>
 </head>
 <body>
-    <h1>Manila Rail System Shortest Path Finder</h1>
     
-    <!-- Form for inputting start and end stations 
-    NOTE: Front end can replace the input type for 'start' and 'end' stations as desired.
-    -->
-    <form method="post" action="/graph">
-        <label for="start">Start Station:</label>
-        <input type="text" id="start" name="start" value="{{ start }}" placeholder="Enter start station" required>
-        
-        <label for="end">End Station:</label>
-        <input type="text" id="end" name="end" value="{{ end }}" placeholder="Enter end station" required>
-        
-        <button type="submit">Find Path</button>
-    </form>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <!-- Logo Team -->
+            <div class="logo-container1">
+                <a href="/" target="_blank">
+                    <img class="team-icon-logo" src="{{ url_for('static', filename='icons/team-icon.png') }}" alt="Team Icon" />
+                </a>
+            </div>
 
-    <!-- Output section -->
-    <div>
-        {% if from_to %}
-            <p>{{ from_to }}</p>
-        {% endif %}
-        {% if shortest_path %}
-            <p>{{ shortest_path }}</p>
-        {% endif %}
-        {% if no_stations %}
-            <p>{{ no_stations }}</p>
-        {% endif %}
-        <!-- Simplified line changes output - displays list directly -->
-        {% if line_changes_output %}
-            <p>{{ line_changes_output }}</p>
-        {% endif %}
-    </div>
+            <!-- Navigation Links -->
+            <div class="nav-links">
+                <ul>
+                    <li><a href="{{ url_for('index') }}">HOME</a></li>
+                    <li><a href="{{ url_for('index') }}#profile">PROFILE</a></li>
+                    <li><a href="{{ url_for('index') }}#works">WORKS</a></li>
+                </ul>
+            </div>   
+            
+            <!-- GitHub Icon -->
+            <div class="logo-container">
+                <a href="https://github.com/aidantiu/dsa_portfolio" target="_blank">
+                    <img class="repo-icon" src="{{ url_for('static', filename='icons/repo-icon.svg') }}" alt="GitHub Icon" />
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- *Main Content* -->
+    <main class="mrt-shortest-path-finder-container">
+        <div class="container">
+            <div class="header">
+                <div class="mrt-shortest-path-finder-text">
+                    <h1>Manila Rail System Shortest Path Finder</h1>
+                </div>
+            </div>
+
+            <!-- Station Inputs -->
+            <!-- Form for inputting start and end stations / NOTE: Front end can replace the input type for 'start' and 'end' stations as desired. -->
+            <section class="station-inputs">
+                <form method="post" action="/graph">
+                    <div class="station-select">
+                        <select id="start" name="start" required>
+
+                            <!-- Start Section-->
+                            <option class="start-station-text" disabled selected>
+                                <span class="station-placeholder">Starting Station:</span>
+                            </option>
+                            <!-- Opt group Lines -->
+                            <optgroup label="MRT3 Line">
+                                {% for station in mrt3_stations %}
+                                    <option value="{{ station }}" {% if start == station %}selected{% endif %}>
+                                        {{ station }}
+                                    </option>
+                                {% endfor %}
+                            </optgroup>
+                            <optgroup label="LRT2 Line">
+                                {% for station in lrt2_stations %}
+                                    <option value="{{ station }}" {% if start == station %}selected{% endif %}>
+                                        {{ station }}
+                                    </option>
+                                {% endfor %}
+                            </optgroup>
+                            <optgroup label="LRT1 Line">
+                                {% for station in lrt1_stations %}
+                                    <option value="{{ station }}" {% if start == station %}selected{% endif %}>
+                                        {{ station }}
+                                    </option>
+                                {% endfor %}
+                            </optgroup>
+                        </select>
+                        
+                        <!-- End Station -->
+                        <select id="end" name="end" required>
+                            <option class="end-station-text" disabled selected>End Station:</option>
+                            <optgroup label="MRT3 Line">
+                                {% for station in mrt3_stations %}
+                                    <option value="{{ station }}" {% if end == station %}selected{% endif %}>
+                                        {{ station }}
+                                    </option>
+                                {% endfor %}
+                            </optgroup>
+                            <optgroup label="LRT2 Line">
+                                {% for station in lrt2_stations %}
+                                    <option value="{{ station }}" {% if end == station %}selected{% endif %}>
+                                        {{ station }}
+                                    </option>
+                                {% endfor %}
+                            </optgroup>
+                            <optgroup label="LRT1 Line">
+                                {% for station in lrt1_stations %}
+                                    <option value="{{ station }}" {% if end == station %}selected{% endif %}>
+                                        {{ station }}
+                                    </option>
+                                {% endfor %}
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <!-- Button Container -->
+                    <div class="submit-button-container">
+                        <button class= "submit-button" type="submit"><span>Find Shortest Path</span></button>
+                    </div>
+                </form>
+            </section>
+            
+
+            <!-- Output section -->
+            <div class="output-section">
+                <div class="output-box">
+
+                    <!-- Shortest Path Arrows-->
+                    <div class="shortest-path">
+                        <div class="shortest-path-header">
+                            {% if from_to %}
+                                <p>{{ from_to }}</p>
+                            {% else %}
+                                <p>Shortest path shows here:</p>
+                            {% endif %}    
+                        </div>
+                        
+                        <!-- Path Container -->
+                        <div class="path-display-container">
+                            <div class="path-display">
+                                <!-- Display the shortest path -->
+                                <div class="path-display-box">
+                                {% if shortest_path %}
+                                    {% for station in shortest_path.split(' -> ') %}
+                                        <div class="station-box">{{ station }}</div>
+                                        {% if not loop.last %}
+                                            <span class="station-arrow">→</span>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="journey-title-container">
+                        <h2 class="journey-title">Journey Details:</h2>
+                    </div>
+                    
+                    <!-- Display Number of Stations -->
+                    <div class="station-count">
+                        {% if no_stations %}
+                            <p id="stationMessage">{{ no_stations }}</p>
+                        {% endif %}
+                    </div>
+
+                    <!-- Simplified line changes output - displays list directly -->
+                    <div class="line-transfers">
+                        {% if line_changes_output %}
+                        <p>{{ line_changes_output }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Graph Container -->
+        <div class="graph-container">
+            <div class="graph">
+                <div class="graph-display">
+                    <div class="graph-box">
+                        <img src="{{ url_for('static', filename='images/mrt-lrt-linear-map.svg') }}" alt="Manila Rail System Graph" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+    <!-- JS Script -->
+    <script src="{{ url_for('static', filename='js/graph-script.js') }}"></script>
 </body>
 </html>

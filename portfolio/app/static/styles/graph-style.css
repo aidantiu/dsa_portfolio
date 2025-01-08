@@ -1,0 +1,343 @@
+@import url('https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mouse+Memoirs&display=swap');
+
+body {
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    background: #E2B2E5 url(../images/BACKGROUND\(1\).png) no-repeat center center/cover;
+    color: black;
+    background-attachment: fixed;
+}
+
+* {
+    transition: all 0.3s ease-in-out;
+}
+
+/* Main Section */
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin-top: 20px;
+}
+
+.container {
+    padding: 0 0 10px;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.mrt-shortest-path-finder-container {
+    margin-top: 20px;
+}
+
+.mrt-shortest-path-finder-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    padding: 0 20px;
+    padding-bottom: 10px;
+}
+
+.mrt-shortest-path-finder-text h1 {
+    margin: auto;
+    font-size: 40px;
+    font-style: lighter;
+    font-weight: 400;
+    text-align: center;
+    width: 100%;
+}
+
+/* Station Dropdown Inputs */
+.station-select {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    width: 100%;
+    gap: 10px;
+}
+
+.station-select select {
+    /* Custom select styling */
+    padding: 10px 15px;
+    border-radius: 15px;
+    border: 2px solid #FFF;
+    background: #E2B2E5;
+    backdrop-filter: blur(2px);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 300px; /* Increased width */
+    max-width: 100%; /* Responsive width */
+    margin: 5px; /* Center alignment */
+    
+    /* Custom font styling */
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-size: 23px;
+    font-weight: lighter;
+    letter-spacing: -0.1px;
+    color: #6b00a1;
+    text-align: left;
+
+    /* Custom arrow styling */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%236b00a1' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+    padding-right: 40px;
+}
+
+.station-select optgroup {
+    font-family: 'Mouse Memoirs', sans-serif;
+    color: #6b00a1;
+    font-size: 20px;
+    background-color: rgba(255, 255, 255, 0.216);
+    letter-spacing: 0.1px;
+    font-weight: 100 !important;
+    font-style: normal;
+}
+
+.station-select option {
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-weight: lighter;
+    color: #333;
+    font-size: 16px;
+    text-align: left;
+    padding: 8px 15px;
+}
+
+.station-select option:hover {
+    color: #fff;
+}
+
+.station-select select:hover, .station-select select.active {
+    border-color: #6b00a1;
+    box-shadow: 0 0 0 2px rgba(107, 0, 161, 0.1);
+    transform: scale(1.06);
+}
+
+.station-select select:focus {
+    outline: none;
+    border-color: #6b00a1;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%236b00a1' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='18 15 12 9 6 15'%3e%3c/polyline%3e%3c/svg%3e");
+}
+
+.station-select select::-ms-expand {
+    display: none;
+}
+/* Add custom scrollbar for select dropdowns */
+.station-select select::-webkit-scrollbar {
+    width: 8px;
+}
+
+.station-select select::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.station-select select::-webkit-scrollbar-thumb {
+    background: #6b00a1;
+    border-radius: 4px;
+}
+
+/* Submit Button */
+.submit-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 7px;
+}
+
+.submit-button{
+    align-items: flex-start;
+    width: 625px;
+    gap: 10px;
+    height: 56px;
+    padding: 10px 10px 10px 10px;
+    border-radius: 20px;
+    border: 2px solid #FFF;
+    background: #DF87A5;
+    backdrop-filter: blur(2px);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.submit-button span {
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-size: 25px;
+    font-weight: lighter;
+    letter-spacing: 0;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+}
+
+/* Output Section */
+.output-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.output-box {
+    align-items: flex-start;
+    width: 1000px;
+    gap: 10px;
+    height: 250px;
+    padding: 20px;
+    border-radius: 20px;
+    border: 1px solid #FFF;
+    background: #AB8CD4;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(2px);
+}
+
+
+.shortest-path-header p{
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-size: 25px;
+    font-weight: lighter;
+    letter-spacing: 0;
+    color: #ffffff;
+    display: flex;
+    text-align: center;
+    width: 100%;
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+    letter-spacing: 0.2px;
+}
+
+/* Stations Path*/
+.path-display {
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-size: 20px;
+    font-weight: lighter;
+    color: #ffffff;
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+    letter-spacing: 0.2px;
+}
+
+/* Journey Title */
+.journey-title-container{
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+}
+.journey-title {
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-size: 25px;
+    font-weight: lighter;
+    letter-spacing: 0;
+    color: #ffffff;
+    display: flex;
+    text-align: center;
+    width: 100%;
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+    letter-spacing: 0.2px;
+}
+
+.station-count p{
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-size: 18px;
+    font-weight: lighter;
+    letter-spacing: 0;
+    color: #ffffff;
+    display: flex;
+    text-align: center;
+    width: 100%;
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+    letter-spacing: 0.2px;
+    margin-top: 8px;
+}
+
+.line-transfers{
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-size: 18px;
+    font-weight: lighter;
+    letter-spacing: 0;
+    color: #ffffff;
+    display: flex;
+    text-align: center;
+    width: 100%;
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+    letter-spacing: 0.2px;
+    margin-top: 8px;
+}
+
+/* Graph Section */
+.graph-container {
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.graph-box{
+    width: 1000px;
+    height: 595px;
+    border: 2px solid #ffffff;
+    border-radius: 20px;
+    background: rgba(171, 163, 163, 0.25);
+    backdrop-filter: blur(0px);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin: 0 auto 5px; 
+    position: relative; 
+    overflow-y: scroll;
+    scrollbar-width: thin;
+}
+
+
+/* --- */
+/* Add responsive design */
+@media screen and (max-width: 768px) {
+    .station-select {
+        flex-direction: column;
+    }
+
+    .station-select select {
+        width: 90%;
+        max-width: 300px;
+    }
+
+    .mrt-shortest-path-finder-text h1 {
+        font-size: 32px;
+    }
+
+}
+
+@media screen and (max-width: 480px) {
+    .mrt-shortest-path-finder-text h1 {
+        font-size: 28px;
+    }
+
+    .station-select select {
+        font-size: 16px;
+    }
+}
+
+/* Tablet screens
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+}
+
+/* Large screens 
+@media screen and (min-width: 1025px) {
+} */

@@ -27,10 +27,66 @@ body{
     display: flex;
 }
 
-.binary-tree-node{
-    background-color: #D9D9D9;
-    padding: 10px;
-    border-radius: 20px;
+.tree-structure-container {
+    overflow: auto;
+    max-width: 100%;
+    padding: 20px;
+    
+}
+
+.tree-svg {
+    display: block;
+    margin: auto;
+}
+
+
+.node {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+}
+
+.node circle {
+    transition: fill 0.3s;
+}
+
+.node.selected circle {
+    fill: #e0e0e0;
+}
+
+.node:hover circle {
+    fill: #f0f0f0;
+    cursor: pointer;
+}
+
+.node.highlighted circle {
+    fill: #6b00a1;
+    color: white;
+}
+
+/* Traversal states */
+.node.highlighted circle {
+    stroke-width: px;
+    stroke: #FFD700; /* Gold for highlighted nodes */
+}
+
+.node.not-found circle {
+    fill: #FF0000; /* Red for not found */
+}
+
+
+/* Animation for color transitions */
+.node circle {
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+/* Ensure hover states work */
+.node:hover circle {
+    cursor: pointer;
+    filter: brightness(0.9);
 }
 
 .validation{
@@ -229,6 +285,18 @@ body{
 
 .binary-tree-simulator-dropdown-content .binary-tree-simulator-btn:hover {
     background: rgba(255, 255, 255, 0.7);
+}
+
+.search-input-container {
+    padding: 8px;
+}
+
+.search-input-container input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 8px;
 }
 
 

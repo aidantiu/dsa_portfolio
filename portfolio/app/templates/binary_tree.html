@@ -12,6 +12,9 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='icons/favicon-black-with-border.png') }}">
     <title>Binary Tree</title>
+
+    <!-- D3 library -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
 
@@ -55,6 +58,7 @@
 
         <!-- Form to interact with the binary tree -->
         <form method="POST" id="tree-form">
+            <input type="hidden" name="selected_node" id="selected_node" value="">
             <div class="wrapper">
                 <div class="binary-tree-simulator-buttons">
                     <!-- Add Dropdown -->
@@ -78,13 +82,16 @@
                             <i class="fas fa-search"></i> Search Node
                         </button>
                         <div id="searchDropdown" class="binary-tree-simulator-dropdown-content">
-                            <button type="submit" class="binary-tree-simulator-btn" name="action" value="preorder_search">
+                            <div class="search-input-container">
+                                <input type="text" id="search-value" placeholder="Enter node value">
+                            </div>
+                            <button type="button" class="binary-tree-simulator-btn" onclick="findNode('pre_order')">
                                 Preorder Search
                             </button>
-                            <button type="submit" class="binary-tree-simulator-btn" name="action" value="inorder_search">
+                            <button type="button" class="binary-tree-simulator-btn" onclick="findNode('in_order')">
                                 Inorder Search
                             </button>
-                            <button type="submit" class="binary-tree-simulator-btn" name="action" value="postorder_search">
+                            <button type="button" class="binary-tree-simulator-btn" onclick="findNode('post_order')">
                                 Postorder Search
                             </button>
                         </div>
@@ -112,13 +119,30 @@
            
         </form>
 
-        <!-- Display the tree structure -->
-        <div class="tree-structure-container">
-            <h3>Tree Structure:</h3>
-            <pre>{{ tree_structure }}</pre>
-        </div>
-
-
+     <!-- Display Binary Tree -->
+     <div class="tree-structure-container">
+        <svg class="tree-svg"
+             width="{{ tree_structure.width }}"
+             height="{{ tree_structure.height }}"
+             viewBox="0 0 {{ tree_structure.width }} {{ tree_structure.height }}">
+            <!-- Draw edges with curves -->
+            {% for edge in tree_structure.edges %}
+                <path 
+                d="M {{ edge.from.x }},{{ edge.from.y }} L {{ edge.to.x }},{{ edge.to.y }}"
+                stroke="#6b00a1" 
+                stroke-width="2"
+                fill="none"/>
+            {% endfor %}
+            
+            <!-- Draw nodes -->
+            {% for node in tree_structure.nodes %}
+                <g class="node" id="node-{{ node.id }}" transform="translate({{ node.x }}, {{ node.y }})" onclick="selectNode('{{ node.id }}')">
+                    <circle r="20" fill="#D9D9D9" stroke="#6b00a1"></circle>
+                    <text x="0" y="0" text-anchor="middle" dominant-baseline="middle" fill="#000000">{{ node.id }}</text>
+                </g>
+            {% endfor %}
+        </svg>
+    </div>
 
     </main>
 

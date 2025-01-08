@@ -3,6 +3,27 @@ from app import app
 # Added imports for handling form resubmission and session management
 from flask import render_template, request, redirect, url_for, session
 
+# Global variables for station lists
+MRT3_STATIONS = [
+    "North Avenue", "Quezon Avenue", "GMA Kamuning", "Cubao", 
+    "Santolan-Annapolis", "Ortigas", "Shaw Boulevard", "Boni", 
+    "Guadalupe", "Buendia", "Ayala", "Magallanes", "Taft Avenue"
+]
+
+LRT2_STATIONS = [
+    "Recto", "Legarda", "Pureza", "V. Mapa", "J. Ruiz", "Gilmore", 
+    "Betty Go-Belmonte", "Araneta Center-Cubao", "Anonas", "Katipunan", 
+    "Santolan", "Marikina-Pasig", "Antipolo"
+]
+
+LRT1_STATIONS = [
+    "Roosevelt", "Balintawak", "Yamaha Monumento", "5th Avenue", 
+    "R. Papa", "Abad Santos", "Blumentritt", "Tayuman", "Bambang", 
+    "Doroteo Jose", "Carriedo", "Central Terminal", "United Nations", 
+    "Pedro Gil", "Quirino", "Vito Cruz", "Gil Puyat", "Libertad", 
+    "EDSA", "Baclaran", "Redemptorist", "MIA", "Asia World", 
+    "Ninoy Aquino", "Dr. Santos"
+]
 def create_manila_rail_graph():
     # Initialize an undirected graph
     G = nx.Graph()
@@ -150,7 +171,10 @@ def graph():
         from_to=from_to,
         shortest_path=shortest_path,
         no_stations=no_stations,
-        line_changes_output=line_changes_output,  # Pass list directly to template
+        line_changes_output=line_changes_output,
         start=start,
-        end=end
+        end=end,
+        mrt3_stations=MRT3_STATIONS,
+        lrt2_stations=LRT2_STATIONS,
+        lrt1_stations=LRT1_STATIONS
     )

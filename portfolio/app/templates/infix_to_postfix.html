@@ -16,15 +16,17 @@
     <title>{{ title }}</title>
 </head>
 <body>
+    
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="nav-container">
             <!-- Logo Team -->
             <div class="logo-container1">
                 <a href="/" target="_blank">
-                    <img class="team-icon-logo" src="{{ url_for('static', filename='images/team-logo.png') }}" alt="Team Icon" />
+                    <img class="team-icon-logo" src="{{ url_for('static', filename='icons/team-icon.png') }}" alt="Team Icon" />
                 </a>
             </div>
+
             <!-- Navigation Links -->
             <div class="nav-links">
                 <ul>
@@ -33,6 +35,7 @@
                     <li><a href="{{ url_for('index') }}#works">WORKS</a></li>
                 </ul>
             </div>   
+            
             <!-- GitHub Icon -->
             <div class="logo-container">
                 <a href="https://github.com/aidantiu/dsa_portfolio" target="_blank">

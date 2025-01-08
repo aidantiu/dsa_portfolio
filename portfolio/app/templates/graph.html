@@ -65,6 +65,7 @@
                             <option class="start-station-text" disabled selected>
                                 <span class="station-placeholder">Starting Station:</span>
                             </option>
+                            <!-- Opt group Lines -->
                             <optgroup label="MRT3 Line">
                                 {% for station in mrt3_stations %}
                                     <option value="{{ station }}" {% if start == station %}selected{% endif %}>
@@ -117,31 +118,77 @@
 
                     <!-- Button Container -->
                     <div class="submit-button-container">
-                        <button type="submit">Find Shortest Path</button>
+                        <button class= "submit-button" type="submit"><span>Find Shortest Path</span></button>
                     </div>
                 </form>
             </section>
             
 
             <!-- Output section -->
-            <div>
-                {% if from_to %}
-                    <p>{{ from_to }}</p>
-                {% endif %}
-                {% if shortest_path %}
-                    <p>{{ shortest_path }}</p>
-                {% endif %}
-                {% if no_stations %}
-                    <p>{{ no_stations }}</p>
-                {% endif %}
-                <!-- Simplified line changes output - displays list directly -->
-                {% if line_changes_output %}
-                    <p>{{ line_changes_output }}</p>
-                {% endif %}
+            <div class="output-section">
+                <div class="output-box">
+
+                    <!-- Shortest Path Arrows-->
+                    <div class="shortest-path">
+                        <div class="shortest-path-header">
+                            {% if from_to %}
+                                <p>{{ from_to }}</p>
+                            {% else %}
+                                <p>Shortest path shows here:</p>
+                            {% endif %}    
+                        </div>
+                        
+                        <!-- Path Container -->
+                        <div class="path-display-container">
+                            <div class="path-display">
+                                <!-- Display the shortest path -->
+                                <div class="path-display-box">
+                                {% if shortest_path %}
+                                    {% for station in shortest_path.split(' -> ') %}
+                                        <div class="station-box">{{ station }}</div>
+                                        {% if not loop.last %}
+                                            <span class="station-arrow">→</span>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="journey-title-container">
+                        <h2 class="journey-title">Journey Details:</h2>
+                    </div>
+                    
+                    <!-- Display Number of Stations -->
+                    <div class="station-count">
+                        {% if no_stations %}
+                            <p id="stationMessage">{{ no_stations }}</p>
+                        {% endif %}
+                    </div>
+
+                    <!-- Simplified line changes output - displays list directly -->
+                    <div class="line-transfers">
+                        {% if line_changes_output %}
+                        <p>{{ line_changes_output }}</p>
+                        {% endif %}
+                    </div>
+                </div>
             </div>
         </div>
-    </main>
+    
+        <!-- Graph Container -->
+        <div class="graph-container">
+            <div class="graph">
+                <div class="graph-display">
+                    <div class="graph-box">
+                        <img src="{{ url_for('static', filename='images/mrt-lrt-linear-map.svg') }}" alt="Manila Rail System Graph" />
+                    </div>
+                </div>
+            </div>
+        </div>
 
+    </main>
     <!-- JS Script -->
     <script src="{{ url_for('static', filename='js/graph-script.js') }}"></script>
 </body>

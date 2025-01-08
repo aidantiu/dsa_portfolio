@@ -1,21 +1,26 @@
-// Dropdown for stations
-document.addEventListener('DOMContentLoaded', function() {
-    const dropdowns = document.querySelectorAll('.station-select select');
+// Hover effect for station select options
+document.querySelectorAll('.station-select option:hover').forEach(option => {
+    option.addEventListener('mouseover', function() {
+        this.style.color = '#fff';
+    });
+    option.addEventListener('mouseout', function() {
+        this.style.color = '#d62323';
+    });
+});
 
-    dropdowns.forEach(dropdown => {
-        // Add click listener to toggle active state
-        dropdown.addEventListener('click', function() {
-            // Remove active class from all dropdowns
-            dropdowns.forEach(d => d.classList.remove('active'));
-            // Add active class to clicked dropdown
-            this.classList.add('active');
+// Hover effect for station nodes
+document.addEventListener('DOMContentLoaded', () => {
+    const stationNodes = document.querySelectorAll('.station-node');
+    
+    stationNodes.forEach(node => {
+        node.addEventListener('mouseenter', () => {
+            node.style.transform = 'scale(1.05)';
+            node.style.boxShadow = '0 0 15px rgba(107, 0, 161, 0.5)';
         });
 
-        // Close dropdown when clicking outside
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('.station-select')) {
-                dropdowns.forEach(d => d.classList.remove('active'));
-            }
+        node.addEventListener('mouseleave', () => {
+            node.style.transform = 'scale(1)';
+            node.style.boxShadow = 'none';
         });
     });
 });

@@ -26,7 +26,7 @@ def create_manila_rail_graph():
         "Doroteo Jose", "Carriedo", "Central Terminal", "United Nations", 
         "Pedro Gil", "Quirino", "Vito Cruz", "Gil Puyat", "Libertad", 
         "EDSA", "Baclaran", "Redemptorist", "MIA", "Asia World", 
-        "Ninoy Aquino", "Dr, Santos"
+        "Ninoy Aquino", "Dr. Santos"
     ]
     
     # Add stations as nodes with line attributes

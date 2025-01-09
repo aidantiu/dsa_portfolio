@@ -151,19 +151,37 @@ def graph():
                 session['no_stations'] = ""
                 session['line_changes'] = []
             
+            # Set a flag to indicate that the request is a result of a POST (form submission)
+            session['form_submitted'] = True
+
             # Redirect to prevent form resubmission on refresh
-            return redirect(url_for('graph'))
-    
-    # For GET request or after redirect: display results and clear inputs
+            return redirect(url_for('graph', start=start, end=end))
+        
+    elif request.method == "GET":
+        # Check if this is a fresh GET request (not redirected after POST)
+        if not session.get('form_submitted', False):
+            # Clear session data to reset outputs
+            session.pop('from_to', None)
+            session.pop('shortest_path', None)
+            session.pop('no_stations', None)
+            session.pop('line_changes', None)
+
+            # Set start and end inputs to empty
+            start = ""
+            end = ""
+        else:
+            # Clear the flag after handling the redirected request
+            session.pop('form_submitted', None)
+
+            # Use values from the redirected GET request
+            start = request.args.get('start', '')
+            end = request.args.get('end', '')
+
     # Retrieve and clear session data
     from_to = session.pop('from_to', "")
     shortest_path = session.pop('shortest_path', "")
     no_stations = session.pop('no_stations', "")
-    line_changes_output = session.pop('line_changes', [])  # Returns list directly for template
-    
-    # Clear input fields on page load/refresh
-    start = ""
-    end = ""
+    line_changes_output = session.pop('line_changes', [])
     
     # Render template with empty inputs and any stored results
     return render_template(

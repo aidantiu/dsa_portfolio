@@ -170,7 +170,11 @@
                     <!-- Simplified line changes output - displays list directly -->
                     <div class="line-transfers">
                         {% if line_changes_output %}
-                        <p>{{ line_changes_output }}</p>
+                            <ul class="no-bullets">
+                                {% for change in line_changes_output %}
+                                    <li>{{ change }}</li>
+                                {% endfor %}
+                            </ul>
                         {% endif %}
                     </div>
                 </div>

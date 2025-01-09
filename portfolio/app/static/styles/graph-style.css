@@ -22,6 +22,11 @@ body {
     margin-top: 20px;
 }
 
+.no-bullets {
+    list-style-type: none;
+    padding-left: 0;
+}
+
 .container {
     padding: 0 0 10px;
 }

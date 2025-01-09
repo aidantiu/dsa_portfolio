@@ -89,11 +89,8 @@ def find_shortest_path(G, start, end):
         path = nx.shortest_path(G, start, end, weight='weight')
         distance = nx.shortest_path_length(G, start, end, weight='weight')
         
-        # Attach line information to each station in the path
-        path_with_lines = []
-        for station in path:
-            line = G.nodes[station]['line']
-            path_with_lines.append((station, line))
+        # Build the path with line information as a formatted string
+        path_with_lines = " → ".join([f"{station} ({G.nodes[station]['line']})" for station in path])
         
         return path_with_lines, distance
     except nx.NetworkXNoPath:
@@ -105,18 +102,21 @@ def find_shortest_path(G, start, end):
         print(f"Unexpected error: {e}")
         return None, None
 
-def get_line_changes(path_with_lines):
-    # Identify line changes along the path
-    # Returns a list of strings describing each line change
-    # The list format allows for flexible display options in the frontend
-    changes = []
-    current_line = path_with_lines[0][1]
+def get_line_changes(path_with_lines_str):
+    # Split the formatted path into stations with their line information
+    path_parts = path_with_lines_str.split(" → ")
     
-    for i, (station, line) in enumerate(path_with_lines):
-        if line != current_line:
-            # Format: "Change from [previous_line] to [new_line] at [station]"
+    changes = []
+    current_line = None
+    
+    for part in path_parts:
+        station, line = part.rsplit(" (", 1)  # Split on the last '(' to get the station and line
+        line = line.rstrip(")")  # Remove the closing ')'
+        
+        if current_line and line != current_line:
             changes.append(f"Change from {current_line} to {line} at {station}")
-            current_line = line
+        
+        current_line = line  # Update the current line
     
     return changes
 
@@ -142,7 +142,7 @@ def graph():
                 # Store all path information in session
                 # line_changes is now stored as a direct list for simpler template rendering
                 session['from_to'] = f"Shortest path from {start} to {end}:"
-                session['shortest_path'] = f"Path: {' → '.join((station for station, _ in path_with_lines))}"
+                session['shortest_path'] = path_with_lines
                 session['no_stations'] = f"Number of stations: {distance}"
                 session['line_changes'] = get_line_changes(path_with_lines)  # Stores list directly
             else:

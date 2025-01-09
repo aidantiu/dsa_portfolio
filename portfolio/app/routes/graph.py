@@ -89,11 +89,8 @@ def find_shortest_path(G, start, end):
         path = nx.shortest_path(G, start, end, weight='weight')
         distance = nx.shortest_path_length(G, start, end, weight='weight')
         
-        # Attach line information to each station in the path
-        path_with_lines = []
-        for station in path:
-            line = G.nodes[station]['line']
-            path_with_lines.append((station, line))
+        # Build the path with line information as a formatted string
+        path_with_lines = " → ".join([f"{station} ({G.nodes[station]['line']})" for station in path])
         
         return path_with_lines, distance
     except nx.NetworkXNoPath:
@@ -105,20 +102,36 @@ def find_shortest_path(G, start, end):
         print(f"Unexpected error: {e}")
         return None, None
 
-def get_line_changes(path_with_lines):
-    # Identify line changes along the path
-    # Returns a list of strings describing each line change
-    # The list format allows for flexible display options in the frontend
-    changes = []
-    current_line = path_with_lines[0][1]
+def get_line_changes(path_with_lines_str):
+    # Split the formatted path into stations with their line information
+    path_parts = path_with_lines_str.split(" → ")
     
-    for i, (station, line) in enumerate(path_with_lines):
-        if line != current_line:
-            # Format: "Change from [previous_line] to [new_line] at [station]"
+    changes = []
+    current_line = None
+    
+    for part in path_parts:
+        station, line = part.rsplit(" (", 1)  # Split on the last '(' to get the station and line
+        line = line.rstrip(")")  # Remove the closing ')'
+        
+        if current_line and line != current_line:
             changes.append(f"Change from {current_line} to {line} at {station}")
-            current_line = line
+        
+        current_line = line  # Update the current line
     
     return changes
+
+def convert_path_to_list(path_with_lines_str):
+    # Split the formatted path into stations with their line information
+    path_parts = path_with_lines_str.split(" → ")
+    
+    # Extract station names along with their respective lines as strings
+    path_list = []
+    for part in path_parts:
+        station, line = part.rsplit(" (", 1)  # Split on the last '(' to get the station and line
+        line = line.rstrip(")")  # Remove the closing ')'
+        path_list.append(f"{station} ({line})")  # Format as a string "Station (Line)"
+    
+    return path_list
 
 # Create the graph representing the Manila rail system
 G = create_manila_rail_graph()
@@ -142,28 +155,50 @@ def graph():
                 # Store all path information in session
                 # line_changes is now stored as a direct list for simpler template rendering
                 session['from_to'] = f"Shortest path from {start} to {end}:"
-                session['shortest_path'] = f"Path: {' → '.join((station for station, _ in path_with_lines))}"
+                session['shortest_path'] = path_with_lines
                 session['no_stations'] = f"Number of stations: {distance}"
                 session['line_changes'] = get_line_changes(path_with_lines)  # Stores list directly
+                session['path_list'] = convert_path_to_list(path_with_lines)
             else:
                 session['shortest_path'] = f"No path found between {start} and {end}"
                 session['from_to'] = ""
                 session['no_stations'] = ""
                 session['line_changes'] = []
+                session['path_list'] = []
             
+            # Set a flag to indicate that the request is a result of a POST (form submission)
+            session['form_submitted'] = True
+
             # Redirect to prevent form resubmission on refresh
-            return redirect(url_for('graph'))
-    
-    # For GET request or after redirect: display results and clear inputs
+            return redirect(url_for('graph', start=start, end=end))
+        
+    elif request.method == "GET":
+        # Check if this is a fresh GET request (not redirected after POST)
+        if not session.get('form_submitted', False):
+            # Clear session data to reset outputs
+            session.pop('from_to', None)
+            session.pop('shortest_path', None)
+            session.pop('no_stations', None)
+            session.pop('line_changes', None)
+            session.pop('path_list', None)
+
+            # Set start and end inputs to empty
+            start = ""
+            end = ""
+        else:
+            # Clear the flag after handling the redirected request
+            session.pop('form_submitted', None)
+
+            # Use values from the redirected GET request
+            start = request.args.get('start', '')
+            end = request.args.get('end', '')
+
     # Retrieve and clear session data
     from_to = session.pop('from_to', "")
     shortest_path = session.pop('shortest_path', "")
     no_stations = session.pop('no_stations', "")
-    line_changes_output = session.pop('line_changes', [])  # Returns list directly for template
-    
-    # Clear input fields on page load/refresh
-    start = ""
-    end = ""
+    line_changes_output = session.pop('line_changes', [])
+    path_list = session.pop('path_list', [])  # Retrieve the path list from session
     
     # Render template with empty inputs and any stored results
     return render_template(
@@ -176,5 +211,6 @@ def graph():
         end=end,
         mrt3_stations=MRT3_STATIONS,
         lrt2_stations=LRT2_STATIONS,
-        lrt1_stations=LRT1_STATIONS
+        lrt1_stations=LRT1_STATIONS,
+        path_list = path_list
     )

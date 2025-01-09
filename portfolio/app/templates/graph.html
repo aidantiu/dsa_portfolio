@@ -125,6 +125,12 @@
             
 
             <!-- Output section -->
+            <div class="no-bullets">  <!-- NOTE: Per front-end request. Simplified list output for shortest path. For reference the id per station is #station-1, #station-2,... -->
+                {% for station in path_list %}
+                    <div class="station-line" id="station-{{ loop.index }}">{{ station }}</div>
+                {% endfor %}
+            </div>
+
             <div class="output-section">
                 <div class="output-box">
 
@@ -170,7 +176,11 @@
                     <!-- Simplified line changes output - displays list directly -->
                     <div class="line-transfers">
                         {% if line_changes_output %}
-                        <p>{{ line_changes_output }}</p>
+                            <ul class="no-bullets">
+                                {% for change in line_changes_output %}
+                                    <li>{{ change }}</li>
+                                {% endfor %}
+                            </ul>
                         {% endif %}
                     </div>
                 </div>

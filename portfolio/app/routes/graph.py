@@ -120,6 +120,19 @@ def get_line_changes(path_with_lines_str):
     
     return changes
 
+def convert_path_to_list(path_with_lines_str):
+    # Split the formatted path into stations with their line information
+    path_parts = path_with_lines_str.split(" → ")
+    
+    # Extract station names along with their respective lines as strings
+    path_list = []
+    for part in path_parts:
+        station, line = part.rsplit(" (", 1)  # Split on the last '(' to get the station and line
+        line = line.rstrip(")")  # Remove the closing ')'
+        path_list.append(f"{station} ({line})")  # Format as a string "Station (Line)"
+    
+    return path_list
+
 # Create the graph representing the Manila rail system
 G = create_manila_rail_graph()
 
@@ -145,11 +158,13 @@ def graph():
                 session['shortest_path'] = path_with_lines
                 session['no_stations'] = f"Number of stations: {distance}"
                 session['line_changes'] = get_line_changes(path_with_lines)  # Stores list directly
+                session['path_list'] = convert_path_to_list(path_with_lines)
             else:
                 session['shortest_path'] = f"No path found between {start} and {end}"
                 session['from_to'] = ""
                 session['no_stations'] = ""
                 session['line_changes'] = []
+                session['path_list'] = []
             
             # Set a flag to indicate that the request is a result of a POST (form submission)
             session['form_submitted'] = True
@@ -165,6 +180,7 @@ def graph():
             session.pop('shortest_path', None)
             session.pop('no_stations', None)
             session.pop('line_changes', None)
+            session.pop('path_list', None)
 
             # Set start and end inputs to empty
             start = ""
@@ -182,6 +198,7 @@ def graph():
     shortest_path = session.pop('shortest_path', "")
     no_stations = session.pop('no_stations', "")
     line_changes_output = session.pop('line_changes', [])
+    path_list = session.pop('path_list', [])  # Retrieve the path list from session
     
     # Render template with empty inputs and any stored results
     return render_template(
@@ -194,5 +211,6 @@ def graph():
         end=end,
         mrt3_stations=MRT3_STATIONS,
         lrt2_stations=LRT2_STATIONS,
-        lrt1_stations=LRT1_STATIONS
+        lrt1_stations=LRT1_STATIONS,
+        path_list = path_list
     )

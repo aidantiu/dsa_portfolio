@@ -1,5 +1,5 @@
 from app import app
-from flask import render_template, request
+from flask import render_template, request, session, redirect, url_for
 from collections import deque
 
 # Define a Node class to represent each node in the binary tree
@@ -131,7 +131,6 @@ class BinaryTree(object):
                 return right
         return None  # Node not found
     
-
     def find_node_with_traversal(self, value: str, traversal_type: str) -> list[str]:
         """
         Find a node with the specified value using the specified traversal method.
@@ -242,8 +241,11 @@ class BinaryTree(object):
             
         return None
 
-# Create a BinaryTree instance with root node "root"
+# Create a BinaryTree instance with root node "0"
 tree = BinaryTree(0)
+
+# Add secret key for session management
+app.secret_key = 'temporary-key'  
 
 @app.route('/binary-tree', methods=['GET', 'POST'])
 def binary_tree():
@@ -252,29 +254,28 @@ def binary_tree():
     Allows adding children, searching for nodes, and deleting nodes.
     """
     message = ""
-    parent_value = None  # Initializes a variable which will hold the value of the parent node
-    path = []  # Initializes a variable which will hold the path of the search
-    found = False  # Initializes a variable which will hold the result of the search
+    path = []  # Initialize path for search results
+    found = False  # Initialize search result flag
+    
+    # Track if the current request is a redirected GET request using session
+    is_redirected_get = session.get('is_redirected_get', False)
 
     if request.method == 'POST':
-
         # Retrieve action and form inputs
         action = request.form.get('action')
         selected_node = request.form.get('selected_node')
 
-        # Perform the requested action
+        # Handle all POST actions
         if action == 'add_left':
             if not selected_node or not selected_node.strip():
                 message = "Please select a node."
             else:
-
-                # Check if the parent node exists before trying to add a child
                 parent_node = tree.find_node(tree.root, selected_node)
                 if parent_node:
                     if parent_node.left:
                         message = f"Left child of node '{selected_node}' already exists!"
                     else:
-                        tree.add_left_child(selected_node, None)  # Pass None to use incremental value
+                        tree.add_left_child(selected_node, None)
                         message = f"Added left child to node {selected_node}."
                 else:
                     message = f"Parent node '{selected_node}' not found!"
@@ -283,14 +284,12 @@ def binary_tree():
             if not selected_node or not selected_node.strip():
                 message = "Please select a node."
             else:
-
-                # Check if the parent node exists before trying to add a child
                 parent_node = tree.find_node(tree.root, selected_node)
                 if parent_node:
                     if parent_node.right:
                         message = f"Right child of node '{selected_node}' already exists!"
                     else:
-                        tree.add_right_child(selected_node, None)  # Pass None to use incremental value
+                        tree.add_right_child(selected_node, None)
                         message = f"Added right child to node '{selected_node}'."
                 else:
                     message = f"Parent node '{selected_node}' not found!"
@@ -299,15 +298,12 @@ def binary_tree():
             if not selected_node or not selected_node.strip():
                 message = "Please select a node."
             else:
-                # Check if the node exists before trying to delete it
                 node = tree.find_node(tree.root, selected_node)
                 if node:
-                    # Check if the node is the root node
                     if str(tree.root.value) == selected_node:
                         tree.clear_tree()
                         message = "The tree has been cleared!"
                     else:
-                        # Find the parent node to delete the child
                         parent_node = tree.find_parent(tree.root, selected_node)
                         if parent_node.left and str(parent_node.left.value) == selected_node:
                             parent_node.left = None
@@ -315,31 +311,49 @@ def binary_tree():
                             parent_node.right = None
                         message = f"Node '{selected_node}' has been deleted."
                 else:
-                    message = f"Node '{selected_node}' not found"  # Node not found
-        
+                    message = f"Node '{selected_node}' not found"
 
-        # Traverse the based on the selected traversal method
         elif action == 'search':
             search_value = request.form.get('search_value')
             traversal_type = request.form.get('traversal_type')
-            
             path = tree.find_node_with_traversal(search_value, traversal_type)
             found = search_value in path
             message = f"Node '{search_value}' {'found' if found else 'not found'}"
-        
-        # Clear the tree
+
         elif action == 'clear':
-            tree.clear_tree()  # Clear the entire tree
+            tree.clear_tree()
             message = "The tree has been cleared!"
 
-        
-    
-    # Update the tree structure after any modification
-    tree_structure = tree.get_tree_structure()
+        # Store message and search results in session for redirect
+        session['message'] = message
+        session['search_path'] = path
+        session['search_found'] = found
+        session['is_redirected_get'] = True
+        return redirect(url_for('binary_tree'))
 
-    # Render the HTML template with updated data
+    # Handle GET request logic
+    if not is_redirected_get:
+        # Clear the tree on fresh page load (not after POST redirect)
+        tree.clear_tree()
+        message = None
+        path = []
+        found = False
+    else:
+        # Retrieve saved message and search results from session
+        message = session.get('message')
+        path = session.get('search_path', [])
+        found = session.get('search_found', False)
+
+    # Clean up session data after processing
+    session['is_redirected_get'] = False
+    session.pop('message', None)
+    session.pop('search_path', None)
+    session.pop('search_found', None)
+
+    # Get current tree structure and render template
+    tree_structure = tree.get_tree_structure()
     return render_template('binary_tree.html',
                          tree_structure=tree_structure,
                          message=message,
-                         search_path=path if 'path' in locals() else [],
-                         search_found=found if 'found' in locals() else False)
+                         search_path=path,
+                         search_found=found)

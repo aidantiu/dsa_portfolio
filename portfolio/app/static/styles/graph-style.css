@@ -38,6 +38,7 @@ body {
     margin: 0 auto;
 }
 
+
 .mrt-shortest-path-finder-container {
     margin-top: 20px;
 }
@@ -61,6 +62,12 @@ body {
     width: 100%;
 }
 
+.station-inputs{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 /* Station Dropdown Inputs */
 .station-select {
     display: flex;
@@ -81,9 +88,7 @@ body {
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     cursor: pointer;
     transition: all 0.3s ease;
-    width: 300px; /* Increased width */
     max-width: 100%; /* Responsive width */
-    margin: 5px; /* Center alignment */
     
     /* Custom font styling */
     font-family: 'Mouse Memoirs', sans-serif;
@@ -161,14 +166,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 7px;
 }
 
 .submit-button{
     align-items: flex-start;
-    width: 625px;
+    width: fit-content;
     gap: 10px;
-    height: 56px;
     padding: 10px 10px 10px 10px;
     border-radius: 20px;
     border: 2px solid #FFF;
@@ -200,19 +203,33 @@ body {
     justify-content: center;
     align-items: center;
     margin-top: 20px;
+    height: fit-content;
 }
 
 .output-box {
+    display: flex;
+    flex-direction: column;
     align-items: flex-start;
     width: 1000px;
-    gap: 10px;
-    height: 250px;
+    gap: 20px;
+    height: fit-content;
     padding: 20px;
     border-radius: 20px;
     border: 1px solid #FFF;
     background: #AB8CD4;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     backdrop-filter: blur(2px);
+}
+
+.journey-container{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
+.journey-wrapper{
+    display: flex;
+    gap: 20px;
 }
 
 
@@ -262,14 +279,17 @@ body {
     letter-spacing: 0.2px;
 }
 
+.station-count{
+    display: flex;
+    text-wrap:nowrap;
+}
+
 .station-count p{
     font-family: 'Mouse Memoirs', sans-serif;
     font-size: 18px;
     font-weight: lighter;
     letter-spacing: 0;
     color: #ffffff;
-    display: flex;
-    text-align: center;
     width: 100%;
     text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
     letter-spacing: 0.2px;
@@ -283,8 +303,6 @@ body {
     letter-spacing: 0;
     color: #ffffff;
     display: flex;
-    text-align: center;
-    width: 100%;
     text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
     letter-spacing: 0.2px;
     margin-top: 8px;

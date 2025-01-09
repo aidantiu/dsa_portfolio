@@ -114,24 +114,24 @@
                                 {% endfor %}
                             </optgroup>
                         </select>
-                    </div>
 
-                    <!-- Button Container -->
-                    <div class="submit-button-container">
-                        <button class= "submit-button" type="submit"><span>Find Shortest Path</span></button>
+                         <!-- Button Container -->
+                        <div class="submit-button-container">
+                            <button class= "submit-button" type="submit" id="submit-btn"><span>Find Shortest Path</span></button>
+                        </div>
                     </div>
                 </form>
             </section>
             
 
             <!-- Output section -->
-            <div class="no-bullets">  <!-- NOTE: Per front-end request. Simplified list output for shortest path. For reference the id per station is #station-1, #station-2,... -->
+            <!-- <div class="no-bullets">  NOTE: Per front-end request. Simplified list output for shortest path. For reference the id per station is #station-1, #station-2,...
                 {% for station in path_list %}
                     <div class="station-line" id="station-{{ loop.index }}">{{ station }}</div>
                 {% endfor %}
-            </div>
+            </div> -->
 
-            <div class="output-section">
+            <div class="output-section" id="output">
                 <div class="output-box">
 
                     <!-- Shortest Path Arrows-->
@@ -162,27 +162,33 @@
                         </div>
                     </div>
 
-                    <div class="journey-title-container">
+                    <div class="journey-container">
                         <h2 class="journey-title">Journey Details:</h2>
+                        <!-- Journey Details -->
+                        <div class="journey-wrapper">
+    
+                            <!-- Display Number of Stations -->
+                            <div class="station-count">
+                                {% if no_stations %}
+                                    <p id="stationMessage">{{ no_stations }}</p>
+                                {% endif %}
+                            </div>
+        
+                            <!-- Simplified line changes output - displays list directly -->
+                            <div class="line-transfers">
+                                {% if line_changes_output %}
+                                    <ul class="no-bullets">
+                                        {% for change in line_changes_output %}
+                                            <li>{{ change }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            </div>
+    
+                        </div>
                     </div>
-                    
-                    <!-- Display Number of Stations -->
-                    <div class="station-count">
-                        {% if no_stations %}
-                            <p id="stationMessage">{{ no_stations }}</p>
-                        {% endif %}
-                    </div>
-
-                    <!-- Simplified line changes output - displays list directly -->
-                    <div class="line-transfers">
-                        {% if line_changes_output %}
-                            <ul class="no-bullets">
-                                {% for change in line_changes_output %}
-                                    <li>{{ change }}</li>
-                                {% endfor %}
-                            </ul>
-                        {% endif %}
-                    </div>
+                   
+                 
                 </div>
             </div>
         </div>
@@ -200,6 +206,10 @@
 
     </main>
     <!-- JS Script -->
-    <script src="{{ url_for('static', filename='js/graph-script.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/graph-script.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/global.js') }}"></script>
+
+
+
 </body>
 </html>

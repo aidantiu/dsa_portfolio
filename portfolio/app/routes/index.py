@@ -226,10 +226,16 @@ works = [
         "route": "infix-to-postfix"
     },
     {
-        "image_path": "images/queue.png",  # Make sure to add this image to your static/images folder
+        "image_path": "images/queue.png",  
         "title": "Queue Operations Simulator",
         "description": "Experience queue data structures in action with our Queue Operations Simulator! This interactive tool demonstrates both simple queues and double-ended queues (deques). Add and remove elements from either end, visualize the queue structure, and understand FIFO operations through a user-friendly interface.",
         "route": "queue"
+    },
+    {
+        "image_path": "images/binary-tree.png",
+        "title": "Binary Tree Operations Simulator",
+        "description": "Explore the fundamental concepts of binary trees with our interactive Binary Tree Operations Simulator! This tool allows you to create, modify, and traverse binary trees in real-time. Add nodes, delete elements, and visualize different traversal methods (pre-order, in-order, post-order) through an intuitive interface.",
+        "route": "binary-tree"
     }
 ]
 

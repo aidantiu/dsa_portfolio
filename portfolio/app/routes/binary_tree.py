@@ -35,8 +35,8 @@ class BinaryTree(object):
         tree_height = get_height(self.root)
         
         # Calculate dimensions with exponential spacing
-                # Adjust base spacing based on tree size
-        base_node_spacing = 50# Reduces as tree grows
+        # Adjust base spacing based on tree size
+        base_node_spacing = 50 # Reduces as tree grows
         level_height = 70 # Reduces vertical spacing too
 
         nodes = []
@@ -130,6 +130,85 @@ class BinaryTree(object):
             if right:
                 return right
         return None  # Node not found
+    
+
+    def find_node_with_traversal(self, value: str, traversal_type: str) -> list[str]:
+        """
+        Find a node with the specified value using the specified traversal method.
+        Returns the path of the search.
+        """
+
+        path = []
+        found = False
+        target_value = str(value)
+
+        # Perform pre-order traversal
+        def pre_order_search(node):
+            nonlocal found 
+
+            # Stop traversal if node is None or target is found
+            if not node or found:
+                return
+
+            # Visit the current node
+            path.append(str(node.value))
+            if str(node.value) == target_value:
+                found = True
+                return
+            
+            # Visit left and right subtrees
+            pre_order_search(node.left)
+            pre_order_search(node.right)
+
+        # Perform in-order traversal
+        def in_order_search(node):
+            nonlocal found
+
+            # Stop traversal if node is None or target is found
+            if not node or found:
+                return 
+    
+             # Visit left subtree
+            in_order_search(node.left)
+            if found: 
+                return
+          
+            # Visit the current node
+            path.append(str(node.value))
+            if str(node.value) == target_value:
+                found = True
+                return
+            
+            # Visit right subtree
+            in_order_search(node.right)
+
+        # Perform post-order traversal
+        def post_order_search(node):
+            nonlocal found
+
+            # Stop traversal if node is None or target is found
+            if not node or found:
+                return
+            
+            # Visit left and right subtrees
+            post_order_search(node.left)
+            post_order_search(node.right)
+
+            # Visit the current node
+            if not found:
+                path.append(str(node.value))
+                if str(node.value) == target_value:
+                    found = True
+
+        # Perform the specified traversal method
+        if traversal_type == 'pre_order':
+            pre_order_search(self.root)
+        elif traversal_type == 'in_order':
+            in_order_search(self.root)
+        elif traversal_type == 'post_order':
+            post_order_search(self.root)
+
+        return path
 
     def clear_tree(self):
         """
@@ -174,6 +253,8 @@ def binary_tree():
     """
     message = ""
     parent_value = None  # Initializes a variable which will hold the value of the parent node
+    path = []  # Initializes a variable which will hold the path of the search
+    found = False  # Initializes a variable which will hold the result of the search
 
     if request.method == 'POST':
 
@@ -235,28 +316,30 @@ def binary_tree():
                         message = f"Node '{selected_node}' has been deleted."
                 else:
                     message = f"Node '{selected_node}' not found"  # Node not found
+        
 
+        # Traverse the based on the selected traversal method
+        elif action == 'search':
+            search_value = request.form.get('search_value')
+            traversal_type = request.form.get('traversal_type')
+            
+            path = tree.find_node_with_traversal(search_value, traversal_type)
+            found = search_value in path
+            message = f"Node '{search_value}' {'found' if found else 'not found'}"
+        
         # Clear the tree
         elif action == 'clear':
             tree.clear_tree()  # Clear the entire tree
             message = "The tree has been cleared!"
 
-        # Traverse the tree to find a node
-        elif action == 'search':
-            if not selected_node or not selected_node.strip():
-                message = "Please select a node to search."
-            else:
-
-                node = tree.find_node(tree.root, selected_node)
-                if node:
-                    message = f"Node '{selected_node}' found in the tree."
-                else:
-                    message = f"Node '{selected_node}' not found in the tree."
-                
-            
-
-        # Update the tree structure after any modification
-        tree_structure = tree.get_tree_structure()
+        
+    
+    # Update the tree structure after any modification
+    tree_structure = tree.get_tree_structure()
 
     # Render the HTML template with updated data
-    return render_template('binary_tree.html',tree_structure=tree_structure, message=message)
+    return render_template('binary_tree.html',
+                         tree_structure=tree_structure,
+                         message=message,
+                         search_path=path if 'path' in locals() else [],
+                         search_found=found if 'found' in locals() else False)

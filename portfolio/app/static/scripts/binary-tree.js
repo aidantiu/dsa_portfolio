@@ -12,6 +12,17 @@ function toggleDropdown(dropdownId) {
     });
 }
 
+// Hide validation box after a delay after it shows
+document.addEventListener('DOMContentLoaded', function() {
+    const validationBox = document.getElementById('validation-box');
+    if (validationBox) {
+        setTimeout(() => {
+            validationBox.style.display = 'none';
+        }, 5000);
+    }
+});
+
+
 // Close dropdowns when clicking outside
 window.onclick = function (event) {
     const dropdowns = document.querySelectorAll('.binary-tree-simulator-dropdown-content');
@@ -85,4 +96,80 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+function setTraversalType(type) {
+    document.getElementById('traversal_type').value = type;
+    const searchValue = document.getElementById('search-value').value;
+    if (!searchValue) {
+        document.getElementById('validation-box').innerHTML = '<p>Please enter a value to search</p>';
+        event.preventDefault();
+    }
+}
 
+// Traverse the tree and highlight nodes
+document.addEventListener('DOMContentLoaded', function() {
+    const container = document.querySelector('.tree-structure-container');
+    const searchPath = JSON.parse(container.dataset.searchPath || '[]');
+    const searchFound = JSON.parse(container.dataset.searchFound || 'false');
+
+    if (searchPath.length > 0) {
+        animateSearch(searchPath, searchFound);
+    }
+});
+function animateSearch(path, found) {
+    const DELAY = 1000;
+    const CHECK_DELAY = 500;
+    const NOT_FOUND_DURATION = 1000;
+    const RESET_DELAY = 2000;
+    const totalTime = (path.length * DELAY) + (found ? 0 : NOT_FOUND_DURATION) + RESET_DELAY;
+
+    // Hide validation box at start
+    const validationBox = document.getElementById('validation-box');
+    validationBox.style.display = 'none';
+
+    // Reset all nodes to default color at start of new search
+    document.querySelectorAll('.node circle').forEach(circle => {
+        circle.setAttribute('fill', '#D9D9D9');
+    });
+
+    // Animate each node in the path
+    path.forEach((nodeId, index) => {
+        setTimeout(() => {
+            const nodeCircle = document.querySelector(`#node-${nodeId} circle`);
+            if (nodeCircle) {
+                // First show blue for searching
+                nodeCircle.setAttribute('fill', '#2196F3');
+                
+                // After checking, change color based on result
+                setTimeout(() => {
+                    if (found && index === path.length - 1) {
+                        // Found node - green (permanent)
+                        nodeCircle.setAttribute('fill', '#4CAF50');
+                    } else {
+                        // Not the target node - yellow (permanent)
+                        nodeCircle.setAttribute('fill', '#FFEB3B');
+                    }
+                }, CHECK_DELAY);
+            }
+        }, index * DELAY);
+    });
+
+    // If node not found, flash red then return to yellow
+    if (!found && path.length > 0) {
+        setTimeout(() => {
+            document.querySelectorAll('.node circle').forEach(circle => {
+                circle.setAttribute('fill', '#FF0000');
+                setTimeout(() => {
+                    circle.setAttribute('fill', '#FFEB3B');
+                }, NOT_FOUND_DURATION);
+            });
+        }, (path.length) * DELAY);
+    }
+
+    // Reset all nodes to default after animation completes
+    setTimeout(() => {
+        document.querySelectorAll('.node circle').forEach(circle => {
+            circle.setAttribute('fill', '#D9D9D9');
+        });
+        validationBox.style.display = 'block';
+    }, totalTime);
+}

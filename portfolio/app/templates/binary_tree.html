@@ -76,26 +76,27 @@
                         </div>
                     </div>
 
-                    <!-- Search Dropdown -->
-                    <div class="binary-tree-simulator-dropdown">
-                        <button type="button" class="binary-tree-simulator-btn binary-tree-simulator-dropdown-btn" onclick="toggleDropdown('searchDropdown')">
-                            <i class="fas fa-search"></i> Search Node
-                        </button>
-                        <div id="searchDropdown" class="binary-tree-simulator-dropdown-content">
-                            <div class="search-input-container">
-                                <input type="text" id="search-value" placeholder="Enter node value">
-                            </div>
-                            <button type="button" class="binary-tree-simulator-btn" onclick="findNode('pre_order')">
-                                Preorder Search
-                            </button>
-                            <button type="button" class="binary-tree-simulator-btn" onclick="findNode('in_order')">
-                                Inorder Search
-                            </button>
-                            <button type="button" class="binary-tree-simulator-btn" onclick="findNode('post_order')">
-                                Postorder Search
-                            </button>
+               <!-- Search Dropdown -->
+                <div class="binary-tree-simulator-dropdown">
+                    <button type="button" class="binary-tree-simulator-btn binary-tree-simulator-dropdown-btn" onclick="toggleDropdown('searchDropdown')">
+                        <i class="fas fa-search"></i> Search Node
+                    </button>
+                    <div id="searchDropdown" class="binary-tree-simulator-dropdown-content">
+                        <div class="search-input-container">
+                            <input type="text" id="search-value" name="search_value" placeholder="Enter node value">
                         </div>
+                        <button type="submit" class="binary-tree-simulator-btn" name="action" value="search" onclick="setTraversalType('pre_order')">
+                            Preorder Search
+                        </button>
+                        <button type="submit" class="binary-tree-simulator-btn" name="action" value="search" onclick="setTraversalType('in_order')">
+                            Inorder Search
+                        </button>
+                        <button type="submit" class="binary-tree-simulator-btn" name="action" value="search" onclick="setTraversalType('post_order')">
+                            Postorder Search
+                        </button>
+                        <input type="hidden" id="traversal_type" name="traversal_type" value="">
                     </div>
+                </div>
 
                     <!-- Delete Button -->
                     <button type="submit" class="binary-tree-simulator-btn" name="action" value="delete">
@@ -109,18 +110,31 @@
 
                 </div>
 
+               
+            </div>
+
+            <div class="info-wrapper">
                 <div id="validation-box" class="validation">
                     {% if message %}
                         <p>{{ message }}</p>
                     {% endif %}
                 </div>
+
+                <div class="search-indicator">
+
+                </div>
             </div>
+
+            
 
            
         </form>
 
      <!-- Display Binary Tree -->
-     <div class="tree-structure-container">
+     <div class="tree-structure-container" 
+        data-search-path='{{ search_path|tojson|safe if search_path else "[]" }}'
+        data-search-found='{{ search_found|tojson|safe if search_found else "false" }}'>
+     
         <svg class="tree-svg"
              width="{{ tree_structure.width }}"
              height="{{ tree_structure.height }}"

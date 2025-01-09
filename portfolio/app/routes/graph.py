@@ -4,26 +4,27 @@ from app import app
 from flask import render_template, request, redirect, url_for, session
 
 # Global variables for station lists
-MRT3_STATIONS = [
+MRT3_STATIONS = sorted([
     "North Avenue", "Quezon Avenue", "GMA Kamuning", "Cubao", 
     "Santolan-Annapolis", "Ortigas", "Shaw Boulevard", "Boni", 
     "Guadalupe", "Buendia", "Ayala", "Magallanes", "Taft Avenue"
-]
+])
 
-LRT2_STATIONS = [
+LRT2_STATIONS = sorted([
     "Recto", "Legarda", "Pureza", "V. Mapa", "J. Ruiz", "Gilmore", 
     "Betty Go-Belmonte", "Araneta Center-Cubao", "Anonas", "Katipunan", 
     "Santolan", "Marikina-Pasig", "Antipolo"
-]
+])
 
-LRT1_STATIONS = [
+LRT1_STATIONS = sorted([
     "Roosevelt", "Balintawak", "Yamaha Monumento", "5th Avenue", 
     "R. Papa", "Abad Santos", "Blumentritt", "Tayuman", "Bambang", 
     "Doroteo Jose", "Carriedo", "Central Terminal", "United Nations", 
     "Pedro Gil", "Quirino", "Vito Cruz", "Gil Puyat", "Libertad", 
     "EDSA", "Baclaran", "Redemptorist", "MIA", "Asia World", 
     "Ninoy Aquino", "Dr. Santos"
-]
+])
+
 def create_manila_rail_graph():
     # Initialize an undirected graph
     G = nx.Graph()

@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Output Info Section Hidden by Default
+// Output Info Section Hidden by Default and Toggle Button
 document.addEventListener('DOMContentLoaded', function() {
     const viewOutputButton = document.getElementById('view-output-btn');
     const outputSection = document.getElementById('output');
@@ -38,5 +38,3 @@ document.addEventListener('DOMContentLoaded', function() {
         eyeIcon.classList.toggle('fa-eye-slash');
     });
 });
-
-// Toggle eye icon 

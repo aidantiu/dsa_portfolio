@@ -537,36 +537,62 @@ body {
     margin: 0 auto 5px;
     position: relative;
     max-width: 90%;
+    transform-origin: center;
+    transition: transform 0.1s ease-out;
+    cursor: zoom-in;
+    overflow: hidden;
+
+    cursor: grab;
+    overflow: hidden;
+    transition: transform 0.1s ease-out;
 }
 
-@media screen and (max-width: 1024px) {
-    .graph-box {
-        width: 90vw;
-        height: 54vw; /* Maintains aspect ratio */
-        margin: 0 auto;
-    }
+.graph-box {
+    position: relative;
+    overflow: hidden;
 }
 
-@media screen and (max-width: 768px) {
-    .graph-box {
-        width: 95vw;
-        height: 56vw;
-    }
+.graph-box img {
+    cursor: grab;
+    transition: transform 0.2s ease-out;
+    transform-origin: center;
 }
 
-@media screen and (max-width: 480px) {
-    .graph-box {
-        width: 98vw;
-        height: 58vw;
-        border-width: 2px;
-    }
+.graph-box svg:active {
+    cursor: grabbing;
 }
 
+.zoom-controls {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 1000;
+}
 
+.zoom-controls button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    background: rgba(107, 0, 161, 0.8);
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.zoom-controls button:hover {
+    background: rgba(107, 0, 161, 1);
+    transform: scale(1.1);
+}
 
 
 /* --- */
-/* Show graph only on larger screens */
+/* Show on larger screens */
 @media screen and (min-width: 1025px) {
     .graph-box {
         display: block;
@@ -685,10 +711,6 @@ body {
 @media screen and (min-width: 1025px) {
     .mrt-shortest-path-finder-text h1 {
         font-size: 36px;
-    }
-
-    .station-select {
-        gap: 30px;
     }
 
     .output-box {

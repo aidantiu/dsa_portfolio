@@ -323,7 +323,7 @@ body {
     background: linear-gradient(
         to right,
         rgba(236, 236, 236, 0.9) 0%,
-        rgba(159, 159, 159, 0.3) 100%
+        rgba(159, 159, 159, 0.2) 100%
     );
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);

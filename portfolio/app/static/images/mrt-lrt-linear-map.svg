@@ -3,14 +3,6 @@
      xmlns:xlink="http://www.w3.org/1999/xlink"
      style="font-family: 'Comic Sans MS', 'Marker Felt', 'Bradley Hand', 'Trebuchet MS', 'Arial Rounded MT Bold', system-ui, sans-serif;">
     
-    <!-- Background gradient -->
-    <!-- <defs>
-        <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#9c27b0;stop-opacity:0.2"/>
-            <stop offset="100%" style="stop-color:#006674;stop-opacity:0.2"/>
-        </linearGradient>
-    </defs> -->
-    
     <defs>
         <filter id="boxShadow" x="-50%" y="-50%" width="200%" height="200%">
             <feDropShadow dx="2" dy="4" stdDeviation="2" flood-color="rgba(0, 0, 0, 0.5)"/>
@@ -100,105 +92,104 @@
             <!-- Regular stations -->
             <g>
             
-            <!-- Roosevelt -->
-            <circle cx="430" cy="50" r="5" fill="#8D35A2" stroke="#ffffff" stroke-width="2"/>
+                <!-- Roosevelt -->
+                <circle cx="430" cy="50" r="5" fill="#8D35A2" stroke="#ffffff" stroke-width="2"/>
+                    <text x="407" y="35" font-size="12" >Roosevelt</text>
+                
+                <!-- Balintawak -->
+                <circle cx="330" cy="50" r="5" fill="#8D35A2" stroke="#ffffff" stroke-width="2"/>
+                    <text x="307" y="35" font-size="12">Balintawak</text>
+                
+                <!-- Monumento -->
+                <circle cx="200" cy="75" r="5" fill="#8D35A2" stroke="#ffffff" stroke-width="2"/>
+                    <text x="120" y="80" font-size="12">Monumento</text>
+                
+                <!-- 5th Avenue -->
+                <circle cx="200" cy="100" r="5" fill="#8D35A2" stroke="#ffffff" stroke-width="2"/>
+                    <text x="120" y="103" font-size="12">5th Avenue</text>
+                
+                <!-- R. Papa -->
+                <circle cx="200" cy="125" r="5" fill="#8D35A2" stroke="#ffffff" stroke-width="2"/>
+                    <text x="144" y="128" font-size="12">R. Papa</text>
+                
+                <!-- Abad Santos-->
+                <circle cx="200" cy="145" r="5" fill="#8D35A2" stroke="#ffffff" stroke-width="2"/>
+                    <text x="112" y="148" font-size="12">Abad Santos</text>
+                
+                <!-- Blumentritt -->
+                <circle cx="200" cy="165" r="5" fill="#8D35A2" stroke="#ffffff" stroke-width="2"/>
+                    <text x="118" y="168" font-size="12">Blumentritt</text>
+                
+                <!-- Tayuman -->
+                <circle cx="200" cy="185" r="5" fill="#8D35A2" stroke="#ffffff" stroke-width="2"/>
+                    <text x="134" y="188" font-size="12">Tayuman</text>
+                
+                <!-- Bambang -->
+                <circle cx="200" cy="205" r="5" fill="#8D35A2" stroke="#ffffff" stroke-width="2"/>
+                    <text x="134" y="207" font-size="12">Bambang</text>
+                
+                <!-- D. Jose -->
+                <!-- Line 311 for the <circle> tag -->
+                    <text x="78" y="228" font-size="12">D. Jose (Transfer)</text>
+                
+                <!-- Carriedo -->
+                <circle cx="200" cy="250" r="5" fill="#8D35A2" stroke="#ffffff" stroke-width="2"/>
+                    <text x="134" y="252" font-size="12">Carriedo</text>
 
-            <text x="407" y="35" font-size="12" >Roosevelt</text>
-            
-            <!-- Balintawak -->
-            <circle cx="330" cy="50" r="5" fill="#8D35A2" stroke="#ffffff" stroke-width="2"/>
-            <text x="307" y="35" font-size="12">Balintawak</text>
-            
-            <!-- Monumento -->
-            <circle cx="200" cy="75" r="5" fill="#8D35A2" stroke="#ffffff" stroke-width="2"/>
-            <text x="120" y="80" font-size="12">Monumento</text>
-            
-            <!-- 5th Avenue -->
-            <circle cx="200" cy="100" r="5" fill="#8D35A2" stroke="#ffffff" stroke-width="2"/>
-            <text x="120" y="103" font-size="12">5th Avenue</text>
-            
-            <!-- R. Papa -->
-            <circle cx="200" cy="125" r="5" fill="#8D35A2" stroke="#ffffff" stroke-width="2"/>
-            <text x="144" y="128" font-size="12">R. Papa</text>
-            
-            <!-- Abad Santos-->
-            <circle cx="200" cy="145" r="5" fill="#8D35A2" stroke="#ffffff" stroke-width="2"/>
-            <text x="112" y="148" font-size="12">Abad Santos</text>
-            
-            <!-- Blumentritt -->
-            <circle cx="200" cy="165" r="5" fill="#8D35A2" stroke="#ffffff" stroke-width="2"/>
-            <text x="118" y="168" font-size="12">Blumentritt</text>
-            
-            <!-- Tayuman -->
-            <circle cx="200" cy="185" r="5" fill="#8D35A2" stroke="#ffffff" stroke-width="2"/>
-            <text x="134" y="188" font-size="12">Tayuman</text>
-            
-            <!-- Bambang -->
-            <circle cx="200" cy="205" r="5" fill="#8D35A2" stroke="#ffffff" stroke-width="2"/>
-            <text x="134" y="207" font-size="12">Bambang</text>
-            
-            <!-- D. Jose -->
-            <!-- Line 311 for the <circle> tag -->
-            <text x="78" y="228" font-size="12">D. Jose (Transfer)</text>
-            
-            <!-- Carriedo -->
-            <circle cx="200" cy="250" r="5" fill="#8D35A2" stroke="#ffffff" stroke-width="2"/>
-            <text x="134" y="252" font-size="12">Carriedo</text>
+                <!-- Central -->
+                <circle cx="200" cy="268" r="5" fill="#8D35A2" stroke="#ffffff" stroke-width="2"/>
+                    <text x="140" y="271" font-size="12">Central</text>
 
-            <!-- Central -->
-            <circle cx="200" cy="268" r="5" fill="#8D35A2" stroke="#ffffff" stroke-width="2"/>
-            <text x="140" y="271" font-size="12">Central</text>
+                <!-- UN Avenue -->
+                <circle cx="200" cy="285" r="5" fill="#8D35A2" stroke="#ffffff" stroke-width="2"/>
+                    <text x="120" y="288" font-size="12">UN Avenue</text>
 
-            <!-- UN Avenue -->
-            <circle cx="200" cy="285" r="5" fill="#8D35A2" stroke="#ffffff" stroke-width="2"/>
-            <text x="120" y="288" font-size="12">UN Avenue</text>
+                <!-- Pedro Gil -->
+                <circle cx="200" cy="300" r="5" fill="#8D35A2" stroke="#ffffff" stroke-width="2"/>
+                    <text x="132" y="305" font-size="12">Pedro Gil</text>
 
-            <!-- Pedro Gil -->
-            <circle cx="200" cy="300" r="5" fill="#8D35A2" stroke="#ffffff" stroke-width="2"/>
-            <text x="132" y="305" font-size="12">Pedro Gil</text>
-
-            <!-- Quirino -->
-            <circle cx="200" cy="320" r="5" fill="#8D35A2" stroke="#ffffff" stroke-width="2"/>
-            <text x="141" y="323" font-size="12">Quirino</text>
-            
-            <!-- Vito Cruz -->
-            <circle cx="200" cy="340" r="5" fill="#8D35A2" stroke="#ffffff" stroke-width="2"/>
-            <text x="130" y="343" font-size="12">Vito Cruz</text>
-            
-            <!-- Gil Puyat-->
-            <circle cx="200" cy="360" r="5" fill="#8D35A2" stroke="#ffffff" stroke-width="2"/>
-            <text x="133" y="363" font-size="12">Gil Puyat</text>
-            
-            <!-- Libertad -->
-            <circle cx="200" cy="380" r="5" fill="#8D35A2" stroke="#ffffff" stroke-width="2"/>
-            <text x="133" y="383" font-size="12">Libertad</text>
-            
-            <!-- EDSA -->
-            <circle cx="200" cy="400" r="5" fill="#8D35A2" stroke="#ffffff" stroke-width="2"/>
-            <text x="85" y="405" font-size="12">EDSA (Transfer)</text>
-            
-            <!-- Baclaran -->
-            <circle cx="200" cy="425" r="5" fill="#8D35A2" stroke="#ffffff" stroke-width="2"/>
-            <text x="133" y="428" font-size="12">Baclaran</text>
-            
-            <!-- Redemptorist-Aseana -->
-            <circle cx="200" cy="450" r="5" fill="#8D35A2" stroke="#ffffff" stroke-width="2"/>
-            <text x="53" y="455" font-size="12">Redemptorist - Aseana</text>
-            
-            <!-- MIA Road -->
-            <circle cx="200" cy="475" r="5" fill="#8D35A2" stroke="#ffffff" stroke-width="2"/>
-            <text x="124" y="480" font-size="12">MIA Road</text>
-            
-            <!-- PITX -->
-            <circle cx="200" cy="500" r="5" fill="#8D35A2" stroke="#ffffff" stroke-width="2"/>
-            <text x="150" y="505" font-size="12">PITX</text>
-            
-            <!-- Ninoy Aquino Avenue -->
-            <circle cx="200" cy="525" r="5" fill="#8D35A2" stroke="#ffffff" stroke-width="2"/>
-            <text x="80" y="530" font-size="12">Ninoy Aquino Ave. </text>
-            
-            <circle cx="200" cy="550" r="5" fill="#8D35A2" stroke="#ffffff" stroke-width="2"/>
-            <text x="120" y="553" font-size="12">Dr. Santos </text>
+                <!-- Quirino -->
+                <circle cx="200" cy="320" r="5" fill="#8D35A2" stroke="#ffffff" stroke-width="2"/>
+                    <text x="141" y="323" font-size="12">Quirino</text>
+                
+                <!-- Vito Cruz -->
+                <circle cx="200" cy="340" r="5" fill="#8D35A2" stroke="#ffffff" stroke-width="2"/>
+                    <text x="130" y="343" font-size="12">Vito Cruz</text>
+                
+                <!-- Gil Puyat-->
+                <circle cx="200" cy="360" r="5" fill="#8D35A2" stroke="#ffffff" stroke-width="2"/>
+                    <text x="133" y="363" font-size="12">Gil Puyat</text>
+                
+                <!-- Libertad -->
+                <circle cx="200" cy="380" r="5" fill="#8D35A2" stroke="#ffffff" stroke-width="2"/>
+                    <text x="133" y="383" font-size="12">Libertad</text>
+                
+                <!-- EDSA -->
+                <circle cx="200" cy="400" r="5" fill="#8D35A2" stroke="#ffffff" stroke-width="2"/>
+                    <text x="85" y="405" font-size="12">EDSA (Transfer)</text>
+                
+                <!-- Baclaran -->
+                <circle cx="200" cy="425" r="5" fill="#8D35A2" stroke="#ffffff" stroke-width="2"/>
+                    <text x="133" y="428" font-size="12">Baclaran</text>
+                
+                <!-- Redemptorist-Aseana -->
+                <circle cx="200" cy="450" r="5" fill="#8D35A2" stroke="#ffffff" stroke-width="2"/>
+                    <text x="53" y="455" font-size="12">Redemptorist - Aseana</text>
+                
+                <!-- MIA Road -->
+                <circle cx="200" cy="475" r="5" fill="#8D35A2" stroke="#ffffff" stroke-width="2"/>
+                    <text x="124" y="480" font-size="12">MIA Road</text>
+                
+                <!-- PITX -->
+                <circle cx="200" cy="500" r="5" fill="#8D35A2" stroke="#ffffff" stroke-width="2"/>
+                    <text x="150" y="505" font-size="12">PITX</text>
+                
+                <!-- Ninoy Aquino Avenue -->
+                <circle cx="200" cy="525" r="5" fill="#8D35A2" stroke="#ffffff" stroke-width="2"/>
+                    <text x="80" y="530" font-size="12">Ninoy Aquino Ave. </text>
+                
+                <circle cx="200" cy="550" r="5" fill="#8D35A2" stroke="#ffffff" stroke-width="2"/>
+                    <text x="120" y="553" font-size="12">Dr. Santos </text>
             </g>
         </g>
 
@@ -206,61 +197,62 @@
         <g fill="#af009e" style="filter: drop-shadow(0px 0.9px 0.1px #af009e); ">
             <!-- Regular stations -->
             <g>
+                <!-- Recto -->
                 <!-- Go to **Line 312** for the <circle> tag -->
-                <text x="229" y="278" font-size="12">Recto</text>
-                <text x="220" y="290" font-size="10">(Transfer)</text>
+                    <text x="229" y="278" font-size="12">Recto</text>
+                    <text x="220" y="290" font-size="10">(Transfer)</text>
 
                 <!-- Legarda -->
                 <circle cx="290" cy="250" r="5" fill="#af009e" stroke="#ffffff" stroke-width="2"/>
-                <text x="271" y="234" font-size="11">Legarda</text>
+                    <text x="271" y="234" font-size="11">Legarda</text>
 
                 <!-- Pureza -->
                 <circle cx="340" cy="250" r="5" fill="#af009e" stroke="#ffffff" stroke-width="2"/>
-                <text x="324" y="234" font-size="11">Pureza</text>
+                    <text x="324" y="234" font-size="11">Pureza</text>
 
                 <!-- V. Mapa -->
                 <circle cx="389" cy="250" r="5" fill="#af009e" stroke="#ffffff" stroke-width="2"/>
-                <text x="369" y="234" font-size="11">V. Mapa</text>
+                    <text x="369" y="234" font-size="11">V. Mapa</text>
 
                 <!-- J. Ruiz -->
                 <circle cx="438" cy="250" r="5" fill="#af009e" stroke="#ffffff" stroke-width="2"/>
-                <text x="422" y="234" font-size="11">J. Ruiz</text>
+                    <text x="422" y="234" font-size="11">J. Ruiz</text>
 
                 <!-- Gilmore -->
                 <circle cx="487" cy="250" r="5" fill="#af009e" stroke="#ffffff" stroke-width="2"/>
-                <text x="468" y="234" font-size="11">Gilmore</text>
+                    <text x="468" y="234" font-size="11">Gilmore</text>
 
                 <!-- Betty Go-Belmonte -->
                 <circle cx="545" cy="250" r="5" fill="#af009e" stroke="#ffffff" stroke-width="2"/>
-                <text x="525" y="222" font-size="11">Betty Go-</text>
-                <text x="525" y="234" font-size="11">Belmonte</text>
+                    <text x="525" y="222" font-size="11">Betty Go-</text>
+                    <text x="525" y="234" font-size="11">Belmonte</text>
 
                 <!-- Araneta Center-Cubao -->
                 <circle cx="620" cy="250" r="10" fill="#af009e" stroke="#ffffff" stroke-width="2"/>
-                <text x="605" y="208" font-size="11">Araneta Center-</text>
-                <text x="605" y="220" font-size="11">Cubao</text>
-                <text x="605" y="232" font-size="10">(Transfer)</text>
+                    <text x="605" y="208" font-size="11">Araneta Center-</text>
+                    <text x="605" y="220" font-size="11">Cubao</text>
+                    <text x="605" y="232" font-size="10">(Transfer)</text>
 
                 <!-- Anonas -->
                 <circle cx="680" cy="250" r="5" fill="#af009e" stroke="#ffffff" stroke-width="2"/>
-                <text x="670" y="234" font-size="11">Anonas</text>
+                    <text x="670" y="234" font-size="11">Anonas</text>
 
                 <!-- Katipunan -->
                 <circle cx="740" cy="250" r="5" fill="#af009e" stroke="#ffffff" stroke-width="2"/>
-                <text x="720" y="234" font-size="11">Katipunan</text>
+                    <text x="720" y="234" font-size="11">Katipunan</text>
 
                 <!-- Santolan -->
-                <circle cx="790" cy="256" r="5" fill="#af009e" stroke="#ffffff" stroke-width="2"/>
-                <text x="785" y="240" font-size="11">Santolan</text>
+                    <circle cx="790" cy="256" r="5" fill="#af009e" stroke="#ffffff" stroke-width="2"/>
+                    <text x="785" y="240" font-size="11">Santolan</text>
 
                 <!-- Marikina-Pasig -->
                 <circle cx="844" cy="263" r="5" fill="#af009e" stroke="#ffffff" stroke-width="2"/>
-                <text x="840" y="234" font-size="11">Marikina-</text>
-                <text x="840" y="247" font-size="11">Pasig</text>
+                    <text x="840" y="234" font-size="11">Marikina-</text>
+                    <text x="840" y="247" font-size="11">Pasig</text>
 
                 <!-- Antipolo -->
                 <circle cx="900" cy="270" r="5" fill="#b500a3" stroke="#ffffff" stroke-width="2"/>
-                <text x="880" y="255" font-size="11">Antipolo</text>
+                    <text x="880" y="255" font-size="11">Antipolo</text>
             </g>
         </g>
 
@@ -286,40 +278,40 @@
                 
                 <!-- Santolan-Annapolis -->
                 <circle cx="595" cy="315" r="6" fill="#006674" stroke="#ffffff" stroke-width="3"/>
-                <text x="610" y="319" font-size="12">Santolan-Annapolis</text>
+                    <text x="610" y="319" font-size="12">Santolan-Annapolis</text>
             
                 <!-- Ortigas -->
                 <circle cx="595" cy="342" r="6" fill="#006674" stroke="#ffffff" stroke-width="3"/>
-                <text x="610" y="345" font-size="12">Ortigas</text>
+                    <text x="610" y="345" font-size="12">Ortigas</text>
 
                 <!-- Shaw Boulevard -->
                 <circle cx="565" cy="355" r="6" fill="#006674" stroke="#ffffff" stroke-width="3"/>
-                <text x="575" y="379" font-size="12">Shaw Boulevard</text>
+                    <text x="575" y="379" font-size="12">Shaw Boulevard</text>
 
                 <!-- Boni -->
                 <circle cx="515" cy="373" r="6" fill="#006674" stroke="#ffffff" stroke-width="3"/>
-                <text x="530" y="390" font-size="12">Boni</text>
+                    <text x="530" y="390" font-size="12">Boni</text>
 
                 <!-- Guadalupe -->
                 <circle cx="475" cy="388" r="6" fill="#006674" stroke="#ffffff" stroke-width="3"/>
-                <text x="480" y="415" font-size="12">Guadalupe</text>
+                    <text x="480" y="415" font-size="12">Guadalupe</text>
 
                 <!-- Buendia -->
                 <circle cx="440" cy="400" r="6" fill="#006674" stroke="#ffffff" stroke-width="3"/>
-                <text x="426" y="425" font-size="12">Buendia</text>
+                    <text x="426" y="425" font-size="12">Buendia</text>
 
                 <!-- Ayala-->
                 <circle cx="390" cy="400" r="6" fill="#006674" stroke="#ffffff" stroke-width="3"/>
-                <text x="382" y="427" font-size="12">Ayala</text>
+                    <text x="382" y="427" font-size="12">Ayala</text>
 
                 <!-- Magallanes -->
                 <circle cx="340" cy="400" r="6" fill="#006674" stroke="#ffffff" stroke-width="3"/>
-                <text x="305" y="427" font-size="12">Magallanes</text>
+                    <text x="305" y="427" font-size="12">Magallanes</text>
 
                 <!-- Taft Avenue -->
                 <circle cx="250" cy="400" r="10" fill="#006674" stroke="#ffffff" stroke-width="3"/>
-                <text x="220" y="427" font-size="12">Taft Avenue</text>
-                <text x="225" y="440" font-size="12">(Transfer)</text>
+                    <text x="220" y="427" font-size="12">Taft Avenue</text>
+                    <text x="225" y="440" font-size="12">(Transfer)</text>
             </g>
         </g>
 
@@ -342,9 +334,7 @@
     <!-- Transfer Connection Line -->
 
     <!-- LRT 2 to MRT 3 -->
-    <path d="M620 250 
-            L620 285 
-            L591 285" 
+    <path d="M620 250 L620 285 L591 285" 
         stroke="#ffffff" 
         stroke-width="3"
         stroke-dasharray="4"
@@ -352,9 +342,7 @@
         style="filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.5));" />
     
     <!-- LRT 2 to LRT 1 -->
-    <path d="M200 228
-            L233 228
-            L233 250" 
+    <path d="M200 228 L233 228 L233 250" 
         stroke="#ffffff" 
         stroke-width="3"
         stroke-dasharray="4"
@@ -362,18 +350,22 @@
         style="filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.5));"/>
     
     <!-- LRT 1 to MRT 3 -->
-    <path d="M200 400
-            L215 400
-            L250 400" 
+    <path d="M200 400 L215 400 L250 400" 
         stroke="#ffffff" 
         stroke-width="4"
         stroke-dasharray="3"
         fill="none"
-        style="filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.5));"/>
+        style="filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.5))"/>
 
     <!-- Legend -->
     <g transform="translate(740, 400)" class="legend">
-        <rect width="160" height="150" fill="rgba(255,255,255,0.297)" fill-opacity="0." rx="15" stroke="#ffffff" stroke-width="1"/>
+        <rect width="160" 
+            height="150" 
+            fill="rgba(255,255,255,0.297)" 
+            rx="15" 
+            stroke="#ffffff" 
+            stroke-width="1"/>
+        
         <text x="25" y="35" font-weight="bold" font-size="14">Legend:</text>
         
         <circle cx="50" cy="60" r="5" fill="#8D35A2" stroke="#ffffff" stroke-width="2"/>

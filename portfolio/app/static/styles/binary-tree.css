@@ -56,27 +56,43 @@ body{
 }
 
 .node:hover circle {
-    fill: #f0f0f0;
+    fill: #a0a0a0;
     cursor: pointer;
+    stroke: #6b00a1;
+    stroke-width: 2px;
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
 }
 
 .node.highlighted circle {
-    fill: #6b00a1;
-    color: white;
+    fill: #ffa07a; /* Light salmon color when clicked */
+    stroke: #ff4500; /* Orange red outline when clicked */
+    stroke-width: 2px;
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.7));
 }
 
 /* Traversal states */
 .node.searching circle {
-    fill: #ffd700;
-    transition: fill 0.3s ease;
+    fill: #FFD700;
+    stroke: #FFA500;
+    stroke-width: 4px;
+    filter: drop-shadow(0 0 10px rgba(255, 165, 0, 0.7));
+    animation: pulse 1s infinite; /* Pulsing animation */
 }
 
 .node.found circle {
     fill: #00FF00; /* Green for found */
+    stroke: #008000;
+    stroke-width: 4px;
+    filter: drop-shadow(0 0 10px rgba(0, 128, 0, 0.7));
+    animation: none; /* Remove any animation */
 }
 
 .node.not-found circle {
     fill: #FF0000; /* Red for not found */
+    stroke: #8B0000; /* Dark green border */
+    stroke-width: 4px;
+    filter: drop-shadow(0 0 10px rgba(139, 0, 0, 0.7));
+    animation: shake 0.5s; /* Shaking animation */
 }
 
 /* Animation for color transitions */
@@ -244,18 +260,19 @@ body{
 /* Dropdown Buttons */
 .binary-tree-simulator-dropdown-content .binary-tree-simulator-btn {
     display: block;
-    padding: 5px;
+    padding: 10px;
     text-align: left;
-    background: transparent;
+    background: rgba(255, 255, 255, 0.2);
     color: #6b00a1;
-    border: none;
-    transition: background-color 0.3s;
-    box-shadow: none;
+    border: 2px solid #6b00a1;
+    transition: background-color 0.3s, box-shadow 0.3s;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
 }
 
 .binary-tree-simulator-dropdown-content .binary-tree-simulator-btn:hover {
-    background: rgba(255, 255, 255, 0.7);
+    background: #e0e0e0
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border: 2px solid #6b00a1;
 }
 
 .binary-tree-simulator-dropdown.active .binary-tree-simulator-dropdown-content {

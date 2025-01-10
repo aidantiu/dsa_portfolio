@@ -24,3 +24,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+// Output Info Section Hidden by Default
+document.addEventListener('DOMContentLoaded', function() {
+    const viewOutputButton = document.getElementById('view-output-btn');
+    const outputSection = document.getElementById('output');
+    const eyeIcon = viewOutputButton.querySelector('i');
+
+    viewOutputButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        outputSection.classList.toggle('visible');
+        eyeIcon.classList.toggle('fa-eye');
+        eyeIcon.classList.toggle('fa-eye-slash');
+    });
+});
+
+// Toggle eye icon 

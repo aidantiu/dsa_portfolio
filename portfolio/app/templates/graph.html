@@ -63,7 +63,7 @@
 
                             <!-- Start Section-->
                             <option class="start-station-text" disabled selected>
-                                <span class="station-placeholder">Starting Station:</span>
+                                <span class="station-placeholder">Select Starting Station:</span>
                             </option>
                             <!-- Opt group Lines -->
                             <optgroup label="MRT3 Line">
@@ -91,7 +91,7 @@
                         
                         <!-- End Station -->
                         <select id="end" name="end" required>
-                            <option class="end-station-text" disabled selected>End Station:</option>
+                            <option class="end-station-text" disabled selected>Select End Station:</option>
                             <optgroup label="MRT3 Line">
                                 {% for station in mrt3_stations %}
                                     <option value="{{ station }}" {% if end == station %}selected{% endif %}>
@@ -114,68 +114,104 @@
                                 {% endfor %}
                             </optgroup>
                         </select>
-                    </div>
 
-                    <!-- Button Container -->
-                    <div class="submit-button-container">
-                        <button class= "submit-button" type="submit"><span>Find Shortest Path</span></button>
+                         <!-- Button Container -->
+                        <div class="submit-button-container">
+                            <button class="submit-button" type="submit" id="submit-btn">
+                                <i class="fas fa-route"></i>
+                                <span>Find Route</span>
+                            </button>
+                        </div>
+
+                        <!-- Eye Icon -->
+                        <div class="view-output-style">
+                            <button class="view-output-button" id="view-output-btn" type="button">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
                     </div>
                 </form>
             </section>
             
 
             <!-- Output section -->
-            <div class="output-section">
+            <div class="output-section" id="output">
                 <div class="output-box">
 
-                    <!-- Shortest Path Arrows-->
+                    <!-- Shortest Path Arrows Container -->
                     <div class="shortest-path">
                         <div class="shortest-path-header">
                             {% if from_to %}
                                 <p>{{ from_to }}</p>
                             {% else %}
                                 <p>Shortest path shows here:</p>
-                            {% endif %}    
-                        </div>
-                        
-                        <!-- Path Container -->
-                        <div class="path-display-container">
-                            <div class="path-display">
-                                <!-- Display the shortest path -->
-                                <div class="path-display-box">
-                                {% if shortest_path %}
-                                    {% for station in shortest_path.split(' -> ') %}
-                                        <div class="station-box">{{ station }}</div>
-                                        {% if not loop.last %}
-                                            <span class="station-arrow">→</span>
+                            {% endif %}  
+                            <div class="path-container">
+                                {% if path_list|length == 1 %}
+                                    <div class="same-station-message">No stations between {{ path_list[0] }} and {{ path_list[0] }}</div>
+                                {% else %}
+                                    {% set prev_line = namespace(value=None) %}
+                                    {% for station in path_list %}
+                                        {% set line = station.split('(')[1].replace(')', '') %}
+                                        
+                                        {% if prev_line.value and prev_line.value != line %}
+                                            <div class="transfer-line"></div>
+                                        {% elif not loop.first %}
+                                            <div class="arrow">→</div>
                                         {% endif %}
+                                        
+                                        <div class="station-box {% if 'LRT1' in line %}lrt1-line{% elif 'LRT2' in line %}lrt2-line{% elif 'MRT3' in line %}mrt3-line{% endif %}">
+                                            {{ station.split(' (')[0] }}
+                                        </div>
+                                        
+                                        {% set prev_line.value = line %}
                                     {% endfor %}
                                 {% endif %}
-                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="journey-title-container">
-                        <h2 class="journey-title">Journey Details:</h2>
-                    </div>
+                    <!-- Journey Details Container -->
+                    <div class="journey-container">
+                        <div class="journey-header">
+                            <h2 class="journey-title">Journey Details:</h2>
+                        </div>
+                        
+                        <div class="journey-wrapper">
+                            <div class="journey-section station-count">
+                                {% if no_stations %}
+                                    <div class="info-box">
+                                        <i class="fas fa-train"></i>
+                                        <p id="stationMessage">
+                                            {% set words = no_stations.split(' ') %}
+                                            {% for word in words %}
+                                                {% if word.isdigit() %}
+                                                    <span class="station-number">{{ word }}</span>
+                                                {% else %}
+                                                    {{ word }}
+                                                {% endif %}
+                                            {% endfor %}
+                                        </p>
+                                    </div>
+                                {% endif %}
+                            </div>
                     
-                    <!-- Display Number of Stations -->
-                    <div class="station-count">
-                        {% if no_stations %}
-                            <p id="stationMessage">{{ no_stations }}</p>
-                        {% endif %}
-                    </div>
-
-                    <!-- Simplified line changes output - displays list directly -->
-                    <div class="line-transfers">
-                        {% if line_changes_output %}
-                        <p>{{ line_changes_output }}</p>
-                        {% endif %}
+                            <div class="journey-section line-transfers">
+                                {% if line_changes_output %}
+                                    <div class="transfers-list">
+                                        <i class="fas fa-exchange-alt" id="exchangeStations"></i>
+                                        <ul class="no-bullets">
+                                            {% for change in line_changes_output %}
+                                                <li class="transfer-item">{{ change }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
     
         <!-- Graph Container -->
         <div class="graph-container">
@@ -190,6 +226,10 @@
 
     </main>
     <!-- JS Script -->
-    <script src="{{ url_for('static', filename='js/graph-script.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/graph-script.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/global.js') }}"></script>
+
+
+
 </body>
 </html>

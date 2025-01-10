@@ -311,22 +311,30 @@ body {
 /* Graph Section */
 .graph-container {
     margin-top: 20px;
+    padding-bottom: 50px;
     justify-content: center;
 }
 
-.graph-box{
+.graph-box {
     width: 1000px;
     height: 595px;
-    border: 2px solid #ffffff;
+    border: 3px solid rgb(255, 255, 255);
     border-radius: 20px;
-    background: rgba(171, 163, 163, 0.25);
-    backdrop-filter: blur(0px);
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    margin: 0 auto 5px; 
-    position: relative; 
-    overflow-y: scroll;
-    scrollbar-width: thin;
+    background: linear-gradient(
+        to right,
+        rgba(236, 236, 236, 0.9) 0%,
+        rgba(159, 159, 159, 0.3) 100%
+    );
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    margin: 0 auto 5px;
+    position: relative;
+    /* overflow-y: scroll;
+    scrollbar-width: thin; */
 }
+
+
 
 
 /* --- */

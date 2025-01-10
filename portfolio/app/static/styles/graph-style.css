@@ -536,45 +536,183 @@ body {
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     margin: 0 auto 5px;
     position: relative;
-    /* overflow-y: scroll;
-    scrollbar-width: thin; */
+    max-width: 90%;
+}
+
+@media screen and (max-width: 1024px) {
+    .graph-box {
+        width: 90vw;
+        height: 54vw; /* Maintains aspect ratio */
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .graph-box {
+        width: 95vw;
+        height: 56vw;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .graph-box {
+        width: 98vw;
+        height: 58vw;
+        border-width: 2px;
+    }
 }
 
 
 
 
 /* --- */
-/* Add responsive design */
-@media screen and (max-width: 768px) {
+/* Show graph only on larger screens */
+@media screen and (min-width: 1025px) {
+    .graph-box {
+        display: block;
+    }
+
+}
+
+
+/* Mobile devices (portrait) */
+@media screen and (max-width: 480px) {
+    .mrt-shortest-path-finder-text h1 {
+        font-size: 24px;
+        padding: 0 15px;
+    }
+
     .station-select {
         flex-direction: column;
+        gap: 15px;
     }
 
     .station-select select {
         width: 90%;
-        max-width: 300px;
+        font-size: 16px;
+        padding: 8px;
     }
 
-    .mrt-shortest-path-finder-text h1 {
-        font-size: 32px;
+    .submit-button {
+        width: 90%;
+        font-size: 18px;
     }
 
+    .view-output-button {
+        width: 40px;
+        height: 40px;
+    }
+
+    .output-box {
+        padding: 15px;
+    }
+
+    .station-box {
+        font-size: 14px;
+        padding: 10px 30px 10px 15px;
+    }
+
+    .arrow {
+        font-size: 16px;
+    }
+
+    .journey-title {
+        font-size: 20px;
+    }
+    .graph-box {
+        width: 95vw;
+        height: 56vw;
+    }
 }
 
-@media screen and (max-width: 480px) {
+/* Tablets and small laptops */
+@media screen and (min-width: 481px) and (max-width: 768px) {
     .mrt-shortest-path-finder-text h1 {
         font-size: 28px;
     }
 
+    .station-select {
+        flex-direction: column;
+        gap: 20px;
+    }
+
     .station-select select {
+        width: 80%;
+        max-width: 400px;
+    }
+
+    .submit-button {
+        width: 80%;
+        max-width: 400px;
+    }
+
+    .output-box {
+        width: 95%;
+    }
+
+    .station-box {
         font-size: 16px;
+    }
+    .graph-box {
+        width: 98vw;
+        height: 58vw;
+        border-width: 2px;
     }
 }
 
-/* Tablet screens
+/* Laptops and desktops */
 @media screen and (min-width: 769px) and (max-width: 1024px) {
+    .mrt-shortest-path-finder-text h1 {
+        font-size: 32px;
+    }
+
+    .station-select {
+        gap: 25px;
+    }
+
+    .output-box {
+        width: 90%;
+        max-width: 900px;
+    }
+    .graph-box {
+        width: 98vw;
+        height: 58vw;
+        border-width: 2px;
+    }
 }
 
-/* Large screens 
+/* Large screens */
 @media screen and (min-width: 1025px) {
-} */
+    .mrt-shortest-path-finder-text h1 {
+        font-size: 36px;
+    }
+
+    .station-select {
+        gap: 30px;
+    }
+
+    .output-box {
+        max-width: 1200px;
+    }
+
+    .station-box {
+        font-size: 18px;
+    }
+}
+
+/* Common responsive adjustments */
+@media screen and (max-width: 1024px) {
+    .path-container {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .transfer-line {
+        width: 40px;
+        margin: 10px 5px;
+    }
+
+    .journey-container {
+        margin-top: 20px;
+    }
+}

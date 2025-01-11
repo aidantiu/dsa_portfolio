@@ -76,17 +76,20 @@ window.addEventListener("beforeunload", function() {
     document.cookie = "linked_list_data=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
 });
 
-// For modal contents
-document.querySelector('.linked-list-text h1').addEventListener('click', () => {
+// For how-to-use modal button
+// Show modal on button click
+document.getElementById('showHowToUse').addEventListener('click', () => {
     document.getElementById('howToUseModal').classList.add('active');
     document.querySelector('.modal-content').classList.add('active');
 });
 
+// Close modal with X button
 document.getElementById('closeModal').addEventListener('click', () => {
     document.getElementById('howToUseModal').classList.remove('active');
     document.querySelector('.modal-content').classList.remove('active');
 });
 
+// Close modal when clicking overlay
 document.querySelector('.modal-overlay').addEventListener('click', (e) => {
     if (e.target.classList.contains('modal-overlay')) {
         document.getElementById('howToUseModal').classList.remove('active');

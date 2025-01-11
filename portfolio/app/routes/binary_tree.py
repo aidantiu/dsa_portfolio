@@ -356,4 +356,12 @@ def binary_tree():
                          tree_structure=tree_structure,
                          message=message,
                          search_path=path,
-                         search_found=found)
+                         search_found=found,
+                         instruction_steps=get_instruction_steps(),)
+
+# List to store the How To Use data
+def get_instruction_steps():
+    return [
+        "Click on a node to select it.",
+    ]
+    # Will add more steps for the binary tree page

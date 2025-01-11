@@ -82,7 +82,7 @@ body {
     /* Custom select styling */
     padding: 10px 15px;
     border-radius: 15px;
-    border: 2px solid #FFF;
+    border: 1px solid #FFF;
     background: #E2B2E5;
     backdrop-filter: blur(2px);
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
@@ -176,7 +176,7 @@ body {
     gap: 10px;
     padding: 10px 10px 10px 10px;
     border-radius: 15px;
-    border: 2px solid #FFF;
+    border: 1px solid #FFF;
     background: transparent;
     backdrop-filter: blur(2px);
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
@@ -248,7 +248,7 @@ body {
     width: 45px;
     height: 45px;
     padding: 10px 15px;
-    border: 2px solid #FFF;
+    border: 1px solid #FFF;
     border-radius: 15px;
     background: transparent;
     color: #6b00a1;
@@ -524,7 +524,7 @@ body {
 .graph-box {
     width: 1000px;
     height: 595px;
-    border: 3px solid rgb(255, 255, 255);
+    border: 2px solid rgb(255, 255, 255);
     border-radius: 20px;
     background: linear-gradient(
         to right,

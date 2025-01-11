@@ -166,6 +166,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 10px;
 }
 
 .submit-button{
@@ -714,7 +715,7 @@ body {
     }
 
     .output-box {
-        max-width: 1200px;
+        max-width: 1000px;
     }
 
     .station-box {

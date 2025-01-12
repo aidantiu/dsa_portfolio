@@ -125,7 +125,14 @@
                                 <i class="fas fa-eye"></i>
                             </button>
                         </div>
-                    </div>
+
+                         <!-- Validation Message -->
+                        {% if validation %}
+                        <div id="notification" class="notification">
+                            <p>{{ validation }}</p>
+                        </div>
+                        {% endif %}
+                
                 </form>
             </section>
             

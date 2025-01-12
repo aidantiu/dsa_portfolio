@@ -144,3 +144,13 @@ document.querySelector('.modal-overlay').addEventListener('click', (e) => {
         document.querySelector('.modal-content').classList.remove('active');
     }
 });
+
+// Notfication Timer
+document.addEventListener('DOMContentLoaded', () => {
+    const notification = document.getElementById('notification');
+    if (notification) {
+        setTimeout(() => {
+            notification.style.display = 'none'; // Hides the notification
+        }, 5000); // 5 seconds
+    }
+});

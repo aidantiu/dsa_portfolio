@@ -134,6 +134,20 @@ def convert_path_to_list(path_with_lines_str):
     
     return path_list
 
+# List to store the How To Use data
+def get_instruction_steps():
+    instruction_steps = [
+        "Select a starting station from the dropdown menu.",
+        "Select a destination station from the dropdown menu.",
+        "Click on the 'Find Route' button to see the result.",
+        "View your route on the interactive map.",
+        "Use the zoom controls (+/-) on the map to explore route details.",
+        "Pan the map by clicking and dragging.",
+        "Toggle route details using the button with an eye icon."
+    ]
+    print("Debug - Instructions:", instruction_steps)  # Debug line
+    return instruction_steps
+
 # Create the graph representing the Manila rail system
 G = create_manila_rail_graph()
 
@@ -149,9 +163,24 @@ def graph():
         end = request.form.get('end', '').strip()
         
         # Store results in session to prevent form resubmission issues
-        if start and end:
+
+        if start == '' and end == '':
+            validation = "Please choose start and end stations."
+            session['validation'] = validation
+        elif start == '':
+            validation = "Invalid! Starting station was missing."
+            session['validation'] = validation
+
+        elif end == '':
+            validation = "Invalid! Destination (end station) was missing."
+            session['validation'] = validation
+
+        elif start == end:
+            validation = "Invalid! Start and end destination must be two different stations."
+            session['validation'] = validation
+
+        else:
             path_with_lines, distance = find_shortest_path(G, start, end)
-            
             if path_with_lines and distance:
                 # Store all path information in session
                 # line_changes is now stored as a direct list for simpler template rendering
@@ -160,18 +189,20 @@ def graph():
                 session['no_stations'] = f"Number of stations: {distance}"
                 session['line_changes'] = get_line_changes(path_with_lines)  # Stores list directly
                 session['path_list'] = convert_path_to_list(path_with_lines)
+                session['validation'] = ""
             else:
                 session['shortest_path'] = f"No path found between {start} and {end}"
                 session['from_to'] = ""
                 session['no_stations'] = ""
                 session['line_changes'] = []
                 session['path_list'] = []
-            
-            # Set a flag to indicate that the request is a result of a POST (form submission)
-            session['form_submitted'] = True
+                session['validation'] = ""
+        
+        # Set a flag to indicate that the request is a result of a POST (form submission)
+        session['form_submitted'] = True
 
-            # Redirect to prevent form resubmission on refresh
-            return redirect(url_for('graph', start=start, end=end))
+        # Redirect to prevent form resubmission on refresh
+        return redirect(url_for('graph', start=start, end=end))
         
     elif request.method == "GET":
         # Check if this is a fresh GET request (not redirected after POST)
@@ -182,10 +213,10 @@ def graph():
             session.pop('no_stations', None)
             session.pop('line_changes', None)
             session.pop('path_list', None)
-
             # Set start and end inputs to empty
             start = ""
             end = ""
+
         else:
             # Clear the flag after handling the redirected request
             session.pop('form_submitted', None)
@@ -200,6 +231,8 @@ def graph():
     no_stations = session.pop('no_stations', "")
     line_changes_output = session.pop('line_changes', [])
     path_list = session.pop('path_list', [])  # Retrieve the path list from session
+    validation = session.get('validation', "")
+    session.pop('validation', None)
     
     # Render template with empty inputs and any stored results
     return render_template(
@@ -214,19 +247,6 @@ def graph():
         lrt2_stations=LRT2_STATIONS,
         lrt1_stations=LRT1_STATIONS,
         path_list = path_list,
+        validation = validation,
         instruction_steps=get_instruction_steps(),  # Call the function
     )
-
-# List to store the How To Use data
-def get_instruction_steps():
-    instruction_steps = [
-        "Select a starting station from the dropdown menu.",
-        "Select a destination station from the dropdown menu.",
-        "Click on the 'Find Route' button to see the result.",
-        "View your route on the interactive map.",
-        "Use the zoom controls (+/-) on the map to explore route details.",
-        "Pan the map by clicking and dragging.",
-        "Toggle route details using the button with an eye icon."
-    ]
-    print("Debug - Instructions:", instruction_steps)  # Debug line
-    return instruction_steps

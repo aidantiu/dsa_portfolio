@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    
+
     // Close dropdowns when clicking outside
     document.addEventListener('click', (e) => {
         if (!e.target.closest('.dropdown')) {
@@ -26,19 +28,18 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-    const validationBox = document.getElementById("validation-box");
+// SHow validation box and search indicator if there is a message
+document.addEventListener('DOMContentLoaded', function() {
+    const validationBox = document.getElementById('validation-wrapper');
 
-    if (validationBox) {
-        // Check if the validation box contains content
-        const validationText = validationBox.querySelector("p");
-        if (validationText && validationText.textContent.trim() !== "") {
-            // Set a timer to hide the validation box after 5 seconds
-            setTimeout(() => {
-                validationBox.style.display = "none";
-            }, 5000); // 5000 milliseconds = 5 seconds
-        }
+    if (validationBox.innerHTML.trim() !== '') {
+        validationBox.style.display = 'flex';
     }
+
+    // Close validation box after 5 seconds
+    setTimeout(() => {
+        validationBox.style.display = 'none';
+    }, 5000);
 });
 
 // For how-to-use modal button

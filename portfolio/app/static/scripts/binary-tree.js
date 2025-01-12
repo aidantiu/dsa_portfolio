@@ -12,16 +12,20 @@ function toggleDropdown(dropdownId) {
     });
 }
 
-// Hide validation box after a delay after it shows
+
+// SHow validation box and search indicator if there is a message
 document.addEventListener('DOMContentLoaded', function() {
     const validationBox = document.getElementById('validation-box');
-    if (validationBox) {
-        setTimeout(() => {
-            validationBox.style.display = 'none';
-        }, 5000);
-    }
-});
 
+    if (validationBox.innerHTML.trim() !== '') {
+        validationBox.style.display = 'flex';
+    }
+
+    // Close validation box after 5 seconds
+    setTimeout(() => {
+        validationBox.style.display = 'none';
+    }, 5000);
+});
 
 // Close dropdowns when clicking outside
 window.onclick = function (event) {
@@ -115,6 +119,7 @@ document.addEventListener('DOMContentLoaded', function() {
         animateSearch(searchPath, searchFound);
     }
 });
+
 function animateSearch(path, found) {
     const DELAY = 1000;
     const CHECK_DELAY = 500;
@@ -125,6 +130,10 @@ function animateSearch(path, found) {
     // Hide validation box at start
     const validationBox = document.getElementById('validation-box');
     validationBox.style.display = 'none';
+
+    // Show search indicator
+    const searchIndicator = document.getElementById('search-indicator');
+    searchIndicator.style.display = 'flex';
 
     // Reset all nodes to default color at start of new search
     document.querySelectorAll('.node circle').forEach(circle => {
@@ -153,16 +162,13 @@ function animateSearch(path, found) {
         }, index * DELAY);
     });
 
-    // If node not found, flash red then return to yellow
-    if (!found && path.length > 0) {
+    // If node not found, flash red on all nodes
+    if (!found) {
         setTimeout(() => {
             document.querySelectorAll('.node circle').forEach(circle => {
-                circle.setAttribute('fill', '#FF0000');
-                setTimeout(() => {
-                    circle.setAttribute('fill', '#FFEB3B');
-                }, NOT_FOUND_DURATION);
+                circle.setAttribute('fill', '#F44336');
             });
-        }, (path.length) * DELAY);
+        }, 5000);
     }
 
     // Reset all nodes to default after animation completes
@@ -170,7 +176,8 @@ function animateSearch(path, found) {
         document.querySelectorAll('.node circle').forEach(circle => {
             circle.setAttribute('fill', '#D9D9D9');
         });
-        validationBox.style.display = 'block';
+        validationBox.style.display = 'flex';
+        searchIndicator.style.display = 'none';
     }, totalTime);
 }
 

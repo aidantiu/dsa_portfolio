@@ -85,13 +85,13 @@
                         <div class="search-input-container">
                             <input type="text" id="search-value" name="search_value" placeholder="Enter node value">
                         </div>
-                        <button type="submit" class="binary-tree-simulator-btn" name="action" value="search" onclick="setTraversalType('pre_order')">
+                        <button id="search-node" type="submit" class="binary-tree-simulator-btn" name="action" value="search" onclick="setTraversalType('pre_order')">
                             Preorder Search
                         </button>
-                        <button type="submit" class="binary-tree-simulator-btn" name="action" value="search" onclick="setTraversalType('in_order')">
+                        <button id="search-node" type="submit" class="binary-tree-simulator-btn" name="action" value="search" onclick="setTraversalType('in_order')">
                             Inorder Search
                         </button>
-                        <button type="submit" class="binary-tree-simulator-btn" name="action" value="search" onclick="setTraversalType('post_order')">
+                        <button id="search-node" type="submit" class="binary-tree-simulator-btn" name="action" value="search" onclick="setTraversalType('post_order')">
                             Postorder Search
                         </button>
                         <input type="hidden" id="traversal_type" name="traversal_type" value="">
@@ -120,8 +120,33 @@
                     {% endif %}
                 </div>
 
-                <div class="search-indicator">
+                <div class="search-indicator" id="search-indicator">
+                    <div class="search-legends">
+                        <div class="unvisited">
+                            <i class="fa-regular fa-clock"></i>                            
+                            <p>Unvisited</p>
+                        </div>
 
+                        <div class="checking">
+                            <i class="fa-solid fa-spinner"></i>
+                            <p>Checking</p>
+                        </div>
+
+                        <div class="visited">
+                            <i class="fa-solid fa-arrows-rotate"></i>
+                            <p>Visited</p>
+                        </div>
+
+                        <div class="found">
+                            <i class="fa-regular fa-circle-check"></i>
+                            <p>Found</p>
+                        </div>
+
+                        <div class="not-found">
+                            <i class="fa-regular fa-circle-xmark"></i>
+                            <p>Not Found</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 

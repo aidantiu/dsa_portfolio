@@ -110,7 +110,7 @@ body{
 
 .validation{
     gap: 8px;
-    display: flex;
+    display: none;
     padding: 5px;
     border-radius: 8px;
     background-color: #D9D9D9;
@@ -130,6 +130,7 @@ body{
 .info-wrapper{
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 /* Buttons */
@@ -481,6 +482,48 @@ body{
     display: block;
     animation: slideUp 0.5s ease-out forwards;
 }
+
+.search-indicator{
+    display: none;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.search-legends{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-legends div{
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    border-radius: 5px;
+    gap: 5px;
+}
+
+.unvisited{
+    background-color: #ddd;
+}
+
+.checking{
+    background-color: #2196F3;
+}
+
+.visited{
+    background-color: #FFEB3B;
+}
+
+.found{
+    background-color: #4CAF50;
+}
+
+.not-found{
+    background-color: #F44336;
+}
+
+
 
 
 

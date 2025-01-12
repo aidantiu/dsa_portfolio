@@ -39,36 +39,19 @@ inputField.addEventListener('input', function () {
     }, typingDelay);
 });
 
-// Automatically show and hide the validation message after 5 seconds
-document.addEventListener('DOMContentLoaded', () => {
-    const validationBox = document.getElementById('validation-box');
-    const wrapper = document.getElementById('validation-wrapper');
 
-    // Hide the background color of the wrapper initially
-    if (wrapper && wrapper.innerText.trim() === "") {
-        wrapper.style.backgroundColor = 'transparent';
+// SHow validation box 
+document.addEventListener('DOMContentLoaded', function() {
+    const validationBox = document.getElementById('validation-wrapper');
+
+    if (validationBox.innerHTML.trim() !== '') {
+        validationBox.style.display = 'flex';
     }
 
-    if (validationBox && validationBox.innerText.trim() !== "") {
-        setTimeout(() => {
-            validationBox.innerHTML = ''; // Clear the content
-            validationBox.classList.remove('hidden'); // Optionally hide the box
-        }, 5000); // Message persists for 5 seconds
-    }
-
-    // Highlight functionality
-    const highlightedItem = document.querySelectorAll('.highlight'); // Find the element with the highlight class
-
-    // Clear all the highlighted elements
-    if (highlightedItem) {
-        setTimeout(() => {
-            
-            highlightedItem.forEach(item => {
-                item.classList.remove('highlight'); // Remove the highlight class
-            });
-        
-        }, 5000); // Highlight persists for 5 seconds
-    }
+    // Close validation box after 5 seconds
+    setTimeout(() => {
+        validationBox.style.display = 'none';
+    }, 5000);
 });
 
 // Detect page refresh and reset the cookie

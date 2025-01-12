@@ -401,6 +401,7 @@ body {
     transition: all 0.3s ease;
     transform-origin: center center;
     z-index: 1;
+    margin: 5px;
 }
 
 .station-box::before {
@@ -781,6 +782,7 @@ body {
     padding: 5px 0;
     text-align: left;
 }
+
 /* New placeholder message styling */
 .placeholder-message {
     width: 100%;

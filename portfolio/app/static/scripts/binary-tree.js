@@ -15,16 +15,14 @@ function toggleDropdown(dropdownId) {
 
 // SHow validation box and search indicator if there is a message
 document.addEventListener('DOMContentLoaded', function() {
-    const validationBox = document.getElementById('validation-box');
-
+    const validationBox = document.querySelector('#validation-box div');
+    
+    // Only set timeout if there's a message
     if (validationBox.innerHTML.trim() !== '') {
-        validationBox.style.display = 'flex';
+        setTimeout(() => {
+            validationBox.innerHTML = '';  // Clear content but keep box
+        }, 5000);
     }
-
-    // Close validation box after 5 seconds
-    setTimeout(() => {
-        validationBox.style.display = 'none';
-    }, 5000);
 });
 
 // Close dropdowns when clicking outside

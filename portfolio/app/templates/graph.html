@@ -127,9 +127,9 @@
                         </div>
 
                          <!-- Validation Message -->
-                        <div id="notification" class="notification">
+                        <div class="validation-box">
                         {% if validation %}
-                            <img src="{{ url_for('static', filename='icons/exclamation-circle.svg') }}" alt="Exclamation Icon" />
+                            <img id="exclamationIcon" src="{{ url_for('static', filename='icons/exclamation-circle.svg') }}" alt="Exclamation Icon" />
                             <p>{{ validation }}</p>
                         {% endif %}
                         </div>

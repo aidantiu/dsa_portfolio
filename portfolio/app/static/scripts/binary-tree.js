@@ -15,16 +15,14 @@ function toggleDropdown(dropdownId) {
 
 // SHow validation box and search indicator if there is a message
 document.addEventListener('DOMContentLoaded', function() {
-    const validationBox = document.getElementById('validation-box');
-
+    const validationBox = document.querySelector('#validation-box div');
+    
+    // Only set timeout if there's a message
     if (validationBox.innerHTML.trim() !== '') {
-        validationBox.style.display = 'flex';
+        setTimeout(() => {
+            validationBox.innerHTML = '';  // Clear content but keep box
+        }, 5000);
     }
-
-    // Close validation box after 5 seconds
-    setTimeout(() => {
-        validationBox.style.display = 'none';
-    }, 5000);
 });
 
 // Close dropdowns when clicking outside
@@ -59,8 +57,26 @@ function selectNode(value) {
 document.addEventListener('DOMContentLoaded', () => {
     const svg = document.querySelector('.tree-svg');
     const container = document.querySelector('.tree-structure-container');
+    const rootNode = document.querySelector('#node-0');
     let isDragging = false;
     let startX, startY, scrollLeft, scrollTop;
+
+    // Center on root node (0) when page loads with tons of nodes
+    if (rootNode) {
+        const rootRect = rootNode.getBoundingClientRect();
+        const containerRect = container.getBoundingClientRect();
+        const svgRect = svg.getBoundingClientRect();
+        
+        // Calculate center position
+        const centerX = (svgRect.width - containerRect.width) / 2;
+        const centerY = rootRect.top - containerRect.top - 20; // Adjust for top padding
+        
+        // Add small delay to ensure proper positioning
+        setTimeout(() => {
+            container.scrollLeft = centerX;
+            container.scrollTop = centerY;
+        }, 100);
+    }
 
     container.addEventListener('mousedown', (e) => {
         isDragging = true;
@@ -199,5 +215,29 @@ document.querySelector('.modal-overlay').addEventListener('click', (e) => {
     if (e.target.classList.contains('modal-overlay')) {
         document.getElementById('howToUseModal').classList.remove('active');
         document.querySelector('.modal-content').classList.remove('active');
+    }
+})
+
+// For the dropdown buton showing the caret
+document.querySelectorAll('.binary-tree-simulator-dropdown-btn').forEach(button => {
+    button.addEventListener('click', function() {
+        const dropdown = this.closest('.binary-tree-simulator-dropdown');
+        dropdown.classList.toggle('active');
+        
+        // Close other dropdowns
+        document.querySelectorAll('.binary-tree-simulator-dropdown.active').forEach(otherDropdown => {
+            if (otherDropdown !== dropdown) {
+                otherDropdown.classList.remove('active');
+            }
+        });
+    });
+});
+
+// Close dropdowns when clicking outside
+document.addEventListener('click', function(e) {
+    if (!e.target.closest('.binary-tree-simulator-dropdown')) {
+        document.querySelectorAll('.binary-tree-simulator-dropdown.active').forEach(dropdown => {
+            dropdown.classList.remove('active');
+        });
     }
 });

@@ -63,51 +63,56 @@
                 <div class="binary-tree-simulator-buttons">
                     <!-- Add Dropdown -->
                     <div class="binary-tree-simulator-dropdown">
-                        <button type="button" class="binary-tree-simulator-btn binary-tree-simulator-dropdown-btn" onclick="toggleDropdown('addDropdown')">
+                        <button type="button" class="binary-tree-simulator-dropdown-btn" onclick="toggleDropdown('addDropdown')">
                             <i class="fas fa-plus-circle"></i> Add Node
+                            <svg class="caret-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6b00a1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
                         </button>
                         <div id="addDropdown" class="binary-tree-simulator-dropdown-content">
                             <button type="submit" class="binary-tree-simulator-btn" name="action" value="add_left">
-                                <i class="fas fa-angle-double-left"></i> Add Left Child
+                                <i class="fas fa-arrow-circle-left"></i> Add Left Child
                             </button>
                             <button type="submit" class="binary-tree-simulator-btn" name="action" value="add_right">
-                                <i class="fas fa-angle-double-right"></i> Add Right Child
+                                <i class="fas fa-arrow-circle-right"></i> Add Right Child
                             </button>
                         </div>
                     </div>
 
-               <!-- Search Dropdown -->
-                <div class="binary-tree-simulator-dropdown">
-                    <button type="button" class="binary-tree-simulator-btn binary-tree-simulator-dropdown-btn" onclick="toggleDropdown('searchDropdown')">
-                        <i class="fas fa-search"></i> Search Node
-                    </button>
-                    <div id="searchDropdown" class="binary-tree-simulator-dropdown-content">
-                        <div class="search-input-container">
-                            <input type="text" id="search-value" name="search_value" placeholder="Enter node value">
+                    <!-- Search Dropdown -->
+                    <div class="binary-tree-simulator-dropdown">
+                        <button type="button" class="binary-tree-simulator-dropdown-btn" onclick="toggleDropdown('searchDropdown')">
+                            <i class="fas fa-search"></i> Search Node
+                            <svg class="caret-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6b00a1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div id="searchDropdown" class="binary-tree-simulator-dropdown-content">
+                            <div class="search-input-container">
+                                <input type="text" id="search-value" name="search_value" placeholder="Enter a node value..." autocomplete="off">
+                            </div>
+                            <button id="search-node" type="submit" class="binary-tree-simulator-btn" name="action" value="search" onclick="setTraversalType('pre_order')">
+                                <i class="fas fa-step-forward"></i> Preorder Search
+                            </button>
+                            <button id="search-node" type="submit" class="binary-tree-simulator-btn" name="action" value="search" onclick="setTraversalType('in_order')">
+                                <i class="fas fa-arrows-alt-h"></i> Inorder Search
+                            </button>
+                            <button id="search-node" type="submit" class="binary-tree-simulator-btn" name="action" value="search" onclick="setTraversalType('post_order')">
+                                <i class="fas fa-step-backward"></i> Postorder Search
+                            </button>
+                            <input type="hidden" id="traversal_type" name="traversal_type" value="">
                         </div>
-                        <button id="search-node" type="submit" class="binary-tree-simulator-btn" name="action" value="search" onclick="setTraversalType('pre_order')">
-                            Preorder Search
-                        </button>
-                        <button id="search-node" type="submit" class="binary-tree-simulator-btn" name="action" value="search" onclick="setTraversalType('in_order')">
-                            Inorder Search
-                        </button>
-                        <button id="search-node" type="submit" class="binary-tree-simulator-btn" name="action" value="search" onclick="setTraversalType('post_order')">
-                            Postorder Search
-                        </button>
-                        <input type="hidden" id="traversal_type" name="traversal_type" value="">
                     </div>
-                </div>
 
                     <!-- Delete Button -->
                     <button type="submit" class="binary-tree-simulator-btn" name="action" value="delete">
-                        <i class="fas fa-trash"></i> Delete Node
+                        <i class="fas fa-times-circle"></i> Delete Node
                     </button>
 
-                     <!-- Clear Button -->
-                     <button type="submit" class="binary-tree-simulator-btn" name="action" value="clear">
-                        <i class="fas fa-eraser"></i> Clear Tree
+                    <!-- Clear Button -->
+                    <button type="submit" class="binary-tree-simulator-btn" name="action" value="clear">
+                        <i class="fas fa-trash-alt"></i> Clear Tree
                     </button>
-
                 </div>
 
                
@@ -115,14 +120,16 @@
 
             <div class="info-wrapper">
                 <div id="validation-box" class="validation">
-                    {% if message %}
-                        {% if message_type == "check" %}
-                            <img src="{{ url_for('static', filename='icons/circle-check.svg') }}" alt="Check Icon" />
-                        {% elif message_type == "warning" %}
-                            <img src="{{ url_for('static', filename='icons/exclamation-circle.svg') }}" alt="Exclamation Icon" />
+                    <div>
+                        {% if message %}
+                            {% if message_type == "check" %}
+                                <img src="{{ url_for('static', filename='icons/circle-check.svg') }}" alt="Check Icon" />
+                            {% elif message_type == "warning" %}
+                                <img src="{{ url_for('static', filename='icons/exclamation-circle.svg') }}" alt="Exclamation Icon" />
+                            {% endif %}
+                            <p>{{ message }}</p>
                         {% endif %}
-                        <p>{{ message }}</p>
-                    {% endif %}
+                    </div>
                 </div>
 
                 <div class="search-indicator" id="search-indicator">

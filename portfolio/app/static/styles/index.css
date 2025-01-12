@@ -301,3 +301,53 @@ body{
     background: #971DD4;
     cursor: pointer;
 }
+
+/* Back to top button */
+.back-to-top-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    padding: 10px;
+    
+    /* Enhanced styling */
+    background: linear-gradient(145deg, 
+    rgba(156, 71, 179, 0.95) 0%,    
+    rgba(141, 53, 162, 0.95) 35%,   
+    rgba(120, 45, 138, 0.95) 100% 
+    );
+    border: 3px solid rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+    
+    /* Effects */
+    box-shadow: 0 4px 15px rgba(107, 0, 161, 0.3),
+                inset 0 2px 5px rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    
+    /* Position */
+    position: fixed;
+    bottom: 30px;
+    right: 29px;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.back-to-top-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 4px 12px rgba(107, 0, 161, 0.5);
+    background: linear-gradient(145deg, 
+        rgba(175, 0, 158, 0.95) 0%,   
+        rgba(141, 53, 162, 0.95) 50%, 
+        rgba(107, 0, 161, 0.95) 100%  
+    );
+}
+
+.back-to-top-btn i {
+    font-size: 20px;
+}

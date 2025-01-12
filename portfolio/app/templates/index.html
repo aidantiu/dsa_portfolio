@@ -114,9 +114,15 @@
                     </div>
                     {% endfor %}
                 </div>
-            </section>            
+            </section>
+            
+            <!-- Back to top Button -->
+            <button id="back-to-top" class="back-to-top-btn">
+                <i class="fas fa-arrow-up"></i>
+            </button>
         </main>
     </body>
+    
     <!-- Footer Section -->
     <footer class="footer">
         <div class="footer-container">
@@ -142,4 +148,6 @@
 
     <!-- Link to external JS files -->
     <script src="{{ url_for('static', filename='scripts/global.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/index.js') }}"></script>
+
 </html>

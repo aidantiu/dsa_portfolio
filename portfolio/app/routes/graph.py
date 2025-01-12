@@ -213,5 +213,20 @@ def graph():
         mrt3_stations=MRT3_STATIONS,
         lrt2_stations=LRT2_STATIONS,
         lrt1_stations=LRT1_STATIONS,
-        path_list = path_list
+        path_list = path_list,
+        instruction_steps=get_instruction_steps(),  # Call the function
     )
+
+# List to store the How To Use data
+def get_instruction_steps():
+    instruction_steps = [
+        "Select a starting station from the dropdown menu.",
+        "Select a destination station from the dropdown menu.",
+        "Click on the 'Find Route' button to see the result.",
+        "View your route on the interactive map.",
+        "Use the zoom controls (+/-) on the map to explore route details.",
+        "Pan the map by clicking and dragging.",
+        "Toggle route details using the button with an eye icon."
+    ]
+    print("Debug - Instructions:", instruction_steps)  # Debug line
+    return instruction_steps

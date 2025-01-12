@@ -66,21 +66,21 @@
                                 <span class="station-placeholder">Select Starting Station:</span>
                             </option>
                             <!-- Opt group Lines -->
-                            <optgroup label="MRT3 Line">
+                            <optgroup label="MRT3 Line" style="color: #8D35A2; font-size: 22px">
                                 {% for station in mrt3_stations %}
                                     <option value="{{ station }}" {% if start == station %}selected{% endif %}>
                                         {{ station }}
                                     </option>
                                 {% endfor %}
                             </optgroup>
-                            <optgroup label="LRT2 Line">
+                            <optgroup label="LRT2 Line" style="color: #af009e; font-size: 22px">
                                 {% for station in lrt2_stations %}
                                     <option value="{{ station }}" {% if start == station %}selected{% endif %}>
                                         {{ station }}
                                     </option>
                                 {% endfor %}
                             </optgroup>
-                            <optgroup label="LRT1 Line">
+                            <optgroup label="LRT1 Line" style="color: #006674; font-size: 22px">
                                 {% for station in lrt1_stations %}
                                     <option value="{{ station }}" {% if start == station %}selected{% endif %}>
                                         {{ station }}
@@ -92,21 +92,21 @@
                         <!-- End Station -->
                         <select id="end" name="end" required>
                             <option class="end-station-text" disabled selected>Select End Station:</option>
-                            <optgroup label="MRT3 Line">
+                            <optgroup label="MRT3 Line" style="color: #8D35A2; font-size: 22px">
                                 {% for station in mrt3_stations %}
                                     <option value="{{ station }}" {% if end == station %}selected{% endif %}>
                                         {{ station }}
                                     </option>
                                 {% endfor %}
                             </optgroup>
-                            <optgroup label="LRT2 Line">
+                            <optgroup label="LRT2 Line" style="color: #af009e; font-size: 22px">
                                 {% for station in lrt2_stations %}
                                     <option value="{{ station }}" {% if end == station %}selected{% endif %}>
                                         {{ station }}
                                     </option>
                                 {% endfor %}
                             </optgroup>
-                            <optgroup label="LRT1 Line">
+                            <optgroup label="LRT1 Line" style="color: #006674; font-size: 22px">
                                 {% for station in lrt1_stations %}
                                     <option value="{{ station }}" {% if end == station %}selected{% endif %}>
                                         {{ station }}
@@ -115,16 +115,12 @@
                             </optgroup>
                         </select>
 
-                         <!-- Button Container -->
+                         <!-- Button Container and Eye Icon-->
                         <div class="submit-button-container">
                             <button class="submit-button" type="submit" id="submit-btn">
                                 <i class="fas fa-route"></i>
                                 <span>Find Route</span>
                             </button>
-                        </div>
-
-                        <!-- Eye Icon -->
-                        <div class="view-output-style">
                             <button class="view-output-button" id="view-output-btn" type="button">
                                 <i class="fas fa-eye"></i>
                             </button>
@@ -223,6 +219,24 @@
                 </div>
             </div>
         </div>
+
+        <!-- "How to Use" Modal -->
+        <div class="modal-overlay" id="howToUseModal">
+            <div class="modal-content">
+                <i class="fa-solid fa-x" id="closeModal"></i>
+                <h2>How to Use Manila Rail System Shortest Path Finder?</h2>
+                <div class="modal-content-text">
+                    <ol>
+                        {% for step in instruction_steps %}
+                            <li>{{ step }}</li>
+                        {% endfor %}
+                    </ol>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Add fixed How to Use button -->
+        <button class="how-to-use-button" id="showHowToUse">?</button>
 
     </main>
     <!-- JS Script -->

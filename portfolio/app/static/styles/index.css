@@ -162,11 +162,11 @@ body{
     background: rgba(255, 254, 254, 0.527);
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     backdrop-filter: blur(20px);
+    transition: all 0.3s ease;
 }
 
 .profile-card:hover{
     transform: scale(1.05);
-    transition: ease-in 0.2s;
 }
 
 .profile-card img{
@@ -230,11 +230,12 @@ body{
     backdrop-filter: blur(20px);
     padding: 0 30px;
     gap: 50px;
+    transition: transform 0.3s ease-out;
 }
+
 
 .works-card:hover{
     transform: scale(1.05);
-    transition: ease-in 0.2s;
 }
 
 .works-image{

@@ -25,12 +25,30 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Output Info Section Hidden by Default and Toggle Button
+// Output Info Section and Toggle Button
 document.addEventListener('DOMContentLoaded', function() {
     const viewOutputButton = document.getElementById('view-output-btn');
     const outputSection = document.getElementById('output');
     const eyeIcon = viewOutputButton.querySelector('i');
+    const form = document.querySelector('form');
 
+    // Show output initially if there's already data
+    if (outputSection.querySelector('.path-container') || 
+        outputSection.querySelector('.journey-container')) {
+        outputSection.classList.add('visible');
+        eyeIcon.classList.remove('fa-eye');
+        eyeIcon.classList.add('fa-eye-slash');
+    }
+
+    // Handle form submission
+    form.addEventListener('submit', function(e) {
+        // Show output section automatically
+        outputSection.classList.add('visible');
+        eyeIcon.classList.remove('fa-eye');
+        eyeIcon.classList.add('fa-eye-slash');
+    });
+
+    // Toggle button functionality remains the same
     viewOutputButton.addEventListener('click', function(e) {
         e.preventDefault();
         outputSection.classList.toggle('visible');
@@ -145,7 +163,7 @@ document.querySelector('.modal-overlay').addEventListener('click', (e) => {
     }
 });
 
-// Notfication Timer
+// Notification Timer
 document.addEventListener('DOMContentLoaded', () => {
     const notification = document.getElementById('notification');
     if (notification) {

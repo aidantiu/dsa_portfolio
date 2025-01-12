@@ -21,6 +21,8 @@ body{
 
 .binary-tree-text h1{
     font-size: 40px;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .binary-tree-simulator-buttons {
@@ -162,127 +164,83 @@ body{
     font-weight: lighter;
 }
 
-.binary-tree-simulator-buttons .binary-tree-simulator-btn i {
-    margin-right: 2px;
-    margin-left: 3px;
-    font-size: 1.2rem;
+.binary-tree-simulator-buttons .binary-tree-simulator-btn:hover {
+    background: rgb(255, 255, 255);
 }
 
-.binary-tree-simulator-buttons .binary-tree-simulator-btn:hover {
-    background: #ffffff;
+/* Dropdown button and its container */
+.binary-tree-simulator-dropdown-btn {
+    margin: 5px;
+    padding: 10px 40px 10px 20px; /* Increased right padding */
+    border-radius: 15px;
+    background: transparent;
     color: #6b00a1;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border: 1px white solid;
+    backdrop-filter: blur(40px);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 15px;
+    font-size: 20px;
+    white-space: nowrap;
+    min-width: 170px;
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-weight: lighter;
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 
 .binary-tree-simulator-dropdown {
     position: relative;
     display: inline-block;
 }
 
-.binary-tree-simulator-dropdown-btn {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    padding: 10px 20px;
-    border-radius: 15px;
-    background: transparent;
-    font-weight: bold;
-    cursor: pointer;
-    transition: width 0.3s ease, padding 0.3s ease, background-color 0.3s;
-    border: 1px solid white;
-    backdrop-filter: blur(40px);
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
-    width: auto;
-    overflow: hidden;
-    white-space: nowrap;
-    position: relative;
-}
-
-/* Caret Hidden Initially */
-.binary-tree-simulator-dropdown-btn::after {
-    content: '▼';
-    display: none;
-    transition: visibility 0s, opacity 1s;
-    margin-left: 10%;
-}
-
-/* "Add" Text Style */
-#binary-tree-simulator-add-button-text {
-    margin: 0 auto;
-    text-align: center;
-    transition: padding-right 0.3s ease;
-}
-
-#binary-tree-simulator-delete-button-text {
-    margin: 0 auto;
-    text-align: center;
-    transition: padding-right 0.3s ease;
-}
-
-/* Hover to Extend Button and Show Caret */
-.binary-tree-simulator-dropdown-btn:hover {
-    padding-right: 25px;
-    background: rgba(255, 255, 255, 0.7);
-    transition: 0.3s ease-in-out;
-}
-
-/* Show the caret when hovered */
-.binary-tree-simulator-dropdown-btn:hover::after {
-    display: block;
-    opacity: 1;
-}
-
-.binary-tree-simulator-dropdown-btn:hover #binary-tree-simulator-button-text {
-    text-align: left;
-}
-
-/* Dropdown Content (Hidden by Default) */
-.binary-tree-simulator-dropdown-content {
-    display: none;
+/* Active state - caret up (^) */
+.caret-icon {
     position: absolute;
-    background: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(10px);
-    border: 1px solid white;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 15px;
-    z-index: 1;
-    margin: 5px 0 10px 0;
-    min-width: 200px;
-    padding: 10px 0;
-    box-sizing: border-box;
+    right: 15px; /* Moved further right */
+    width: 16px;
+    height: 16px;
+    transition: transform 0.5s ease;
 }
 
-.binary-tree-simulator-dropdown-content div {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    margin: 5px 10px;
+@keyframes caretTransition {
+    0% {
+        opacity: 1;
+        transform: rotate(0deg);
+    }
+    50% {
+        opacity: 0;
+        transform: rotate(90deg);
+    }
+    100% {
+        opacity: 1;
+        transform: rotate(180deg);
+    }
 }
 
-.binary-tree-simulator-dropdown-content div .binary-tree-simulator-btn {
-    margin: 0 !important;
+.binary-tree-simulator-dropdown.active .caret-icon {
+    animation: caretTransition 0.3s ease forwards;
 }
 
-/* Dropdown Buttons */
-.binary-tree-simulator-dropdown-content .binary-tree-simulator-btn {
-    display: block;
-    padding: 8px;
-    text-align: left;
-    background: rgba(255, 255, 255, 0.2);
-    color: #6b00a1;
-    border: 2px solid #6b00a1;
-    transition: background-color 0.3s, box-shadow 0.3s;
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+/* Hover effects */
+.binary-tree-simulator-dropdown-btn:hover {
+    border-color: #6b00a1;
+    box-shadow: 0 0 0 2px rgba(107, 0, 161, 0.1);
+    transform: scale(1.06);
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
-.binary-tree-simulator-dropdown-content .binary-tree-simulator-btn:hover {
-    background: #e0e0e0;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    border: 2px solid #6b00a1;
+.binary-tree-simulator-dropdown-btn::after {
+    display: none;
 }
 
-.binary-tree-simulator-dropdown.active .binary-tree-simulator-dropdown-content {
-    display: block;
-}
 
 /* Dropdown Content */
 .binary-tree-simulator-dropdown-content {
@@ -308,7 +266,7 @@ body{
 }
 
 .binary-tree-simulator-dropdown-content .binary-tree-simulator-btn {
-    padding: 5px;
+    padding: 8px;
     text-align: center;
     background: transparent;
     color: #6b00a1;
@@ -321,18 +279,42 @@ body{
     background: rgba(255, 255, 255, 0.7);
 }
 
+/* Input Container under search node */
 .search-input-container {
-    padding: 8px;
+    padding-left: 6px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
 }
 
 .search-input-container input {
     width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    margin-bottom: 8px;
+    padding: 10px 15px;
+    border: 1px solid #6b00a1;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(40px);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+    color: #6b00a1;
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-size: 20px;
+    transition: all 0.3s ease;
 }
 
+.search-input-container input:hover,
+.search-input-container input:focus {
+    border-color: #6b00a1;
+    box-shadow: 0 0 0 2px rgba(107, 0, 161, 0.1);
+    transform: scale(1.02);
+    background: rgba(255, 255, 255, 0.2);
+    outline: none;
+}
+
+.search-input-container input::placeholder {
+    color: rgba(107, 0, 161, 0.6);
+    font-family: 'Mouse Memoirs', sans-serif;
+}
 
 /* Show the dropdown */
 .binary-tree-simulator-dropdown-content.show {

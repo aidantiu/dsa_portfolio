@@ -200,4 +200,28 @@ document.querySelector('.modal-overlay').addEventListener('click', (e) => {
         document.getElementById('howToUseModal').classList.remove('active');
         document.querySelector('.modal-content').classList.remove('active');
     }
+})
+
+// For the dropdown buton showing the caret
+document.querySelectorAll('.binary-tree-simulator-dropdown-btn').forEach(button => {
+    button.addEventListener('click', function() {
+        const dropdown = this.closest('.binary-tree-simulator-dropdown');
+        dropdown.classList.toggle('active');
+        
+        // Close other dropdowns
+        document.querySelectorAll('.binary-tree-simulator-dropdown.active').forEach(otherDropdown => {
+            if (otherDropdown !== dropdown) {
+                otherDropdown.classList.remove('active');
+            }
+        });
+    });
+});
+
+// Close dropdowns when clicking outside
+document.addEventListener('click', function(e) {
+    if (!e.target.closest('.binary-tree-simulator-dropdown')) {
+        document.querySelectorAll('.binary-tree-simulator-dropdown.active').forEach(dropdown => {
+            dropdown.classList.remove('active');
+        });
+    }
 });

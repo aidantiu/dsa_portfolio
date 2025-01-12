@@ -147,6 +147,7 @@ body {
 .station-select select::-ms-expand {
     display: none;
 }
+
 /* Add custom scrollbar for select dropdowns */
 .station-select select::-webkit-scrollbar {
     width: 8px;

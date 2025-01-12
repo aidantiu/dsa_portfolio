@@ -165,19 +165,16 @@ def graph():
         # Store results in session to prevent form resubmission issues
 
         if start == '' and end == '':
-            validation = "Please choose start and end stations."
-            session['validation'] = validation
+            session['validation'] = "Please choose start and end stations."
+            
         elif start == '':
-            validation = "Invalid! Starting station was missing."
-            session['validation'] = validation
+            session['validation'] = "Invalid! Starting station was missing."
 
         elif end == '':
-            validation = "Invalid! Destination (end station) was missing."
-            session['validation'] = validation
+            session['validation'] = "Invalid! Destination (end station) was missing."
 
         elif start == end:
-            validation = "Invalid! Start and end destination must be two different stations."
-            session['validation'] = validation
+            session['validation'] = "Invalid! Start and end destination must be two different stations."
 
         else:
             path_with_lines, distance = find_shortest_path(G, start, end)

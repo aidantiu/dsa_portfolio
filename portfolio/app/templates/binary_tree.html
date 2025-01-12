@@ -116,6 +116,11 @@
             <div class="info-wrapper">
                 <div id="validation-box" class="validation">
                     {% if message %}
+                        {% if message_type == "check" %}
+                            <img src="{{ url_for('static', filename='icons/circle-check.svg') }}" alt="Check Icon" />
+                        {% elif message_type == "warning" %}
+                            <img src="{{ url_for('static', filename='icons/exclamation-circle.svg') }}" alt="Exclamation Icon" />
+                        {% endif %}
                         <p>{{ message }}</p>
                     {% endif %}
                 </div>

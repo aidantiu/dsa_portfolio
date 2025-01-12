@@ -57,9 +57,13 @@
                 <div id="validation-box" class="validation">
                     <div id="validation-wrapper">
                     {% if validation_string %}
-                        <img src="{{ url_for('static', filename='icons/exclamation-circle.svg') }}" alt="Check Icon" />
-                        <p>{{ validation_string }}</p>
+                        {% if validation_type_q == "check" %}
+                            <img src="{{ url_for('static', filename='icons/circle-check.svg') }}" alt="Check Icon" />
+                        {% elif validation_type_q == "warning" %}
+                            <img src="{{ url_for('static', filename='icons/exclamation-circle.svg') }}" alt="Exclamation Icon" />
                         {% endif %}
+                        <p>{{ validation_string }}</p>
+                    {% endif %}
                     </div>
                 </div>
             </div>

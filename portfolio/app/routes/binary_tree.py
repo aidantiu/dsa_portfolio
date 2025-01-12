@@ -254,6 +254,7 @@ def binary_tree():
     Allows adding children, searching for nodes, and deleting nodes.
     """
     message = ""
+    message_type = "" # Initialize the type of the validation message
     path = []  # Initialize path for search results
     found = False  # Initialize search result flag
     
@@ -269,40 +270,50 @@ def binary_tree():
         if action == 'add_left':
             if not selected_node or not selected_node.strip():
                 message = "Please select a node."
+                message_type = "warning"
             else:
                 parent_node = tree.find_node(tree.root, selected_node)
                 if parent_node:
                     if parent_node.left:
                         message = f"Left child of node '{selected_node}' already exists!"
+                        message_type = "warning"
                     else:
                         tree.add_left_child(selected_node, None)
                         message = f"Added left child to node {selected_node}."
+                        message_type = "check"
                 else:
                     message = f"Parent node '{selected_node}' not found!"
+                    message_type = "warning"
 
         elif action == 'add_right':
             if not selected_node or not selected_node.strip():
                 message = "Please select a node."
+                message_type = "warning"
             else:
                 parent_node = tree.find_node(tree.root, selected_node)
                 if parent_node:
                     if parent_node.right:
                         message = f"Right child of node '{selected_node}' already exists!"
+                        message_type = "warning"
                     else:
                         tree.add_right_child(selected_node, None)
                         message = f"Added right child to node '{selected_node}'."
+                        message_type = "check"
                 else:
                     message = f"Parent node '{selected_node}' not found!"
+                    message_type = "warning"
 
         elif action == 'delete':
             if not selected_node or not selected_node.strip():
                 message = "Please select a node."
+                message_type = "warning"
             else:
                 node = tree.find_node(tree.root, selected_node)
                 if node:
                     if str(tree.root.value) == selected_node:
                         tree.clear_tree()
                         message = "The tree has been cleared!"
+                        message_type = "check"
                     else:
                         parent_node = tree.find_parent(tree.root, selected_node)
                         if parent_node.left and str(parent_node.left.value) == selected_node:
@@ -310,22 +321,33 @@ def binary_tree():
                         elif parent_node.right and str(parent_node.right.value) == selected_node:
                             parent_node.right = None
                         message = f"Node '{selected_node}' has been deleted."
+                        message_type = "check"
                 else:
                     message = f"Node '{selected_node}' not found"
+                    message_type = "warning"
 
         elif action == 'search':
             search_value = request.form.get('search_value')
             traversal_type = request.form.get('traversal_type')
             path = tree.find_node_with_traversal(search_value, traversal_type)
             found = search_value in path
-            message = f"Node '{search_value}' {'found' if found else 'not found'}"
+            if found:
+                message = f"Node '{search_value}' found."
+                message_type = "check"
+
+            else:
+                message = f"Node '{search_value}' not found!"
+                message_type = "warning"
 
         elif action == 'clear':
             tree.clear_tree()
             message = "The tree has been cleared!"
+            message_type = "check"
+
 
         # Store message and search results in session for redirect
         session['message'] = message
+        session['message_type'] = message_type
         session['search_path'] = path
         session['search_found'] = found
         session['is_redirected_get'] = True
@@ -336,11 +358,13 @@ def binary_tree():
         # Clear the tree on fresh page load (not after POST redirect)
         tree.clear_tree()
         message = None
+        message_type = None
         path = []
         found = False
     else:
         # Retrieve saved message and search results from session
         message = session.get('message')
+        message_type = session.get('message_type')
         path = session.get('search_path', [])
         found = session.get('search_found', False)
 
@@ -349,6 +373,7 @@ def binary_tree():
     session.pop('message', None)
     session.pop('search_path', None)
     session.pop('search_found', None)
+    session.pop('message_type', None)
 
     # Get current tree structure and render template
     tree_structure = tree.get_tree_structure()
@@ -357,6 +382,7 @@ def binary_tree():
                          message=message,
                          search_path=path,
                          search_found=found,
+                         message_type = message_type,
                          instruction_steps=get_instruction_steps(),)
 
 # List to store the How To Use data

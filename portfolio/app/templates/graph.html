@@ -127,12 +127,13 @@
                         </div>
 
                          <!-- Validation Message -->
-                        {% if validation %}
                         <div id="notification" class="notification">
+                        {% if validation %}
+                            <img src="{{ url_for('static', filename='icons/exclamation-circle.svg') }}" alt="Exclamation Icon" />
                             <p>{{ validation }}</p>
-                        </div>
                         {% endif %}
-                
+                        </div>
+
                 </form>
             </section>
             

@@ -32,8 +32,6 @@ body{
 .tree-structure-container {
     overflow: auto;
     max-width: 100%;
-    padding: 20px;
-    
 }
 
 .tree-svg {
@@ -478,10 +476,14 @@ body{
     justify-content: flex-end;
 }
 
-.search-legends{
+/*Search Legends */
+.search-legends {
     display: flex;
     align-items: center;
+    justify-content: center; /* Add center alignment */
     gap: 10px;
+    margin: 0 auto; /* Add auto margins */
+    width: fit-content; /* Contain width to content */
 }
 
 .search-legends div{
@@ -494,22 +496,32 @@ body{
 
 .unvisited{
     background-color: #ddd;
+    border: 2px solid #c7c4dd;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
-.checking{
+.checking {
     background-color: #2196F3;
+    border: 2px solid #1976D2; /* Darker blue border */
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
-.visited{
+.visited {
     background-color: #FFEB3B;
+    border: 2px solid #FBC02D; /* Darker yellow border */
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
-.found{
+.found {
     background-color: #4CAF50;
+    border: 2px solid #388E3C; /* Darker green border */
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
-.not-found{
+.not-found {
     background-color: #F44336;
+    border: 2px solid #D32F2F; /* Darker red border */
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 

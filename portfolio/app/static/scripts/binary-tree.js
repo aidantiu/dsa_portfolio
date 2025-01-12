@@ -59,8 +59,26 @@ function selectNode(value) {
 document.addEventListener('DOMContentLoaded', () => {
     const svg = document.querySelector('.tree-svg');
     const container = document.querySelector('.tree-structure-container');
+    const rootNode = document.querySelector('#node-0');
     let isDragging = false;
     let startX, startY, scrollLeft, scrollTop;
+
+    // Center on root node (0) when page loads with tons of nodes
+    if (rootNode) {
+        const rootRect = rootNode.getBoundingClientRect();
+        const containerRect = container.getBoundingClientRect();
+        const svgRect = svg.getBoundingClientRect();
+        
+        // Calculate center position
+        const centerX = (svgRect.width - containerRect.width) / 2;
+        const centerY = rootRect.top - containerRect.top - 20; // Adjust for top padding
+        
+        // Add small delay to ensure proper positioning
+        setTimeout(() => {
+            container.scrollLeft = centerX;
+            container.scrollTop = centerY;
+        }, 100);
+    }
 
     container.addEventListener('mousedown', (e) => {
         isDragging = true;

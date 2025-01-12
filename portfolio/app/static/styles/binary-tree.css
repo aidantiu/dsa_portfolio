@@ -109,6 +109,10 @@ body{
 }
 
 .validation{
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
     gap: 8px;
     display: none;
     padding: 5px;
@@ -250,8 +254,8 @@ body{
 .binary-tree-simulator-dropdown-content div {
     display: flex;
     align-items: center;
-    gap: 2px;
-    margin: 5px 25px;
+    gap: 5px;
+    margin: 5px 10px;
 }
 
 .binary-tree-simulator-dropdown-content div .binary-tree-simulator-btn {
@@ -261,7 +265,7 @@ body{
 /* Dropdown Buttons */
 .binary-tree-simulator-dropdown-content .binary-tree-simulator-btn {
     display: block;
-    padding: 10px;
+    padding: 8px;
     text-align: left;
     background: rgba(255, 255, 255, 0.2);
     color: #6b00a1;
@@ -285,7 +289,7 @@ body{
     display: none; /* Initially hidden */
     position: absolute;
     background-color: #f9f9f9;
-    min-width: 160px;
+    min-width: 150px;
     position: absolute;
     background: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(10px);
@@ -294,15 +298,18 @@ body{
     border-radius: 15px;
     z-index: 1;
     margin: 5px 0 10px 0;
-    min-width: 200px;
     padding: 10px 0;
     box-sizing: border-box;
     z-index: 1;
+    width: fit-content;
+    text-align: center;
+    padding: 5px;
+    gap: 10px;
 }
 
 .binary-tree-simulator-dropdown-content .binary-tree-simulator-btn {
     padding: 5px;
-    text-align: left;
+    text-align: center;
     background: transparent;
     color: #6b00a1;
     border: none;
@@ -364,7 +371,7 @@ body{
     /* Position */
     position: fixed;
     bottom: 30px;
-    right: 30px;
+    right: 39px;
     z-index: 999;
 }
 

@@ -2,6 +2,8 @@ body{
     background: #E2B2E5 linear-gradient(180deg , #E2B2E5 30%, #B9FBFF 100%);
 }
 
+
+/* Profile Section Container */
 .specific-profile-container{
     display: block;
 }
@@ -11,20 +13,30 @@ body{
     gap: 50px;
 }
 
-.specific-profile-image{
+.specific-profile-image {
     z-index: 1;
     margin-top: 20px;
-    background: rgba(255, 254, 254, 0.527);
+    background: rgb(255, 254, 254);
     padding: 20px;
-    box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.10);
+    box-shadow: 1px 2.1px 2px 1px rgba(0, 0, 0, 0.25);
+    transform: rotate(-3deg);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.specific-profile-image img{
+.specific-profile-image:hover {
+    transform: rotate(0deg) scale(1.05);
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+.specific-profile-image img {
     width: 500px;
     height: 500px;
     object-fit: cover;
+    transition: all 0.3s ease;
 }
 
+
+/* Profile Card Container */
 .specific-card-details{
     margin-top: 5px;
     text-align: center;;
@@ -65,12 +77,13 @@ body{
     font-weight: lighter;
 }
 
+
+/* Social Media Icons */
 .specific-profile-socials{
     display: flex;
     flex-direction: column;
-
     gap: 20px;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .specific-profile-socials-icons{
@@ -78,30 +91,45 @@ body{
     justify-content: flex-end;
 }
 
-.specific-profile-socials-icons a{
+.specific-profile-socials-icons a {
     width: 30px;
     height: 30px;
     border-radius: 50%;
     background: #ffffffa1;
     padding: 5px;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 0.2px 3px 2px rgba(0, 0, 0, 0.25);
     margin-right: 10px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.specific-profile-socials-icons img{
+.specific-profile-socials-icons a:hover {
+    transform: translateY(-5px) scale(1.1);
+    background: #ffffff;
+    box-shadow: 0.2px 3px 2px rgba(0, 0, 0, 0.25);
+}
+
+.specific-profile-socials-icons img {
     width: 100%;
     height: 100%;
+    transform: translateX(0.3px) translateY(-0.3px);
+    transition: transform 0.3s ease;
 }
 
+.specific-profile-socials-icons img:hover {
+    transform: translateY(-0.1px);
+}
+
+
+/* Skills Section Container */
 .specific-profile-skills-wrapper{
     padding: 20px 0;
     z-index: 0;
     position: absolute;
     margin-left: -100px;
-    top: 65%;
+    top: 75%;
     width: 100%;
     text-align: left;
-    padding-left: 45%;
+    padding-left: 46%;
     font-size: 25px;
     margin-top: 50px;
     border: 1px solid #FFF;
@@ -111,10 +139,10 @@ body{
 
 .specific-profile-skills-wrapper h3{
     font-size: 30px;
+    letter-spacing: 1px;
 }
 
 .specific-profile-skills{
-
     margin-top: 10px;
     margin-right: 20px;
 }
@@ -132,7 +160,9 @@ body{
     background-color: #FFD8F1;
     padding: 10px ;
     font-size: 20px;
+    box-shadow: 0.1px 2px 2px rgba(0, 0, 0, 0.25);
 }
+
 
 /* Projects Section Container */
 .specific-projects-wrapper {
@@ -239,6 +269,7 @@ body{
         transform: translateY(0);
     }
 }
+
 
 /* Project Image */
 .specific-projects-card-item img {

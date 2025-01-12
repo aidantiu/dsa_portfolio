@@ -232,7 +232,7 @@ body {
     transform: translateY(0);
     visibility: visible;
     margin-top: 20px;
-    padding-bottom:10px;
+    padding-bottom: 10px;
 }
 
 /*View Output Button (Eye Icon) */
@@ -726,6 +726,37 @@ body {
     padding: 5px 0;
     text-align: left;
 }
+/* New placeholder message styling */
+.placeholder-message {
+    width: 100%;
+    text-align: center;
+    padding: 2rem;
+}
+
+.placeholder-message p {
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-size: 25px;
+    font-weight: lighter;
+    letter-spacing: 0;
+    color: #ffffff;
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+    letter-spacing: 0.2px;
+}
+
+/* Responsive adjustments for placeholder message */
+@media screen and (max-width: 480px) {
+    .placeholder-message p {
+        font-size: 20px;
+        padding: 1rem;
+    }
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .placeholder-message p {
+        font-size: 22px;
+    }
+}
+
 @keyframes slideUp {
     from {
         transform: translate(-50%, 100vh);

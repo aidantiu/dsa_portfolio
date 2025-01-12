@@ -168,7 +168,7 @@ function animateSearch(path, found) {
             document.querySelectorAll('.node circle').forEach(circle => {
                 circle.setAttribute('fill', '#F44336');
             });
-        }, 5000);
+        }, path.length * DELAY);
     }
 
     // Reset all nodes to default after animation completes

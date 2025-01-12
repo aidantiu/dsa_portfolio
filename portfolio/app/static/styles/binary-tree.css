@@ -109,6 +109,10 @@ body{
 }
 
 .validation{
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
     gap: 8px;
     display: flex;
     padding: 5px;

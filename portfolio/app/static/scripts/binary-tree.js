@@ -116,15 +116,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-function setTraversalType(type) {
-    document.getElementById('traversal_type').value = type;
-    const searchValue = document.getElementById('search-value').value;
-    if (!searchValue) {
-        document.getElementById('validation-box').innerHTML = '<p>Please enter a value to search</p>';
-        event.preventDefault();
-    }
-}
-
 // Traverse the tree and highlight nodes
 document.addEventListener('DOMContentLoaded', function() {
     const container = document.querySelector('.tree-structure-container');

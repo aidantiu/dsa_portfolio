@@ -331,13 +331,17 @@ def binary_tree():
             traversal_type = request.form.get('traversal_type')
             path = tree.find_node_with_traversal(search_value, traversal_type)
             found = search_value in path
-            if found:
-                message = f"Node '{search_value}' found."
-                message_type = "check"
-
-            else:
-                message = f"Node '{search_value}' not found!"
+            if not search_value or search_value.strip() == "":
+                message = "Please enter a node to search."
                 message_type = "warning"
+            else:
+                if found:
+                    message = f"Node '{search_value}' found."
+                    message_type = "check"
+
+                else:
+                    message = f"Node '{search_value}' not found!"
+                    message_type = "warning"
 
         elif action == 'clear':
             tree.clear_tree()

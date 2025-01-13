@@ -219,9 +219,9 @@ body {
     opacity: 0;
     height: 0;
     overflow: hidden;
-    transform: translateY(-30px);
+    transform: translateY(-25px) scale(0.95);
     visibility: hidden;
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -230,11 +230,30 @@ body {
 .output-section.visible {
     opacity: 1;
     height: fit-content;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
     visibility: visible;
     margin-top: 20px;
     padding-bottom: 10px;
 }
+
+/* Add fade-in for children */
+.output-section.visible > * {
+    animation: fadeInUp 0.5s ease-out forwards;
+    opacity: 0;
+}
+
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 
 /*View Output Button (Eye Icon) */
 .view-output-style {
@@ -382,6 +401,7 @@ body {
     transition: all 0.3s ease;
     transform-origin: center center;
     z-index: 1;
+    margin: 5px;
 }
 
 .station-box::before {
@@ -762,6 +782,7 @@ body {
     padding: 5px 0;
     text-align: left;
 }
+
 /* New placeholder message styling */
 .placeholder-message {
     width: 100%;

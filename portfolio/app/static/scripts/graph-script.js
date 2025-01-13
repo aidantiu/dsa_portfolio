@@ -31,6 +31,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const outputSection = document.getElementById('output');
     const eyeIcon = viewOutputButton.querySelector('i');
     const form = document.querySelector('form');
+    const sourceStation = document.getElementById('source-station');
+    const destinationStation = document.getElementById('destination-station');
+    const validationBox = document.querySelector('#validation-box div');
 
     // Show output initially if there's already data
     if (outputSection.querySelector('.path-container') || 
@@ -42,13 +45,33 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Handle form submission
     form.addEventListener('submit', function(e) {
-        // Show output section automatically
+        // Check if stations are selected
+        if (!sourceStation.value || !destinationStation.value) {
+            e.preventDefault();
+            validationBox.innerHTML = '<img src="/static/icons/exclamation-circle.svg" alt="Error"><p>Please select both stations</p>';
+            outputSection.classList.remove('visible');
+            eyeIcon.classList.add('fa-eye');
+            eyeIcon.classList.remove('fa-eye-slash');
+            return false;
+        }
+
+        // Check if same station selected
+        if (sourceStation.value === destinationStation.value) {
+            e.preventDefault();
+            validationBox.innerHTML = '<img src="/static/icons/exclamation-circle.svg" alt="Error"><p>Please select different stations</p>';
+            outputSection.classList.remove('visible');
+            eyeIcon.classList.add('fa-eye');
+            eyeIcon.classList.remove('fa-eye-slash');
+            return false;
+        }
+
+        // If validation passes, show output section
         outputSection.classList.add('visible');
         eyeIcon.classList.remove('fa-eye');
         eyeIcon.classList.add('fa-eye-slash');
     });
 
-    // Toggle button functionality remains the same
+    // Toggle button functionality
     viewOutputButton.addEventListener('click', function(e) {
         e.preventDefault();
         outputSection.classList.toggle('visible');

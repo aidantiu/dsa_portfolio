@@ -116,6 +116,31 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// Determine the type of search
+function setTraversalType(type) {
+    document.getElementById('traversal_type').value = type;
+    const searchValue = document.getElementById('search-value').value.trim();
+    const validationBox = document.getElementById('validation-box');
+    
+    // If search value is empty, show validation message
+    if (!searchValue) {
+        validationBox.innerHTML = '<div><img src="/static/icons/exclamation-circle.svg" alt="Exclamation Icon" /><p>Please enter a value to search</p></div>';
+        validationBox.style.display = 'flex'; // Make sure the validation box is visible
+        
+        // Set a timer to hide the validation message after 5 seconds
+        setTimeout(() => {
+            validationBox.innerHTML = ''; // Clear the validation box content
+            validationBox.style.display = 'none'; // Hide the validation box
+        }, 9000); // 9000ms = 10 seconds 
+
+        event.preventDefault();
+    } else {
+        // If search value is not empty, clear the validation message
+        validationBox.innerHTML = ''; // Clear the validation box content
+        validationBox.style.display = 'none'; // Hide the validation box
+    }
+}
+
 // Traverse the tree and highlight nodes
 document.addEventListener('DOMContentLoaded', function() {
     const container = document.querySelector('.tree-structure-container');

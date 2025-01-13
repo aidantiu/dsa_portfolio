@@ -178,33 +178,45 @@
                             <div class="journey-header">
                                 <h2 class="journey-title">Journey Details:</h2>
                             </div>
-                            
                             <div class="journey-wrapper">
-                                <div class="journey-section station-count">
-                                    {% if no_stations %}
-                                        <div class="info-box">
-                                            <i class="fas fa-train"></i>
-                                            <p id="stationMessage">
-                                                {% set words = no_stations.split(' ') %}
-                                                {% for word in words %}
-                                                    {% if word.isdigit() %}
-                                                        <span class="station-number">{{ word }}</span>
-                                                    {% else %}
-                                                        {{ word }}
-                                                    {% endif %}
-                                                {% endfor %}
-                                            </p>
-                                        </div>
-                                    {% endif %}
+                                {% if no_stations %}
+                                <div class="info-row">
+                                    <i class="fas fa-train"></i>
+                                    {{ no_stations }}
                                 </div>
+                                {% endif %}
+                                
+                                {% if total_time %}
+                                <div class="info-row">
+                                    <i class="fas fa-clock"></i>
+                                    {{ total_time }}
+                                </div>
+                                {% endif %}
+                                
+                                {% if line_changes_output %}
+                                <div class="info-row">
+                                    <i class="fas fa-exchange-alt"></i>
+                                    {% for change in line_changes_output %}
+                                        {{ change.text }}
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
                         
                                 <div class="journey-section line-transfers">
-                                    {% if line_changes_output %}
+                                    {% if line_changes %}
                                         <div class="transfers-list">
                                             <i class="fas fa-exchange-alt" id="exchangeStations"></i>
                                             <ul class="no-bullets">
-                                                {% for change in line_changes_output %}
-                                                    <li class="transfer-item">{{ change }}</li>
+                                                {% for change in line_changes %}
+                                                    <li class="transfer-item">
+                                                        {{ change.text }}
+                                                        <span class="transfer-time">
+                                                            <i class="fas fa-hourglass-half"></i>
+                                                            {{ change.time }}
+                                                        </span>
+                                                    </li>
                                                 {% endfor %}
                                             </ul>
                                         </div>

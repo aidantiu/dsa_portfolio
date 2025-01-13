@@ -3,7 +3,7 @@ from app import app
 # Added imports for handling form resubmission and session management
 from flask import render_template, request, redirect, url_for, session
 
-# Global variables for station lists
+# Global variables for station lists remain unchanged
 MRT3_STATIONS = sorted([
     "North Avenue", "Quezon Avenue", "GMA Kamuning", "Cubao", 
     "Santolan-Annapolis", "Ortigas", "Shaw Boulevard", "Boni", 
@@ -82,156 +82,140 @@ def create_manila_rail_graph():
 
 def find_shortest_path(G, start, end):
     try:
-        # Check if the start and end stations exist in the graph
         if start not in G or end not in G:
             raise ValueError(f"One or both stations {start} and {end} are not in the graph.")
         
-        # Compute the shortest path and its length
         path = nx.shortest_path(G, start, end, weight='weight')
         distance = nx.shortest_path_length(G, start, end, weight='weight')
         
-        # Build the path with line information as a formatted string
+        # Calculate travel time based on line
+        total_time = 0
+        current_line = None
+        
+        for i in range(len(path)):
+            station = path[i]
+            line = G.nodes[station]['line']
+            
+            # Add transfer time if changing lines
+            if current_line and line != current_line:
+                total_time += 5  # 5 minutes transfer time
+            
+            # Calculate time to next station if not last station
+            if i < len(path) - 1:
+                if line == "MRT3":
+                    total_time += 6
+                elif line == "LRT1":
+                    total_time += 7
+                elif line == "LRT2":
+                    total_time += 6
+            
+            current_line = line
+            
         path_with_lines = " → ".join([f"{station} ({G.nodes[station]['line']})" for station in path])
         
-        return path_with_lines, distance
+        return path_with_lines, distance, total_time
     except nx.NetworkXNoPath:
-        return None, None
+        return None, None, None
     except ValueError as e:
         print(f"Error: {e}")
-        return None, None
+        return None, None, None
     except Exception as e:
         print(f"Unexpected error: {e}")
-        return None, None
+        return None, None, None
 
-def get_line_changes(path_with_lines_str):
-    # Split the formatted path into stations with their line information
+def get_line_changes_with_times(path_with_lines_str):
     path_parts = path_with_lines_str.split(" → ")
-    
     changes = []
     current_line = None
     
-    for part in path_parts:
-        station, line = part.rsplit(" (", 1)  # Split on the last '(' to get the station and line
-        line = line.rstrip(")")  # Remove the closing ')'
+    for i, part in enumerate(path_parts):
+        # Split on the last occurrence of " (" to handle station names with parentheses
+        station = part[:part.rindex(" (")]
+        line = part[part.rindex("(") + 1:].rstrip(")")
         
         if current_line and line != current_line:
-            changes.append(f"Change from {current_line} to {line} at {station}")
+            changes.append({
+                'text': f"Change from {current_line} to {line} at {station}",
+                'time': "5 mins transfer time",
+                'station': station
+            })
         
-        current_line = line  # Update the current line
+        current_line = line
     
     return changes
 
 def convert_path_to_list(path_with_lines_str):
-    # Split the formatted path into stations with their line information
-    path_parts = path_with_lines_str.split(" → ")
-    
-    # Extract station names along with their respective lines as strings
-    path_list = []
-    for part in path_parts:
-        station, line = part.rsplit(" (", 1)  # Split on the last '(' to get the station and line
-        line = line.rstrip(")")  # Remove the closing ')'
-        path_list.append(f"{station} ({line})")  # Format as a string "Station (Line)"
-    
-    return path_list
+    return path_with_lines_str.split(" → ")
 
-# List to store the How To Use data
 def get_instruction_steps():
-    instruction_steps = [
-        "Select a starting station from the dropdown menu.",
-        "Select a destination station from the dropdown menu.",
-        "Click on the 'Find Route' button to see the result.",
-        "View your route on the interactive map.",
-        "Use the zoom controls (+/-) on the map to explore route details.",
-        "Pan the map by clicking and dragging.",
-        "Toggle route details using the button with an eye icon."
+    return [
+        "Select your starting station from the dropdown menu.",
+        "Select your destination station from the dropdown menu.",
+        "Click on the 'Find Path' button to calculate the shortest path.",
+        "View the shortest path, number of stations, and estimated travel time.",
+        "Check the journey details for any line changes and transfer times."
     ]
-    print("Debug - Instructions:", instruction_steps)  # Debug line
-    return instruction_steps
-
-# Create the graph representing the Manila rail system
-G = create_manila_rail_graph()
-
-# Add secret key for session management
-app.secret_key = 'your_secret_key_here'
 
 @app.route('/graph', methods=['GET', 'POST'])
 def graph():
-    # For POST request: process form submission
     if request.method == "POST":
-        # Get start and end inputs from the form
         start = request.form.get('start', '').strip()
         end = request.form.get('end', '').strip()
         
-        # Store results in session to prevent form resubmission issues
-
         if start == '' and end == '':
             session['validation'] = "Please choose start and end stations."
-            
         elif start == '':
             session['validation'] = "Invalid! Starting station was missing."
-
         elif end == '':
             session['validation'] = "Invalid! Destination (end station) was missing."
-
         elif start == end:
             session['validation'] = "Invalid! Start and end destination must be two different stations."
-
         else:
-            path_with_lines, distance = find_shortest_path(G, start, end)
+            path_with_lines, distance, total_time = find_shortest_path(G, start, end)
             if path_with_lines and distance:
-                # Store all path information in session
-                # line_changes is now stored as a direct list for simpler template rendering
                 session['from_to'] = f"Shortest path from {start} to {end}:"
                 session['shortest_path'] = path_with_lines
                 session['no_stations'] = f"Number of stations: {distance}"
-                session['line_changes'] = get_line_changes(path_with_lines)  # Stores list directly
+                session['total_time'] = f"Estimated total travel time: {total_time} mins"
+                session['line_changes'] = get_line_changes_with_times(path_with_lines)
                 session['path_list'] = convert_path_to_list(path_with_lines)
                 session['validation'] = ""
             else:
                 session['shortest_path'] = f"No path found between {start} and {end}"
                 session['from_to'] = ""
                 session['no_stations'] = ""
+                session['total_time'] = ""
                 session['line_changes'] = []
                 session['path_list'] = []
                 session['validation'] = ""
         
-        # Set a flag to indicate that the request is a result of a POST (form submission)
         session['form_submitted'] = True
-
-        # Redirect to prevent form resubmission on refresh
         return redirect(url_for('graph', start=start, end=end))
         
+    # Rest of the code remains unchanged
     elif request.method == "GET":
-        # Check if this is a fresh GET request (not redirected after POST)
         if not session.get('form_submitted', False):
-            # Clear session data to reset outputs
             session.pop('from_to', None)
             session.pop('shortest_path', None)
             session.pop('no_stations', None)
             session.pop('line_changes', None)
             session.pop('path_list', None)
-            # Set start and end inputs to empty
             start = ""
             end = ""
-
         else:
-            # Clear the flag after handling the redirected request
             session.pop('form_submitted', None)
-
-            # Use values from the redirected GET request
             start = request.args.get('start', '')
             end = request.args.get('end', '')
 
-    # Retrieve and clear session data
     from_to = session.pop('from_to', "")
     shortest_path = session.pop('shortest_path', "")
     no_stations = session.pop('no_stations', "")
     line_changes_output = session.pop('line_changes', [])
-    path_list = session.pop('path_list', [])  # Retrieve the path list from session
+    path_list = session.pop('path_list', [])
     validation = session.get('validation', "")
+    total_time = session.pop('total_time', "")  # Add this line to get total_time
     session.pop('validation', None)
     
-    # Render template with empty inputs and any stored results
     return render_template(
         'graph.html',
         from_to=from_to,
@@ -243,7 +227,14 @@ def graph():
         mrt3_stations=MRT3_STATIONS,
         lrt2_stations=LRT2_STATIONS,
         lrt1_stations=LRT1_STATIONS,
-        path_list = path_list,
-        validation = validation,
-        instruction_steps=get_instruction_steps(),  # Call the function
+        path_list=path_list,
+        validation=validation,
+        total_time=total_time,  # Add this line to pass total_time to template
+        instruction_steps=get_instruction_steps(),
     )
+
+# Create the graph representing the Manila rail system
+G = create_manila_rail_graph()
+
+# Add secret key for session management
+app.secret_key = 'your_secret_key_here'

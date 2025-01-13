@@ -492,18 +492,22 @@ body {
 }
 
 
-.journey-container{
+/* Updated Journey Details Container */
+.journey-container {
     display: flex;
-    width: 100%;
     flex-direction: column;
+    width: 100%;
 }
 
-.journey-wrapper{
+.journey-wrapper {
     display: flex;
-    gap: 30px;
-    padding-left: 10px;
+    flex-direction: row; /* Changed to row to align items horizontally */
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+    padding: 10px;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
 }
-
 
 .journey-section {
     margin-top: 8px;
@@ -779,6 +783,70 @@ body {
     letter-spacing: 0.2px;
 }
 
+/* Add styles for travel time information */
+.transfer-time {
+    margin-left: 10px;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 2px 8px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.transfer-time i {
+    font-size: 14px;
+    color: #ffffff;
+}
+
+#timeMessage {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-size: 18px;
+    color: #ffffff;
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+}
+
+.info-box i.fa-clock {
+    color: #ffffff;
+    font-size: 16px;
+}
+
+
+.info-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-size: 20px;
+    color: #ffffff;
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+    white-space: nowrap; /* Prevent text wrapping within each info item */
+}
+
+.info-row i {
+    font-size: 20px;
+    color: #ffffff;
+    width: 24px;
+    text-align: center;
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+}
+
+.info-row .fa-train,
+.info-row .fa-clock,
+.info-row .fa-exchange-alt {
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+}
+
+/* Ensure consistent spacing between icons and text */
+.info-row i.fa-clock {
+    margin-right: 2px;  /* Fine-tune spacing for clock icon */
+}
+
 /* Responsive adjustments for placeholder message */
 @media screen and (max-width: 480px) {
     .placeholder-message p {
@@ -954,5 +1022,17 @@ body {
 
     .journey-container {
         margin-top: 20px;
+    }
+}
+
+/* Adjustments for responsive design */
+@media screen and (max-width: 768px) {
+    .journey-wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .info-row {
+        white-space: normal; /* Allow wrapping on mobile */
     }
 }

@@ -153,7 +153,8 @@ def get_instruction_steps():
         "Select your destination station from the dropdown menu.",
         "Click on the 'Find Path' button to calculate the shortest path.",
         "View the shortest path, number of stations, and estimated travel time.",
-        "Check the journey details for any line changes and transfer times."
+        "Check the journey details for any line changes and transfer times.",
+        "Enjoy the app with the map as the visual representation of the shortest path."
     ]
 
 @app.route('/graph', methods=['GET', 'POST'])

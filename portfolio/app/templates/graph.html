@@ -197,7 +197,7 @@
                                 <div class="info-row">
                                     <i class="fas fa-exchange-alt"></i>
                                     {% for change in line_changes_output %}
-                                        {{ change.text }}
+                                        {{ change.text }}{% if not loop.last %}<br>{% endif %}
                                     {% endfor %}
                                 </div>
                                 {% endif %}

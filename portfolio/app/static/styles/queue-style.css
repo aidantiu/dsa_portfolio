@@ -199,6 +199,12 @@ body{
 
 }
 
+.validation-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .validation img, .validation p{
     margin: 0;
     font-size: 20px;
@@ -206,7 +212,7 @@ body{
 
 .validation div{
     gap: 8px;
-    display: none;
+    display: flex;
     padding: 5px;
     border-radius: 8px;
     background-color: #D9D9D9;

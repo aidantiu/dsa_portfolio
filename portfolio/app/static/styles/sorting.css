@@ -152,6 +152,16 @@ button[type="submit"][name="generate"]:active {
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
+button[type="submit"][name="generate"] {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+button[type="submit"][name="generate"] i {
+    font-size: 20px;
+}
+
 
 /* Dropdown for Sorting Algorithm */
 .sorting-dropdown {

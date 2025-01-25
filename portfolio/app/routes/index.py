@@ -62,10 +62,10 @@ profiles = [
         "name": "Earl Clyde M. Bañez",
         "student_number": "20**-01***-MN-*",
         "role": "UI/UX Designer",
-        "about": "UI/UX Designer with expertise in creating intuitive digital experiences",
+        "about": "UI/UX Designer with expertise in creating intuitive digital experiences. Outside of design, I have a passion for sports like basketball and badminton, as well as gaming. I enjoy combining creativity with strategic thinking, whether in design or on the court.",
         "school": "Polytechnic University of the Philippines - Manila",
         "degree": "Bachelor of Science in Computer Engineering",
-        "skills": ["HTML", "CSS", "Python", "UI/UX Design", "Content Creation", "Adobe Photoshop", "Adobe InDesign", "Adobe Audition", "Adobe Premiere", "Image Editing"],
+        "skills": ["HTML", "CSS", "Python", "UI/UX", "Content Creation", "Adobe Photoshop", "Adobe InDesign", "Adobe Audition", "Adobe Premiere", "Image Editing"],
         "socials": {
             "facebook": "https://www.facebook.com/EarlClydeqt/",
             "instagram": "https://www.instagram.com/earl_cly/",
@@ -139,7 +139,7 @@ profiles = [
     {
         "image_path": "images/denn.jpg",
         "name": "Denn Adrian J. Capus",
-        "student_number": "2023-04328-MN-0",
+        "student_number": "20**-04***-MN-*",
         "role": "Front-End Developer",
         "about": "I'm Denn Adrian I'm a passionate programmer with a strong interest in logic and web design. I love creating websites with cool, innovative features and I'm always looking for ways to improve. My strong personality and motivation drive me to push my limits and explore new possibilities. In the future, I hope to combine my tech skills and creativity to inspire others as a tech YouTuber or vlogger. I'm excited to see where this journey takes me.",
         "school": "Polytechnic University of the Philippines - Manila",
@@ -188,12 +188,12 @@ profiles = [
     {
         "image_path": "images/renz.png",
         "name": "Renz Tyrone Arcilla",
-        "student_number": "2023-0002",
+        "student_number": "20**-04***-MN-*",
         "role": "Back-end Developer",
-        "about": "Renz is a proficient Back-end Developer with a focus on building scalable APIs and optimizing server-side performance. He has extensive experience in database management, API design, and using technologies like Node.js and Express. Renz is passionate about creating efficient and reliable back-end systems that support seamless user experiences, and he is also deeply interested in exploring data science to enhance his technical expertise.",
+        "about": "I have a strong interest in data engineering with a solid foundation in Python and PostgreSQL. As a problem solver, I am particularly drawn to creating data-driven solutions. Outside of tech, I enjoy gaming and reading, which allow me to unwind and explore new perspectives.",
         "school": "Polytechnic University of the Philippines - Manila",
         "degree": "Bachelor of Science in Computer Engineering",
-        "skills": ["Python", "Flask", "Scikit-Learn", "Tableau", "AWS", "PostgreSQL", "Node.js", "Express", "RESTful APIs", "Server-Side Optimization", "Database Management", "Data Preprocessing", "Statistical Analysis"],
+        "skills": ["HTML", "Python", "Git", "Bash", "Flask", "Matplotlib", "Pandas" , "PostgreSQL", "Data Preprocessing", "Descriptive Analytics"],
         "socials": {
             "facebook": "https://www.facebook.com/renztyrone.arcilla.3",
             "instagram": "https://www.instagram.com/wash.n.rinse/",

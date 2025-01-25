@@ -12,7 +12,7 @@
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='icons/favicon-black-with-border.png') }}">
     <title>Sorting Visualizer</title>
 </head>
-<body>
+<main>
 
     <!-- Navigation Bar -->
     <nav class="navbar">
@@ -43,72 +43,85 @@
     </nav>
 
     <!-- Main Section -->
-    <main class="container">
-        <h1>Sorting Algorithm Visualizer</h1>
-        <form method="post">
-            <div class="controls">
-                <div class="array-size">
-                    <label for="arraySize">Array Size</label>
-                    <input type="number" id="arraySize" name="arraySize" min="5" max="100" value="{{ array_size }}">
-                </div>
-                <button type="submit" name="generate">Generate Array</button>
-                
-                <div class="dropdown">
-                    <button class="sorting-dropdown-btn" type="button" onclick="toggleDropdown('sortingDropdown')">Sorting Algorithms</button>
-                    <div id="sortingDropdown" class="sorting-dropdown-content">
-                        <button type="button" onclick="startSort('bubble')">Bubble Sort</button>
-                        <button type="button" onclick="startSort('selection')">Selection Sort</button>
-                        <button type="button" onclick="startSort('insertion')">Insertion Sort</button>
-                        <button type="button" onclick="startSort('merge')">Merge Sort</button>
-                        <button type="button" onclick="startSort('quick')">Quick Sort</button>
+    <main>
+        <div class="container">
+            <div class="sorting-algorithm-text">
+                <h1>Sorting Algorithm Visualizer</h1>
+            </div>
+            <!-- Array Input -->
+            <form method="post">
+                <div class="controls">
+                    <div class="array-size">
+                        <input type="number" 
+                               id="arraySize" 
+                               name="arraySize" 
+                               min="5" 
+                               max="100" 
+                               value="{{ array_size if array_size != 10 else '' }}"
+                               placeholder="Enter array size here..."
+                               aria-label="Array Size">
                     </div>
-                </div>
-                <input type="hidden" id="sort_type" name="sort_type" value="">
-
-                <!-- Array Hidden Inputs -->
-                {% for val in array %}
-                    <input type="hidden" name="array[]" value="{{ val }}">
-                {% endfor %}
-
-
-                <!-- Animation Speed Dropdown -->
-                <div class="animation-speed">
-                    <label for="speed">Animation Speed</label>
+                    
+                    <!-- Generate Array Button -->
+                    <button type="submit" name="generate">Create Array</button>
+                    
                     <div class="dropdown">
-                        <button class="speed-dropdown-btn" type="button" onclick="toggleDropdown('speedDropdown')">
-                            {{ speed }}x
-                        </button>
-                        <div id="speedDropdown" class="dropdown-content">
-                            <button type="button" onclick="setSpeed(0.25)">0.25x</button>
-                            <button type="button" onclick="setSpeed(0.5)">0.5x</button>
-                            <button type="button" onclick="setSpeed(0.75)">0.75x</button>
-                            <button type="button" onclick="setSpeed(1)">1x</button>
-                            <button type="button" onclick="setSpeed(1.25)">1.25x</button>
-                            <button type="button" onclick="setSpeed(1.5)">1.5x</button>
-                            <button type="button" onclick="setSpeed(1.75)">1.75x</button>
-                            <button type="button" onclick="setSpeed(2)">2x</button>
+                        <button class="sorting-dropdown-btn" type="button" onclick="toggleDropdown('sortingDropdown')">Sorting Algorithms</button>
+                        <div id="sortingDropdown" class="sorting-dropdown-content">
+                            <button type="button" onclick="startSort('bubble')">Bubble Sort</button>
+                            <button type="button" onclick="startSort('selection')">Selection Sort</button>
+                            <button type="button" onclick="startSort('insertion')">Insertion Sort</button>
+                            <button type="button" onclick="startSort('merge')">Merge Sort</button>
+                            <button type="button" onclick="startSort('quick')">Quick Sort</button>
                         </div>
                     </div>
-                </div>
+                    <input type="hidden" id="sort_type" name="sort_type" value="">
 
-                <!-- Hidden Input for Animation Speed -->
-                <input type="hidden" id="speed_value" value="{{ speed }}">
+                    <!-- Array Hidden Inputs -->
+                    {% for val in array %}
+                        <input type="hidden" name="array[]" value="{{ val }}">
+                    {% endfor %}
 
 
-                <div class="pause-stop">
-                    <button type="button" id="pause" onclick="pauseSort()">Pause</button>
-                    <button type="button" id="stop" onclick="stopSort()">Stop</button>
+                    <!-- Animation Speed Dropdown -->
+                    <div class="animation-speed">
+                        <label for="speed">Animation Speed</label>
+                        <div class="dropdown">
+                            <button class="speed-dropdown-btn" type="button" onclick="toggleDropdown('speedDropdown')">
+                                {{ speed }}x
+                            </button>
+                            <div id="speedDropdown" class="dropdown-content">
+                                <button type="button" onclick="setSpeed(0.25)">0.25x</button>
+                                <button type="button" onclick="setSpeed(0.5)">0.5x</button>
+                                <button type="button" onclick="setSpeed(0.75)">0.75x</button>
+                                <button type="button" onclick="setSpeed(1)">1x</button>
+                                <button type="button" onclick="setSpeed(1.25)">1.25x</button>
+                                <button type="button" onclick="setSpeed(1.5)">1.5x</button>
+                                <button type="button" onclick="setSpeed(1.75)">1.75x</button>
+                                <button type="button" onclick="setSpeed(2)">2x</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hidden Input for Animation Speed -->
+                    <input type="hidden" id="speed_value" value="{{ speed }}">
+
+
+                    <div class="pause-stop">
+                        <button type="button" id="pause" onclick="pauseSort()">Pause</button>
+                        <button type="button" id="stop" onclick="stopSort()">Stop</button>
+                    </div>
                 </div>
-            </div>
-        </form>
-        
-        <div class="array-output-box" id="array-container">
-            <div class="element-wrapper">
-            {% for value in array %}
-                <div class="array-element" style="--element-value: {{ value }}">
-                    <p>{{ value }}</p>
+            </form>
+            
+            <div class="array-output-box" id="array-container">
+                <div class="element-wrapper">
+                {% for value in array %}
+                    <div class="array-element" style="--element-value: {{ value }}">
+                        <p>{{ value }}</p>
+                    </div>
+                {% endfor %}
                 </div>
-            {% endfor %}
             </div>
         </div>
     </main>

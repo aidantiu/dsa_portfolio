@@ -65,17 +65,21 @@
                     <!-- Generate Array Button -->
                     <button type="submit" name="generate">Create Array</button>
                     
-                    <div class="dropdown">
-                        <button class="sorting-dropdown-btn" type="button" onclick="toggleDropdown('sortingDropdown')">Sorting Algorithms</button>
-                        <div id="sortingDropdown" class="sorting-dropdown-content">
-                            <button type="button" onclick="startSort('bubble')">Bubble Sort</button>
-                            <button type="button" onclick="startSort('selection')">Selection Sort</button>
-                            <button type="button" onclick="startSort('insertion')">Insertion Sort</button>
-                            <button type="button" onclick="startSort('merge')">Merge Sort</button>
-                            <button type="button" onclick="startSort('quick')">Quick Sort</button>
-                        </div>
+                    <!-- Sorting Algorithm Dropdown -->
+                    <div class="sorting-algorithm-dropdown">
+                        <select class="sorting-dropdown" id="sortingDropdown" onchange="startSort(this.value)">
+                            <option value="" disabled selected>Choose Algorithm</option>
+                            <optgroup label="Basic Sorts">
+                                <option value="bubble">Bubble Sort</option>
+                                <option value="selection">Selection Sort</option>
+                                <option value="insertion">Insertion Sort</option>
+                            </optgroup>
+                            <optgroup label="Advanced Sorts">
+                                <option value="merge">Merge Sort</option>
+                                <option value="quick">Quick Sort</option>
+                            </optgroup>
+                        </select>
                     </div>
-                    <input type="hidden" id="sort_type" name="sort_type" value="">
 
                     <!-- Array Hidden Inputs -->
                     {% for val in array %}
@@ -85,32 +89,32 @@
 
                     <!-- Animation Speed Dropdown -->
                     <div class="animation-speed">
-                        <label for="speed">Animation Speed</label>
-                        <div class="dropdown">
+                        <div class="animation-speed">
                             <button class="speed-dropdown-btn" type="button" onclick="toggleDropdown('speedDropdown')">
-                                {{ speed }}x
+                                <span>Animation Speed: {{ speed }}x</span>
+                                <i class="fas fa-fast-forward"></i>
                             </button>
-                            <div id="speedDropdown" class="dropdown-content">
-                                <button type="button" onclick="setSpeed(0.25)">0.25x</button>
-                                <button type="button" onclick="setSpeed(0.5)">0.5x</button>
-                                <button type="button" onclick="setSpeed(0.75)">0.75x</button>
-                                <button type="button" onclick="setSpeed(1)">1x</button>
-                                <button type="button" onclick="setSpeed(1.25)">1.25x</button>
-                                <button type="button" onclick="setSpeed(1.5)">1.5x</button>
-                                <button type="button" onclick="setSpeed(1.75)">1.75x</button>
-                                <button type="button" onclick="setSpeed(2)">2x</button>
-                            </div>
+                        <div id="speedDropdown" class="dropdown-content">
+                            <button type="button" onclick="setSpeed(0.25)">0.25x</button>
+                            <button type="button" onclick="setSpeed(0.5)">0.50x</button>
+                            <button type="button" onclick="setSpeed(0.75)">0.75x</button>
+                            <button type="button" onclick="setSpeed(1)">1.00x</button>
+                            <button type="button" onclick="setSpeed(1.25)">1.25x</button>
+                            <button type="button" onclick="setSpeed(1.5)">1.50x</button>
+                            <button type="button" onclick="setSpeed(1.75)">1.75x</button>
+                            <button type="button" onclick="setSpeed(2)">2.00x</button>
                         </div>
                     </div>
 
                     <!-- Hidden Input for Animation Speed -->
                     <input type="hidden" id="speed_value" value="{{ speed }}">
 
-
+                    <!-- Pause and Stop Buttons -->
                     <div class="pause-stop">
                         <button type="button" id="pause" onclick="pauseSort()">Pause</button>
                         <button type="button" id="stop" onclick="stopSort()">Stop</button>
                     </div>
+
                 </div>
             </form>
             

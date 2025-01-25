@@ -11,9 +11,10 @@ function toggleDropdown(dropdownId) {
     });
 }
 
+
 // Close dropdowns when clicking outside
 window.onclick = function(event) {
-    if (!event.target.matches('.sorting-dropdown-btn') && !event.target.matches('.speed-dropdown-btn')) {
+    if (!event.target.closest('.speed-dropdown-btn')) {
         const dropdowns = document.getElementsByClassName('dropdown-content');
         Array.from(dropdowns).forEach(dropdown => {
             if (dropdown.classList.contains('show')) {
@@ -37,22 +38,41 @@ let sortedIndices = [];
 // Update speed function
 function setSpeed(multiplier) {
     speedMultiplier = multiplier;
-    // Update UI
-    document.querySelector('.speed-dropdown-btn').textContent = multiplier + 'x';
-    // Update hidden input for form submission
+    // Update UI with full button content
+    const speedBtn = document.querySelector('.speed-dropdown-btn');
+    speedBtn.innerHTML = `<span>${multiplier.toFixed(2)}x</span><i class="fas fa-fast-forward"></i>`;
+    
+    // Update hidden input
     document.getElementById('speed_value').value = multiplier;
     
+    // Handle active sorting
     if (isSorting) {
         clearInterval(sortingInterval);
         startSort(currentAlgorithm);
+    }
+    
+    // Close dropdown after selection
+    const dropdown = document.getElementById('speedDropdown');
+    if (dropdown.classList.contains('show')) {
+        dropdown.classList.remove('show');
     }
 }
 
 // Initialize speed on page load
 window.onload = function() {
-    const savedSpeed = document.getElementById('speed_value').value;
-    if (savedSpeed) {
-        setSpeed(parseFloat(savedSpeed));
+    try {
+        const savedSpeed = document.getElementById('speed_value').value;
+        if (savedSpeed) {
+            const speed = parseFloat(savedSpeed);
+            if (!isNaN(speed) && speed > 0) {
+                setSpeed(speed);
+            } else {
+                setSpeed(1); // Default to 1x if invalid
+            }
+        }
+    } catch (error) {
+        console.error('Error initializing speed:', error);
+        setSpeed(1); // Fallback to default
     }
 };
 
@@ -385,3 +405,4 @@ function stopSort() {
         updateArrayView(array);
     }
 }
+

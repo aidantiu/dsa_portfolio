@@ -153,13 +153,83 @@ button[type="submit"][name="generate"]:active {
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* Dropdown Styling */
-.dropdown {
+
+/* Dropdown for Sorting Algorithm */
+.sorting-dropdown {
+    padding: 10px 15px;
+    border-radius: 15px;
+    border: 1px solid #FFF;
+    background: #E2B2E5;
+    backdrop-filter: blur(2px);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    max-width: 100%;
+    
+    /* Font styling */
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-size: 20px;
+    font-weight: lighter;
+    letter-spacing: -0.1px;
+    color: #6b00a1;
+    text-align: left;
+
+    /* Custom arrow styling */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%236b00a1' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+    padding-right: 40px;
+}
+
+.sorting-dropdown:hover {
+    border-color: #6b00a1;
+    box-shadow: 0 0 0 2px rgba(107, 0, 161, 0.1);
+    transform: scale(1.06);
+}
+
+.sorting-dropdown:focus {
+    outline: none;
+    border-color: #6b00a1;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%236b00a1' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='18 15 12 9 6 15'%3e%3c/polyline%3e%3c/svg%3e");
+}
+
+.sorting-dropdown optgroup {
+    font-family: 'Mouse Memoirs', sans-serif;
+    color: #6b00a1;
+    font-size: 25px;
+    background-color: rgba(255, 255, 255, 0.216);
+    letter-spacing: 0.1px;
+    font-weight: 100;
+    font-style: normal;
+}
+
+.sorting-dropdown option {
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-weight: lighter;
+    color: #333;
+    font-size: 20px;
+    text-align: left;
+    padding: 8px 15px;
+}
+
+.sorting-dropdown option:hover {
+    color: #fff;
+}
+
+/* Animation Speed Dropdown */
+.animation-speed {
     position: relative;
     display: inline-block;
 }
 
-.sorting-dropdown-btn, .speed-dropdown-btn {
+.speed-dropdown-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
     padding: 10px 20px;
     border-radius: 15px;
     border: 1px solid #FFF;
@@ -171,42 +241,65 @@ button[type="submit"][name="generate"]:active {
     color: #6b00a1;
     cursor: pointer;
     transition: all 0.3s ease;
+    min-width: 100px;
+    white-space: nowrap;
 }
 
-.sorting-dropdown-content, .dropdown-content {
-    display: none;
+.speed-dropdown-btn:hover {
+    transform: scale(1.05);
+    border-color: #6b00a1;
+    background: rgba(255, 255, 255, 0.363);
+    box-shadow: 0px 8px 16px rgba(107, 0, 161, 0.25);
+}
+
+#speedDropdown {
+    display: none; /* Single display property */
     position: absolute;
     background: rgba(226, 178, 229, 0.95);
-    min-width: 160px;
+    backdrop-filter: blur(4px);
+    min-width: 300px;
     border-radius: 15px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    z-index: 1;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    z-index: 1000;
+    padding: 10px;
+    top: 100%;
+    left: 0;
+    margin-top: 5px;
 }
 
-.sorting-dropdown-content button, .dropdown-content button {
-    width: 100%;
-    padding: 10px 20px;
-    border: none;
-    background: none;
-    font-family: 'Mouse Memoirs', sans-serif;
-    font-size: 18px;
+#speedDropdown.show {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 5px;
+    justify-content: space-between;
+    min-width: 400px;
+    overflow-x: auto;
+    padding: 10px 15px;
+}
+
+#speedDropdown button {
+    flex: 0 0 auto;
+    padding: 5px 8px;
+    border: 1px solid transparent;
+    background: transparent;
     color: #6b00a1;
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-size: 20px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
+    border-radius: 10px;
+    white-space: nowrap;
 }
 
-.sorting-dropdown-content button:hover, .dropdown-content button:hover {
-    background: rgba(107, 0, 161, 0.1);
+#speedDropdown button:hover {
+    background: rgba(255, 255, 255, 0.363);
+    border-color: #6b00a1;
+    transform: scale(1.1);
+    box-shadow: 0px 2px 4px rgba(107, 0, 161, 0.15);
 }
 
-.speed-dropdown-btn {
-    padding: 8px 16px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
+/* Pause Stop Buttons */
 
 .show {
     display: block;

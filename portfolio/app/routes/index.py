@@ -236,6 +236,12 @@ works = [
         "title": "Binary Tree Operations Simulator",
         "description": "Explore the fundamental concepts of binary trees with our interactive Binary Tree Operations Simulator! This tool allows you to create, modify, and traverse binary trees in real-time. Add nodes, delete elements, and visualize different traversal methods (pre-order, in-order, post-order) through an intuitive interface.",
         "route": "binary-tree"
+    },
+    {
+        "image_path": "images/graph.png",
+        "title": "Manila Rail System Shortest Path Finder",
+        "description": "Dive into graph data structures with the Manila Rail System Shortest Path Finder! This interactive tool lets you explore Manila's rail transit system while understanding graph traversal algorithms. Add stations, connect routes, and find the shortest paths in real-time through an intuitive and visually engaging interface.",
+        "route": "graph"
     }
 ]
 

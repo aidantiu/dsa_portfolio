@@ -6,8 +6,11 @@ body{
     background-attachment: fixed;
 }
 
-/* Sorting */
+:root {
+    --element-height: 150px;
+}
 
+/* Sorting */
 .sorting-dropdown-content {
     display: none;
     position: absolute;
@@ -102,6 +105,7 @@ body{
     align-items: center;
     font-size: 10px;
     transition: all 0.1s ease;
+    height: calc(var(--element-value) * 1px + 150px);
 }
 
 

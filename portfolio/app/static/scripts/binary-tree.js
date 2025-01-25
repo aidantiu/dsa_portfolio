@@ -12,6 +12,15 @@ function toggleDropdown(dropdownId) {
     });
 }
 
+// Close dropdowns when clicking outside
+window.onclick = function (event) {
+    const dropdowns = document.querySelectorAll('.binary-tree-simulator-dropdown-content');
+    dropdowns.forEach(dropdown => {
+        if (!dropdown.contains(event.target) && !event.target.matches('.binary-tree-simulator-dropdown-btn')) {
+            dropdown.classList.remove('show');
+        }
+    });
+};
 
 // SHow validation box and search indicator if there is a message
 document.addEventListener('DOMContentLoaded', function() {
@@ -24,16 +33,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 5000);
     }
 });
-
-// Close dropdowns when clicking outside
-window.onclick = function (event) {
-    const dropdowns = document.querySelectorAll('.binary-tree-simulator-dropdown-content');
-    dropdowns.forEach(dropdown => {
-        if (!dropdown.contains(event.target) && !event.target.matches('.binary-tree-simulator-dropdown-btn')) {
-            dropdown.classList.remove('show');
-        }
-    });
-};
 
 // When user clicks a node, highlight it and set the selected node value
 function selectNode(value) {

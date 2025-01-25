@@ -89,11 +89,10 @@
 
                     <!-- Animation Speed Dropdown -->
                     <div class="animation-speed">
-                        <div class="animation-speed">
-                            <button class="speed-dropdown-btn" type="button" onclick="toggleDropdown('speedDropdown')">
-                                <span>Animation Speed: {{ speed }}x</span>
-                                <i class="fas fa-fast-forward"></i>
-                            </button>
+                        <button class="speed-dropdown-btn" type="button" onclick="toggleDropdown('speedDropdown')">
+                            <span>Animation Speed: {{ speed }}x</span>
+                            <i class="fas fa-fast-forward"></i>
+                        </button>
                         <div id="speedDropdown" class="dropdown-content">
                             <button type="button" onclick="setSpeed(0.25)">0.25x</button>
                             <button type="button" onclick="setSpeed(0.5)">0.50x</button>
@@ -111,8 +110,12 @@
 
                     <!-- Pause and Stop Buttons -->
                     <div class="pause-stop">
-                        <button type="button" id="pause" onclick="pauseSort()">Pause</button>
-                        <button type="button" id="stop" onclick="stopSort()">Stop</button>
+                        <button type="button" id="pause" onclick="pauseSort()" aria-label="Pause Sorting">
+                            <i class="fas fa-pause"></i>
+                        </button>
+                        <button type="button" id="stop" onclick="stopSort()" aria-label="Stop Sorting">
+                            <i class="fas fa-stop"></i>
+                        </button>
                     </div>
 
                 </div>

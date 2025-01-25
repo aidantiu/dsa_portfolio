@@ -39,9 +39,9 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
     flex-wrap: wrap;
-    padding-bottom: 10px;
+    padding-bottom: 15px;
 }
 
 /* Array Size Input */
@@ -49,9 +49,8 @@ body{
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 12px;
     position: relative;
-    padding: 5px;
+    padding-right: 2px;
 }
 
 .array-size input::placeholder {
@@ -299,18 +298,45 @@ button[type="submit"][name="generate"]:active {
     box-shadow: 0px 2px 4px rgba(107, 0, 161, 0.15);
 }
 
-/* Pause Stop Buttons */
-
-.show {
-    display: block;
-}
-.controls{
-    display:  flex;
-    gap: 10px;
+/* Pause and Stop Buttons Container */
+/* Shared button styles */
+.pause-stop {
+    display: flex;
+    gap: 5px;
+    align-items: center;
 }
 
-.pause-stop{
-    display: none;
+.pause-stop button {
+    width: 45px;
+    height: 45px;
+    border: 1px solid #FFF;
+    border-radius: 15px;
+    background: #E2B2E5;
+    backdrop-filter: blur(2px);
+    color: #6b00a1;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    padding: 0;
+}
+
+
+.pause-stop button i {
+    font-size: 18px;
+    transform: translateY(1px);
+}
+
+.pause-stop button:hover {
+    background: rgb(255, 255, 255);
+    box-shadow: 0px 8px 16px rgba(107, 0, 161, 0.25);
+}
+
+.pause-stop button:active {
+    transform: scale(0.95);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 

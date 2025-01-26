@@ -130,23 +130,7 @@ main {
     }
 }
 
-
-
-
 /* Ellipses designs */
-.ellipses-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-}
-
-.ellipse {
-    position: absolute;
-    border-radius: 50%;
-    opacity: 0.8;
-}
-
 .ellipses-container {
     position: relative;
     width: 100%;

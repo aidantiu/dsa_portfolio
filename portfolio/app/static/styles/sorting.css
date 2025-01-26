@@ -465,7 +465,7 @@ button[type="submit"][name="generate"] i {
     transform: translate(-50%, -50%);
     padding: 30px;
     border-radius: 10px;
-    width: 80%;
+    width: 100%;
     max-width: 600px;
     z-index: 1001;
     opacity: 0;

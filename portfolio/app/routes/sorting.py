@@ -42,5 +42,5 @@ def get_instruction_steps():
         "Adjust animation speed using the speed control (0.25x - 2.00x).",
         "Use pause/play button to control the visualization.",
         "Use stop button to reset the visualization.",
-        "Watch the sorting process in action with color-coded animations: Blue for default array elements; Yellow for elements being compared; Red for elements being swapped; and Green for elements in their final sorted position",
+        "Watch the sorting process in action with color-coded animations: Blue for default array elements; Yellow for elements being compared; Red for elements being swapped; and Green for elements in their final sorted position.",
     ]

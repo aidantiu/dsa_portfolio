@@ -129,10 +129,10 @@ profiles = [
         },
         "projects": [
             {
-                "title": "Under Construction",
-                "description": "Project coming soon",
-                "image_path": "../static/images/temporary_underconstruction.jpg",
-                "link": "#"
+                "title": "360 brat generator",
+                "description": "Inspired by Charli xcx's bratgenerator.com, 360 brat generator features an improved layout with dynamic features, allowing users to customize background and text colors effortlessly. '360' represents its comprehensive approach to creativity and personalization (Stream 360).",
+                "image_path": "../static/images/360-brat-generator.png",
+                "link": "https://github.com/romanjosephgallardo/360-brat-generator"
             }
         ]
     },
@@ -214,34 +214,41 @@ profiles = [
 # List of works
 works = [
     {
-        "image_path": "images/linked-list.png", 
+        "image_path": "images/linked-list.jpg", 
         "title": "Linked List Simulator", 
         "description": "The Linked List Simulator makes learning data structures a breeze! It's an interactive, hands-on tool where you can see linked lists in action. Add, remove, and move through nodes in real-time, with everything laid out visually so it's easy to follow.",
         "route": "linked-list"
     },
     {
-        "image_path": "images/infix-to-postfix.png", 
+        "image_path": "images/infix-to-postfix.jpg", 
         "title": "Infix To Postfix Converter", 
         "description": "Transform the way you understand expression conversion with the Infix to Postfix Converter! This interactive tool lets you input complex infix expressions and instantly see them converted to postfix notation. It's designed to make learning operator precedence, stack operations, and expression parsing straightforward and intuitive.",
         "route": "infix-to-postfix"
     },
     {
-        "image_path": "images/queue.png",  
+        "image_path": "images/queue.jpg",  
         "title": "Queue Operations Simulator",
         "description": "Experience queue data structures in action with our Queue Operations Simulator! This interactive tool demonstrates both simple queues and double-ended queues (deques). Add and remove elements from either end, visualize the queue structure, and understand FIFO operations through a user-friendly interface.",
         "route": "queue"
     },
     {
-        "image_path": "images/binary-tree.png",
+        "image_path": "images/binary-tree.jpg",
         "title": "Binary Tree Operations Simulator",
         "description": "Explore the fundamental concepts of binary trees with our interactive Binary Tree Operations Simulator! This tool allows you to create, modify, and traverse binary trees in real-time. Add nodes, delete elements, and visualize different traversal methods (pre-order, in-order, post-order) through an intuitive interface.",
         "route": "binary-tree"
     },
    {
-        "image_path": "images/raillsystem.png",
+        "image_path": "images/graph.jpg",
         "title": "Manila Rail Shortest Path Finder",
         "description": "Navigate the Manila rail system with ease using the Manila Rail Shortest Path Finder! This interactive tool helps you find the shortest path between stations on the Manila rail network. Input your starting and destination stations, and instantly see the optimal route, complete with travel times and transfer points. Perfect for commuters and travelers looking to save time and navigate the city efficiently.",
         "route": "graph"
+    },
+
+    {
+        "image_path": "images/sorting.jpg",  
+        "title": "Sorting Algorithm Visualizer",
+        "description": "Dive into the world of sorting algorithms with our interactive Sorting Algorithm Visualizer! Customize array size and animation speed to understand how different sorting methods work. Watch as algorithms like Bubble Sort and Quick Sort transform randomly generated arrays into perfectly ordered sequences, making complex sorting concepts easy to grasp.",
+        "route": "sorting"
     }
 ]
 

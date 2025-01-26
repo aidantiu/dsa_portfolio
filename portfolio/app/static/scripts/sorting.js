@@ -419,3 +419,18 @@ function stopSort() {
     }
 }
 
+// Timer for validation message
+document.addEventListener('DOMContentLoaded', function() {
+    const validationBox = document.querySelector('.validation-box');
+    const errMessage = "{{ err_message }}"; // Access the error message from the template
+
+    // Only show the validation box if there is an error message
+    if (errMessage) {
+        validationBox.style.display = 'flex'; // Show the validation box
+
+        // Hide the validation box after 5 seconds
+        setTimeout(function() {
+            validationBox.style.display = 'none'; // Hide the validation box after 5 seconds
+        }, 5000); // 5000 milliseconds = 5 seconds
+    }
+});

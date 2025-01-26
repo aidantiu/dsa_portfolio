@@ -1,0 +1,581 @@
+body{
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    background: #E2B2E5 url(../images/BACKGROUND\(1\).png) no-repeat center center/cover;
+    color: black;
+    background-attachment: fixed;
+}
+
+/** Main Section **/
+.container{
+    padding: 0 0 100px;
+    margin-top: 5px;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin: 0 auto;
+}
+
+/* Title text */
+.sorting-algorithm-text h1{
+    margin: auto;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    padding-bottom: 10px;
+}
+
+
+/* **Sorting** */
+/* Controls Section */
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding-bottom: 15px;
+}
+
+/* Array Size Input */
+.array-size {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    padding-right: 2px;
+}
+
+.array-size input::placeholder {
+    color: rgba(107, 0, 161, 0.6);
+    opacity: 1;
+}
+
+.array-size input:focus::placeholder {
+    opacity: 0.7;
+    transform: translateX(5px);
+    transition: all 0.3s ease;
+}
+
+
+.array-size label {
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-size: 22px;
+    color: #6b00a1;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.array-size input {
+    padding: 10px 20px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    background: rgba(226, 178, 229, 0.9);
+    backdrop-filter: blur(4px);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-size: 20px;
+    color: #6b00a1;
+    width: 200px;
+    transition: all 0.3s ease;
+}
+
+.array-size input:hover {
+    transform: scale(1.02);
+    border-color: #6b00a1;
+    box-shadow: 0px 6px 12px rgba(107, 0, 161, 0.2);
+}
+
+.array-size input:focus {
+    outline: none;
+    transform: scale(1.05);
+    border-color: #6b00a1;
+    background: rgba(255, 255, 255, 0.363);
+    box-shadow: 0px 8px 16px rgba(107, 0, 161, 0.25);
+}
+
+.array-size input::-webkit-inner-spin-button,
+.array-size input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='36' viewBox='0 0 24 36'%3E%3Cpath fill='%236b00a1' d='M12 8l-6 6h12l-6-6zM12 28l6-6H6l6 6z'/%3E%3C/svg%3E") no-repeat center center;
+    width: 20px;
+    height: 100%;
+    opacity: 0.8;
+    cursor: pointer;
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%) translateX(-25%);
+    transition: all 0.2s ease;
+}
+
+.array-size input {
+    padding-right: 35px; /* Make room for custom spinner */
+}
+
+/* Validation/Notification Box Message */
+.validation-box {
+    gap: 8px;
+    display: none;
+    padding: 5px;
+    border-radius: 8px;
+    background-color: #D9D9D9;
+    border: 2px solid #c7c4dd;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    display: flex;
+    align-items: center;
+    color: #000000;
+}
+
+.validation-box img {
+    width: 20px;
+    height: 20px;
+    filter: invert(14%) sepia(88%) saturate(4383%) hue-rotate(280deg) brightness(89%) contrast(108%);
+    margin: 0;
+}
+
+.validation-box p {
+    margin: 0;
+    font-size: 18px;
+    color: #000000;
+    font-family: 'Mouse Memoirs', sans-serif;
+}
+
+#exclamationIcon {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0%); /* Makes icon pure black */
+    margin: 0;
+}
+
+/* Generate Array Button */
+button[type="submit"][name="generate"] {
+    font-family: 'Mouse Memoirs', sans-serif;
+    padding: 10px 20px;
+    border: 1px solid #FFF;
+    border-radius: 15px;
+    background: transparent;
+    color: #6b00a1;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: lighter;
+    transition: all 0.3s ease;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    line-height: normal;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+button[type="submit"][name="generate"]:hover {
+    background: #ffffff;
+    color: #6b00a1;
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.3);
+}
+
+button[type="submit"][name="generate"]:active {
+    transform: translateY(0);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+button[type="submit"][name="generate"] {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+button[type="submit"][name="generate"] i {
+    font-size: 20px;
+}
+
+
+/* Dropdown for Sorting Algorithm */
+.sorting-dropdown {
+    padding: 10px 15px;
+    border-radius: 15px;
+    border: 1px solid #FFF;
+    background: #E2B2E5;
+    backdrop-filter: blur(2px);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    max-width: 100%;
+    
+    /* Font styling */
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-size: 20px;
+    font-weight: lighter;
+    letter-spacing: -0.1px;
+    color: #6b00a1;
+    text-align: left;
+
+    /* Custom arrow styling */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%236b00a1' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+    padding-right: 40px;
+}
+
+.sorting-dropdown:hover {
+    border-color: #6b00a1;
+    box-shadow: 0 0 0 2px rgba(107, 0, 161, 0.1);
+    transform: scale(1.06);
+}
+
+.sorting-dropdown:focus {
+    outline: none;
+    border-color: #6b00a1;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%236b00a1' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='18 15 12 9 6 15'%3e%3c/polyline%3e%3c/svg%3e");
+}
+
+.sorting-dropdown optgroup {
+    font-family: 'Mouse Memoirs', sans-serif;
+    color: #6b00a1;
+    font-size: 25px;
+    background-color: rgba(255, 255, 255, 0.216);
+    letter-spacing: 0.1px;
+    font-weight: 100;
+    font-style: normal;
+}
+
+.sorting-dropdown option {
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-weight: lighter;
+    color: #333;
+    font-size: 20px;
+    text-align: left;
+    padding: 8px 15px;
+}
+
+.sorting-dropdown option:hover {
+    color: #fff;
+}
+
+/* Animation Speed Dropdown */
+.animation-speed {
+    position: relative;
+    display: inline-block;
+}
+
+.speed-dropdown-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    border-radius: 15px;
+    border: 1px solid #FFF;
+    background: #E2B2E5;
+    backdrop-filter: blur(2px);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-size: 20px;
+    color: #6b00a1;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 100px;
+    white-space: nowrap;
+}
+
+.speed-dropdown-btn:hover {
+    transform: scale(1.05);
+    border-color: #6b00a1;
+    background: rgba(255, 255, 255, 0.363);
+    box-shadow: 0px 8px 16px rgba(107, 0, 161, 0.25);
+}
+
+#speedDropdown {
+    display: none; /* Single display property */
+    position: absolute;
+    background: rgba(226, 178, 229, 0.95);
+    backdrop-filter: blur(4px);
+    min-width: 300px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    z-index: 1000;
+    padding: 10px;
+    top: 100%;
+    left: 0;
+    margin-top: 5px;
+}
+
+#speedDropdown.show {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 5px;
+    justify-content: space-between;
+    min-width: 400px;
+    overflow-x: auto;
+    padding: 10px 15px;
+}
+
+#speedDropdown button {
+    flex: 0 0 auto;
+    padding: 5px 8px;
+    border: 1px solid transparent;
+    background: transparent;
+    color: #6b00a1;
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 10px;
+    white-space: nowrap;
+}
+
+#speedDropdown button:hover {
+    background: rgba(255, 255, 255, 0.363);
+    border-color: #6b00a1;
+    transform: scale(1.1);
+    box-shadow: 0px 2px 4px rgba(107, 0, 161, 0.15);
+}
+
+/* Pause and Stop Buttons Container */
+/* Shared button styles */
+.pause-stop {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.pause-stop button {
+    width: 45px;
+    height: 45px;
+    border: 1px solid #FFF;
+    border-radius: 15px;
+    background: #E2B2E5;
+    backdrop-filter: blur(2px);
+    color: #6b00a1;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    padding: 0;
+}
+
+
+.pause-stop button i {
+    font-size: 18px;
+    transform: translateY(1px);
+}
+
+.pause-stop button:hover {
+    background: rgb(255, 255, 255);
+    box-shadow: 0px 8px 16px rgba(107, 0, 161, 0.25);
+}
+
+.pause-stop button:active {
+    transform: scale(0.95);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Visualizer Box */
+.array-output-box {
+    width: 100%;
+    height: 450px;
+    border: 2px solid #ffffff;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin: 0 auto 5px; 
+    display: flex;
+    overflow-y: hidden;
+}
+
+.element-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 100%;
+    width: 100%;
+
+}
+
+.array-element {
+    width: 40px;
+    margin: 0 5px;
+    background-color: #2f89f1;
+    border-radius: 5px;
+    color: black;
+    font-weight: normal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(var(--element-value) * 1px + 150px);
+    font-size: 15px;
+    transition: all 0.3s ease;
+    background: linear-gradient(to bottom, #007bff, #0056b3);
+}
+
+.array-element:hover {
+    background-color: #022664;;
+    transform: scaleY(1.2);
+}
+
+/* Modal Button (?)*/
+.how-to-use-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    padding: 10px;
+    
+    /* Enhanced styling */
+    background: linear-gradient(145deg, 
+    rgba(128, 0, 200, 0.95) 0%,
+    rgba(98, 0, 155, 0.95) 35%,
+    rgba(75, 0, 130, 0.95) 100%
+    );
+    border: 3px solid rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-size: 30px;
+    
+    /* Effects */
+    box-shadow: 0 4px 15px rgba(107, 0, 161, 0.3),
+                inset 0 2px 5px rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    
+    /* Position */
+    position: fixed;
+    bottom: 30px;
+    right: 39px;
+    z-index: 999;
+}
+
+.how-to-use-button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 4px 12px rgba(107, 0, 161, 0.5);
+    background: linear-gradient(145deg, 
+    rgba(128, 0, 200, 0.95) 0%,
+    rgba(98, 0, 155, 0.95) 35%,
+    rgba(75, 0, 130, 0.95) 100%
+    );
+}
+
+.how-to-use-button:active {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 2px 8px rgba(107, 0, 161, 0.3);
+}
+
+/* Modal Styling */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 600px;
+    z-index: 1001;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border: 2px solid #000000;
+    border-radius: 20px;
+    background: #E2B2E5;
+    backdrop-filter: blur(40px);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.modal-overlay.active {
+    display: block;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.modal-content.active {
+    display: block;
+    animation: fadeIn 0.3s ease forwards;
+}
+
+.modal-content.inactive {
+    animation: fadeOut 0.3s ease forwards;
+}
+
+#closeModal {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+    font-size: 20px;
+    color: #000000;
+}
+
+.modal-content h2 {
+    margin: 0 0 15px;
+    font-size: 35px;
+    color: #000000;
+    font-weight: bolder;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.modal-content-text {
+    font-size: 20px;
+    color: #000000;
+    font-weight: lighter;
+}
+
+.modal-content-text ol {
+    text-align: left;
+    width: fit-content;
+    margin: 0 auto;
+    padding-left: 20px;
+}
+
+.modal-content-text li {
+    padding: 5px 0;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translate(-50%, 100vh);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+}
+
+.modal-content.active {
+    display: block;
+    animation: slideUp 0.5s ease-out forwards;
+}
+
+

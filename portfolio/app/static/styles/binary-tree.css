@@ -1,0 +1,612 @@
+body{
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    background: #E2B2E5 url(../images/BACKGROUND\(1\).png) no-repeat center center/cover;
+    color: black;
+    background-attachment: fixed;
+}
+
+/* Main Styles */
+.binary-tree-simulator{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.binary-tree-text{
+    margin-bottom: 10px;
+}
+
+.binary-tree-text h1{
+    font-size: 40px;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.binary-tree-simulator-buttons {
+    display: flex;
+}
+
+.tree-structure-container {
+    overflow: auto;
+    max-width: 100%;
+}
+
+.tree-svg {
+    display: block;
+    margin: auto;
+}
+
+
+.node {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+}
+
+.node circle {
+    transition: fill 0.3s;
+}
+
+.node.selected circle {
+    fill: #e0e0e0;
+}
+
+.node:hover circle {
+    fill: #a0a0a0;
+    cursor: pointer;
+    stroke: #6b00a1;
+    stroke-width: 2px;
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
+}
+
+.node.highlighted circle {
+    fill: #ffa07a; /* Light salmon color when clicked */
+    stroke: #ff4500; /* Orange red outline when clicked */
+    stroke-width: 2px;
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.7));
+}
+
+/* Traversal states */
+.node.searching circle {
+    fill: #FFD700;
+    stroke: #FFA500;
+    stroke-width: 4px;
+    filter: drop-shadow(0 0 10px rgba(255, 165, 0, 0.7));
+    animation: pulse 1s infinite; /* Pulsing animation */
+}
+
+.node.found circle {
+    fill: #00FF00; /* Green for found */
+    stroke: #008000;
+    stroke-width: 4px;
+    filter: drop-shadow(0 0 10px rgba(0, 128, 0, 0.7));
+    animation: none; /* Remove any animation */
+}
+
+.node.not-found circle {
+    fill: #FF0000; /* Red for not found */
+    stroke: #8B0000; /* Dark green border */
+    stroke-width: 4px;
+    filter: drop-shadow(0 0 10px rgba(139, 0, 0, 0.7));
+    animation: shake 0.5s; /* Shaking animation */
+}
+
+/* Animation for color transitions */
+.node circle {
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+/* Ensure hover states work */
+.node:hover circle {
+    cursor: pointer;
+    filter: brightness(0.9);
+}
+
+/* Validation Box*/
+.validation {
+    display: flex;
+    align-items: center;
+}
+
+.validation div {
+    gap: 8px;
+    padding: 5px;
+    border-radius: 8px;
+    background-color: #D9D9D9;
+    border: 2px solid #c7c4dd;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    display: flex;
+    align-items: center;
+}
+
+.validation img {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0%);
+    margin: 0;
+}
+
+.wrapper{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.info-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Buttons */
+.binary-tree-simulator-buttons .binary-tree-simulator-btn {
+    margin: 5px;
+    padding: 10px 20px;
+    border-radius: 15px;
+    background: transparent;
+    color: #6b00a1;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border: 1px white solid;
+    backdrop-filter: blur(40px);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px;
+    white-space: nowrap;
+    min-width: 50px;
+    padding: 10px 20px;
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-weight: lighter;
+}
+
+.binary-tree-simulator-buttons .binary-tree-simulator-btn:hover {
+    background: rgb(255, 255, 255);
+}
+
+/* Dropdown button and its container */
+.binary-tree-simulator-dropdown-btn {
+    margin: 5px;
+    padding: 10px 40px 10px 20px; /* Increased right padding */
+    border-radius: 15px;
+    background: transparent;
+    color: #6b00a1;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border: 1px white solid;
+    backdrop-filter: blur(40px);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 15px;
+    font-size: 20px;
+    white-space: nowrap;
+    min-width: 170px;
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-weight: lighter;
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+.binary-tree-simulator-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Active state - caret up (^) */
+.caret-icon {
+    position: absolute;
+    right: 15px; /* Moved further right */
+    width: 16px;
+    height: 16px;
+    transition: transform 0.5s ease;
+}
+
+@keyframes caretTransition {
+    0% {
+        opacity: 1;
+        transform: rotate(0deg);
+    }
+    50% {
+        opacity: 0;
+        transform: rotate(90deg);
+    }
+    100% {
+        opacity: 1;
+        transform: rotate(180deg);
+    }
+}
+
+.binary-tree-simulator-dropdown.active .caret-icon {
+    animation: caretTransition 0.3s ease forwards;
+}
+
+/* Hover effects */
+.binary-tree-simulator-dropdown-btn:hover {
+    border-color: #6b00a1;
+    box-shadow: 0 0 0 2px rgba(107, 0, 161, 0.1);
+    transform: scale(1.06);
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.binary-tree-simulator-dropdown-btn::after {
+    display: none;
+}
+
+
+/* Dropdown Content */
+.binary-tree-simulator-dropdown-content {
+    display: none; /* Initially hidden */
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 150px;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    border: 1px solid white;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    z-index: 1;
+    margin: 5px 0 10px 0;
+    padding: 10px 0;
+    box-sizing: border-box;
+    z-index: 1;
+    width: fit-content;
+    text-align: center;
+    padding: 5px;
+    gap: 10px;
+}
+
+.binary-tree-simulator-dropdown-content .binary-tree-simulator-btn {
+    padding: 8px;
+    text-align: center;
+    background: transparent;
+    color: #6b00a1;
+    border: none;
+    transition: background-color 0.3s;
+    box-shadow: none;
+}
+
+.binary-tree-simulator-dropdown-content .binary-tree-simulator-btn:hover {
+    background: rgba(255, 255, 255, 0.7);
+}
+
+/* Input Container under search node */
+.search-input-container {
+    padding-left: 6px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+}
+
+.search-input-container input {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #6b00a1;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(40px);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+    color: #6b00a1;
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-size: 20px;
+    transition: all 0.3s ease;
+}
+
+.search-input-container input:hover,
+.search-input-container input:focus {
+    border-color: #6b00a1;
+    box-shadow: 0 0 0 2px rgba(107, 0, 161, 0.1);
+    transform: scale(1.02);
+    background: rgba(255, 255, 255, 0.2);
+    outline: none;
+}
+
+.search-input-container input::placeholder {
+    color: rgba(107, 0, 161, 0.6);
+    font-family: 'Mouse Memoirs', sans-serif;
+}
+
+/* Show the dropdown */
+.binary-tree-simulator-dropdown-content.show {
+    display: block;
+}
+
+
+/* Modal Button (?)*/
+.how-to-use-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    padding: 10px;
+    
+    /* Enhanced styling */
+    background: linear-gradient(145deg, 
+    rgba(128, 0, 200, 0.95) 0%,
+    rgba(98, 0, 155, 0.95) 35%,
+    rgba(75, 0, 130, 0.95) 100%
+    );
+    border: 3px solid rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-size: 30px;
+    
+    /* Effects */
+    box-shadow: 0 4px 15px rgba(107, 0, 161, 0.3),
+                inset 0 2px 5px rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    
+    /* Position */
+    position: fixed;
+    bottom: 30px;
+    right: 39px;
+    z-index: 999;
+}
+
+.how-to-use-button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 4px 12px rgba(107, 0, 161, 0.5);
+    background: linear-gradient(145deg, 
+    rgba(128, 0, 200, 0.95) 0%,
+    rgba(98, 0, 155, 0.95) 35%,
+    rgba(75, 0, 130, 0.95) 100%
+    );
+}
+
+.how-to-use-button:active {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 2px 8px rgba(107, 0, 161, 0.3);
+}
+
+/* Modal Styling */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 700px;
+    z-index: 1001;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border: 2px solid #000000;
+    border-radius: 20px;
+    background: #E2B2E5;
+    backdrop-filter: blur(40px);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.modal-overlay.active {
+    display: block;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.modal-content.active {
+    display: block;
+    animation: fadeIn 0.3s ease forwards;
+}
+
+.modal-content.inactive {
+    animation: fadeOut 0.3s ease forwards;
+}
+
+#closeModal {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+    font-size: 20px;
+    color: #000000;
+}
+
+.modal-content h2 {
+    margin: 0 0 15px;
+    font-size: 35px;
+    color: #000000;
+    font-weight: bolder;
+    text-align: center;
+    letter-spacing: px;
+}
+
+.modal-content-text {
+    font-size: 20px;
+    color: #000000;
+    font-weight: lighter;
+    text-align: left;
+}
+
+.modal-content-text .main-list {
+    padding-left: 20px;
+}
+
+.modal-content-text .nested-list {
+    list-style-type: disc;
+}
+
+.modal-content-text .nested-list li {
+    padding: 3px 0;
+}
+
+.modal-content-text ol {
+    text-align: left;
+    width: 100%;        
+    margin: 0;          
+    padding-left: 20px;
+}
+
+.modal-content-text li {
+    padding: 5px 0;
+    text-align: left;
+}
+
+/* Search Legends inside Modal */
+.nested-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 25px;
+    margin-top: 15px;
+    width: fit-content;
+    margin: 15px auto;
+    padding: 0;
+    justify-content: center;
+}
+
+.nested-list li {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.color-blue, .color-yellow, .color-green, .color-red {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.color-blue {
+    color: #000;
+    background-color: #2196F3;
+    border: 2px solid #1976D2;
+}
+
+.color-yellow {
+    color: #000;
+    background-color: #FFEB3B;
+    border: 2px solid #FBC02D;
+}
+
+.color-green {
+    color: #000;
+    background-color: #4CAF50;
+    border: 2px solid #388E3C;
+}
+
+.color-red {
+    color: #000;
+    background-color: #F44336;
+    border: 2px solid #D32F2F;
+}
+
+.modal-content.active {
+    display: block;
+    animation: slideUp 0.5s ease-out forwards;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translate(-50%, 100vh);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+}
+
+
+/*Search Legends */
+.search-indicator{
+    display: none;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.search-legends {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Add center alignment */
+    gap: 10px;
+    margin: 0 auto; /* Add auto margins */
+    width: fit-content; /* Contain width to content */
+}
+
+.search-legends div{
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    border-radius: 5px;
+    gap: 5px;
+}
+
+.unvisited{
+    background-color: #ddd;
+    border: 2px solid #c7c4dd;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.checking {
+    background-color: #2196F3;
+    border: 2px solid #1976D2; /* Darker blue border */
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.visited {
+    background-color: #FFEB3B;
+    border: 2px solid #FBC02D; /* Darker yellow border */
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.found {
+    background-color: #4CAF50;
+    border: 2px solid #388E3C; /* Darker green border */
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.not-found {
+    background-color: #F44336;
+    border: 2px solid #D32F2F; /* Darker red border */
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+
+
+
+
+
+
+

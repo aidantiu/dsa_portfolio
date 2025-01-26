@@ -1,0 +1,807 @@
+/* Add at the top of your CSS file */
+@import url('https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700&display=swap');
+
+
+body{
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    background: #E2B2E5 url(../images/BACKGROUND\(1\).png) no-repeat center center/cover;
+    color: black;
+    background-attachment: fixed;
+}
+
+/* Main Section */
+.main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin-top: 20px;
+}
+
+.container{
+    padding: 0 0 0;
+}
+
+.infix-to-postfix-simulator{
+    margin-top: 50px;
+}
+
+.infix-to-postfix-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    padding: 0 20px; /* Add padding for smaller screens */
+    padding-bottom: 10px;
+}
+
+.infix-to-postfix-text h1 {
+    margin: auto;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    text-align: center;
+    width: 100%;
+}
+
+/* Modal Button (?)*/
+.how-to-use-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    padding: 10px;
+    
+    /* Enhanced styling */
+    background: linear-gradient(145deg, 
+    rgba(128, 0, 200, 0.95) 0%,
+    rgba(98, 0, 155, 0.95) 35%,
+    rgba(75, 0, 130, 0.95) 100%
+    );
+    border: 3px solid rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-size: 30px;
+    
+    /* Effects */
+    box-shadow: 0 4px 15px rgba(107, 0, 161, 0.3),
+                inset 0 2px 5px rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    
+    /* Position */
+    position: fixed;
+    bottom: 30px;
+    right: 39px;
+    z-index: 999;
+}
+
+.how-to-use-button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 4px 12px rgba(107, 0, 161, 0.5);
+    background: linear-gradient(145deg, 
+    rgba(128, 0, 200, 0.95) 0%,
+    rgba(98, 0, 155, 0.95) 35%,
+    rgba(75, 0, 130, 0.95) 100%
+    );
+}
+
+.how-to-use-button:active {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 2px 8px rgba(107, 0, 161, 0.3);
+}
+
+/* Modal Styling */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 700px;
+    z-index: 1001;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border: 2px solid #000000;
+    border-radius: 20px;
+    background: #E2B2E5;
+    backdrop-filter: blur(40px);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.modal-overlay.active {
+    display: block;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.modal-content.active {
+    display: block;
+    animation: fadeIn 0.3s ease forwards;
+}
+
+.modal-content.inactive {
+    animation: fadeOut 0.3s ease forwards;
+}
+
+#closeModal {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+    font-size: 20px;
+    color: #000000;
+}
+
+.modal-content h2 {
+    margin: 0 0 15px;
+    font-size: 35px;
+    color: #000000;
+    font-weight: bolder;
+    text-align: center;
+    letter-spacing: px;
+}
+
+.modal-content-text {
+    font-size: 20px;
+    color: #000000;
+    font-weight: lighter;
+}
+
+.modal-content-text ol {
+    text-align: left;
+    width: fit-content;
+    margin: 0 auto;
+    padding-left: 20px;
+}
+
+.modal-content-text li {
+    padding: 5px 0;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translate(-50%, 100vh);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+}
+
+.modal-content.active {
+    display: block;
+    animation: slideUp 0.5s ease-out forwards;
+}
+
+/* Media query for smaller screens */
+@media screen and (max-width: 768px) {
+    .infix-to-postfix-text h1 {
+        font-size: 32px; /* Smaller font size for mobile */
+        line-height: 1.3; /* Better line spacing for readability */
+    }
+}
+
+.header{
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    margin: 0 auto;
+}
+
+/*** Infix to Postfix Converter** */
+
+/* Input Section */
+.input-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 0;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    transition: all 0.3s ease;
+}
+
+.input-data {
+    width: 100%;
+    padding: 0;
+    color: none;
+    border: none;
+}
+
+input[type="text"] {
+    width: 40%; /* Adjust width to leave room for the button */;
+    padding: 10px 20px;
+    color: white; 
+    border-radius: 19px;
+    border: 1px solid #FFF;
+    background: rgba(116, 106, 106, 0.25);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(20px);
+    outline: none;
+    font-family: 'Mouse Memoirs', sans-serif; /* Font for typed text */
+    font-size: 20px;
+    font-weight: lighter;
+    letter-spacing: 2px;
+}
+
+/* Placeholder Style */
+input[type="text"]::placeholder {
+    color: white;
+    opacity: 0.5;
+    font-family: 'Mouse Memoirs', sans-serif; /* Font for placeholder text */
+    font-size: 20px;
+    font-weight: lighter;
+    letter-spacing: 0.5px;
+    transition: opacity 0.3s;
+}
+
+/* Shared Button Styles for submit and reset button */
+.go-button, .clear-button {
+    margin: 5px;
+    padding: 10px 20px;
+    border: 1px solid #FFF;
+    border-radius: 19px;
+    background: transparent;
+    color: #6b00a1;
+    cursor: pointer;
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-size: 20px;
+    font-weight: lighter;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    line-height: normal;
+}
+
+/* Button Hover States */
+.go-button:hover, .clear-button:hover {
+    background: #ffffff;
+    color: #6b00a1;
+}
+
+/* Button Icons */
+.go-button i, .clear-button i {
+    margin-right: 8px;
+    font-size: 1.2rem;
+}
+
+.btn-text {
+    margin-left: 5px;
+    transition: opacity 0.3s ease;
+}
+
+.split-container.active .btn-text {
+    display: none;
+}
+
+.split-container.active .go-button,
+.split-container.active .clear-button {
+    padding: 10px;
+    min-width: 50px;
+}
+
+.split-container.active .go-button i,
+.split-container.active .clear-button i {
+    margin: 0;
+}
+
+
+/* Toggle Button */
+.toggle-button {
+    margin-left: 5px;
+    margin-right: 0;
+    padding: 10px 15px;
+    border: 1px solid #FFF;
+    border-radius: 19px;
+    background: transparent;
+    color: #6b00a1;
+    cursor: pointer;
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-size: 20px;
+    font-weight: lighter;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    line-height: normal;
+}
+
+
+.toggle-button i { /* Icon transition effects */
+    transition: transform 0.3s ease;
+}
+
+
+.toggle-button:hover { /* Hover state */
+    background: #ffffff;
+    color: #6b00a1;
+}
+
+
+.fa-eye-slash { /* Slashed eye icon state */
+    transform: scale(1.1);
+    opacity: 0.8;
+}
+
+
+/* Output and Info Section */
+/* Output for  Infix to Postfix Conversion */
+/* Info for Step by step conversion */
+.output-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+}
+
+
+.output-header h3 {
+    font-family: "Mouse Memoirs", sans-serif;
+    font-size: 24px;
+    font-weight: normal;
+    margin: 0;
+    text-align: center;
+    color: rgb(0, 0, 0);
+}
+
+.info-header {
+    display: flex;
+    align-items: center;
+}
+.info-header h3 {
+    font-family: "Mouse Memoirs", sans-serif;
+    font-size: 24px;
+    font-weight: normal;
+    margin: 0;
+    text-align: center;
+    color: rgb(0, 0, 0);
+}
+
+.horizontal-line {
+    width: calc(100% + 40px);
+    height: 1.5px;
+    background-color: white;
+    margin: 10px -20px;  
+    position: relative; 
+}
+
+.postfix-result {
+    width: 100%;
+    text-align: center;
+    word-wrap: break-word;
+    padding: 15px;
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-size: 30px;
+    height: 215px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(0, 0, 0);
+}
+
+.placeholder-text {
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-size: 24px;
+    color: rgb(0, 0, 0);
+}
+
+/*** Split Container Layout ***/
+.split-container {
+    display: flex;
+    transition: all 0.3s ease;
+    width: 50%;
+    margin: 5px auto 0;
+}
+
+.split-container.active {
+    gap: 10px;
+    width: 80%;
+}
+
+.left-side {
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.right-side {
+    width: 0;
+    transition: all 0.3s ease;
+}
+
+.split-container.active .right-side {
+    width: 50%;
+}
+
+/* Output Box Section */
+.output-box {
+    width: 85%;
+    min-height: 300px;
+    padding: 20px;
+    color: white;
+    background: rgba(171, 163, 163, 0.25);
+    border: 2px solid #FFF;
+    border-radius: 20px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(20px);
+    overflow: auto;
+    transition: all 0.3s ease;
+    margin: 0 auto;
+}
+
+.info-box {
+    width: 0;
+    min-height: 400px;
+    padding: 0;
+    margin: 0;
+    color: rgb(0, 0, 0);
+    background: rgba(171, 163, 163, 0.25);
+    border: 2px solid #FFF;
+    border-radius: 20px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(20px);
+    overflow: hidden;
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: all 0.3s ease, padding 0.3s ease, width 0.3s ease;
+    visibility: hidden;
+    max-height: 300px;
+    overflow: hidden;
+    transition: all 0.3s ease, padding 0.3s ease, width 0.3s ease, overflow 0s ease 0.3s;
+}
+
+
+/* Webkit Scrollbar Styles (Chrome, Safari, Edge) */
+.info-box::-webkit-scrollbar {
+    width: 6px;
+    background: transparent;
+}
+
+.info-box::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+}
+
+.info-box::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 10px;
+    min-height: 60px;
+}
+
+/* Active States */
+.split-container.active .left-side {
+    width: 50%;
+    padding-right: 0;
+}
+
+.split-container.active .input-container {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+}
+
+.split-container.active .output-box {
+    width: 95%;
+}
+
+.split-container.active .info-box {
+    width: 100%;
+    padding: 20px;
+    opacity: 1;
+    transform: translateX(0);
+    visibility: visible;
+    overflow-y: auto;
+    transition: all 0.3s ease, padding 0.3s ease, width 0.3s ease, overflow 0s ease;
+}
+
+/* Media Queries for Responsive Layout */
+@media screen and (max-width: 992px) {
+    .split-container {
+        width: 90%;
+    }
+    
+    .input-container {
+        width: 90%;
+        flex-wrap: wrap;
+    }
+    
+    input[type="text"] {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .split-container.active {
+        flex-direction: column;
+    }
+    
+    .split-container.active .left-side,
+    .split-container.active .info-box {
+        width: 100%;
+    }
+}
+
+
+
+
+
+
+/* For responsive layout */
+/* Large devices (laptops/desktops, 992px and up) */
+@media screen and (max-width: 992px) {
+    .infix-to-postfix-text h1 {
+        font-size: min(36px, 5vh);
+    }
+
+    .input-container {
+        width: 80%;
+        justify-self: center;
+        min-height: 60px;
+    }
+
+    input[type="text"] {
+        width: 50%;
+        height: max(40px, 5vh);
+    }
+
+    .output-box {
+        width: 80%;
+        min-height: max(300px, 40vh);
+    }
+}
+
+/* Medium devices (tablets, 768px and down) */
+@media screen and (max-width: 768px) {
+    .infix-to-postfix-text h1 {
+        font-size: min(32px, 4vh);
+        padding: 0 15px;
+    }
+
+    .input-container {
+        width: 90%;
+        flex-wrap: wrap;
+        padding: min(10px, 1vh) 0;
+        min-height: 50px;
+    }
+
+    .output-box {
+        width: 90%;
+        min-height: max(250px, 35vh);
+    }
+
+    .postfix-result {
+        font-size: min(24px, 3vh);
+        height: max(180px, 25vh);
+    }
+}
+
+/* Small devices (phones, 576px and down) */
+@media screen and (max-width: 576px) {
+    .infix-to-postfix-text h1 {
+        font-size: min(28px, 3.5vh);
+    }
+
+    .input-container {
+        width: 95%;
+        min-height: 40px;
+    }
+
+    .output-box {
+        width: 95%;
+        min-height: max(200px, 30vh);
+    }
+
+    .postfix-result {
+        font-size: min(20px, 2.5vh);
+        height: max(150px, 20vh);
+    }
+}
+
+/* Height-based queries */
+@media screen and (max-height: 800px) {
+    .output-box {
+        min-height: 45vh;
+    }
+    
+    .postfix-result {
+        height: 35vh;
+    }
+}
+
+@media screen and (max-height: 600px) {
+    .input-container {
+        padding: 5px 0;
+    }
+    
+    .output-box {
+        min-height: 40vh;
+    }
+    
+    .postfix-result {
+        height: 30vh;
+    }
+}
+
+/* Landscape orientation */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+    .input-container {
+        flex-direction: row;
+        flex-wrap: nowrap;
+    }
+    
+    .output-box {
+        min-height: 35vh;
+    }
+    
+    .postfix-result {
+        height: 25vh;
+    }
+}
+
+/* Update the info-box styles */
+/* Update the info-box and steps display styles */
+.info-box {
+    width: 0;
+    min-height: 400px;
+    max-height: 400px;
+    padding: 0;
+    margin: 0;
+    color: rgb(0, 0, 0);
+    background: rgba(171, 163, 163, 0.25);
+    border: 2px solid #FFF;
+    border-radius: 20px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(20px);
+    overflow: hidden;
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: all 0.3s ease;
+    visibility: hidden;
+}
+
+.steps-content {
+    height: calc(100% - 60px);
+    overflow-y: auto;
+    padding: 10px;
+}
+
+/* Update step display styles */
+.steps-table {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.steps-table table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+}
+
+.steps-table th,
+.steps-table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-size: 14px;
+    min-width: 80px;  /* Ensure minimum width for columns */
+}
+
+.steps-table td {
+    word-break: break-all;  /* Allow text to break within cells */
+    white-space: normal;    /* Allow text to wrap */
+    max-width: 200px;       /* Maximum width for cells */
+    vertical-align: top;    /* Align text to top */
+}
+
+/* Column-specific styles */
+.steps-table th:nth-child(1),
+.steps-table td:nth-child(1) {
+    width: 60px;        /* Step number column */
+    text-align: center;
+}
+
+.steps-table th:nth-child(2),
+.steps-table td:nth-child(2) {
+    width: 120px;       /* Action column */
+}
+
+.steps-table th:nth-child(3),
+.steps-table td:nth-child(3) {
+    width: 200px;       /* Expression column */
+}
+
+/* Hover effect */
+.steps-table tr:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* Sticky header */
+.steps-table thead {
+    position: sticky;
+    top: 0;
+    background: rgba(107, 0, 161, 0.2);
+    z-index: 1;
+}
+
+.steps-table th {
+    color: #6b00a1;
+    font-weight: bold;
+}
+
+/* Make sure horizontal scroll is visible when needed */
+.steps-content {
+    overflow-x: auto;
+    overflow-y: auto;
+    max-height: calc(100% - 60px);
+    padding: 10px;
+}
+
+/* Scrollbar styling */
+.steps-content::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;  /* Added for horizontal scrollbar */
+}
+
+.steps-content::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+.steps-content::-webkit-scrollbar-thumb {
+    background: rgba(107, 0, 161, 0.5);
+    border-radius: 3px;
+}
+
+/* Active state for info-box */
+.split-container.active .info-box {
+    width: 100%;
+    padding: 20px;
+    opacity: 1;
+    transform: translateX(0);
+    visibility: visible;
+    overflow: hidden;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .steps-table {
+        font-size: 12px;
+    }
+    
+    .steps-table th,
+    .steps-table td {
+        padding: 6px;
+    }
+}
+
+/* Message for no steps */
+.no-steps {
+    text-align: center;
+    padding: 20px;
+    color: rgba(0, 0, 0, 0.5);
+    font-family: 'Mouse Memoirs', sans-serif;
+}

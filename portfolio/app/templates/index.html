@@ -1,0 +1,168 @@
+<!-- 
+ This is the template for the index page.
+-->
+
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="DSA Portfolio - Interactive Learning Platform">
+        <!-- Link to external CSS Files -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles/index.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles/global.css') }}">
+
+         <!-- Link to external Font Awesome CSS file -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+        <!-- Favicon -->
+        <link rel="icon" type="image/png" href="{{ url_for('static', filename='icons/favicon-black-with-border.png') }}">
+
+        <!-- Title -->
+        <title> {{ title }} - TNT</title>
+    </head>
+    <body>
+        
+        <!-- Bubbles Animation -->
+        <div class="bubbles">
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+        </div>
+
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <!-- Logo Team -->
+                <div class="logo-container1">
+                    <a href="/" target="_blank">
+                        <img class="team-icon-logo" src="{{ url_for('static', filename='icons/team-icon.png') }}" alt="Team Icon" />
+                    </a>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="nav-links">
+                    <ul>
+                        <li><a href="{{ url_for('index') }}">HOME</a></li>
+                        <li><a href="{{ url_for('index') }}#profile">PROFILE</a></li>
+                        <li><a href="{{ url_for('index') }}#works">WORKS</a></li>
+                    </ul>
+                </div>   
+            
+                <!-- GitHub Icon -->
+                <div class="logo-container">
+                    <a href="https://github.com/aidantiu/dsa_portfolio" target="_blank">
+                        <img class="repo-icon" src="{{ url_for('static', filename='icons/repo-icon.svg') }}" alt="GitHub Icon" />
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Section -->
+        <main>
+            <div class="ellipses-container">
+                <div class="ellipse large"></div>
+                <div class="ellipse small"></div>
+            </div>
+
+            <!-- Hero Section -->
+             <section class="hero-section">
+                <div class="hero-container">
+                    <div class="hero-main-text">
+                        <h1>Hello,</h1>
+                        <h1>We are <span>TropangGigas.</span></h1>
+                    </div>
+                    <div class="hero-sub-text">
+                        <p>Welcome to our Porfolio!</p>
+                    </div> 
+                </div>
+             </section>
+
+            <!-- Profile Section  -->
+             <div class="ellipses-container">
+                <div class="ellipse-1 large"></div>
+                <div class="ellipse-1 small"></div>
+            </div>
+            <section class="profile-section" id="profile">
+                <h1>MEET THE TEAM</h1>
+                <div class="profile-card-wrapper">
+                    <!-- Loop through the profiles list -->
+                    {% for profile in profiles %}
+                    <a href="{{ url_for('profile', profile_name=profile.name | lower | replace(' ', '-')) }}">
+                        <div class="profile-card">
+                            <img src="{{ url_for('static', filename=profile.image_path) }}" alt="Profile Image" class="profile-image">
+                            <div class="profile-desc">
+                                <h6>{{ profile.name }}</h6>
+                                <p>{{ profile.role }}</p>
+                            </div>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+            </section>
+            
+
+            <!-- Works Section -->
+            <section class="works-section" id="works">
+                <h1>CHECK OUR PROJECTS !!!</h1>
+                <div class="works-card-wrapper">
+                    <!-- Loop through the works list -->
+                    {% for work in works %}
+                    <div class="works-card">
+                        <img src="{{ url_for('static', filename=work.image_path) }}" alt="Work Image" class="work-image">
+                        <div class="work-desc">
+                            <h6>{{ work.title }}</h6>
+                            <p>{{ work.description }}</p>
+                            <div class="btn-wrapper">
+                                <a href="{{ url_for('project', project_route=work.route) }}">
+                                    <button>Test Here <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>
+            
+            <!-- Back to top Button -->
+            <button id="back-to-top" class="back-to-top-btn">
+                <i class="fas fa-arrow-up"></i>
+            </button>
+        </main>
+    </body>
+    
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-container">
+            <!-- Logo Section -->
+            <div class="footer-logo">
+                <img src="{{ url_for('static', filename='images/tropang-giga.png') }}" alt="Tropang Giga Logo" />
+                <h2>TropangGiga</h2>
+            </div>
+
+            <!-- Credits -->
+            <div class="footer-credits">
+                <p>© 2024 <span>TropangGiga</span>. All Rights Reserved.</p>
+            </div>
+
+            <!-- Navigation Links -->
+            <div class="footer-links">
+                <a href="{{ url_for('index') }}">HOME ↗</a>
+                <a href="{{ url_for('index') }}#profile">PROFILE ↗</a>
+                <a href="{{ url_for('index') }}#works">WORKS ↗</a>
+            </div>
+           
+    </footer>
+
+    <!-- Link to external JS files -->
+    <script src="{{ url_for('static', filename='scripts/global.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/index.js') }}"></script>
+
+</html>

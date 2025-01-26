@@ -1,0 +1,1059 @@
+@import url('https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mouse+Memoirs&display=swap');
+
+body {
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    background: #E2B2E5 url(../images/BACKGROUND\(1\).png) no-repeat center center/cover;
+    color: black;
+    background-attachment: fixed;
+}
+
+* {
+    transition: all 0.3s ease-in-out;
+}
+
+/* Main Section */
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin-top: 20px;
+}
+
+.no-bullets {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.container {
+    padding: 0 0 10px;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    margin: 0 auto;
+}
+
+
+.mrt-shortest-path-finder-container {
+    margin-top: 20px;
+}
+
+.mrt-shortest-path-finder-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    padding: 0 20px;
+    padding-bottom: 10px;
+}
+
+.mrt-shortest-path-finder-text h1 {
+    margin: auto;
+    font-size: 40px;
+    font-style: lighter;
+    font-weight: 400;
+    text-align: center;
+    width: 100%;
+}
+
+.station-inputs{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Station Dropdown Inputs */
+.station-select {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    width: 100%;
+    gap: 10px;
+}
+
+.station-select select {
+    /* Custom select styling */
+    padding: 10px 15px;
+    border-radius: 15px;
+    border: 1px solid #FFF;
+    background: #E2B2E5;
+    backdrop-filter: blur(2px);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    max-width: 100%; /* Responsive width */
+    
+    /* Custom font styling */
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-size: 20px;
+    font-weight: lighter;
+    letter-spacing: -0.1px;
+    color: #6b00a1;
+    text-align: left;
+
+    /* Custom arrow styling */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%236b00a1' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+    padding-right: 40px;
+}
+
+.station-select optgroup {
+    font-family: 'Mouse Memoirs', sans-serif;
+    color: #6b00a1;
+    font-size: 20px;
+    background-color: rgba(255, 255, 255, 0.216);
+    letter-spacing: 0.1px;
+    font-weight: 100 !important;
+    font-style: normal;
+}
+
+.station-select option {
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-weight: lighter;
+    color: #333;
+    font-size: 16px;
+    text-align: left;
+    padding: 8px 15px;
+}
+
+.station-select option:hover {
+    color: #fff;
+}
+
+.station-select select:hover, .station-select select.active {
+    border-color: #6b00a1;
+    box-shadow: 0 0 0 2px rgba(107, 0, 161, 0.1);
+    transform: scale(1.06);
+}
+
+.station-select select:focus {
+    outline: none;
+    border-color: #6b00a1;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%236b00a1' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='18 15 12 9 6 15'%3e%3c/polyline%3e%3c/svg%3e");
+}
+
+.station-select select::-ms-expand {
+    display: none;
+}
+
+/* Add custom scrollbar for select dropdowns */
+.station-select select::-webkit-scrollbar {
+    width: 8px;
+}
+
+.station-select select::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.station-select select::-webkit-scrollbar-thumb {
+    background: #6b00a1;
+    border-radius: 4px;
+}
+
+/* Submit Button */
+.submit-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.submit-button{
+    display: flex;
+    align-items: center;
+    align-items: flex-start;
+    width: fit-content;
+    gap: 10px;
+    padding: 10px 10px 10px 10px;
+    border-radius: 15px;
+    border: 1px solid #FFF;
+    background: transparent;
+    backdrop-filter: blur(2px);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    line-height: normal;
+    
+}
+
+.submit-button i {
+    font-size: 15px;
+    color: #6b00a1;
+    padding-top: 4px;
+}
+
+.submit-button:hover {
+    background: #ffffff;
+    color: #6b00a1;
+}
+
+.submit-button span {
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-size: 20px;
+    font-weight: lighter;
+    letter-spacing: 0;
+    color: #6b00a1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+/* Output Section */
+.output-section {
+    position: relative;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    transform: translateY(-25px) scale(0.95);
+    visibility: hidden;
+    transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.output-section.visible {
+    opacity: 1;
+    height: fit-content;
+    transform: translateY(0) scale(1);
+    visibility: visible;
+    margin-top: 20px;
+    padding-bottom: 10px;
+}
+
+/* Add fade-in for children */
+.output-section.visible > * {
+    animation: fadeInUp 0.5s ease-out forwards;
+    opacity: 0;
+}
+
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/*View Output Button (Eye Icon) */
+.view-output-style {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0;
+}
+
+.view-output-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    padding: 10px 15px;
+    border: 1px solid #FFF;
+    border-radius: 15px;
+    background: transparent;
+    color: #6b00a1;
+    cursor: pointer;
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-size: 20px;
+    font-weight: lighter;
+    transition: all 0.3s ease;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    line-height: normal;
+}
+
+.view-output-button i {
+    transition: transform 0.3s ease;
+    color: #6b00a1;
+}
+
+.view-output-button:hover {
+    background: #ffffff;
+    color: #6b00a1;
+}
+
+.view-output-button:hover i {
+    transform: scale(1.1);
+}
+
+.fa-eye-slash {
+    transform: scale(1.1);
+    opacity: 0.8;
+}
+
+.view-output-button i.fa-eye-slash {
+    transform: scale(1.1);
+    opacity: 0.8;
+}
+
+/* Validation/Notification Box Message */
+.validation-box {
+    gap: 8px;
+    display: none;
+    padding: 5px;
+    border-radius: 8px;
+    background-color: #D9D9D9;
+    border: 2px solid #c7c4dd;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    display: flex;
+    align-items: center;
+    color: #000000;
+}
+
+.validation-box img {
+    width: 20px;
+    height: 20px;
+    filter: invert(14%) sepia(88%) saturate(4383%) hue-rotate(280deg) brightness(89%) contrast(108%);
+    margin: 0;
+}
+
+.validation-box p {
+    margin: 0;
+    font-size: 18px;
+    color: #000000;
+    font-family: 'Mouse Memoirs', sans-serif;
+}
+
+#exclamationIcon {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0%); /* Makes icon pure black */
+    margin: 0;
+}
+
+/* Output Box */
+.output-box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 1000px;
+    gap: 20px;
+    height: fit-content;
+    padding: 20px;
+    border-radius: 20px;
+    border: 1px solid #FFF;
+    background: #AB8CD4;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(2px);
+    width: 90%;
+    max-width: 950px;
+    margin: 0 auto;
+}
+
+.shortest-path-header p{
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-size: 25px;
+    font-weight: lighter;
+    letter-spacing: 0;
+    color: #ffffff;
+    display: flex;
+    text-align: center;
+    width: 100%;
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+    letter-spacing: 0.2px;
+}
+
+/* --- */
+/* Stations Path Boxes */
+.path-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 15px;
+    padding: 10px 0px 10px 0px;
+    margin: 0 auto;
+    position: relative;
+    perspective: 1000px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.station-box {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: #D9D9D9;
+    padding: 10px 40px 10px 20px;
+    position: relative;
+    overflow: hidden;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    transform-origin: center center;
+    z-index: 1;
+    margin: 5px;
+}
+
+.station-box::before {
+    content: "";
+    width: 25px;
+    height: 100%;
+    background-color: #D18EE0;
+    position: absolute;
+    right: 0;
+}
+
+.station-box:hover {
+    transform: scale(1.1);
+    z-index: 2;
+}
+
+.station-box.lrt1-line::before {
+    background-color: #8D35A2;
+}
+
+.station-box.lrt2-line::before {
+    background-color: #af009e;
+}
+
+.station-box.mrt3-line::before {
+    background-color: #006674;
+}
+
+.station-box.lrt1-line:hover {
+    box-shadow: 0 0 20px rgba(141, 53, 162, 0.9);
+    border: 2px solid #8D35A2;
+}
+
+.station-box.lrt2-line:hover {
+    box-shadow: 0 0 20px rgba(175, 0, 158, 0.9);
+    border: 2px solid #af009e;
+}
+
+.station-box.mrt3-line:hover {
+    box-shadow: 0 0 20px rgba(0, 102, 116, 0.9);
+    border: 2px solid #006674;
+}
+
+.transfer-line {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50px;
+    height: 15px;
+    margin: 20px 10px;
+}
+
+.transfer-line::before {
+    content: "Transfer Station";
+    position: absolute;
+    top: -10px;
+    font-size: 14px;
+    color: #000000;
+    white-space: nowrap;
+}
+
+.transfer-line::after {
+    content: "→ →";
+    position: absolute;
+    right: 0;
+    font-size: 20px;
+    color: #000000;
+    transform: translateY(-1px) translateX(-4px);
+}
+
+.arrow {
+    color: #000000;
+    font-size: 24px;
+    font-weight: bold;
+    position: relative;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.same-station-message {
+    background-color: #D9D9D9;
+    padding: 15px 25px;
+    border-radius: 20px;
+    text-align: center;
+    color: #6b00a1;
+    font-size: 20px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+
+/* Journey Details Container */
+.journey-header {
+    display: flex;
+}
+
+.journey-title {
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-size: 25px;
+    font-weight: lighter;
+    letter-spacing: 0;
+    color: #ffffff;
+    display: flex;
+    text-align: center;
+    width: 100%;
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+    letter-spacing: 0.2px;
+}
+
+
+/* Updated Journey Details Container */
+.journey-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.journey-wrapper {
+    display: flex;
+    flex-direction: row; /* Changed to row to align items horizontally */
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+    padding: 10px;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.journey-section {
+    margin-top: 8px;
+}
+
+.info-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.info-box i, .transfers-list i {
+    font-size: 18px;
+    color: #ffffff;
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+}
+
+
+.station-count p, .transfer-item {
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-size: 18px;
+    font-weight: lighter;
+    letter-spacing: 0.2px;
+    color: #ffffff;
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+}
+
+.transfers-list {
+    display: flex;
+    gap: 15px;
+}
+
+.no-bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.station-number {
+    font-size: 20px;
+    color: #ffffff;
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+    font-family: 'Mouse Memoirs', sans-serif;
+    margin: 0 5px;
+}
+
+
+/* Graph Section */
+.graph-container {
+    margin-top: 15px;
+    padding-bottom: 50px;
+    justify-content: center;
+}
+
+.graph-box {
+    width: 1000px;
+    height: 595px;
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 20px;
+    background: linear-gradient(
+        to right,
+        rgba(236, 236, 236, 0.9) 0%,
+        rgba(159, 159, 159, 0.2) 100%
+    );
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    margin: 0 auto 5px;
+    position: relative;
+    max-width: 90%;
+    transform-origin: center;
+    transition: transform 0.1s ease-out;
+    cursor: zoom-in;
+    overflow: hidden;
+
+    cursor: grab;
+    overflow: hidden;
+    transition: transform 0.1s ease-out;
+}
+
+.graph-box {
+    position: relative;
+    overflow: hidden;
+}
+
+.graph-box img {
+    cursor: grab;
+    transition: transform 0.2s ease-out;
+    transform-origin: center;
+}
+
+.graph-box svg:active {
+    cursor: grabbing;
+}
+
+.zoom-controls {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 1000;
+}
+
+.zoom-controls button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    background: rgba(107, 0, 161, 0.8);
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.zoom-controls button:hover {
+    background: rgba(107, 0, 161, 1);
+    transform: scale(1.1);
+}
+
+
+/* Modal Button (?)*/
+.how-to-use-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    padding: 10px;
+    
+    /* Enhanced styling */
+    background: linear-gradient(145deg, 
+    rgba(128, 0, 200, 0.95) 0%,
+    rgba(98, 0, 155, 0.95) 35%,
+    rgba(75, 0, 130, 0.95) 100%
+    );
+    border: 3px solid rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-size: 30px;
+    
+    /* Effects */
+    box-shadow: 0 4px 15px rgba(107, 0, 161, 0.3),
+                inset 0 2px 5px rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    
+    /* Position */
+    position: fixed;
+    bottom: 30px;
+    right: 39px;
+    z-index: 999;
+}
+
+.how-to-use-button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 4px 12px rgba(107, 0, 161, 0.5);
+    background: linear-gradient(145deg, 
+    rgba(128, 0, 200, 0.95) 0%,
+    rgba(98, 0, 155, 0.95) 35%,
+    rgba(75, 0, 130, 0.95) 100%
+    );
+}
+
+.how-to-use-button:active {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 2px 8px rgba(107, 0, 161, 0.3);
+}
+
+/* Modal Styling */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 700px;
+    z-index: 1001;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border: 2px solid #000000;
+    border-radius: 20px;
+    background: #E2B2E5;
+    backdrop-filter: blur(40px);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.modal-overlay.active {
+    display: block;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.modal-content.active {
+    display: block;
+    animation: fadeIn 0.3s ease forwards;
+}
+
+.modal-content.inactive {
+    animation: fadeOut 0.3s ease forwards;
+}
+
+#closeModal {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+    font-size: 20px;
+    color: #000000;
+}
+
+.modal-content h2 {
+    margin: 0 0 15px;
+    font-size: 35px;
+    color: #000000;
+    font-weight: bolder;
+    text-align: center;
+    letter-spacing: px;
+}
+
+.modal-content-text {
+    font-size: 20px;
+    color: #000000;
+    font-weight: lighter;
+    text-align: left;
+}
+
+.modal-content-text ol {
+    text-align: left;
+    width: 100%;        
+    margin: 0;          
+    padding-left: 20px;
+}
+
+.modal-content-text li {
+    padding: 5px 0;
+    text-align: left;
+}
+
+/* New placeholder message styling */
+.placeholder-message {
+    width: 100%;
+    text-align: center;
+    padding: 2rem;
+}
+
+.placeholder-message p {
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-size: 25px;
+    font-weight: lighter;
+    letter-spacing: 0;
+    color: #ffffff;
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+    letter-spacing: 0.2px;
+}
+
+/* Add styles for travel time information */
+.transfer-time {
+    margin-left: 10px;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 2px 8px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.transfer-time i {
+    font-size: 14px;
+    color: #ffffff;
+}
+
+#timeMessage {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-size: 18px;
+    color: #ffffff;
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+}
+
+.info-box i.fa-clock {
+    color: #ffffff;
+    font-size: 16px;
+}
+
+
+.info-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-size: 20px;
+    color: #ffffff;
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+    white-space: nowrap; /* Prevent text wrapping within each info item */
+}
+
+.info-row i {
+    font-size: 20px;
+    color: #ffffff;
+    width: 24px;
+    text-align: center;
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+}
+
+.info-row .fa-train,
+.info-row .fa-clock,
+.info-row .fa-exchange-alt {
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+}
+
+/* Ensure consistent spacing between icons and text */
+.info-row i.fa-clock {
+    margin-right: 2px;  /* Fine-tune spacing for clock icon */
+}
+
+/* Responsive adjustments for placeholder message */
+@media screen and (max-width: 480px) {
+    .placeholder-message p {
+        font-size: 20px;
+        padding: 1rem;
+    }
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .placeholder-message p {
+        font-size: 22px;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translate(-50%, 100vh);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+}
+
+.modal-content.active {
+    display: block;
+    animation: slideUp 0.5s ease-out forwards;
+}
+
+/* --- */
+/* Show on larger screens */
+@media screen and (min-width: 1025px) {
+    .graph-box {
+        display: block;
+    }
+
+}
+
+
+/* Mobile devices (portrait) */
+@media screen and (max-width: 480px) {
+    .mrt-shortest-path-finder-text h1 {
+        font-size: 24px;
+        padding: 0 15px;
+    }
+
+    .station-select {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .station-select select {
+        width: 90%;
+        font-size: 16px;
+        padding: 8px;
+    }
+
+    .submit-button {
+        width: 90%;
+        font-size: 18px;
+    }
+
+    .view-output-button {
+        width: 40px;
+        height: 40px;
+    }
+
+    .output-box {
+        padding: 15px;
+    }
+
+    .station-box {
+        font-size: 14px;
+        padding: 10px 30px 10px 15px;
+    }
+
+    .arrow {
+        font-size: 16px;
+    }
+
+    .journey-title {
+        font-size: 20px;
+    }
+    .graph-box {
+        width: 95vw;
+        height: 56vw;
+    }
+}
+
+/* Tablets and small laptops */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .mrt-shortest-path-finder-text h1 {
+        font-size: 28px;
+    }
+
+    .station-select {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .station-select select {
+        width: 80%;
+        max-width: 400px;
+    }
+
+    .submit-button {
+        width: 80%;
+        max-width: 400px;
+    }
+
+    .output-box {
+        width: 95%;
+    }
+
+    .station-box {
+        font-size: 16px;
+    }
+    .graph-box {
+        width: 98vw;
+        height: 58vw;
+        border-width: 2px;
+    }
+}
+
+/* Laptops and desktops */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .mrt-shortest-path-finder-text h1 {
+        font-size: 32px;
+    }
+
+    .station-select {
+        gap: 25px;
+    }
+
+    .output-box {
+        width: 90%;
+        max-width: 900px;
+    }
+    .graph-box {
+        width: 98vw;
+        height: 58vw;
+        border-width: 2px;
+    }
+}
+
+/* Large screens */
+@media screen and (min-width: 1025px) {
+    .mrt-shortest-path-finder-text h1 {
+        font-size: 36px;
+    }
+
+    .output-box {
+        max-width: 1000px;
+    }
+
+    .station-box {
+        font-size: 18px;
+    }
+}
+
+/* Common responsive adjustments */
+@media screen and (max-width: 1024px) {
+    .path-container {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .transfer-line {
+        width: 40px;
+        margin: 10px 5px;
+    }
+
+    .journey-container {
+        margin-top: 20px;
+    }
+}
+
+/* Adjustments for responsive design */
+@media screen and (max-width: 768px) {
+    .journey-wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .info-row {
+        white-space: normal; /* Allow wrapping on mobile */
+    }
+}

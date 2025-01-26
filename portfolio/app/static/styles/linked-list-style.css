@@ -1,0 +1,808 @@
+body{
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    background: #E2B2E5 url(../images/BACKGROUND\(1\).png) no-repeat center center/cover;
+    color: black;
+}
+
+/** Main Section **/
+main{
+    margin-top: 20px;
+}
+.container{
+    padding: 0 0 100px;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin: 0 auto;
+}
+
+/* ***Main Section*** */
+.linked-list-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    position: relative;
+}
+
+.linked-list-text h1{
+    margin: auto;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+}
+
+/* Linked List Text */
+.linked-list-text h1 {
+    color: #000000;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+/* Modal Button (?)*/
+.how-to-use-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    padding: 10px;
+    
+    /* Enhanced styling */
+    background: linear-gradient(145deg, 
+    rgba(128, 0, 200, 0.95) 0%,
+    rgba(98, 0, 155, 0.95) 35%,
+    rgba(75, 0, 130, 0.95) 100%
+    );
+    border: 3px solid rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-size: 30px;
+    
+    /* Effects */
+    box-shadow: 0 4px 15px rgba(107, 0, 161, 0.3),
+                inset 0 2px 5px rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    
+    /* Position */
+    position: fixed;
+    bottom: 30px;
+    right: 39px;
+    z-index: 999;
+}
+
+.how-to-use-button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 4px 12px rgba(107, 0, 161, 0.5);
+    background: linear-gradient(145deg, 
+    rgba(128, 0, 200, 0.95) 0%,
+    rgba(98, 0, 155, 0.95) 35%,
+    rgba(75, 0, 130, 0.95) 100%
+    );
+}
+
+.how-to-use-button:active {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 2px 8px rgba(107, 0, 161, 0.3);
+}
+
+/* Modal Styling */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    z-index: 1001;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border: 2px solid #000000;
+    border-radius: 20px;
+    background: #E2B2E5;
+    backdrop-filter: blur(40px);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.modal-overlay.active {
+    display: block;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.modal-content.active {
+    display: block;
+    animation: fadeIn 0.3s ease forwards;
+}
+
+.modal-content.inactive {
+    animation: fadeOut 0.3s ease forwards;
+}
+
+#closeModal {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+    font-size: 20px;
+    color: #000000;
+}
+
+.modal-content h2 {
+    margin: 0 0 15px;
+    font-size: 35px;
+    color: #000000;
+    font-weight: bolder;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.modal-content-text {
+    font-size: 20px;
+    color: #000000;
+    font-weight: lighter;
+}
+
+.modal-content-text ol {
+    text-align: left;
+    width: fit-content;
+    margin: 0 auto;
+    padding-left: 20px;
+}
+
+.modal-content-text li {
+    padding: 5px 0;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translate(-50%, 100vh);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+}
+
+.modal-content.active {
+    display: block;
+    animation: slideUp 0.5s ease-out forwards;
+}
+
+/* For Output box */
+.output-box {
+    width: 80%;
+    height: 450px;
+    border: 2px solid #ffffff;
+    border-radius: 20px;
+    background: rgba(171, 163, 163, 0.25);
+    backdrop-filter: blur(40px);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin: 0 auto 5px; 
+    position: relative; 
+    overflow-y: scroll;
+    scrollbar-width: thin;
+}
+
+/* Chrome/Safari/Edge Scrollbar */
+.output-box::-webkit-scrollbar {
+    width: 6px;
+    background: transparent;
+}
+
+.output-box::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+}
+
+.output-box::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 20px;
+    min-height: 60px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+}
+
+/* Firefox */
+.output-box {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.6) rgba(255, 255, 255, 0.2);
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.input-data{
+    width: 100%;
+    padding: 0;
+    color: none;
+    border: none;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px 20px;
+    color: white; 
+    border-radius: 19px;
+    border: 1px solid #FFF;
+    background: rgba(116, 106, 106, 0.25);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(20px);
+    outline: none;
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-size: 20px;
+    font-weight: lighter;
+    letter-spacing: 0.5px;
+}
+
+input[type="text"]::placeholder {
+    color: white;
+    opacity: 0.5;
+    transition: opacity 0.3s;
+    font-style: italic;
+}
+
+.buttons {
+    display: flex;
+}
+
+.buttons .btn {
+    margin: 5px;
+    padding: 10px 20px;
+    border-radius: 15px;
+    background: transparent;
+    color: #6b00a1;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border: 1px white solid;
+    backdrop-filter: blur(40px);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+    background: rgba(255, 255, 255, 0.1);
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+    font-size: 20px;
+    white-space: nowrap;
+    min-width: 50px; 
+    padding: 10px 20px;
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-weight: lighter;
+}
+
+.buttons .btn i {
+    margin-right: 2px;
+    margin-left: 3px;
+    font-size: 1.2rem; /* Icon size */
+}
+
+.buttons .btn:hover {
+    background: #ffffff;
+    color: #6b00a1; /* Ensure hover doesn't change text color */
+}
+
+/* Dropdown Container */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Button Style */
+.dropdown-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 10px 20px;
+    border-radius: 15px;
+    background: transparent;
+    font-weight: bold;
+    cursor: pointer;
+    transition: width 0.3s ease, padding 0.3s ease, background-color 0.3s;
+    border: 1px solid white;
+    backdrop-filter: blur(40px);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+    width: auto;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+}
+
+/* Caret Hidden Initially */
+.dropdown-btn::after {
+    content: '▼';  /* Caret symbol */
+    display: none;  /* Initially hidden */
+    transition: visibility 0s, opacity 1s;
+    margin-left: 10%;  /* Space between "Add" and caret */
+}
+
+
+/* "Add" Text Style */
+#add-button-text {
+    margin: 0 auto;
+    text-align: center; /* Center the text initially */
+    transition: padding-right 0.3s ease; /* Smooth transition for padding */
+}
+
+#delete-button-text {
+    margin: 0 auto;
+    text-align: center; /* Center the text initially */
+    transition: padding-right 0.3s ease; /* Smooth transition for padding */
+}
+
+/* Hover to Extend Button and Show Caret */
+.dropdown-btn:hover {
+    padding-right: 25px; /* Add padding to the right */
+    background: rgba(255, 255, 255, 0.7);
+    transition: 0.3s ease-in-out;
+}
+
+/* Show the caret when hovered */
+.dropdown-btn:hover::after {
+    display: block; 
+    opacity: 1; 
+}
+
+.dropdown-btn:hover #button-text {
+    text-align: left; /* Move text to the left */
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    border: 1px solid white;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    z-index: 1;
+    margin: 5px 0 10px 0;
+    min-width: 200px;
+    padding: 10px 0;
+    box-sizing: border-box;
+}
+
+.dropdown-content div{
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    margin: 5px 25px;
+}
+
+.dropdown-content div .btn{
+    margin: 0 !important;
+}
+
+/* Dropdown Buttons */
+.dropdown-content .btn {
+    display: block;
+    padding: 5px;
+    text-align: left;
+    background: transparent;
+    color: #6b00a1;
+    border: none;
+    transition: background-color 0.3s;
+    box-shadow: none;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+}
+
+.dropdown-content .btn:hover {
+    background: rgba(255, 255, 255, 0.7);
+}
+
+/* Show Dropdown Content When Button Clicks */
+.dropdown.active .dropdown-content {
+    display: block;
+}
+
+.show {
+    display: block;
+}
+
+/* Additional style for active state, ensuring it keeps the hover effect when clicked */
+.dropdown-btn.active {
+    padding-right: 25px; /* Add padding to the right */
+    background: #ffff;
+    transition: 0.3s ease-in-out;
+}
+
+.dropdown-btn.active::after {
+    display: block; 
+    opacity: 1; 
+}
+
+/* Additional styles for dropdown buttons and input fields */
+.dropdown .dropdown-content .btn {
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-weight: lighter;
+    margin-left: 6%;
+    padding: 10px; 
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+    background: transparent; 
+    border: none;
+    font-size: 20px;
+    width: auto; 
+}
+
+/* Default style for the input field */
+.input-data {
+    border: 1px solid #ccc; /* Add a border for visibility */
+    padding: 5px 10px;
+    font-size: 14px;
+    outline: none;
+    text-decoration: underline; /* Always underline the input text */
+    color: black; /* Color of the user input text */
+    width: 100%
+}
+
+/* Placeholder styling */
+.input-data::placeholder {
+    text-decoration: none; /* No underline for placeholder */
+    color: gray;
+}
+
+/* Style for the search result box */
+.search-box, .validation {
+    display: flex;
+    align-items: center;
+
+}
+
+.validation{
+    display: flex;
+    justify-content: center;
+}
+
+.validation img {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0%);
+    margin: 0;
+}
+
+.validation-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.validation img, .validation p{
+    margin: 0;
+    font-size: 20px;
+}
+
+.validation div{
+    gap: 8px;
+    display: flex;
+    padding: 5px;
+    border-radius: 8px;
+    background-color: #D9D9D9;
+    border: 2px solid #c7c4dd;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.search-result {
+    text-align: center;
+    border-radius: 8px;
+    background: #D9D9D9;
+}
+
+.search-result p{
+    margin: 0;
+    padding: 5px;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 300;
+}
+
+.search-result span{
+    font-weight: 400;
+}
+
+.search-result img{
+    padding-left: 5px;
+}
+
+/* Hide search result by default */
+.hidden {
+    display: none;
+}
+
+/* Show search result when active */
+.visible{
+    display: flex;
+}
+
+/*** Output elements for Linked List ***/
+/* Style for the nodes */
+.empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-size: 25px;
+    flex-direction: column;
+}
+
+.empty p {
+    margin: 2px;
+}
+
+/* Styling for the linked list */
+.highlight {
+    background-color: #6b00a1;
+    border: 2px solid #6b00a1;
+    box-shadow: 0 0 10px rgba(107, 0, 161, 0.5);
+    transform: scale(1.1); /* Slightly increase the scale and rotation */
+    transition: background-color 1s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    animation: glow 1.5s infinite, rotate 1s infinite; /* Add a glow effect */
+}
+
+/* Hover effect for additional interactivity */
+.item {
+    transition: background-color 1s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease; /* Ensure smooth transition */
+}
+
+/* Hover effect for additional interactivity */
+.item:hover {
+    transform: scale(1.1); /* Slightly increase the scale and rotation on hover */
+    box-shadow: 0 0 20px rgba(107, 0, 161, 0.9); /* Enhance the shadow on hover */
+    border: 2px solid #6b00a1;
+}
+
+/* Glow effect for the highlight */
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 10px rgba(107, 0, 161, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(107, 0, 161, 1);
+    }
+    100% {
+        box-shadow: 0 0 10px rgba(107, 0, 161, 0.5);
+    }
+}
+
+/* Rotate effect for the highlight */
+@keyframes rotate {
+    0%, 100% {
+        transform: scale(1.1) rotate(2deg);
+    }
+    50% {
+        transform: scale(1.1) rotate(-2deg);
+    }
+}
+
+.filled {
+    display: flex;
+    flex-wrap: wrap; /* Ensures items wrap into rows */
+    justify-content: flex-start;
+    margin: 30px;
+}
+
+.item-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    height: fit-content;
+}
+
+/* Styling for items */
+.item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px; /* Rounded edges */
+    background-color: #D9D9D9; /* Light gray for the main block */
+    padding: 15px 40px 15px 20px; /* Space inside the block */
+    position: relative; /* For pseudo-elements positioning */
+    margin: 10px; /* Spacing between items */
+    overflow: hidden; /* Ensures shapes stay within boundaries */
+    height: fit-content;
+    width: fit-content;
+    font-size: 20px;
+}
+
+/* Left side decoration */
+.item::before {
+    content: "";
+    width: 25px;
+    height: 100%;
+    background-color: #D18EE0;
+    position: absolute;
+    right: 0;
+}
+
+.arrow {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    height: fit-content;
+}
+
+
+#capsule-node-icon{
+    display: inline-block;
+    padding: 0px 1px; /* Adjust height and width */
+    background-color: #6b00a1; /* Capsule color */
+    border-radius: 25%; /* Makes it a capsule shape */
+    text-align: center;
+}
+
+.end-node {
+    background: none;
+    border: none;
+    box-shadow: none;
+    color: #6b00a1;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 13px;
+    margin: 10px 10px 10px 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+
+
+
+/* *Responsive Design* */
+/* Large devices (992px and below) */
+@media screen and (max-width: 992px) {
+    .header, .input-container {
+        width: 90%;
+    }
+
+    .output-box {
+        width: 90%;
+        height: 400px;
+    }
+
+    .linked-list-text h1 {
+        font-size: 36px;
+    }
+
+    .buttons .btn {
+        font-size: 18px;
+        padding: 8px 16px;
+    }
+}
+
+/* Medium devices (768px and below) */
+@media screen and (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .input-container {
+        flex-direction: column;
+        gap: 10px;
+        padding-top: 20px;
+    }
+
+    .buttons {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .dropdown-content {
+        min-width: 150px;
+    }
+
+    .filled {
+        margin: 15px;
+        justify-content: center;
+    }
+
+    .item {
+        padding: 10px 30px 10px 15px;
+        font-size: 18px;
+    }
+
+    .validation div {
+        padding: 3px;
+    }
+}
+
+/* Small devices (576px and below) */
+@media screen and (max-width: 576px) {
+    .linked-list-text h1 {
+        font-size: 28px;
+    }
+
+    .output-box {
+        width: 95%;
+        height: 350px;
+    }
+
+    .buttons .btn {
+        font-size: 16px;
+        padding: 6px 12px;
+        min-width: 40px;
+    }
+
+    .buttons .btn i {
+        font-size: 1rem;
+    }
+
+    .dropdown-btn {
+        padding: 8px 15px;
+    }
+
+    .item {
+        padding: 8px 25px 8px 12px;
+        font-size: 16px;
+    }
+
+    .item::before {
+        width: 20px;
+    }
+
+    .search-result p {
+        font-size: 16px;
+    }
+
+    .empty {
+        font-size: 20px;
+    }
+
+    .validation img, .validation p {
+        font-size: 16px;
+    }
+}
+
+/* Extra small devices (400px and below) */
+@media screen and (max-width: 400px) {
+    .buttons .btn {
+        font-size: 14px;
+        padding: 5px 10px;
+    }
+
+    .item {
+        margin: 5px;
+    }
+
+    .filled {
+        margin: 10px;
+    }
+
+    .empty p {
+        font-size: 16px;
+    }
+}

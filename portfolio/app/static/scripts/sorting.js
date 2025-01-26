@@ -11,9 +11,10 @@ function toggleDropdown(dropdownId) {
     });
 }
 
+
 // Close dropdowns when clicking outside
 window.onclick = function(event) {
-    if (!event.target.matches('.sorting-dropdown-btn') && !event.target.matches('.speed-dropdown-btn')) {
+    if (!event.target.closest('.speed-dropdown-btn')) {
         const dropdowns = document.getElementsByClassName('dropdown-content');
         Array.from(dropdowns).forEach(dropdown => {
             if (dropdown.classList.contains('show')) {
@@ -37,22 +38,42 @@ let sortedIndices = [];
 // Update speed function
 function setSpeed(multiplier) {
     speedMultiplier = multiplier;
-    // Update UI
-    document.querySelector('.speed-dropdown-btn').textContent = multiplier + 'x';
-    // Update hidden input for form submission
+    // Update UI with full button content
+    const speedBtn = document.querySelector('.speed-dropdown-btn');
+    speedBtn.innerHTML = `<span>${multiplier.toFixed(2)}x</span><i class="fas fa-fast-forward"></i>`;
+    
+    // Update hidden input
     document.getElementById('speed_value').value = multiplier;
     
+    // Handle active sorting
     if (isSorting) {
         clearInterval(sortingInterval);
         startSort(currentAlgorithm);
+    }
+    
+    // Close dropdown after selection
+    const dropdown = document.getElementById('speedDropdown');
+    if (dropdown.classList.contains('show')) {
+        dropdown.classList.remove('show');
     }
 }
 
 // Initialize speed on page load
 window.onload = function() {
-    const savedSpeed = document.getElementById('speed_value').value;
-    if (savedSpeed) {
-        setSpeed(parseFloat(savedSpeed));
+    document.querySelector('.pause-stop').style.display = 'none'; // Hide pause/stop controls on load
+    try {
+        const savedSpeed = document.getElementById('speed_value').value;
+        if (savedSpeed) {
+            const speed = parseFloat(savedSpeed);
+            if (!isNaN(speed) && speed > 0) {
+                setSpeed(speed);
+            } else {
+                setSpeed(1); // Default to 1x if invalid
+            }
+        }
+    } catch (error) {
+        console.error('Error initializing speed:', error);
+        setSpeed(1); // Fallback to default
     }
 };
 
@@ -313,7 +334,7 @@ function quickSort() {
     }, baseSpeed / speedMultiplier);
 }
 
-
+// Start sorting function
 function startSort(algorithm, resuming = false) {
     if (isSorting && !isPaused && !resuming) return;
     
@@ -325,6 +346,8 @@ function startSort(algorithm, resuming = false) {
     isSorting = true;
     isPaused = false;
     currentAlgorithm = algorithm;
+    
+    // Show pause/stop controls when sorting starts
     document.querySelector('.pause-stop').style.display = 'flex';
     
     switch(algorithm) {
@@ -346,15 +369,19 @@ function startSort(algorithm, resuming = false) {
     }
 }
 
+// Stop sorting function
 function pauseSort() {
     isPaused = !isPaused;
     const pauseButton = document.getElementById('pause');
+    const pauseIcon = pauseButton.querySelector('i');
     
     if (isPaused) {
         clearInterval(sortingInterval);
-        pauseButton.textContent = 'Resume';
+        pauseIcon.classList.remove('fa-pause');
+        pauseIcon.classList.add('fa-play');
     } else {
-        pauseButton.textContent = 'Pause';
+        pauseIcon.classList.remove('fa-play');
+        pauseIcon.classList.add('fa-pause');
         startSort(currentAlgorithm, true);
     }
 }
@@ -365,11 +392,17 @@ function stopSort() {
     isSorting = false;
     isPaused = false;
     currentStep = { i: 0, j: 0 };
+    
+    // Reset pause button icon
+    const pauseButton = document.getElementById('pause');
+    const pauseIcon = pauseButton.querySelector('i');
+    pauseIcon.classList.remove('fa-play');
+    pauseIcon.classList.add('fa-pause');
+    
+    // Hide controls when sorting stops
     document.querySelector('.pause-stop').style.display = 'none';
-    document.getElementById('pause').textContent = 'Pause';
     
     if (isSorted(array)) {
-        // Sequential sorted animation based on speed
         let index = array.length - 1;
         const sortingAnimation = setInterval(() => {
             if (index < 0) {
@@ -379,9 +412,10 @@ function stopSort() {
             sortedIndices.push(index);
             updateArrayView(array);
             index--;
-        }, baseSpeed / speedMultiplier); // Use current speed for animation
+        }, baseSpeed / speedMultiplier);
     } else {
         sortedIndices = [];
         updateArrayView(array);
     }
 }
+

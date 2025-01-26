@@ -419,3 +419,10 @@ function stopSort() {
     }
 }
 
+window.addEventListener('beforeunload', function (e) {
+    if (isSorting) {
+        var confirmationMessage = 'Sorting is in progress. Are you sure you want to leave?';
+        e.returnValue = confirmationMessage; // Gecko, Trident, Chrome 34+
+        return confirmationMessage; // Gecko, WebKit, Chrome <34
+    }
+});

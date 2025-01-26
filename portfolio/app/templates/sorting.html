@@ -12,6 +12,7 @@
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='icons/favicon-black-with-border.png') }}">
     <title>Sorting Visualizer</title>
 </head>
+<body>
 <main>
 
     <!-- Navigation Bar -->
@@ -89,7 +90,6 @@
                         <input type="hidden" name="array[]" value="{{ val }}">
                     {% endfor %}
 
-
                     <!-- Animation Speed Dropdown -->
                     <div class="animation-speed">
                         <button class="speed-dropdown-btn" type="button" onclick="toggleDropdown('speedDropdown')">
@@ -109,7 +109,7 @@
                     </div>
 
                     <!-- Hidden Input for Animation Speed -->
-                    <input type="hidden" id="speed_value" value="{{ speed }}">
+                    <input type="hidden" id="speed_value" name="speed" value="{{ speed }}">
 
                     <!-- Pause and Stop Buttons -->
                     <div class="pause-stop">
@@ -135,8 +135,6 @@
             </div>
         </div>
     </main>
-
-    
 
     <!-- Link to external JavaScript file -->
     <script src="{{ url_for('static', filename='scripts/sorting.js') }}"></script>

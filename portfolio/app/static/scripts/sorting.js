@@ -214,7 +214,6 @@ function selectionSort() {
 }
 
 // Merge sort
-// Merge Sort
 function mergeSort() {
     array = getArrayFromDOM();
     let temp = [...array];
@@ -419,8 +418,6 @@ function stopSort() {
     }
 }
 
-// For how-to-use modal button
-// Show modal on button click
 document.getElementById('showHowToUse').addEventListener('click', () => {
     document.getElementById('howToUseModal').classList.add('active');
     document.querySelector('.modal-content').classList.add('active');
@@ -437,5 +434,21 @@ document.querySelector('.modal-overlay').addEventListener('click', (e) => {
     if (e.target.classList.contains('modal-overlay')) {
         document.getElementById('howToUseModal').classList.remove('active');
         document.querySelector('.modal-content').classList.remove('active');
+    }
+});
+
+// Timer for validation message
+document.addEventListener('DOMContentLoaded', function() {
+    const validationBox = document.querySelector('.validation-box');
+    const errMessage = "{{ err_message }}"; // Access the error message from the template
+
+    // Only show the validation box if there is an error message
+    if (errMessage) {
+        validationBox.style.display = 'flex'; // Show the validation box
+
+        // Hide the validation box after 5 seconds
+        setTimeout(function() {
+            validationBox.style.display = 'none'; // Hide the validation box after 5 seconds
+        }, 5000); // 5000 milliseconds = 5 seconds
     }
 });

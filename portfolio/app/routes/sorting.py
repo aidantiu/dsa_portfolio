@@ -6,7 +6,7 @@ import random
 @app.route('/sorting', methods=['GET', 'POST'])
 def sorting():
     array = []
-    array_size = 10  # Default array size
+    array_size = 10  # Default array size 
     speed = 1  # Default speed multiplier
     
     if request.method == 'POST':
@@ -26,4 +26,21 @@ def sorting():
 
         array = [random.randint(1, 100) for _ in range(array_size)]
 
-    return render_template('sorting.html', array=array, array_size=array_size, speed=speed)
+    # Pass instruction_steps to the template
+    instruction_steps = get_instruction_steps()
+    return render_template('sorting.html', 
+                         array=array, 
+                         array_size=array_size, 
+                         speed=speed,
+                         instruction_steps=instruction_steps)
+
+def get_instruction_steps():
+    return [
+        "Enter a number between 5 and 100 to generate an array of that size.",
+        "Click 'Create Array' button to generate a random array.",
+        "Choose a sorting algorithm from the dropdown menu.",
+        "Adjust animation speed using the speed control (0.25x - 2.00x).",
+        "Use pause/play button to control the visualization.",
+        "Use stop button to reset the visualization.",
+        "Watch the sorting process in action with color-coded animations: Blue for default array elements; Yellow for elements being compared; Red for elements being swapped; and Green for elements in their final sorted position",
+    ]

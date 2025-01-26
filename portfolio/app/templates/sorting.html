@@ -134,6 +134,25 @@
                 </div>
             </div>
         </div>
+
+        <!-- "How to Use" Modal -->
+        <div class="modal-overlay" id="howToUseModal">
+            <div class="modal-content">
+                <i class="fa-solid fa-x" id="closeModal"></i>
+                <h2>How to Use Sorting Algorithm Visualizer?</h2>
+                <div class="modal-content-text">
+                    <ol>
+                        {% for step in instruction_steps %}
+                            <li>{{ step }}</li>
+                        {% endfor %}
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add fixed How to Use button -->
+        <button class="how-to-use-button" id="showHowToUse">?</button>
+
     </main>
 
     

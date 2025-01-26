@@ -118,7 +118,9 @@
                
             </div>
 
+            <!-- Display Binary Tree -->
             <div class="info-wrapper">
+                <!-- Validation Box -->
                 <div id="validation-box" class="validation">
                     <div>
                         {% if message %}
@@ -131,7 +133,8 @@
                         {% endif %}
                     </div>
                 </div>
-
+                
+                <!-- Search Indicator -->
                 <div class="search-indicator" id="search-indicator">
                     <div class="search-legends">
                         <div class="unvisited">
@@ -201,9 +204,40 @@
             <i class="fa-solid fa-x" id="closeModal"></i>
             <h2>How to Use Binary Tree Simulator?</h2>
             <div class="modal-content-text">
-                <ol>
-                    {% for step in instruction_steps %}
-                        <li>{{ step }}</li>
+                <ol class="main-list">
+                    {% for step in instruction_steps.main_steps %}
+                        <li>{{ step }}
+                            {% if loop.index == 3 %}
+                                <ul class="nested-list-type">
+                                    {% for type in instruction_steps.search_types %}
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                            {% if loop.index == 7 %}
+                            <ul class="nested-list">
+                                <li>
+                                    <span class="color-blue">
+                                        <i class="fa-solid fa-spinner"></i> Checking
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="color-yellow">
+                                        <i class="fa-solid fa-arrows-rotate"></i> Visited
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="color-green">
+                                        <i class="fa-regular fa-circle-check"></i> Found
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="color-red">
+                                        <i class="fa-regular fa-circle-xmark"></i> Not found
+                                    </span>
+                                </li>
+                            </ul>
+                        {% endif %}
+                        </li>
                     {% endfor %}
                 </ol>
             </div>

@@ -110,24 +110,24 @@ function updateArrayView(arr, comparing = [], swapping = [], sorted = false) {
         element.querySelector('p').textContent = arr[i];
         
         // Default state
-        element.style.backgroundColor = '#007bff';
+        element.style.background = 'linear-gradient(to bottom, #007bff, #0056b3)';
         element.style.transform = 'scale(1)';
         
         // Comparing state
         if (comparing.includes(i)) {
-            element.style.backgroundColor = '#ffd700';
+            element.style.background = 'linear-gradient(to bottom, #ffd700, #ffbf00)';
             element.style.transform = 'scale(1.1)';
         }
         
         // Swapping state
         if (swapping.includes(i)) {
-            element.style.backgroundColor = '#ff4444';
+            element.style.background = 'linear-gradient(to bottom, #ff4444, #cc0000)';
             element.style.transform = 'scale(1.2)';
         }
         
         // Sequential sorted state
         if (sortedIndices.includes(i)) {
-            element.style.backgroundColor = '#4caf50';
+            element.style.background = 'linear-gradient(to bottom, #66bb6a, #388e3c)';
             element.style.transform = 'scale(1.05)';
         }
     }

@@ -235,7 +235,7 @@ input[type="text"] {
     width: 40%; /* Adjust width to leave room for the button */;
     padding: 10px 20px;
     color: white; 
-    border-radius: 19px;
+    border-radius: 15px;
     border: 1px solid #FFF;
     background: rgba(116, 106, 106, 0.25);
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
@@ -263,7 +263,7 @@ input[type="text"]::placeholder {
     margin: 5px;
     padding: 10px 20px;
     border: 1px solid #FFF;
-    border-radius: 19px;
+    border-radius: 15px;
     background: transparent;
     color: #6b00a1;
     cursor: pointer;
@@ -274,6 +274,10 @@ input[type="text"]::placeholder {
     transition: all 0.3s ease;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     line-height: normal;
+}
+
+#goBox{
+    margin-left: 10px;
 }
 
 /* Button Hover States */
@@ -315,7 +319,7 @@ input[type="text"]::placeholder {
     margin-right: 0;
     padding: 10px 15px;
     border: 1px solid #FFF;
-    border-radius: 19px;
+    border-radius: 15px;
     background: transparent;
     color: #6b00a1;
     cursor: pointer;
@@ -597,69 +601,6 @@ input[type="text"]::placeholder {
     }
 }
 
-/* Small devices (phones, 576px and down) */
-@media screen and (max-width: 576px) {
-    .infix-to-postfix-text h1 {
-        font-size: min(28px, 3.5vh);
-    }
-
-    .input-container {
-        width: 95%;
-        min-height: 40px;
-    }
-
-    .output-box {
-        width: 95%;
-        min-height: max(200px, 30vh);
-    }
-
-    .postfix-result {
-        font-size: min(20px, 2.5vh);
-        height: max(150px, 20vh);
-    }
-}
-
-/* Height-based queries */
-@media screen and (max-height: 800px) {
-    .output-box {
-        min-height: 45vh;
-    }
-    
-    .postfix-result {
-        height: 35vh;
-    }
-}
-
-@media screen and (max-height: 600px) {
-    .input-container {
-        padding: 5px 0;
-    }
-    
-    .output-box {
-        min-height: 40vh;
-    }
-    
-    .postfix-result {
-        height: 30vh;
-    }
-}
-
-/* Landscape orientation */
-@media screen and (max-height: 500px) and (orientation: landscape) {
-    .input-container {
-        flex-direction: row;
-        flex-wrap: nowrap;
-    }
-    
-    .output-box {
-        min-height: 35vh;
-    }
-    
-    .postfix-result {
-        height: 25vh;
-    }
-}
-
 /* Update the info-box styles */
 /* Update the info-box and steps display styles */
 .info-box {
@@ -804,4 +745,28 @@ input[type="text"]::placeholder {
     padding: 20px;
     color: rgba(0, 0, 0, 0.5);
     font-family: 'Mouse Memoirs', sans-serif;
+}
+
+/* Minimal Media Query for smaller screens */
+@media screen and (max-width: 1500px) {
+    .infix-to-postfix-text h1 {
+        font-size: 24px;
+    }
+
+    input[type="text"] {
+        width: 100%;
+    }
+
+    .output-box {
+        width: 95%;
+    }
+
+    .postfix-result {
+        font-size: 20px;
+        height: 180px;
+    }
+
+    .btn-text {
+        display: none;
+    }
 }

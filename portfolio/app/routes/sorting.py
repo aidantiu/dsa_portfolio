@@ -52,7 +52,8 @@ def sorting():
                          array=array, 
                          array_size=array_size, 
                          speed=speed,
-                         instruction_steps=instruction_steps)
+                         instruction_steps=instruction_steps,
+                         err_message=err_message)
 
 def get_instruction_steps():
     return [
@@ -64,5 +65,3 @@ def get_instruction_steps():
         "Use stop button to reset the visualization.",
         "Watch the sorting process in action with color-coded animations: Blue for default array elements; Yellow for elements being compared; Red for elements being swapped; and Green for elements in their final sorted position.",
     ]
-
-    return render_template('sorting.html', array=array, array_size=array_size, speed=speed, err_message=err_message)

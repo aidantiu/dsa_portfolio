@@ -415,6 +415,10 @@ button[type="submit"][name="generate"] i {
     padding: 0 10px;
 }
 
+.element-wrapper.large-array {
+    min-width: unset;
+}
+
 .array-element {
     min-width: 10px;
     max-width: 40px;
@@ -432,8 +436,17 @@ button[type="submit"][name="generate"] i {
     transition: all 0.3s ease;
     background: linear-gradient(to bottom, #007bff, #0056b3);
     position: relative;
-    font-size: 23px
+    font-size: 23px;
 }
+
+.array-element.medium-font {
+    font-size: 12px;
+}
+
+.array-element.small-font {
+    font-size: 7px;
+}
+
 
 .array-element p {
     position: absolute;

@@ -258,7 +258,6 @@ body{
     border: 3px solid rgba(255, 255, 255, 0.75);
     background-color: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(17.5px);
-    -webkit-backdrop-filter: blur(17.5px);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     z-index: 1000;
     opacity: 0;
@@ -334,4 +333,98 @@ body{
     transition: color 0.3s ease;
 }
 
-/* Previewing Project Images in the webpage */
+/* Media Queries */
+/* Mobile Devices */
+@media screen and (max-width: 768px) {
+    .specific-profile-wrapper {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .specific-profile-image img {
+        width: 300px;
+        height: 300px;
+    }
+
+    .specific-profile-header-details h1,
+    .specific-profile-header-details h2 {
+        font-size: 40px;
+    }
+
+    .specific-profile-header-details p {
+        font-size: 18px;
+    }
+
+    .specific-profile-skills-wrapper {
+        position: relative;
+        margin-left: 0;
+        padding-left: 20px;
+        top: 0;
+        margin-top: 20px;
+        border-radius: 20px;
+    }
+
+    .specific-projects-wrapper {
+        margin: 50px 0;
+    }
+
+    .specific-projects-wrapper h3 {
+        font-size: 2.5rem;
+    }
+
+    .specific-projects-card {
+        grid-template-columns: 1fr;
+    }
+
+    .specific-profile-skills ul {
+        justify-content: center;
+    }
+
+    .specific-profile-skills li {
+        font-size: 16px;
+        padding: 8px;
+    }
+}
+
+
+/* Tablet Devices */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .specific-profile-wrapper {
+        gap: 30px;
+    }
+
+    .specific-profile-image img {
+        width: 400px;
+        height: 400px;
+    }
+
+    .specific-profile-header-details h1,
+    .specific-profile-header-details h2 {
+        font-size: 60px;
+    }
+
+    .specific-profile-skills-wrapper {
+        padding-left: 40%;
+    }
+
+    .specific-projects-card {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .specific-profile-skills-wrapper {
+        position: static;
+        margin: 50px auto;
+        padding: 30px;
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        border-radius: 20px;
+        
+    }
+
+    .specific-profile-skills li {
+        font-size: 18px;
+    }
+}

@@ -214,7 +214,6 @@ function selectionSort() {
 }
 
 // Merge sort
-// Merge Sort
 function mergeSort() {
     array = getArrayFromDOM();
     let temp = [...array];
@@ -419,6 +418,7 @@ function stopSort() {
     }
 }
 
+
 // Function to display validation message inside the validation-box
 function showValidationMessage(message) {
     const validationBox = document.querySelector('.validation-box');
@@ -444,6 +444,25 @@ function showValidationMessage(message) {
         exclamationIcon.style.display = 'none';
     }
 }
+
+document.getElementById('showHowToUse').addEventListener('click', () => {
+    document.getElementById('howToUseModal').classList.add('active');
+    document.querySelector('.modal-content').classList.add('active');
+});
+
+// Close modal with X button
+document.getElementById('closeModal').addEventListener('click', () => {
+    document.getElementById('howToUseModal').classList.remove('active');
+    document.querySelector('.modal-content').classList.remove('active');
+});
+
+// Close modal when clicking overlay
+document.querySelector('.modal-overlay').addEventListener('click', (e) => {
+    if (e.target.classList.contains('modal-overlay')) {
+        document.getElementById('howToUseModal').classList.remove('active');
+        document.querySelector('.modal-content').classList.remove('active');
+    }
+});
 
 // Timer for validation message
 document.addEventListener('DOMContentLoaded', function() {

@@ -391,7 +391,14 @@ def binary_tree():
 
 # List to store the How To Use data
 def get_instruction_steps():
-    return [
-        "Click on a node to select it.",
-    ]
-    # Will add more steps for the binary tree page
+    return {
+        'main_steps': [
+            "Click on a node to select it for operations.",
+            "Use 'Add Node' dropdown to add left or right children to selected node.",
+            "Use 'Search Node' dropdown to search using different traversal methods",
+            "Use 'Delete Node' to remove selected node and its subtrees.",
+            "Use 'Clear Tree' to reset the entire tree structure.",
+            "Drag the tree view to navigate larger trees.",
+            "Watch the color indicators during search of a node."
+        ],
+    }

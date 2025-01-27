@@ -105,11 +105,14 @@ function updateArrayView(arr, comparing = [], swapping = [], sorted = false) {
     for (let i = 0; i < elements.length; i++) {
         const element = elements[i];
         
-        element.style.transition = 'all 0.3s ease';
-        element.style.height = `${arr[i] + 150}px`;
+        // Calculate height based on array value
+        const height = arr[i] * 3 + 10; // Scale factor for better visibility
+        element.style.height = `${height}px`;
+        
+        // Update the text content
         element.querySelector('p').textContent = arr[i];
         
-        // Default state
+        // Reset styles
         element.style.background = 'linear-gradient(to bottom, #007bff, #0056b3)';
         element.style.transform = 'scale(1)';
         
@@ -125,11 +128,14 @@ function updateArrayView(arr, comparing = [], swapping = [], sorted = false) {
             element.style.transform = 'scale(1.2)';
         }
         
-        // Sequential sorted state
+        // Sorted state
         if (sortedIndices.includes(i)) {
             element.style.background = 'linear-gradient(to bottom, #66bb6a, #388e3c)';
             element.style.transform = 'scale(1.05)';
         }
+
+        // Force reflow to ensure animation
+        void element.offsetHeight;
     }
 }
 

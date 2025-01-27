@@ -217,59 +217,73 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 25px;
+    padding: clamp(20px, 4vw, 25px);
     border-radius: 15px;
     border: 3px solid rgba(255, 255, 255, 0.50);
     background: rgba(212, 212, 212, 0.10);
     backdrop-filter: blur(17.5px);
+    -webkit-backdrop-filter: blur(17.5px); /* Safari support */
     filter: drop-shadow(0px 4px 96.3px rgba(0, 0, 0, 0.25));
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     height: 100%;
     max-width: 400px;
-    margin: 0 auto;
     width: 100%;
+    margin: 0 auto;
     position: relative;
+    will-change: transform;
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .specific-projects-card-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    border-color: rgba(255, 255, 255, 0.8);
 }
 
 .specific-projects-card-item:hover::before {
     content: '';
     position: fixed;
-    bottom: 20px;
-    left: var(--preview-position-x, 1.25%);
-    width: 300px;
+    bottom: max(20px, 5vh);
+    left: var(--preview-position-x, 50%);
+    width: min(300px, 90vw);
     height: 200px;
-    background-image: var(--preview-url);
+    background-image: var(--preview-url, none);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     border-radius: 15px;
-    border: 3px solid rgba(255, 255, 255, 0.50);
-    background-color: rgba(255, 255, 255, 0.781);
+    border: 3px solid rgba(255, 255, 255, 0.75);
+    background-color: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(17.5px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    -webkit-backdrop-filter: blur(17.5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     z-index: 1000;
     opacity: 0;
     pointer-events: none;
-    transform: translateX(-50%);
-    animation: previewFadeIn 0.3s ease forwards;
+    transform: translate(-50%, 20px);
+    animation: previewFadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    will-change: transform, opacity;
 }
 
 @keyframes previewFadeIn {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translate(-50%, 20px);
     }
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translate(-50%, 0);
     }
 }
 
+@media (max-width: 768px) {
+    .specific-projects-card-item:hover::before {
+        display: none; /* Disable preview on mobile */
+    }
+}
 
 /* Project Image */
 .specific-projects-card-item img {

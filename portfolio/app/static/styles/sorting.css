@@ -123,15 +123,18 @@ body{
 }
 
 /* Validation/Notification Box Message */
+#validation-box {
+    display: none; /* Hide by default */
+}
+
 .validation-box {
     gap: 8px;
-    display: none;
+    display: none; /* Hide by default */
     padding: 5px;
     border-radius: 8px;
     background-color: #D9D9D9;
     border: 2px solid #c7c4dd;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-    display: flex;
     align-items: center;
     color: #000000;
 }

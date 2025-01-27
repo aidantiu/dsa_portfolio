@@ -60,7 +60,7 @@
                     </div>
                     
                     <!-- Generate Array Button -->
-                    <button type="submit" name="generate">
+                    <button type="submit" name="generate" class="create-array-btn">
                         <i class="fas fa-plus-circle"></i>
                         <span>Create Array</span>
                     </button>
@@ -118,12 +118,10 @@
                         </button>
                     </div>
                     
-                     <!-- Validation Message -->
-                    <div class="validation-box" {% if not err_message %}hidden{% endif %}>
-                        {% if err_message %}
-                            <img id="exclamationIcon" src="{{ url_for('static', filename='icons/exclamation-circle.svg') }}" alt="Exclamation Icon" />
-                            <p>{{ err_message }}</p>
-                        {% endif %}
+                    <!-- Validation Message -->
+                    <div class="validation-box" id="validation-box" data-err-message="{{ err_message if err_message else '' }}" style="display: none;">
+                        <img id="exclamationIcon" src="{{ url_for('static', filename='icons/exclamation-circle.svg') }}" alt="Exclamation Icon" />
+                        <p></p>
                     </div>
 
             </form>

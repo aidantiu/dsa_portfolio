@@ -418,6 +418,33 @@ function stopSort() {
     }
 }
 
+
+// Function to display validation message inside the validation-box
+function showValidationMessage(message) {
+    const validationBox = document.querySelector('.validation-box');
+    const validationMessage = validationBox.querySelector('p');
+    const exclamationIcon = validationBox.querySelector('img');
+
+    if (message) {
+        // Update the message content and show the validation box
+        validationMessage.textContent = message;
+        validationBox.style.display = 'flex';
+        exclamationIcon.style.display = 'block';
+
+        // Hide the box after 5 seconds
+        setTimeout(function() {
+            validationBox.style.display = 'none';
+            validationMessage.textContent = '';
+            exclamationIcon.style.display = 'none';
+        }, 5000); // Hide after 5 seconds
+    } else {
+        // Hide the validation box and clear the message content
+        validationBox.style.display = 'none';
+        validationMessage.textContent = '';
+        exclamationIcon.style.display = 'none';
+    }
+}
+
 document.getElementById('showHowToUse').addEventListener('click', () => {
     document.getElementById('howToUseModal').classList.add('active');
     document.querySelector('.modal-content').classList.add('active');
@@ -440,15 +467,26 @@ document.querySelector('.modal-overlay').addEventListener('click', (e) => {
 // Timer for validation message
 document.addEventListener('DOMContentLoaded', function() {
     const validationBox = document.querySelector('.validation-box');
-    const errMessage = "{{ err_message }}"; // Access the error message from the template
+    const errMessage = validationBox.dataset.errMessage; // Access the error message from the data attribute
 
     // Only show the validation box if there is an error message
     if (errMessage) {
-        validationBox.style.display = 'flex'; // Show the validation box
+        showValidationMessage(errMessage);
+    }
+});
 
-        // Hide the validation box after 5 seconds
-        setTimeout(function() {
-            validationBox.style.display = 'none'; // Hide the validation box after 5 seconds
-        }, 5000); // 5000 milliseconds = 5 seconds
+// Prevent form submission (array creation) if sorting is in progress
+document.querySelector('form').addEventListener('submit', function(e) {
+    if (isSorting && !isPaused) {
+        // Show validation message
+        showValidationMessage("You are currently sorting. Please pause before submitting.");
+        e.preventDefault(); // Prevent form submission
+    }
+});
+
+document.querySelector('[name="generate"]').addEventListener('click', function(e) {
+    if (isSorting && !isPaused) {
+        showValidationMessage("You are currently sorting. Please pause before creating a new array.");
+        e.preventDefault(); // Prevent array creation
     }
 });

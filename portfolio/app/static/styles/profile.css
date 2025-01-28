@@ -2,6 +2,138 @@ body{
     background: #E2B2E5 linear-gradient(180deg , #E2B2E5 30%, #B9FBFF 100%);
 }
 
+/* Bubbles */
+.bubbles {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+}
+
+.bubble {
+    position: absolute;
+    bottom: -100px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: rise 10s infinite ease-in;
+}
+
+/* Purple bubbles */
+.bubble:nth-child(1) {
+    background: rgba(107, 0, 161, 0.3); /* #6b00a1 */
+    width: 40px;
+    height: 40px;
+    left: 10%;
+    animation-duration: 8s;
+}
+
+/* Pink bubbles */
+.bubble:nth-child(2) {
+    background: rgba(226, 178, 229, 0.3); /* #E2B2E5 */
+    width: 20px;
+    height: 20px;
+    left: 20%;
+    animation-duration: 5s;
+    animation-delay: 1s;
+}
+
+/* Deep purple bubbles */
+.bubble:nth-child(3) {
+    background: rgba(136, 61, 185, 0.3); /* #883DB9 */
+    width: 50px;
+    height: 50px;
+    left: 35%;
+    animation-duration: 7s;
+    animation-delay: 2s;
+}
+
+/* Light purple bubbles */
+.bubble:nth-child(4) {
+    background: rgba(209, 142, 224, 0.3); /* #D18EE0 */
+    width: 30px;
+    height: 30px;
+    left: 50%;
+    animation-duration: 11s;
+    animation-delay: 0s;
+}
+
+/* Pink purple bubbles */
+.bubble:nth-child(5) {
+    background: rgba(150, 67, 172, 0.3); /* #9643AC */
+    width: 45px;
+    height: 45px;
+    left: 65%;
+    animation-duration: 6s;
+    animation-delay: 1s;
+}
+
+/* Repeat colors for remaining bubbles */
+.bubble:nth-child(6) {
+    background: rgba(107, 0, 161, 0.3);
+    width: 25px;
+    height: 25px;
+    left: 75%;
+    animation-duration: 8s;
+    animation-delay: 3s;
+}
+
+.bubble:nth-child(7) {
+    background: rgba(226, 178, 229, 0.3);
+    width: 35px;
+    height: 35px;
+    left: 85%;
+    animation-duration: 12s;
+    animation-delay: 2s;
+}
+
+.bubble:nth-child(8) {
+    background: rgba(136, 61, 185, 0.3);
+    width: 28px;
+    height: 28px;
+    left: 92%;
+    animation-duration: 6s;
+    animation-delay: 4s;
+}
+
+.bubble:nth-child(9) {
+    background: rgba(209, 142, 224, 0.3);
+    width: 42px;
+    height: 42px;
+    left: 15%;
+    animation-duration: 9s;
+    animation-delay: 2s;
+}
+
+.bubble:nth-child(10) {
+    background: rgba(150, 67, 172, 0.3);
+    width: 38px;
+    height: 38px;
+    left: 45%;
+    animation-duration: 7s;
+    animation-delay: 5s;
+}
+
+@keyframes rise {
+    0% {
+        bottom: -100px;
+        transform: translateX(0);
+    }
+    50% {
+        transform: translate(100px, -500px);
+    }
+    100% {
+        bottom: 1080px;
+        transform: translateX(-200px);
+    }
+}
+
+
+
 
 /* Profile Section Container */
 .specific-profile-container{

@@ -58,9 +58,35 @@ function setSpeed(multiplier) {
     }
 }
 
+// Handling large arrays
+function updateArraySizeClass() {
+    const arrayElements = document.getElementsByClassName('array-element');
+    const elementWrapper = document.querySelector('.element-wrapper');
+    const arrayLength = arrayElements.length;
+
+    // Handle wrapper class
+    if (arrayLength > 50) {
+        elementWrapper.classList.add('large-array');
+    } else {
+        elementWrapper.classList.remove('large-array');
+    }
+
+    // Handle font sizes
+    Array.from(arrayElements).forEach(element => {
+        element.classList.remove('medium-font', 'small-font');
+        
+        if (arrayLength > 50 && arrayLength <= 75) {
+            element.classList.add('medium-font');
+        } else if (arrayLength > 75) {
+            element.classList.add('small-font');
+        }
+    });
+}
+
 // Initialize speed on page load
 window.onload = function() {
-    document.querySelector('.pause-stop').style.display = 'none'; // Hide pause/stop controls on load
+    document.querySelector('.pause-stop').style.display = 'none';
+    updateArraySizeClass(); // Add this line
     try {
         const savedSpeed = document.getElementById('speed_value').value;
         if (savedSpeed) {
@@ -79,8 +105,13 @@ window.onload = function() {
 
 // Update form submit handling
 document.querySelector('form').addEventListener('submit', function(e) {
-    // Ensure speed value is included in form submission
-    document.getElementById('speed_value').value = speedMultiplier;
+    if (isSorting && !isPaused) {
+        showValidationMessage("You are currently sorting. Please pause before submitting.");
+        e.preventDefault();
+    } else {
+        document.getElementById('speed_value').value = speedMultiplier;
+        setTimeout(updateArraySizeClass, 100); // Add this line
+    }
 });
 
 
@@ -105,11 +136,14 @@ function updateArrayView(arr, comparing = [], swapping = [], sorted = false) {
     for (let i = 0; i < elements.length; i++) {
         const element = elements[i];
         
-        element.style.transition = 'all 0.3s ease';
-        element.style.height = `${arr[i] + 150}px`;
+        // Calculate height based on array value
+        const height = arr[i] * 3 + 10; // Scale factor for better visibility
+        element.style.height = `${height}px`;
+        
+        // Update the text content
         element.querySelector('p').textContent = arr[i];
         
-        // Default state
+        // Reset styles
         element.style.background = 'linear-gradient(to bottom, #007bff, #0056b3)';
         element.style.transform = 'scale(1)';
         
@@ -125,11 +159,14 @@ function updateArrayView(arr, comparing = [], swapping = [], sorted = false) {
             element.style.transform = 'scale(1.2)';
         }
         
-        // Sequential sorted state
+        // Sorted state
         if (sortedIndices.includes(i)) {
             element.style.background = 'linear-gradient(to bottom, #66bb6a, #388e3c)';
             element.style.transform = 'scale(1.05)';
         }
+
+        // Force reflow to ensure animation
+        void element.offsetHeight;
     }
 }
 
@@ -487,6 +524,8 @@ document.querySelector('form').addEventListener('submit', function(e) {
 document.querySelector('[name="generate"]').addEventListener('click', function(e) {
     if (isSorting && !isPaused) {
         showValidationMessage("You are currently sorting. Please pause before creating a new array.");
-        e.preventDefault(); // Prevent array creation
+        e.preventDefault();
+    } else {
+        setTimeout(updateArraySizeClass, 100); // Add this line
     }
 });
